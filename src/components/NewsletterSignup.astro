@@ -1,23 +1,29 @@
 ---
 /**
- * Newsletter signup — Beehiiv embed.
+ * Newsletter signup — Supabase-backed (writes to public.subscribers table).
  *
- * Setup (one-time):
- *   1. Create publication at https://beehiiv.com → free tier
- *   2. Settings → Subscribe Forms → Create embed
- *   3. Replace BEEHIIV_PUB_ID below with your publication ID (looks like "pub_abc123...")
+ * Flow:
+ *   1. User enters email + clicks 구독하기
+ *   2. Client-side JS imports Supabase client and INSERTs into subscribers
+ *   3. On success: show 「가입 완료 — PDF 발송 안내 이메일을 확인하세요」
+ *   4. On dup email: show 「이미 구독 중이신 이메일입니다」
+ *   5. On error: show 「잠시 후 다시 시도해주세요」
  *
- * Until BEEHIIV_PUB_ID is filled in, form gracefully degrades to mailto.
+ * Honeypot field (hidden) auto-rejects bots.
+ * Source field tracks where the signup came from (analytics).
+ *
+ * Requires:
+ *   - Supabase table created (migrations/001_subscribers.sql)
+ *   - PUBLIC_SUPABASE_URL + PUBLIC_SUPABASE_PUBLISHABLE_KEY in .env
  */
 
-const BEEHIIV_PUB_ID = ''; // TODO: paste publication ID after Beehiiv signup
-const action = BEEHIIV_PUB_ID
-	? `https://embeds.beehiiv.com/${BEEHIIV_PUB_ID}/subscribe`
-	: 'mailto:editor@migukstory.com';
-const method = BEEHIIV_PUB_ID ? 'post' : 'get';
+interface Props {
+	source?: string;       // e.g., "first-30-days-magnet", "blog-footer", "homepage"
+}
+const { source = 'newsletter_form' } = Astro.props;
 ---
 
-<form class="newsletter" action={action} method={method} target={BEEHIIV_PUB_ID ? '_blank' : undefined}>
+<form class="newsletter" data-source={source}>
 	<div class="newsletter-inner">
 		<div class="copy">
 			<p class="kicker">무료 가입 선물 · 위클리 뉴스레터</p>
@@ -38,10 +44,91 @@ const method = BEEHIIV_PUB_ID ? 'post' : 'get';
 				required
 			/>
 			<button type="submit">구독하기</button>
+			<!-- Honeypot — bots fill, humans don't see -->
+			<input
+				type="text"
+				name="website"
+				tabindex="-1"
+				autocomplete="off"
+				aria-hidden="true"
+				style="position:absolute;left:-9999px;opacity:0;width:1px;height:1px;"
+			/>
 		</div>
 		<p class="trust">스팸 없음 · 광고 없음 · 검증된 정보만</p>
+		<p class="msg" data-msg></p>
 	</div>
 </form>
+
+<script>
+	import { supabase } from '../lib/supabase';
+
+	document.querySelectorAll<HTMLFormElement>('.newsletter').forEach((form) => {
+		form.addEventListener('submit', async (e) => {
+			e.preventDefault();
+			const fd = new FormData(form);
+			const email = String(fd.get('email') || '').trim().toLowerCase();
+			const honeypot = String(fd.get('website') || '');
+			const source = form.dataset.source || 'newsletter_form';
+			const msgEl = form.querySelector('[data-msg]') as HTMLElement | null;
+			const button = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+
+			if (!msgEl || !button) return;
+
+			// Reject honeypot
+			if (honeypot) return;
+			if (!email || !email.includes('@')) {
+				msgEl.textContent = '올바른 이메일 주소를 입력해 주세요.';
+				msgEl.dataset.kind = 'error';
+				return;
+			}
+
+			button.disabled = true;
+			const origLabel = button.textContent;
+			button.textContent = '가입 중…';
+			msgEl.textContent = '';
+			delete msgEl.dataset.kind;
+
+			try {
+				const { error } = await supabase
+					.from('subscribers')
+					.insert({
+						email,
+						source,
+						metadata: {
+							referrer: document.referrer || null,
+							ua: navigator.userAgent,
+							locale: navigator.language,
+							pathname: window.location.pathname,
+							submitted_at: new Date().toISOString(),
+						},
+					});
+
+				if (error) {
+					// 23505 = unique violation = email already exists
+					if (error.code === '23505') {
+						msgEl.textContent = '이미 구독 중이신 이메일입니다. 매주 화요일 뉴스레터를 보내드리고 있습니다 ✓';
+						msgEl.dataset.kind = 'info';
+					} else {
+						console.error('Newsletter signup error:', error);
+						msgEl.textContent = '잠시 후 다시 시도해 주세요. 문제가 계속되면 editor@migukstory.com 으로 알려주세요.';
+						msgEl.dataset.kind = 'error';
+					}
+				} else {
+					msgEl.textContent = '가입 완료 ✓ 「미국 정착 첫 90일 PDF」 발송 안내를 곧 보내드립니다.';
+					msgEl.dataset.kind = 'success';
+					form.reset();
+				}
+			} catch (err) {
+				console.error(err);
+				msgEl.textContent = '네트워크 오류입니다. 잠시 후 다시 시도해 주세요.';
+				msgEl.dataset.kind = 'error';
+			} finally {
+				button.disabled = false;
+				button.textContent = origLabel;
+			}
+		});
+	});
+</script>
 
 <style>
 	.newsletter {
@@ -77,8 +164,9 @@ const method = BEEHIIV_PUB_ID ? 'post' : 'get';
 		display: flex;
 		gap: 0.5rem;
 		margin-top: var(--s-2);
+		position: relative;
 	}
-	.form-row input {
+	.form-row input[type="email"] {
 		flex: 1;
 		min-width: 0;
 		padding: 0.7em 1em;
@@ -90,7 +178,7 @@ const method = BEEHIIV_PUB_ID ? 'post' : 'get';
 		color: var(--ink);
 		transition: border-color var(--duration) var(--ease-out);
 	}
-	.form-row input:focus {
+	.form-row input[type="email"]:focus {
 		outline: none;
 		border-color: var(--brick);
 	}
@@ -107,14 +195,24 @@ const method = BEEHIIV_PUB_ID ? 'post' : 'get';
 		white-space: nowrap;
 		transition: background var(--duration) var(--ease-out);
 	}
-	.form-row button:hover {
-		background: var(--brick-deep);
-	}
+	.form-row button:hover { background: var(--brick-deep); }
+	.form-row button:disabled { opacity: 0.6; cursor: wait; }
+
 	.trust {
 		margin: var(--s-2) 0 0;
 		font-size: 0.78rem;
 		color: var(--ink-light);
 	}
+	.msg {
+		margin: var(--s-2) 0 0;
+		font-size: 0.88rem;
+		line-height: 1.5;
+		min-height: 1.2em;
+	}
+	.msg[data-kind="success"] { color: #047857; font-weight: 600; }
+	.msg[data-kind="info"]    { color: var(--ink-medium); font-weight: 500; }
+	.msg[data-kind="error"]   { color: var(--brick); font-weight: 500; }
+
 	@media (max-width: 540px) {
 		.form-row { flex-direction: column; }
 		.newsletter h3 { font-size: 1.2rem; }
