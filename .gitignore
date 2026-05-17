@@ -16,6 +16,9 @@ pnpm-debug.log*
 .env.production
 .env.local
 
+# local secrets / OAuth client files
+.secrets/
+
 # macOS-specific files
 .DS_Store
 

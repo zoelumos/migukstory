@@ -1,0 +1,123 @@
+---
+/**
+ * UserMenu — shows "로그인" when logged out, profile/logout when logged in.
+ * Client-side: reads Supabase session from localStorage, hydrates UI on mount.
+ */
+---
+
+<div class="user-menu" data-state="loading">
+	<a class="login-link" href="/login">로그인</a>
+	<div class="user-pill" hidden>
+		<img class="avatar" alt="" />
+		<span class="display-name"></span>
+		<button class="logout-btn" type="button" aria-label="로그아웃">로그아웃</button>
+	</div>
+</div>
+
+<script>
+	import { supabase } from '../lib/supabase';
+
+	const root = document.querySelector('.user-menu') as HTMLElement | null;
+	if (root) {
+		const loginLink = root.querySelector('.login-link') as HTMLAnchorElement | null;
+		const pill = root.querySelector('.user-pill') as HTMLElement | null;
+		const avatar = root.querySelector('.avatar') as HTMLImageElement | null;
+		const nameEl = root.querySelector('.display-name') as HTMLElement | null;
+		const logoutBtn = root.querySelector('.logout-btn') as HTMLButtonElement | null;
+
+		const renderLoggedOut = () => {
+			root.dataset.state = 'logged-out';
+			if (loginLink) loginLink.hidden = false;
+			if (pill) pill.hidden = true;
+		};
+		const renderLoggedIn = (session: any) => {
+			root.dataset.state = 'logged-in';
+			if (loginLink) loginLink.hidden = true;
+			if (pill) pill.hidden = false;
+			const meta = session?.user?.user_metadata || {};
+			const name = meta.full_name || meta.name || (session?.user?.email || '').split('@')[0];
+			const ava = meta.avatar_url || meta.picture;
+			if (nameEl) nameEl.textContent = name;
+			if (avatar) {
+				if (ava) { avatar.src = ava; avatar.hidden = false; }
+				else { avatar.hidden = true; }
+			}
+		};
+
+		// Initial render
+		supabase.auth.getSession().then(({ data }) => {
+			if (data.session) renderLoggedIn(data.session);
+			else renderLoggedOut();
+		});
+
+		// Live updates on login/logout
+		supabase.auth.onAuthStateChange((_event, session) => {
+			if (session) renderLoggedIn(session);
+			else renderLoggedOut();
+		});
+
+		// Logout
+		logoutBtn?.addEventListener('click', async () => {
+			await supabase.auth.signOut();
+			renderLoggedOut();
+		});
+	}
+</script>
+
+<style>
+	.user-menu {
+		display: inline-flex;
+		align-items: center;
+	}
+	/* Hide entirely until JS hydrates (avoids flash) */
+	.user-menu[data-state="loading"] .login-link { visibility: hidden; }
+	.login-link {
+		display: inline-block;
+		font-size: 0.78rem;
+		font-weight: 600;
+		color: var(--ink);
+		text-decoration: none;
+		padding: 0.35em 0.8em;
+		border: 1px solid var(--rule);
+		border-radius: 999px;
+		letter-spacing: 0.04em;
+		transition: all var(--duration) var(--ease-out);
+	}
+	.login-link:hover {
+		color: var(--brick);
+		border-color: var(--brick);
+	}
+	.user-pill {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5em;
+		font-size: 0.78rem;
+		color: var(--ink);
+	}
+	.avatar {
+		width: 24px;
+		height: 24px;
+		border-radius: 50%;
+		object-fit: cover;
+		background: var(--paper-soft);
+	}
+	.display-name {
+		font-weight: 600;
+		max-width: 10ch;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.logout-btn {
+		font: inherit;
+		font-size: 0.72rem;
+		color: var(--ink-light);
+		background: transparent;
+		border: none;
+		cursor: pointer;
+		padding: 0.2em 0.5em;
+		border-radius: 3px;
+		transition: color var(--duration);
+	}
+	.logout-btn:hover { color: var(--brick); }
+</style>

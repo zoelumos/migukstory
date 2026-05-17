@@ -1,49 +1,186 @@
 ---
 /**
- * Giscus comments — GitHub Discussions powered, no spam, AdSense-safe.
+ * Comments — Supabase-backed, Google OAuth gated.
  *
- * Reader logs in with GitHub to comment. Discussion per article auto-created
- * on first comment using the article's pathname as the unique key.
+ * Replaces the old Giscus integration. Stores comments in public.comments
+ * (one row per comment, post_slug = pathname). Anyone can read non-hidden
+ * comments; only logged-in users can write; authors can edit own within 15 min.
  *
- * Config locked to:
- *   repo:        schul92/migukstory
- *   repo-id:     R_kgDOSgLQ3w
- *   category:    Announcements (maintainer-restricted to prevent random threads)
- *   category-id: DIC_kwDOSgLQ384C9RY6
- *   mapping:     pathname  (each /blog/[slug] gets its own discussion)
- *   lang:        ko
+ * Schema: migrations/002_profiles_comments.sql
  *
- * Prereq: giscus GitHub app must be installed on the repo:
- *   https://github.com/apps/giscus → Install → select schul92/migukstory
+ * Future Phase 3 additions: nested replies (parent_id), reactions (jsonb),
+ * @-mentions, moderation queue via Supabase MCP.
  */
 ---
 
-<section class="comments-section">
+<section class="comments-section" data-post-slug={Astro.url.pathname}>
 	<header class="comments-head">
-		<h2>댓글</h2>
+		<h2>댓글 <span class="count" data-count></span></h2>
 		<p class="comments-sub">
-			GitHub 계정으로 댓글을 남길 수 있습니다 · 스팸 차단 · 공개 토론
+			Google 계정으로 로그인하면 댓글을 남기실 수 있습니다 · 스팸 차단 · 비방 자동 숨김
 		</p>
 	</header>
 
-	<script
-		src="https://giscus.app/client.js"
-		data-repo="schul92/migukstory"
-		data-repo-id="R_kgDOSgLQ3w"
-		data-category="Announcements"
-		data-category-id="DIC_kwDOSgLQ384C9RY6"
-		data-mapping="pathname"
-		data-strict="1"
-		data-reactions-enabled="1"
-		data-emit-metadata="0"
-		data-input-position="bottom"
-		data-theme="light"
-		data-lang="ko"
-		data-loading="lazy"
-		crossorigin="anonymous"
-		async
-	></script>
+	<!-- Compose form (only shown when logged in) -->
+	<form class="comment-form" hidden data-compose>
+		<div class="compose-head">
+			<img class="me-avatar" alt="" data-me-avatar />
+			<span class="me-name" data-me-name></span>
+		</div>
+		<label class="sr-only" for="comment-body">댓글 내용</label>
+		<textarea
+			id="comment-body"
+			name="body"
+			rows="3"
+			placeholder="이 글에 대한 의견을 한국어로 남겨주세요."
+			minlength="2"
+			maxlength="5000"
+			required
+		></textarea>
+		<div class="compose-actions">
+			<span class="char-count" data-char>0 / 5000</span>
+			<button type="submit" class="btn-post">댓글 게시</button>
+		</div>
+	</form>
+
+	<!-- Login prompt (when logged out) -->
+	<aside class="login-prompt" hidden data-login-prompt>
+		<p>댓글을 남기시려면 Google 계정으로 로그인해 주세요.</p>
+		<a class="btn-login" id="comments-login-link" href="/login">Google로 로그인 →</a>
+	</aside>
+
+	<!-- Comment list -->
+	<ol class="comment-list" data-comment-list>
+		<li class="loading">댓글을 불러오는 중…</li>
+	</ol>
 </section>
+
+<script>
+	import { supabase } from '../lib/supabase';
+
+	const root = document.querySelector('.comments-section') as HTMLElement | null;
+	if (root) {
+		const postSlug = root.dataset.postSlug || window.location.pathname;
+		const composeForm = root.querySelector('[data-compose]') as HTMLFormElement | null;
+		const loginPrompt = root.querySelector('[data-login-prompt]') as HTMLElement | null;
+		const list = root.querySelector('[data-comment-list]') as HTMLOListElement | null;
+		const countEl = root.querySelector('[data-count]') as HTMLElement | null;
+		const meAvatar = root.querySelector('[data-me-avatar]') as HTMLImageElement | null;
+		const meName = root.querySelector('[data-me-name]') as HTMLElement | null;
+		const charEl = root.querySelector('[data-char]') as HTMLElement | null;
+		const textarea = root.querySelector('textarea[name="body"]') as HTMLTextAreaElement | null;
+		const loginLink = root.querySelector('#comments-login-link') as HTMLAnchorElement | null;
+
+		const escapeHtml = (s: string) =>
+			s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+		const formatDate = (iso: string) => {
+			const d = new Date(iso);
+			return d.toLocaleDateString('ko-KR', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+		};
+
+		const renderList = (comments: any[]) => {
+			if (!list) return;
+			if (countEl) countEl.textContent = comments.length > 0 ? `(${comments.length})` : '';
+			if (comments.length === 0) {
+				list.innerHTML = `<li class="empty">첫 댓글을 남겨보세요.</li>`;
+				return;
+			}
+			list.innerHTML = comments.map((c) => {
+				const author = c.profiles || {};
+				const name = author.display_name || (author.email ? author.email.split('@')[0] : '익명');
+				const avatar = author.avatar_url
+					? `<img class="c-avatar" src="${escapeHtml(author.avatar_url)}" alt="" />`
+					: `<div class="c-avatar-fallback" aria-hidden="true">${escapeHtml(name.charAt(0))}</div>`;
+				return `
+					<li class="comment" data-id="${escapeHtml(c.id)}">
+						<header class="c-head">
+							${avatar}
+							<span class="c-name">${escapeHtml(name)}</span>
+							<time class="c-time" datetime="${escapeHtml(c.created_at)}">${formatDate(c.created_at)}</time>
+						</header>
+						<p class="c-body">${escapeHtml(c.body).replace(/\n/g, '<br/>')}</p>
+					</li>`;
+			}).join('');
+		};
+
+		const loadComments = async () => {
+			const { data, error } = await supabase
+				.from('comments')
+				.select('id, body, created_at, author_id, profiles!comments_author_id_fkey(display_name, email, avatar_url)')
+				.eq('post_slug', postSlug)
+				.eq('is_hidden', false)
+				.order('created_at', { ascending: true });
+			if (error) {
+				console.error('load comments', error);
+				if (list) list.innerHTML = `<li class="empty">댓글을 불러오지 못했습니다.</li>`;
+				return;
+			}
+			renderList(data || []);
+		};
+
+		const updateAuthUI = (session: any | null) => {
+			if (session?.user) {
+				if (composeForm) composeForm.hidden = false;
+				if (loginPrompt) loginPrompt.hidden = true;
+				const meta = session.user.user_metadata || {};
+				const name = meta.full_name || meta.name || (session.user.email || '').split('@')[0];
+				const ava = meta.avatar_url || meta.picture;
+				if (meName) meName.textContent = name;
+				if (meAvatar) {
+					if (ava) { meAvatar.src = ava; meAvatar.hidden = false; }
+					else { meAvatar.hidden = true; }
+				}
+			} else {
+				if (composeForm) composeForm.hidden = true;
+				if (loginPrompt) loginPrompt.hidden = false;
+				if (loginLink) loginLink.href = `/login?next=${encodeURIComponent(window.location.pathname)}`;
+			}
+		};
+
+		// Char counter
+		textarea?.addEventListener('input', () => {
+			if (charEl && textarea) charEl.textContent = `${textarea.value.length} / 5000`;
+		});
+
+		// Compose handler
+		composeForm?.addEventListener('submit', async (e) => {
+			e.preventDefault();
+			const { data: { session } } = await supabase.auth.getSession();
+			if (!session?.user || !textarea) return;
+			const body = textarea.value.trim();
+			if (body.length < 2) return;
+			const submitBtn = composeForm.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+			if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '게시 중…'; }
+
+			const { error } = await supabase.from('comments').insert({
+				post_slug: postSlug,
+				author_id: session.user.id,
+				body,
+			});
+
+			if (error) {
+				console.error('post comment', error);
+				alert('댓글 게시에 실패했습니다. 잠시 후 다시 시도해 주세요.');
+			} else {
+				textarea.value = '';
+				if (charEl) charEl.textContent = '0 / 5000';
+				await loadComments();
+			}
+			if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = '댓글 게시'; }
+		});
+
+		// Init
+		supabase.auth.getSession().then(({ data }) => {
+			updateAuthUI(data.session);
+		});
+		supabase.auth.onAuthStateChange((_e, session) => {
+			updateAuthUI(session);
+			loadComments();
+		});
+
+		loadComments();
+	}
+</script>
 
 <style>
 	.comments-section {
@@ -62,13 +199,150 @@
 		color: var(--ink);
 		letter-spacing: -0.02em;
 	}
+	.count {
+		font-size: 1rem;
+		color: var(--ink-light);
+		font-weight: 500;
+		font-feature-settings: "tnum";
+	}
 	.comments-sub {
 		font-size: 0.85rem;
 		color: var(--ink-light);
 		margin: 0;
 	}
-	/* Style the giscus iframe wrapper */
-	:global(.giscus) {
+
+	.comment-form {
+		margin: var(--s-3) 0 var(--s-4);
+		padding: var(--s-3);
+		background: var(--paper-soft);
+		border: 1px solid var(--rule);
+		border-radius: 4px;
+	}
+	.compose-head {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+		margin-bottom: var(--s-2);
+		font-size: 0.85rem;
+	}
+	.me-avatar, .c-avatar {
+		width: 28px;
+		height: 28px;
+		border-radius: 50%;
+		object-fit: cover;
+		background: var(--paper);
+	}
+	.me-name { font-weight: 600; color: var(--ink); }
+	.comment-form textarea {
+		width: 100%;
+		padding: 0.7em 0.9em;
+		font: inherit;
+		font-size: 0.95rem;
+		line-height: 1.6;
+		border: 1px solid var(--rule);
+		border-radius: 4px;
+		background: var(--paper);
+		color: var(--ink);
+		resize: vertical;
+		min-height: 80px;
+	}
+	.comment-form textarea:focus {
+		outline: none;
+		border-color: var(--brick);
+	}
+	.compose-actions {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		margin-top: var(--s-2);
+		gap: var(--s-2);
+	}
+	.char-count {
+		font-size: 0.75rem;
+		color: var(--ink-light);
+		font-feature-settings: "tnum";
+	}
+	.btn-post {
+		padding: 0.55em 1em;
+		background: var(--brick);
+		color: var(--paper);
+		border: none;
+		border-radius: 4px;
+		font-weight: 600;
+		font-size: 0.88rem;
+		cursor: pointer;
+		font-family: inherit;
+		transition: background var(--duration);
+	}
+	.btn-post:hover { background: var(--brick-deep); }
+	.btn-post:disabled { opacity: 0.6; cursor: wait; }
+
+	.login-prompt {
+		margin: var(--s-3) 0 var(--s-4);
+		padding: var(--s-3);
+		background: var(--paper-soft);
+		border: 1px dashed var(--rule);
+		border-radius: 4px;
+		text-align: center;
+	}
+	.login-prompt p { margin: 0 0 var(--s-2); color: var(--ink-medium); font-size: 0.95rem; }
+	.btn-login {
+		display: inline-block;
+		padding: 0.6em 1.2em;
+		background: var(--ink);
+		color: var(--paper);
+		border-radius: 4px;
+		font-weight: 600;
+		font-size: 0.92rem;
+		text-decoration: none;
+		transition: background var(--duration);
+	}
+	.btn-login:hover { background: var(--brick); }
+
+	.comment-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	.comment-list .loading, .comment-list .empty {
+		padding: var(--s-3);
+		text-align: center;
+		color: var(--ink-light);
+		font-size: 0.9rem;
+	}
+	.comment {
+		padding: var(--s-3) 0;
+		border-bottom: 1px solid var(--rule);
+	}
+	.comment:last-child { border-bottom: none; }
+	.c-head {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+		margin-bottom: var(--s-1);
+	}
+	.c-avatar-fallback {
+		width: 28px; height: 28px;
+		border-radius: 50%;
+		background: var(--brick);
+		color: var(--paper);
+		display: flex; align-items: center; justify-content: center;
+		font-weight: 700;
+		font-size: 0.8rem;
+	}
+	.c-name { font-weight: 600; font-size: 0.88rem; color: var(--ink); }
+	.c-time {
+		font-size: 0.75rem;
+		color: var(--ink-light);
+		margin-left: auto;
+		font-feature-settings: "tnum";
+	}
+	.c-body {
+		margin: 0;
+		padding-left: 36px;
+		font-size: 0.95rem;
+		line-height: 1.7;
+		color: var(--ink);
+		word-break: keep-all;
 	}
 </style>

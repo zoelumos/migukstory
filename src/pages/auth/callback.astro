@@ -1,0 +1,85 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead
+			title={`로그인 처리 중 — ${SITE_TITLE}`}
+			description="로그인을 처리하고 있습니다…"
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="container narrow">
+				<div class="callback">
+					<h1>로그인 처리 중…</h1>
+					<p data-msg>잠시만 기다려 주세요.</p>
+				</div>
+			</div>
+		</main>
+		<Footer />
+
+		<script>
+			import { supabase } from '../../lib/supabase';
+
+			(async () => {
+				const params = new URLSearchParams(window.location.search);
+				const next = params.get('next') || '/';
+				const msg = document.querySelector('[data-msg]') as HTMLElement | null;
+
+				// Supabase handles the OAuth code exchange automatically when the page loads
+				// (it reads the URL fragment / query and stores the session in localStorage).
+				// We just wait briefly then redirect.
+
+				const { data: { session }, error } = await supabase.auth.getSession();
+
+				if (error) {
+					if (msg) msg.textContent = '로그인 중 오류가 발생했습니다. 다시 시도해 주세요.';
+					setTimeout(() => { window.location.href = '/login'; }, 2000);
+					return;
+				}
+
+				if (session) {
+					if (msg) msg.textContent = '로그인 성공 ✓ 이동 중…';
+					window.location.href = next;
+				} else {
+					// No session yet — give Supabase a moment to process URL params
+					setTimeout(async () => {
+						const { data } = await supabase.auth.getSession();
+						if (data.session) {
+							window.location.href = next;
+						} else {
+							if (msg) msg.textContent = '로그인 정보를 받지 못했습니다. 다시 시도해 주세요.';
+							setTimeout(() => { window.location.href = '/login'; }, 2000);
+						}
+					}, 1500);
+				}
+			})();
+		</script>
+
+		<style>
+			.callback {
+				max-width: 480px;
+				margin: var(--s-6) auto;
+				padding: var(--s-4);
+				text-align: center;
+				background: var(--paper-soft);
+				border-left: 3px solid var(--brick);
+			}
+			.callback h1 {
+				font-family: var(--font-display);
+				font-size: 1.5rem;
+				margin: 0 0 var(--s-2);
+				color: var(--ink);
+				letter-spacing: -0.01em;
+			}
+			.callback p { margin: 0; color: var(--ink-medium); }
+		</style>
+	</body>
+</html>
