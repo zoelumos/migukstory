@@ -49,4 +49,4 @@ A Korean-language information publisher for Korean immigrants and Korean-America
 
 ## Updates
 
-This llms.txt is updated when major taxonomies or editorial policies change. See git history at https://github.com/schul92/migukstory.
+This llms.txt is updated when major taxonomies or editorial policies change. See git history at https://github.com/zoelumos/migukstory.
