@@ -25,8 +25,10 @@ if (!SUPABASE_URL || !SUPABASE_KEY) {
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
 	auth: {
-		persistSession: false,           // no auth in Phase 1; flip true when we add login
-		autoRefreshToken: false,
+		persistSession: true,            // keep session across page loads / nav
+		autoRefreshToken: true,          // refresh JWT before it expires (1h default)
+		detectSessionInUrl: true,        // pick up OAuth #access_token=... fragment on /auth/callback
+		flowType: 'pkce',                // recommended OAuth flow for SPAs/static sites
 	},
 });
 
