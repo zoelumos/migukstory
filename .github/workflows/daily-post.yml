@@ -1,9 +1,6 @@
 name: Daily post from queue
 
 on:
-  schedule:
-    # 14:00 UTC = 10am ET (EDT) / 9am ET (EST). Adjust to your timezone.
-    - cron: '0 14 * * *'
   workflow_dispatch:
     inputs:
       count:
