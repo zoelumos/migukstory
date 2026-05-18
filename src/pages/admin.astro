@@ -1,0 +1,302 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead
+			title={`관리자 대시보드 — ${SITE_TITLE}`}
+			description="미국 스토리 관리자 전용 대시보드. 댓글 모더레이션, 구독자, 사용자 관리."
+			breadcrumbs={[
+				{ name: '홈', url: '/' },
+				{ name: '관리자', url: '/admin' },
+			]}
+		/>
+		<meta name="robots" content="noindex, nofollow" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="container">
+				<header class="admin-head">
+					<p class="eyebrow">ADMIN · 관리자 대시보드</p>
+					<h1>미국 스토리 관리자</h1>
+					<p class="admin-sub" data-status>로그인 상태 확인 중…</p>
+				</header>
+
+				<!-- Locked panel (visible to non-admin) -->
+				<aside class="locked" hidden data-locked>
+					<h2>접근 권한 없음</h2>
+					<p>이 페이지는 미국 스토리 관리자(zoestudiollc@gmail.com)만 접근할 수 있습니다.</p>
+					<p><a href="/login">로그인하기 →</a></p>
+				</aside>
+
+				<!-- Dashboard (visible to admin) -->
+				<section class="dashboard" hidden data-dashboard>
+					<div class="stats">
+						<div class="stat-card">
+							<p class="stat-label">전체 사용자</p>
+							<p class="stat-value" data-stat-users>—</p>
+						</div>
+						<div class="stat-card">
+							<p class="stat-label">전체 구독자</p>
+							<p class="stat-value" data-stat-subs>—</p>
+						</div>
+						<div class="stat-card">
+							<p class="stat-label">전체 댓글</p>
+							<p class="stat-value" data-stat-comments>—</p>
+						</div>
+						<div class="stat-card">
+							<p class="stat-label">숨김 댓글</p>
+							<p class="stat-value" data-stat-hidden>—</p>
+						</div>
+					</div>
+
+					<section class="recent-comments">
+						<h2>최근 댓글 (30)</h2>
+						<ol class="comment-mod-list" data-mod-list>
+							<li class="loading">불러오는 중…</li>
+						</ol>
+					</section>
+
+					<section class="recent-subs">
+						<h2>최근 구독자 (20)</h2>
+						<table class="sub-table" data-sub-table>
+							<thead>
+								<tr><th>이메일</th><th>출처</th><th>가입일</th></tr>
+							</thead>
+							<tbody data-sub-body>
+								<tr><td colspan="3" class="loading">불러오는 중…</td></tr>
+							</tbody>
+						</table>
+					</section>
+				</section>
+			</div>
+		</main>
+		<Footer />
+
+		<script>
+			import { supabase } from '../lib/supabase';
+
+			const statusEl = document.querySelector('[data-status]') as HTMLElement | null;
+			const locked = document.querySelector('[data-locked]') as HTMLElement | null;
+			const dashboard = document.querySelector('[data-dashboard]') as HTMLElement | null;
+
+			const fmt = (n: number | null | undefined) => n == null ? '—' : n.toLocaleString('ko-KR');
+			const formatDate = (iso: string) => new Date(iso).toLocaleString('ko-KR');
+
+			const gate = async () => {
+				const { data: { session } } = await supabase.auth.getSession();
+				if (!session) {
+					if (statusEl) statusEl.textContent = '로그인이 필요합니다.';
+					if (locked) locked.hidden = false;
+					return false;
+				}
+				const { data: prof } = await supabase.from('profiles').select('is_admin, display_name, email').eq('id', session.user.id).maybeSingle();
+				if (!prof?.is_admin) {
+					if (statusEl) statusEl.textContent = `${session.user.email}는 관리자가 아닙니다.`;
+					if (locked) locked.hidden = false;
+					return false;
+				}
+				if (statusEl) statusEl.textContent = `환영합니다, ${prof.display_name} (${prof.email}) — 관리자`;
+				if (dashboard) dashboard.hidden = false;
+				return true;
+			};
+
+			const loadStats = async () => {
+				// Counts via head: true + count: 'exact'
+				const [users, subs, allComments, hiddenComments] = await Promise.all([
+					supabase.from('profiles').select('id', { count: 'exact', head: true }),
+					supabase.from('subscribers').select('id', { count: 'exact', head: true }),
+					supabase.from('comments').select('id', { count: 'exact', head: true }),
+					supabase.from('comments').select('id', { count: 'exact', head: true }).eq('is_hidden', true),
+				]);
+				const set = (sel: string, n: any) => { const el = document.querySelector(sel); if (el) el.textContent = fmt(n); };
+				set('[data-stat-users]', users.count);
+				set('[data-stat-subs]', subs.count);
+				set('[data-stat-comments]', allComments.count);
+				set('[data-stat-hidden]', hiddenComments.count);
+			};
+
+			const loadComments = async () => {
+				const { data, error } = await supabase
+					.from('comments')
+					.select('id, post_slug, body, created_at, is_hidden, is_pinned, profiles!comments_author_id_fkey(display_name, email)')
+					.order('created_at', { ascending: false })
+					.limit(30);
+				const list = document.querySelector('[data-mod-list]') as HTMLElement | null;
+				if (!list) return;
+				if (error) { list.innerHTML = `<li class="loading">불러오기 실패: ${error.message}</li>`; return; }
+				if (!data || data.length === 0) { list.innerHTML = `<li class="loading">아직 댓글이 없습니다.</li>`; return; }
+				list.innerHTML = data.map((c: any) => `
+					<li class="mod-row ${c.is_hidden ? 'is-hidden' : ''} ${c.is_pinned ? 'is-pinned' : ''}" data-id="${c.id}">
+						<header>
+							<a href="${c.post_slug}" target="_blank" class="mod-slug">${c.post_slug}</a>
+							<span class="mod-author">${c.profiles?.display_name || '익명'} · ${c.profiles?.email || ''}</span>
+							<time>${formatDate(c.created_at)}</time>
+						</header>
+						<p class="mod-body">${escapeHtml(c.body)}</p>
+						<div class="mod-actions">
+							<button data-action="toggle-hide" data-state="${c.is_hidden}">${c.is_hidden ? '복원' : '숨기기'}</button>
+							<button data-action="toggle-pin" data-state="${c.is_pinned}">${c.is_pinned ? '고정 해제' : '고정'}</button>
+							<button data-action="delete" class="danger">삭제</button>
+						</div>
+					</li>
+				`).join('');
+
+				list.querySelectorAll('button[data-action]').forEach(btn => {
+					btn.addEventListener('click', async (e) => {
+						const b = e.currentTarget as HTMLButtonElement;
+						const row = b.closest('.mod-row') as HTMLElement;
+						const id = row?.dataset.id;
+						const action = b.dataset.action;
+						if (!id) return;
+						b.disabled = true;
+						let result;
+						if (action === 'toggle-hide') {
+							const newVal = b.dataset.state !== 'true';
+							result = await supabase.from('comments').update({ is_hidden: newVal }).eq('id', id);
+						} else if (action === 'toggle-pin') {
+							const newVal = b.dataset.state !== 'true';
+							result = await supabase.from('comments').update({ is_pinned: newVal }).eq('id', id);
+						} else if (action === 'delete') {
+							if (!confirm('정말 삭제할까요? 되돌릴 수 없습니다.')) { b.disabled = false; return; }
+							result = await supabase.from('comments').delete().eq('id', id);
+						}
+						if (result?.error) alert('실패: ' + result.error.message);
+						b.disabled = false;
+						await Promise.all([loadStats(), loadComments()]);
+					});
+				});
+			};
+
+			const loadSubs = async () => {
+				const { data, error } = await supabase
+					.from('subscribers')
+					.select('email, source, created_at')
+					.order('created_at', { ascending: false })
+					.limit(20);
+				const tbody = document.querySelector('[data-sub-body]') as HTMLElement | null;
+				if (!tbody) return;
+				if (error) { tbody.innerHTML = `<tr><td colspan="3">${error.message}</td></tr>`; return; }
+				if (!data || data.length === 0) { tbody.innerHTML = `<tr><td colspan="3">아직 구독자가 없습니다.</td></tr>`; return; }
+				tbody.innerHTML = data.map((s: any) => `
+					<tr><td>${escapeHtml(s.email)}</td><td>${escapeHtml(s.source || '')}</td><td>${formatDate(s.created_at)}</td></tr>
+				`).join('');
+			};
+
+			const escapeHtml = (s: string) =>
+				s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+			(async () => {
+				const ok = await gate();
+				if (!ok) return;
+				await Promise.all([loadStats(), loadComments(), loadSubs()]);
+			})();
+		</script>
+
+		<style>
+			.admin-head {
+				text-align: center;
+				padding: var(--s-5) 0 var(--s-3);
+				border-bottom: 1px solid var(--rule);
+				margin-bottom: var(--s-4);
+			}
+			.eyebrow {
+				font-size: 0.7rem;
+				font-weight: 700;
+				letter-spacing: 0.18em;
+				color: var(--brick);
+				text-transform: uppercase;
+				margin: 0 0 var(--s-2);
+			}
+			.admin-head h1 {
+				font-family: var(--font-display);
+				font-size: 2.5rem;
+				margin: 0 0 var(--s-2);
+				letter-spacing: -0.02em;
+				color: var(--ink);
+			}
+			.admin-sub { color: var(--ink-medium); margin: 0; font-size: 0.92rem; }
+
+			.locked {
+				max-width: 520px;
+				margin: 0 auto;
+				padding: var(--s-4);
+				background: var(--paper-soft);
+				border-left: 3px solid var(--brick);
+				text-align: center;
+			}
+			.locked h2 { font-family: var(--font-display); font-size: 1.4rem; margin: 0 0 var(--s-2); color: var(--brick); }
+			.locked a { color: var(--brick); }
+
+			.dashboard { max-width: 1100px; margin: 0 auto; }
+			.stats {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+				gap: var(--s-2);
+				margin-bottom: var(--s-4);
+			}
+			.stat-card {
+				background: var(--paper);
+				border: 1px solid var(--rule);
+				border-top: 3px solid var(--brick);
+				padding: var(--s-3);
+				text-align: center;
+			}
+			.stat-label { font-size: 0.75rem; color: var(--ink-light); margin: 0 0 0.4em; text-transform: uppercase; letter-spacing: 0.1em; }
+			.stat-value { font-family: var(--font-display); font-size: 2rem; color: var(--ink); margin: 0; font-feature-settings: "tnum"; }
+
+			h2 { font-family: var(--font-display); font-size: 1.4rem; margin: 0 0 var(--s-2); color: var(--ink); letter-spacing: -0.01em; }
+			.recent-comments, .recent-subs { margin-bottom: var(--s-5); }
+
+			.comment-mod-list { list-style: none; padding: 0; margin: 0; }
+			.mod-row {
+				border: 1px solid var(--rule);
+				background: var(--paper);
+				padding: var(--s-2) var(--s-3);
+				margin-bottom: var(--s-2);
+			}
+			.mod-row.is-hidden { background: #FFF5F5; border-color: var(--brick); opacity: 0.85; }
+			.mod-row.is-pinned { border-left: 3px solid var(--brick); }
+			.mod-row header {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: baseline;
+				gap: 0.6em;
+				font-size: 0.78rem;
+				color: var(--ink-light);
+				margin-bottom: var(--s-1);
+			}
+			.mod-slug { color: var(--brick); text-decoration: none; border-bottom: 1px dotted currentColor; }
+			.mod-author { font-weight: 600; color: var(--ink-medium); }
+			.mod-row time { margin-left: auto; font-feature-settings: "tnum"; }
+			.mod-body { margin: 0 0 var(--s-2); font-size: 0.9rem; line-height: 1.6; color: var(--ink); }
+			.mod-actions { display: flex; gap: 0.4em; flex-wrap: wrap; }
+			.mod-actions button {
+				font: inherit;
+				font-size: 0.78rem;
+				padding: 0.35em 0.8em;
+				background: var(--paper-soft);
+				border: 1px solid var(--rule);
+				border-radius: 3px;
+				cursor: pointer;
+				color: var(--ink);
+			}
+			.mod-actions button:hover { background: var(--ink); color: var(--paper); }
+			.mod-actions button.danger { color: var(--brick); }
+			.mod-actions button.danger:hover { background: var(--brick); color: var(--paper); }
+			.mod-actions button:disabled { opacity: 0.5; cursor: wait; }
+
+			.sub-table { width: 100%; border-collapse: collapse; background: var(--paper); border: 1px solid var(--rule); }
+			.sub-table th, .sub-table td { text-align: left; padding: 0.55em 0.8em; border-bottom: 1px solid var(--rule); font-size: 0.85rem; }
+			.sub-table th { background: var(--paper-soft); font-weight: 700; color: var(--ink); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; }
+			.sub-table tbody tr:last-child td { border-bottom: none; }
+			.loading { color: var(--ink-light); text-align: center; }
+		</style>
+	</body>
+</html>

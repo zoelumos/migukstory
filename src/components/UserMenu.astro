@@ -9,6 +9,7 @@
 	<span class="skeleton" aria-hidden="true"></span>
 	<a class="login-link" href="/login" hidden>로그인</a>
 	<div class="user-pill" hidden>
+		<a class="admin-chip" href="/admin" hidden title="관리자 대시보드">관리자</a>
 		<img class="avatar" alt="" />
 		<span class="display-name"></span>
 		<button class="logout-btn" type="button" aria-label="로그아웃">로그아웃</button>
@@ -33,7 +34,9 @@
 			if (loginLink) loginLink.hidden = false;
 			if (pill) pill.hidden = true;
 		};
-		const renderLoggedIn = (session: any) => {
+		const adminChip = root.querySelector('.admin-chip') as HTMLAnchorElement | null;
+
+		const renderLoggedIn = async (session: any) => {
 			root.dataset.state = 'logged-in';
 			if (skeleton) skeleton.hidden = true;
 			if (loginLink) loginLink.hidden = true;
@@ -45,6 +48,12 @@
 			if (avatar) {
 				if (ava) { avatar.src = ava; avatar.hidden = false; }
 				else { avatar.hidden = true; }
+			}
+			// Check admin status via profiles row
+			if (adminChip && session?.user?.id) {
+				const { data } = await supabase.from('profiles').select('is_admin').eq('id', session.user.id).maybeSingle();
+				adminChip.hidden = !data?.is_admin;
+				if (data?.is_admin) root.dataset.admin = '1';
 			}
 		};
 
@@ -146,4 +155,18 @@
 		transition: color var(--duration);
 	}
 	.logout-btn:hover { color: var(--brick); }
+	.admin-chip {
+		display: inline-block;
+		font-size: 0.65rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		color: var(--paper);
+		background: var(--brick);
+		padding: 0.2em 0.55em;
+		border-radius: 3px;
+		text-decoration: none;
+		text-transform: uppercase;
+		transition: background var(--duration);
+	}
+	.admin-chip:hover { background: var(--brick-deep); }
 </style>
