@@ -82,6 +82,8 @@
 		min-height: 28px;
 		min-width: 60px;
 	}
+	/* Critical: ensure HTML `hidden` attribute beats our display rules */
+	.user-menu [hidden] { display: none !important; }
 	.skeleton {
 		display: inline-block;
 		width: 60px;
