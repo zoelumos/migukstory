@@ -5,9 +5,6 @@ pubDate: '2026-05-18'
 tags: ['망명', '비자', 'USCIS', 'I-589', '수수료']
 category: 'immigration'
 ageGroup: 'all'
-draft: true
-source: 'USCIS Newsroom'
-sourceUrl: 'https://www.uscis.gov/newsroom/alerts/dhs-announces-consequences-for-unpaid-annual-asylum-fees-unveils-new-hr-1-requirements'
 ---
 
 # USCIS 연례 망명 수수료 시행 — 5월 29일부터 미납자 신청 거부

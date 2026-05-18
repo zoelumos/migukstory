@@ -5,9 +5,6 @@ pubDate: '2026-05-18'
 tags: ['비자불레틴', '취업이민', '가족이민', '영주권', 'EB-3']
 category: 'immigration'
 ageGroup: 'all'
-draft: true
-source: 'U.S. Department of State — Bureau of Consular Affairs'
-sourceUrl: 'https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin/2026/visa-bulletin-for-may-2026.html'
 ---
 
 # 2026년 5월 비자불레틴 — EB-1·2 현행, EB-3는 2024년 6월 1일

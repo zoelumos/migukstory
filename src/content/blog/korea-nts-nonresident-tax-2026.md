@@ -5,9 +5,6 @@ pubDate: '2026-05-18'
 tags: ['한국세금', '비거주자', '종합소득세', '국세청', 'NTS']
 category: 'tax'
 ageGroup: 'all'
-draft: true
-source: 'Bloomberg Tax — Daily Tax Report: International'
-sourceUrl: 'https://news.bloombergtax.com/daily-tax-report-international/south-korea-tax-agency-issues-2026-individual-income-tax-guide-for-nonresidents-in-english-korean'
 ---
 
 # 한국 국세청 2026 비거주자 종합소득세 가이드 — 5/31 신고 마감
