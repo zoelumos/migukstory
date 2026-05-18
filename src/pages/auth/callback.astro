@@ -33,33 +33,49 @@ import { SITE_TITLE } from '../../consts';
 				const next = params.get('next') || '/';
 				const msg = document.querySelector('[data-msg]') as HTMLElement | null;
 
-				// Supabase handles the OAuth code exchange automatically when the page loads
-				// (it reads the URL fragment / query and stores the session in localStorage).
-				// We just wait briefly then redirect.
-
-				const { data: { session }, error } = await supabase.auth.getSession();
-
-				if (error) {
-					if (msg) msg.textContent = '로그인 중 오류가 발생했습니다. 다시 시도해 주세요.';
-					setTimeout(() => { window.location.href = '/login'; }, 2000);
+				// Handle explicit OAuth error from Google (?error=access_denied etc.)
+				const oauthErr = params.get('error');
+				if (oauthErr) {
+					const desc = params.get('error_description') || oauthErr;
+					if (msg) msg.textContent = `로그인이 취소되었거나 거부되었습니다 (${desc}). 다시 시도해 주세요.`;
+					setTimeout(() => { window.location.href = '/login'; }, 3000);
 					return;
 				}
 
+				// Supabase auto-exchanges the OAuth code (detectSessionInUrl: true).
+				// We listen for SIGNED_IN to know exactly when the session is ready.
+				const redirect = (session: any) => {
+					if (msg) msg.textContent = `로그인 성공 ✓ ${session?.user?.user_metadata?.full_name || ''}님, 환영합니다.`;
+					setTimeout(() => { window.location.href = next; }, 400);
+				};
+
+				// Subscribe first in case the SIGNED_IN event fires fast
+				const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
+					if (event === 'SIGNED_IN' && session) {
+						sub.subscription.unsubscribe();
+						redirect(session);
+					}
+				});
+
+				// Also check if session is already in place (refresh, back button, etc.)
+				const { data: { session } } = await supabase.auth.getSession();
 				if (session) {
-					if (msg) msg.textContent = '로그인 성공 ✓ 이동 중…';
-					window.location.href = next;
-				} else {
-					// No session yet — give Supabase a moment to process URL params
-					setTimeout(async () => {
-						const { data } = await supabase.auth.getSession();
-						if (data.session) {
-							window.location.href = next;
-						} else {
-							if (msg) msg.textContent = '로그인 정보를 받지 못했습니다. 다시 시도해 주세요.';
-							setTimeout(() => { window.location.href = '/login'; }, 2000);
-						}
-					}, 1500);
+					sub.subscription.unsubscribe();
+					redirect(session);
+					return;
 				}
+
+				// Fallback timeout — Supabase usually fires SIGNED_IN within 300-800ms
+				setTimeout(async () => {
+					const { data } = await supabase.auth.getSession();
+					if (data.session) {
+						redirect(data.session);
+					} else {
+						sub.subscription.unsubscribe();
+						if (msg) msg.textContent = '로그인 정보를 받지 못했습니다. 다시 시도해 주세요.';
+						setTimeout(() => { window.location.href = '/login'; }, 2000);
+					}
+				}, 4000);
 			})();
 		</script>
 

@@ -99,16 +99,29 @@ import { SITE_TITLE } from '../consts';
 			};
 
 			// Google OAuth — redirect flow
-			document.getElementById('google-signin')?.addEventListener('click', async () => {
-				const { error } = await supabase.auth.signInWithOAuth({
-					provider: 'google',
-					options: {
-						redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`,
-					},
-				});
-				if (error) {
-					console.error(error);
-					setMsg('Google 로그인 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.', 'error');
+			const googleBtn = document.getElementById('google-signin') as HTMLButtonElement | null;
+			googleBtn?.addEventListener('click', async () => {
+				if (googleBtn) { googleBtn.disabled = true; setMsg('Google로 이동 중…', 'info'); }
+				try {
+					const { error } = await supabase.auth.signInWithOAuth({
+						provider: 'google',
+						options: {
+							redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`,
+							queryParams: { prompt: 'select_account' },
+						},
+					});
+					if (error) throw error;
+				} catch (err: any) {
+					console.error('OAuth error', err);
+					const msg = err?.message || '';
+					if (msg.includes('popup_blocked')) {
+						setMsg('팝업이 차단되었습니다. 브라우저 팝업 차단을 해제 후 다시 시도해 주세요.', 'error');
+					} else if (msg.includes('network')) {
+						setMsg('네트워크 연결을 확인하고 다시 시도해 주세요.', 'error');
+					} else {
+						setMsg(`Google 로그인 실패: ${msg || '잠시 후 다시 시도해 주세요.'}`, 'error');
+					}
+					if (googleBtn) googleBtn.disabled = false;
 				}
 			});
 

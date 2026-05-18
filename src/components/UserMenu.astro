@@ -6,7 +6,8 @@
 ---
 
 <div class="user-menu" data-state="loading">
-	<a class="login-link" href="/login">로그인</a>
+	<span class="skeleton" aria-hidden="true"></span>
+	<a class="login-link" href="/login" hidden>로그인</a>
 	<div class="user-pill" hidden>
 		<img class="avatar" alt="" />
 		<span class="display-name"></span>
@@ -25,13 +26,16 @@
 		const nameEl = root.querySelector('.display-name') as HTMLElement | null;
 		const logoutBtn = root.querySelector('.logout-btn') as HTMLButtonElement | null;
 
+		const skeleton = root.querySelector('.skeleton') as HTMLElement | null;
 		const renderLoggedOut = () => {
 			root.dataset.state = 'logged-out';
+			if (skeleton) skeleton.hidden = true;
 			if (loginLink) loginLink.hidden = false;
 			if (pill) pill.hidden = true;
 		};
 		const renderLoggedIn = (session: any) => {
 			root.dataset.state = 'logged-in';
+			if (skeleton) skeleton.hidden = true;
 			if (loginLink) loginLink.hidden = true;
 			if (pill) pill.hidden = false;
 			const meta = session?.user?.user_metadata || {};
@@ -56,10 +60,17 @@
 			else renderLoggedOut();
 		});
 
-		// Logout
+		// Logout — global scope invalidates refresh token on Supabase server too
 		logoutBtn?.addEventListener('click', async () => {
-			await supabase.auth.signOut();
+			if (logoutBtn) { logoutBtn.disabled = true; logoutBtn.textContent = '…'; }
+			try {
+				await supabase.auth.signOut({ scope: 'global' });
+			} catch (e) {
+				// Fall back to local-only signOut if global fails (network issue)
+				await supabase.auth.signOut();
+			}
 			renderLoggedOut();
+			if (logoutBtn) { logoutBtn.disabled = false; logoutBtn.textContent = '로그아웃'; }
 		});
 	}
 </script>
@@ -68,9 +79,22 @@
 	.user-menu {
 		display: inline-flex;
 		align-items: center;
+		min-height: 28px;
+		min-width: 60px;
 	}
-	/* Hide entirely until JS hydrates (avoids flash) */
-	.user-menu[data-state="loading"] .login-link { visibility: hidden; }
+	.skeleton {
+		display: inline-block;
+		width: 60px;
+		height: 24px;
+		background: linear-gradient(90deg, var(--paper-soft) 0%, var(--rule) 50%, var(--paper-soft) 100%);
+		background-size: 200% 100%;
+		border-radius: 999px;
+		animation: skel 1.2s ease-in-out infinite;
+	}
+	@keyframes skel {
+		0%   { background-position: -100% 0; }
+		100% { background-position: 100% 0; }
+	}
 	.login-link {
 		display: inline-block;
 		font-size: 0.78rem;

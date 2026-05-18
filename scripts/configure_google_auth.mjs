@@ -33,14 +33,18 @@ const body = {
 	external_google_secret: gsc,
 	external_google_skip_nonce_check: false,
 	site_url: siteUrl,
+	// Production allowlist only (localhost removed — minor phishing prevention)
 	uri_allow_list: [
 		'https://migukstory.com',
 		'https://migukstory.com/**',
 		'https://www.migukstory.com',
 		'https://www.migukstory.com/**',
-		'http://localhost:4321',
-		'http://localhost:4321/**',
 	].join(','),
+	// Security hardening
+	jwt_exp: 3600,
+	refresh_token_rotation_enabled: true,
+	security_refresh_token_reuse_interval: 10,
+	audit_log_disable_postgres: false,
 };
 
 console.log(`⚙️  Configuring Google OAuth on project ${ref}...`);

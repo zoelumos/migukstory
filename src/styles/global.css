@@ -45,7 +45,9 @@
 	--font-body:    "Pretendard Variable", Pretendard,
 	                "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕",
 	                -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-	--font-display: var(--font-display, "Gowun Batang"),
+	/* Display serif — Korean glyphs via Google Fonts (loaded async in BaseHead);
+	   falls back to system Korean serif if Gowun Batang not loaded yet. */
+	--font-display: "Gowun Batang",
 	                "Apple SD Gothic Neo", "Nanum Myeongjo", "Malgun Gothic",
 	                Georgia, serif;
 	--font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
