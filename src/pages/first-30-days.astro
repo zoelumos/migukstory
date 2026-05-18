@@ -327,7 +327,9 @@ const stages = [
 				padding: var(--s-2);
 				border-radius: 3px;
 				transition: background var(--duration) var(--ease-out);
+				align-items: start;
 			}
+			.task-body { min-width: 0; }   /* allow content to actually use the 1fr column */
 			.task-list li:hover { background: var(--paper-soft); }
 			.task-list li::before {
 				content: counter(task, decimal-leading-zero);
