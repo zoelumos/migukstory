@@ -129,13 +129,15 @@ const stages = [
 								<ol class="task-list">
 									{s.tasks.map((task) => (
 										<li>
-											<h3>{task.t}</h3>
-											<p>{task.body}</p>
-											{task.link && (
-												<a class="task-link" href={task.link}>
-													{task.linkLabel || '관련 글 →'}
-												</a>
-											)}
+											<div class="task-body">
+												<h3>{task.t}</h3>
+												<p>{task.body}</p>
+												{task.link && (
+													<a class="task-link" href={task.link}>
+														{task.linkLabel || '관련 글 →'}
+													</a>
+												)}
+											</div>
 										</li>
 									))}
 								</ol>
