@@ -30,6 +30,14 @@ import { SITE_TITLE } from '../consts';
 					</p>
 				</header>
 
+				<aside class="already-in" hidden data-logged-in-notice>
+					<p><strong data-name>이미</strong>님으로 로그인되어 있습니다.</p>
+					<div class="already-actions">
+						<a href="/" class="btn-link">홈으로 →</a>
+						<a href="/api/auth/logout?next=/login" class="btn-link secondary">다른 계정으로 로그인</a>
+					</div>
+				</aside>
+
 				<div class="login-card">
 					<a id="google-signin" class="btn-google" href={`/api/auth/signin?provider=google&next=${encodeURIComponent('/')}`} aria-label="Google로 로그인">
 						<svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true">
@@ -79,17 +87,37 @@ import { SITE_TITLE } from '../consts';
 		<Footer />
 
 		<script>
-			import { supabase } from '../lib/supabase';
-
-			// If already logged in, redirect to where user came from (?next=…) or home
+			// All OAuth + magic-link flows are server-side (HttpOnly cookies).
 			const params = new URLSearchParams(window.location.search);
 			const next = params.get('next') || '/';
 
-			supabase.auth.getSession().then(({ data }) => {
-				if (data.session) {
-					window.location.href = next;
-				}
-			});
+			// One-time localStorage cleanup — removes leftover verifier/token entries
+			// from the pre-migration localStorage architecture. Safe no-op once cleared.
+			try {
+				Object.keys(localStorage).filter((k) => k.startsWith('sb-')).forEach((k) => localStorage.removeItem(k));
+			} catch (e) { /* private mode etc. */ }
+
+			// If already logged in, show a soft notice (don't auto-redirect — that
+			// confuses users who explicitly navigated here to switch accounts).
+			fetch('/api/auth/session', { credentials: 'same-origin' })
+				.then((r) => r.json())
+				.then((data) => {
+					if (data.authenticated && data.user) {
+						const notice = document.querySelector('[data-logged-in-notice]') as HTMLElement | null;
+						if (notice) {
+							const nameEl = notice.querySelector('[data-name]');
+							if (nameEl) nameEl.textContent = data.user.name;
+							notice.hidden = false;
+						}
+					}
+				})
+				.catch(() => {});
+
+			// Surface server error if redirected back from a failed callback
+			const errParam = params.get('error');
+			if (errParam) {
+				setTimeout(() => setMsg(decodeURIComponent(errParam), 'error'), 100);
+			}
 
 			const msgEl = document.querySelector('[data-msg]') as HTMLElement | null;
 			const setMsg = (text: string, kind: 'success' | 'error' | 'info' = 'info') => {
@@ -106,7 +134,7 @@ import { SITE_TITLE } from '../consts';
 				googleLink.href = `/api/auth/signin?provider=google&next=${encodeURIComponent(next)}`;
 			}
 
-			// Email magic link
+			// Email magic link — POST to server-side /api/auth/magic-link
 			document.getElementById('email-magic-link')?.addEventListener('submit', async (e) => {
 				e.preventDefault();
 				const form = e.target as HTMLFormElement;
@@ -116,14 +144,14 @@ import { SITE_TITLE } from '../consts';
 					return;
 				}
 				setMsg('전송 중…', 'info');
-				const { error } = await supabase.auth.signInWithOtp({
-					email,
-					options: {
-						emailRedirectTo: `${window.location.origin}/api/auth/callback?next=${encodeURIComponent(next)}`,
-					},
+				const res = await fetch('/api/auth/magic-link', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ email, next }),
 				});
-				if (error) {
-					setMsg('이메일 전송에 실패했습니다. 잠시 후 다시 시도해 주세요.', 'error');
+				const result = await res.json().catch(() => ({}));
+				if (!res.ok) {
+					setMsg(result.error || '이메일 전송에 실패했습니다. 잠시 후 다시 시도해 주세요.', 'error');
 				} else {
 					setMsg(`${email}으로 로그인 링크를 보내드렸습니다. 메일을 확인해 주세요.`, 'success');
 					form.reset();
@@ -161,6 +189,31 @@ import { SITE_TITLE } from '../consts';
 				margin: 0 auto;
 				line-height: 1.7;
 			}
+
+			.already-in {
+				max-width: 420px;
+				margin: 0 auto var(--s-3);
+				padding: var(--s-2) var(--s-3);
+				background: #ECFDF5;
+				border-left: 3px solid #047857;
+				border-radius: 0 4px 4px 0;
+				text-align: center;
+			}
+			.already-in p { margin: 0 0 var(--s-2); color: var(--ink); font-size: 0.95rem; }
+			.already-in strong { color: #047857; font-weight: 700; }
+			.already-actions { display: flex; gap: var(--s-2); justify-content: center; flex-wrap: wrap; }
+			.btn-link {
+				display: inline-block;
+				font-size: 0.85rem;
+				font-weight: 600;
+				color: var(--paper);
+				background: var(--brick);
+				padding: 0.45em 0.9em;
+				border-radius: 3px;
+				text-decoration: none;
+			}
+			.btn-link.secondary { background: var(--paper); color: var(--ink); border: 1px solid var(--rule); }
+			.btn-link:hover { opacity: 0.9; }
 
 			.login-card {
 				max-width: 420px;
