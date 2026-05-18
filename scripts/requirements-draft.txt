@@ -1,0 +1,6 @@
+# Dependencies for scripts/draft_from_rss.py
+# Install with: pip install -r scripts/requirements-draft.txt
+anthropic>=0.40.0
+feedparser>=6.0.11
+PyYAML>=6.0.2
+requests>=2.32.0

@@ -1,0 +1,116 @@
+name: Daily draft from RSS
+
+on:
+  # Daily at 13:00 UTC (~08:00 ET / 09:00 EDT). Adjust as needed.
+  schedule:
+    - cron: '0 13 * * *'
+  workflow_dispatch:
+    inputs:
+      max_drafts:
+        description: 'Max drafts to generate this run (1..5)'
+        required: false
+        default: '5'
+      dry_run:
+        description: 'Dry run (no Claude calls, no writes)'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: daily-draft
+  cancel-in-progress: false
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+          cache-dependency-path: 'scripts/requirements-draft.txt'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r scripts/requirements-draft.txt
+
+      - name: Generate drafts
+        env:
+          # Secret — never echoed. Provided via repo/org Actions secrets.
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          set -euo pipefail
+          MAX="${{ github.event.inputs.max_drafts || '5' }}"
+          DRY="${{ github.event.inputs.dry_run || 'false' }}"
+          if [ "$DRY" = "true" ]; then
+            python scripts/draft_from_rss.py --dry-run --max-drafts "$MAX"
+          else
+            python scripts/draft_from_rss.py --max-drafts "$MAX"
+          fi
+
+      - name: Detect changes
+        id: changes
+        run: |
+          # Stage only the paths this workflow is allowed to modify.
+          # If the script ever wrote to queue/ or src/, we'd want to FAIL,
+          # not silently commit. Guard against that.
+          if ! git diff --quiet -- queue/ src/content/blog/; then
+            echo "::error::draft_from_rss.py modified queue/ or src/content/blog/ — refusing to PR."
+            git --no-pager diff -- queue/ src/content/blog/
+            exit 1
+          fi
+          git add drafts/ scripts/state/seen_urls.json
+          if git diff --staged --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No new drafts; nothing to PR."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git --no-pager diff --staged --stat
+          fi
+
+      - name: Open pull request
+        if: steps.changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: bot/daily-draft
+          base: main
+          delete-branch: true
+          commit-message: |
+            draft: daily RSS drafts (${{ github.run_id }})
+          title: "draft: daily RSS drafts"
+          body: |
+            Auto-generated drafts from `scripts/draft_from_rss.py`.
+
+            **Review before merge:**
+            - Open each file in `drafts/`, verify facts against the linked
+              source, edit tone / category / ageGroup as needed.
+            - When a draft is ready to publish, `git mv` it into `queue/`
+              (the daily-post workflow will pick it up).
+            - Delete drafts that aren't worth running.
+
+            The dedupe store at `scripts/state/seen_urls.json` is updated
+            so the same URLs aren't redrafted next run — merge this PR
+            even if you only keep some drafts, so dedupe stays accurate.
+
+            Run: ${{ github.run_id }} · workflow: daily-draft.yml
+          labels: |
+            draft
+            automated
+          add-paths: |
+            drafts/
+            scripts/state/seen_urls.json

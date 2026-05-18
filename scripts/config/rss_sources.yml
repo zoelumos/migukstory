@@ -1,0 +1,67 @@
+# RSS feed sources for daily-draft pipeline.
+#
+# Each source produces candidate items that scripts/draft_from_rss.py
+# turns into Korean-language drafts for human review.
+#
+# Fields:
+#   name      : Human-readable label (used in source attribution).
+#   url       : RSS / Atom feed URL.
+#   category  : One of the content-collection categories defined in
+#               src/content.config.ts CATEGORIES. The generated draft's
+#               frontmatter `category` defaults to this value.
+#               (immigration | tax | health | education | retirement |
+#                community | real-estate)
+#   enabled   : Set to false to skip without deleting the entry.
+#   max_items : Optional. Cap items pulled from this feed per run.
+#               Default = 3.
+#
+# Edit freely. Reviewers may add Korean-language outlets (조선일보,
+# 중앙일보 미주판, etc.) here. Avoid feeds requiring login / paywalled
+# content; those will yield thin drafts.
+
+sources:
+  - name: USCIS Newsroom
+    url: https://www.uscis.gov/news/rss-feed/59
+    category: immigration
+    enabled: true
+    max_items: 3
+
+  - name: State Department Travel Advisories
+    url: https://travel.state.gov/_res/rss/TAsTWs.xml
+    category: community
+    enabled: true
+    max_items: 2
+
+  - name: CDC Newsroom
+    url: https://tools.cdc.gov/api/v2/resources/media/132608.rss
+    category: health
+    enabled: true
+    max_items: 2
+
+  # IRS/SSA official pages are important, but their current public URLs are
+  # not reliable RSS from GitHub Actions (IRS tested as 404 HTML; SSA blocks
+  # automated feed access with 403). Keep disabled until we add an official API
+  # or a verified RSS endpoint.
+  - name: IRS Newsroom
+    url: https://www.irs.gov/newsroom/news-releases-for-current-month
+    category: tax
+    enabled: false
+    max_items: 3
+
+  - name: SSA Press Releases
+    url: https://www.ssa.gov/news/press/releases/
+    category: retirement
+    enabled: false
+    max_items: 2
+
+  - name: NPR Asia
+    url: https://feeds.npr.org/1126/rss.xml
+    category: community
+    enabled: false
+    max_items: 2
+
+  - name: Korea Times US
+    url: https://www.koreatimes.co.kr/www/rss/world.xml
+    category: community
+    enabled: false
+    max_items: 2
