@@ -3,6 +3,10 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 
+// Architecture: 100% static Astro build → Cloudflare Pages.
+// Auth endpoints live in /functions/ (Cloudflare Pages Functions) and auto-deploy
+// alongside the static site via wrangler pages deploy.
+//
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://migukstory.com',
@@ -15,8 +19,4 @@ export default defineConfig({
 	markdown: {
 		shikiConfig: { theme: 'github-light', wrap: true },
 	},
-	// Note: Gowun Batang is loaded via direct Google Fonts CSS link in BaseHead
-	// (with display=swap). Astro's font subsetter aggressively splits Korean
-	// fonts into 180+ unicode-range subset files which bloats dist by 3MB.
-	// Direct Google CSS uses their smarter dynamic subsetter (~5-10 files).
 });

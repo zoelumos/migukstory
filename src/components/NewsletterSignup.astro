@@ -1,24 +1,10 @@
 ---
 /**
- * Newsletter signup — Supabase-backed (writes to public.subscribers table).
- *
- * Flow:
- *   1. User enters email + clicks 구독하기
- *   2. Client-side JS imports Supabase client and INSERTs into subscribers
- *   3. On success: show 「가입 완료 — PDF 발송 안내 이메일을 확인하세요」
- *   4. On dup email: show 「이미 구독 중이신 이메일입니다」
- *   5. On error: show 「잠시 후 다시 시도해주세요」
- *
- * Honeypot field (hidden) auto-rejects bots.
- * Source field tracks where the signup came from (analytics).
- *
- * Requires:
- *   - Supabase table created (migrations/001_subscribers.sql)
- *   - PUBLIC_SUPABASE_URL + PUBLIC_SUPABASE_PUBLISHABLE_KEY in .env
+ * Newsletter signup — POSTs to /api/subscribers (server-side endpoint, sets nothing
+ * in client storage). Honeypot + Korean status messages.
  */
-
 interface Props {
-	source?: string;       // e.g., "first-30-days-magnet", "blog-footer", "homepage"
+	source?: string;
 }
 const { source = 'newsletter_form' } = Astro.props;
 ---
@@ -35,24 +21,9 @@ const { source = 'newsletter_form' } = Astro.props;
 		</div>
 		<div class="form-row">
 			<label class="sr-only" for="newsletter-email">이메일</label>
-			<input
-				id="newsletter-email"
-				type="email"
-				name="email"
-				placeholder="email@example.com"
-				autocomplete="email"
-				required
-			/>
+			<input id="newsletter-email" type="email" name="email" placeholder="email@example.com" autocomplete="email" required />
 			<button type="submit">구독하기</button>
-			<!-- Honeypot — bots fill, humans don't see -->
-			<input
-				type="text"
-				name="website"
-				tabindex="-1"
-				autocomplete="off"
-				aria-hidden="true"
-				style="position:absolute;left:-9999px;opacity:0;width:1px;height:1px;"
-			/>
+			<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;width:1px;height:1px;" />
 		</div>
 		<p class="trust">스팸 없음 · 광고 없음 · 검증된 정보만</p>
 		<p class="msg" data-msg></p>
@@ -60,161 +31,81 @@ const { source = 'newsletter_form' } = Astro.props;
 </form>
 
 <script>
-	import { supabase } from '../lib/supabase';
-
 	document.querySelectorAll<HTMLFormElement>('.newsletter').forEach((form) => {
 		form.addEventListener('submit', async (e) => {
 			e.preventDefault();
 			const fd = new FormData(form);
 			const email = String(fd.get('email') || '').trim().toLowerCase();
-			const honeypot = String(fd.get('website') || '');
+			const website = String(fd.get('website') || '');
 			const source = form.dataset.source || 'newsletter_form';
 			const msgEl = form.querySelector('[data-msg]') as HTMLElement | null;
 			const button = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
-
 			if (!msgEl || !button) return;
 
-			// Reject honeypot
-			if (honeypot) return;
-			if (!email || !email.includes('@')) {
-				msgEl.textContent = '올바른 이메일 주소를 입력해 주세요.';
+			if (website) return;  // honeypot
+			if (!email.includes('@')) {
+				msgEl.textContent = '올바른 이메일을 입력해 주세요.';
 				msgEl.dataset.kind = 'error';
 				return;
 			}
 
 			button.disabled = true;
-			const origLabel = button.textContent;
+			const orig = button.textContent;
 			button.textContent = '가입 중…';
 			msgEl.textContent = '';
 			delete msgEl.dataset.kind;
 
 			try {
-				const { error } = await supabase
-					.from('subscribers')
-					.insert({
-						email,
-						source,
+				const res = await fetch('/api/subscribers', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						email, source,
 						metadata: {
-							referrer: document.referrer || null,
-							ua: navigator.userAgent,
 							locale: navigator.language,
 							pathname: window.location.pathname,
-							submitted_at: new Date().toISOString(),
+							referrer: document.referrer || null,
 						},
-					});
-
-				if (error) {
-					// 23505 = unique violation = email already exists
-					if (error.code === '23505') {
-						msgEl.textContent = '이미 구독 중이신 이메일입니다. 매주 화요일 뉴스레터를 보내드리고 있습니다 ✓';
-						msgEl.dataset.kind = 'info';
-					} else {
-						console.error('Newsletter signup error:', error);
-						msgEl.textContent = '잠시 후 다시 시도해 주세요. 문제가 계속되면 editor@migukstory.com 으로 알려주세요.';
-						msgEl.dataset.kind = 'error';
-					}
+					}),
+				});
+				const result = await res.json().catch(() => ({}));
+				if (!res.ok && !result.ok) {
+					msgEl.textContent = '잠시 후 다시 시도해 주세요. 문제가 계속되면 editor@migukstory.com 으로 알려주세요.';
+					msgEl.dataset.kind = 'error';
+				} else if (result.duplicate) {
+					msgEl.textContent = '이미 구독 중이신 이메일입니다. 매주 화요일 뉴스레터를 보내드리고 있습니다 ✓';
+					msgEl.dataset.kind = 'info';
 				} else {
 					msgEl.textContent = '가입 완료 ✓ 「미국 정착 첫 90일 PDF」 발송 안내를 곧 보내드립니다.';
 					msgEl.dataset.kind = 'success';
 					form.reset();
 				}
 			} catch (err) {
-				console.error(err);
 				msgEl.textContent = '네트워크 오류입니다. 잠시 후 다시 시도해 주세요.';
 				msgEl.dataset.kind = 'error';
 			} finally {
 				button.disabled = false;
-				button.textContent = origLabel;
+				button.textContent = orig;
 			}
 		});
 	});
 </script>
 
 <style>
-	.newsletter {
-		max-width: var(--reading-width);
-		margin: var(--s-5) auto;
-		padding: var(--s-4) var(--s-3);
-		background: var(--paper-soft);
-		border-left: 4px solid var(--brick);
-		border-radius: 0 6px 6px 0;
-	}
-	.kicker {
-		font-size: 0.7rem;
-		font-weight: 700;
-		text-transform: uppercase;
-		letter-spacing: 0.18em;
-		color: var(--brick);
-		margin: 0 0 0.5em;
-	}
-	.newsletter h3 {
-		font-family: var(--font-display);
-		font-size: 1.4rem;
-		line-height: 1.3;
-		margin: 0 0 0.4em;
-		color: var(--ink);
-	}
-	.newsletter .sub {
-		margin: 0 0 var(--s-2);
-		color: var(--ink-medium);
-		font-size: 0.95rem;
-		line-height: 1.6;
-	}
-	.form-row {
-		display: flex;
-		gap: 0.5rem;
-		margin-top: var(--s-2);
-		position: relative;
-	}
-	.form-row input[type="email"] {
-		flex: 1;
-		min-width: 0;
-		padding: 0.7em 1em;
-		border: 1px solid var(--rule);
-		border-radius: 4px;
-		font: inherit;
-		font-size: 0.95rem;
-		background: var(--paper);
-		color: var(--ink);
-		transition: border-color var(--duration) var(--ease-out);
-	}
-	.form-row input[type="email"]:focus {
-		outline: none;
-		border-color: var(--brick);
-	}
-	.form-row button {
-		padding: 0.7em 1.3em;
-		background: var(--brick);
-		color: white;
-		border: none;
-		border-radius: 4px;
-		font-weight: 600;
-		font-size: 0.95rem;
-		cursor: pointer;
-		font-family: inherit;
-		white-space: nowrap;
-		transition: background var(--duration) var(--ease-out);
-	}
+	.newsletter { max-width: var(--reading-width); margin: var(--s-5) auto; padding: var(--s-4) var(--s-3); background: var(--paper-soft); border-left: 4px solid var(--brick); border-radius: 0 6px 6px 0; }
+	.kicker { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--brick); margin: 0 0 0.5em; }
+	.newsletter h3 { font-family: var(--font-display); font-size: 1.4rem; line-height: 1.3; margin: 0 0 0.4em; color: var(--ink); }
+	.newsletter .sub { margin: 0 0 var(--s-2); color: var(--ink-medium); font-size: 0.95rem; line-height: 1.6; }
+	.form-row { display: flex; gap: 0.5rem; margin-top: var(--s-2); position: relative; }
+	.form-row input[type="email"] { flex: 1; min-width: 0; padding: 0.7em 1em; border: 1px solid var(--rule); border-radius: 4px; font: inherit; font-size: 0.95rem; background: var(--paper); color: var(--ink); transition: border-color var(--duration) var(--ease-out); }
+	.form-row input[type="email"]:focus { outline: none; border-color: var(--brick); }
+	.form-row button { padding: 0.7em 1.3em; background: var(--brick); color: white; border: none; border-radius: 4px; font-weight: 600; font-size: 0.95rem; cursor: pointer; font-family: inherit; white-space: nowrap; transition: background var(--duration) var(--ease-out); }
 	.form-row button:hover { background: var(--brick-deep); }
 	.form-row button:disabled { opacity: 0.6; cursor: wait; }
-
-	.trust {
-		margin: var(--s-2) 0 0;
-		font-size: 0.78rem;
-		color: var(--ink-light);
-	}
-	.msg {
-		margin: var(--s-2) 0 0;
-		font-size: 0.88rem;
-		line-height: 1.5;
-		min-height: 1.2em;
-	}
+	.trust { margin: var(--s-2) 0 0; font-size: 0.78rem; color: var(--ink-light); }
+	.msg { margin: var(--s-2) 0 0; font-size: 0.88rem; line-height: 1.5; min-height: 1.2em; }
 	.msg[data-kind="success"] { color: #047857; font-weight: 600; }
 	.msg[data-kind="info"]    { color: var(--ink-medium); font-weight: 500; }
 	.msg[data-kind="error"]   { color: var(--brick); font-weight: 500; }
-
-	@media (max-width: 540px) {
-		.form-row { flex-direction: column; }
-		.newsletter h3 { font-size: 1.2rem; }
-	}
+	@media (max-width: 540px) { .form-row { flex-direction: column; } .newsletter h3 { font-size: 1.2rem; } }
 </style>

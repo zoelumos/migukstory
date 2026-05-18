@@ -98,7 +98,7 @@ import { SITE_TITLE } from '../consts';
 				msgEl.dataset.kind = kind;
 			};
 
-			// Google OAuth — redirect flow
+			// Google OAuth — redirect flow. Server callback at /api/auth/callback sets HttpOnly cookies.
 			const googleBtn = document.getElementById('google-signin') as HTMLButtonElement | null;
 			googleBtn?.addEventListener('click', async () => {
 				if (googleBtn) { googleBtn.disabled = true; setMsg('Google로 이동 중…', 'info'); }
@@ -106,7 +106,7 @@ import { SITE_TITLE } from '../consts';
 					const { error } = await supabase.auth.signInWithOAuth({
 						provider: 'google',
 						options: {
-							redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`,
+							redirectTo: `${window.location.origin}/api/auth/callback?next=${encodeURIComponent(next)}`,
 							queryParams: { prompt: 'select_account' },
 						},
 					});
@@ -138,7 +138,7 @@ import { SITE_TITLE } from '../consts';
 				const { error } = await supabase.auth.signInWithOtp({
 					email,
 					options: {
-						emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`,
+						emailRedirectTo: `${window.location.origin}/api/auth/callback?next=${encodeURIComponent(next)}`,
 					},
 				});
 				if (error) {

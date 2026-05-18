@@ -1,7 +1,7 @@
 ---
 /**
- * UserMenu — shows "로그인" when logged out, profile/logout when logged in.
- * Client-side: reads Supabase session from localStorage, hydrates UI on mount.
+ * UserMenu — hydrates via /api/auth/session (HttpOnly cookies, never touches tokens).
+ * Logout via /api/auth/logout (server-side global signOut).
  */
 ---
 
@@ -12,75 +12,48 @@
 		<a class="admin-chip" href="/admin" hidden title="관리자 대시보드">관리자</a>
 		<img class="avatar" alt="" />
 		<span class="display-name"></span>
-		<button class="logout-btn" type="button" aria-label="로그아웃">로그아웃</button>
+		<a class="logout-link" href="/api/auth/logout">로그아웃</a>
 	</div>
 </div>
 
 <script>
-	import { supabase } from '../lib/supabase';
-
 	const root = document.querySelector('.user-menu') as HTMLElement | null;
 	if (root) {
+		const skeleton = root.querySelector('.skeleton') as HTMLElement | null;
 		const loginLink = root.querySelector('.login-link') as HTMLAnchorElement | null;
 		const pill = root.querySelector('.user-pill') as HTMLElement | null;
 		const avatar = root.querySelector('.avatar') as HTMLImageElement | null;
 		const nameEl = root.querySelector('.display-name') as HTMLElement | null;
-		const logoutBtn = root.querySelector('.logout-btn') as HTMLButtonElement | null;
+		const adminChip = root.querySelector('.admin-chip') as HTMLAnchorElement | null;
 
-		const skeleton = root.querySelector('.skeleton') as HTMLElement | null;
 		const renderLoggedOut = () => {
 			root.dataset.state = 'logged-out';
 			if (skeleton) skeleton.hidden = true;
 			if (loginLink) loginLink.hidden = false;
 			if (pill) pill.hidden = true;
 		};
-		const adminChip = root.querySelector('.admin-chip') as HTMLAnchorElement | null;
-
-		const renderLoggedIn = async (session: any) => {
+		const renderLoggedIn = (user: any) => {
 			root.dataset.state = 'logged-in';
 			if (skeleton) skeleton.hidden = true;
 			if (loginLink) loginLink.hidden = true;
 			if (pill) pill.hidden = false;
-			const meta = session?.user?.user_metadata || {};
-			const name = meta.full_name || meta.name || (session?.user?.email || '').split('@')[0];
-			const ava = meta.avatar_url || meta.picture;
-			if (nameEl) nameEl.textContent = name;
+			if (nameEl) nameEl.textContent = user.name;
 			if (avatar) {
-				if (ava) { avatar.src = ava; avatar.hidden = false; }
+				if (user.avatar_url) { avatar.src = user.avatar_url; avatar.hidden = false; }
 				else { avatar.hidden = true; }
 			}
-			// Check admin status via profiles row
-			if (adminChip && session?.user?.id) {
-				const { data } = await supabase.from('profiles').select('is_admin').eq('id', session.user.id).maybeSingle();
-				adminChip.hidden = !data?.is_admin;
-				if (data?.is_admin) root.dataset.admin = '1';
+			if (adminChip) {
+				adminChip.hidden = !user.is_admin;
 			}
 		};
 
-		// Initial render
-		supabase.auth.getSession().then(({ data }) => {
-			if (data.session) renderLoggedIn(data.session);
-			else renderLoggedOut();
-		});
-
-		// Live updates on login/logout
-		supabase.auth.onAuthStateChange((_event, session) => {
-			if (session) renderLoggedIn(session);
-			else renderLoggedOut();
-		});
-
-		// Logout — global scope invalidates refresh token on Supabase server too
-		logoutBtn?.addEventListener('click', async () => {
-			if (logoutBtn) { logoutBtn.disabled = true; logoutBtn.textContent = '…'; }
-			try {
-				await supabase.auth.signOut({ scope: 'global' });
-			} catch (e) {
-				// Fall back to local-only signOut if global fails (network issue)
-				await supabase.auth.signOut();
-			}
-			renderLoggedOut();
-			if (logoutBtn) { logoutBtn.disabled = false; logoutBtn.textContent = '로그아웃'; }
-		});
+		fetch('/api/auth/session', { credentials: 'same-origin' })
+			.then((r) => r.json())
+			.then((data) => {
+				if (data.authenticated && data.user) renderLoggedIn(data.user);
+				else renderLoggedOut();
+			})
+			.catch(() => renderLoggedOut());
 	}
 </script>
 
@@ -91,7 +64,6 @@
 		min-height: 28px;
 		min-width: 60px;
 	}
-	/* Critical: ensure HTML `hidden` attribute beats our display rules */
 	.user-menu [hidden] { display: none !important; }
 	.skeleton {
 		display: inline-block;
@@ -102,10 +74,7 @@
 		border-radius: 999px;
 		animation: skel 1.2s ease-in-out infinite;
 	}
-	@keyframes skel {
-		0%   { background-position: -100% 0; }
-		100% { background-position: 100% 0; }
-	}
+	@keyframes skel { 0% { background-position: -100% 0; } 100% { background-position: 100% 0; } }
 	.login-link {
 		display: inline-block;
 		font-size: 0.78rem;
@@ -118,10 +87,7 @@
 		letter-spacing: 0.04em;
 		transition: all var(--duration) var(--ease-out);
 	}
-	.login-link:hover {
-		color: var(--brick);
-		border-color: var(--brick);
-	}
+	.login-link:hover { color: var(--brick); border-color: var(--brick); }
 	.user-pill {
 		display: inline-flex;
 		align-items: center;
@@ -130,8 +96,7 @@
 		color: var(--ink);
 	}
 	.avatar {
-		width: 24px;
-		height: 24px;
+		width: 24px; height: 24px;
 		border-radius: 50%;
 		object-fit: cover;
 		background: var(--paper-soft);
@@ -143,18 +108,15 @@
 		text-overflow: ellipsis;
 		white-space: nowrap;
 	}
-	.logout-btn {
-		font: inherit;
+	.logout-link {
 		font-size: 0.72rem;
 		color: var(--ink-light);
-		background: transparent;
-		border: none;
-		cursor: pointer;
+		text-decoration: none;
 		padding: 0.2em 0.5em;
 		border-radius: 3px;
 		transition: color var(--duration);
 	}
-	.logout-btn:hover { color: var(--brick); }
+	.logout-link:hover { color: var(--brick); }
 	.admin-chip {
 		display: inline-block;
 		font-size: 0.65rem;
