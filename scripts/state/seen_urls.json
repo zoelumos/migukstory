@@ -1,5 +1,24 @@
 {
   "_comment": "Canonical URLs already turned into drafts. Maintained by scripts/draft_from_rss.py. Safe to hand-edit.",
   "version": 1,
-  "seen": {}
+  "seen": {
+    "https://news.bloombergtax.com/daily-tax-report-international/south-korea-tax-agency-issues-2026-individual-income-tax-guide-for-nonresidents-in-english-korean": {
+      "first_seen": "2026-05-18",
+      "source": "Bloomberg Tax — Daily Tax Report: International",
+      "title": "South Korea Tax Agency Issues 2026 Individual Income Tax Guide for Nonresidents in English, Korean",
+      "draft": "drafts/2026-05-18-korea-nts-nonresident-tax-2026.md"
+    },
+    "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin/2026/visa-bulletin-for-may-2026.html": {
+      "first_seen": "2026-05-18",
+      "source": "U.S. Department of State — Bureau of Consular Affairs",
+      "title": "Visa Bulletin For May 2026",
+      "draft": "drafts/2026-05-18-visa-bulletin-may-2026.md"
+    },
+    "https://uscis.gov/newsroom/alerts/dhs-announces-consequences-for-unpaid-annual-asylum-fees-unveils-new-hr-1-requirements": {
+      "first_seen": "2026-05-18",
+      "source": "USCIS Newsroom",
+      "title": "DHS Announces Consequences for Unpaid Annual Asylum Fees, Unveils New H.R.1 Requirements",
+      "draft": "drafts/2026-05-18-uscis-annual-asylum-fee.md"
+    }
+  }
 }
