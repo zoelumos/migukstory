@@ -1,10 +1,9 @@
 name: Daily draft from RSS
 
 on:
-  # Every 4 hours (6× daily) — research recommends this cadence for breaking news.
-  # If queue stays full enough, we can revert to less frequent (e.g. '0 */6 * * *').
-  schedule:
-    - cron: '0 */4 * * *'
+  # Disabled schedule: GitHub Actions needs ANTHROPIC_API_KEY, while the working
+  # Claude Max path now runs locally via Hermes + `claude -p`. Keep manual
+  # dispatch available for future API-key testing without generating red cron runs.
   workflow_dispatch:
     inputs:
       max_drafts:
