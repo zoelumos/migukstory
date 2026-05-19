@@ -13,6 +13,7 @@ on:
       - 'package-lock.json'
       - 'astro.config.mjs'
       - '.github/workflows/cloudflare-deploy.yml'
+      - 'scripts/notify_indexes.py'
 
 concurrency:
   group: deploy-pages
@@ -27,6 +28,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # fetch-depth 2 so notify_indexes.py can diff HEAD~1..HEAD to find
+          # newly-added src/content/blog/*.md files to submit for indexing.
+          fetch-depth: 2
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -59,3 +64,20 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: npx wrangler pages deploy dist --project-name=migukstory --branch=main
+
+      - name: Notify search engines (IndexNow + Google Indexing API)
+        # Auto-pings indexing APIs for newly-published blog URLs. Runs only
+        # after a successful deploy. IndexNow has no quota and works without
+        # any secret (reads key from public/<key>.txt). Google Indexing API
+        # is only used when GOOGLE_SERVICE_ACCOUNT_JSON is present.
+        # continue-on-error: indexing pings are best-effort; never fail deploys.
+        if: steps.cf-secrets.outputs.ready == 'true'
+        continue-on-error: true
+        env:
+          SITE_URL: https://migukstory.com
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: |
+          # google-auth is a soft dependency — script falls back to IndexNow only
+          # when import fails. Install is fast (~5s) so always attempt it.
+          python3 -m pip install --quiet google-auth 2>&1 | tail -3 || true
+          python3 scripts/notify_indexes.py --auto
