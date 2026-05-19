@@ -1,0 +1,28 @@
+name: migukstory-weekly-audit
+description: |
+  Weekly Monday content audit in Korean. Counts posts published this week,
+  drafts pending review, queue depth, and editor agent stats. Recommends
+  action if queue is getting low or drafts are piling up.
+enabled: true
+schedule: "0 15 * * 1"          # Mondays 15:00 UTC = 11:00 AM ET EDT / 10:00 AM ET EST
+timezone: UTC
+working_dir: /Users/zoelumos/migukstory
+prompt_file: prompts/weekly-audit.md
+log_file: logs/weekly-audit-{date}.log
+command: |
+  set -euo pipefail
+  echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] weekly-audit starting"
+  git fetch -q origin main
+
+  claude -p "$(cat ops/hermes/prompts/weekly-audit.md)" \
+    --output-format text \
+    --max-turns 12
+
+  echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] weekly-audit done"
+on_failure:
+  notify: slack
+  channel_or_recipient: "#migukstory-ops"
+  message: "🟡 weekly-audit failed — content stats not generated this week"
+prerequisites:
+  - claude CLI working
+  - git fetch can reach origin

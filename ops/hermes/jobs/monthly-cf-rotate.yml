@@ -1,0 +1,32 @@
+name: migukstory-monthly-cf-rotate
+description: |
+  Monthly reminder for Steve to rotate the CLOUDFLARE_API_TOKEN GitHub
+  Actions secret. Prints a Korean message with the exact rotation steps.
+  Hermes captures stdout and can forward to Slack on its end.
+enabled: true
+schedule: "0 14 1 * *"          # 1st of month, 14:00 UTC = 10:00 AM ET EDT / 9:00 AM ET EST
+timezone: UTC
+working_dir: /Users/zoelumos/migukstory
+prompt_file: null               # Static message, no Claude needed
+log_file: logs/monthly-cf-rotate-{date}.log
+command: |
+  set -euo pipefail
+  echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] monthly-cf-rotate notification"
+  echo ""
+  echo "🔐 월간 Cloudflare API 토큰 교체 알림 — migukstory"
+  echo ""
+  echo "현재 사용 중인 CLOUDFLARE_API_TOKEN (github.com/zoelumos/migukstory)"
+  echo "을 교체할 시간입니다. 보안을 위해 월 1회 권장."
+  echo ""
+  echo "절차 (약 2분):"
+  echo "1. https://dash.cloudflare.com/profile/api-tokens 접속"
+  echo "2. 기존 migukstory 배포 토큰 → Roll 클릭"
+  echo "3. 새 토큰 복사"
+  echo "4. 터미널에서:  gh secret set CLOUDFLARE_API_TOKEN --repo zoelumos/migukstory"
+  echo "5. 검증: Actions 탭 → Deploy to Cloudflare Pages → Run workflow"
+  echo "6. 성공 확인되면 ✅로 답장"
+on_failure:
+  notify: slack
+  channel_or_recipient: "#migukstory-ops"
+  message: "⚠️ monthly-cf-rotate reminder didn't post — check log"
+prerequisites: []
