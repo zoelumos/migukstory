@@ -121,37 +121,67 @@ USER_PROMPT_TEMPLATE = """다음은 사람 검토 전 AI가 작성한 한국어 
 """
 
 
-def call_claude(slug: str, content: str, model: str) -> tuple[dict, int]:
+def _editor_user_prompt(slug: str, content: str) -> str:
+    truncated = content if len(content) < 12000 else content[:12000] + "\n…(잘림)"
+    return USER_PROMPT_TEMPLATE.format(slug=slug, content=truncated)
+
+
+def _parse_editor_output(raw: str, slug: str) -> tuple[dict, int]:
+    raw = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw, flags=re.MULTILINE).strip()
+    try:
+        parsed = json.loads(raw)
+    except json.JSONDecodeError as e:
+        raise ValueError(f"editor returned non-JSON for {slug}: {e}\n--- raw ---\n{raw[:500]}")
+    total = int(parsed.get("total") or sum(parsed.get("scores", {}).values()))
+    return parsed, total
+
+
+def _editor_via_cli(slug: str, content: str) -> tuple[dict, int]:
+    import subprocess
+    combined = (
+        SYSTEM_PROMPT
+        + "\n\nRespond with the JSON object only — no code fences, no preamble. Do NOT use any tools.\n\n"
+        + _editor_user_prompt(slug, content)
+    )
+    try:
+        result = subprocess.run(
+            ["claude", "-p", combined, "--output-format", "text"],
+            capture_output=True, text=True, check=True, timeout=180,
+        )
+    except subprocess.TimeoutExpired:
+        raise RuntimeError("claude -p timed out (180s)")
+    except subprocess.CalledProcessError as e:
+        raise RuntimeError(f"claude -p failed (exit {e.returncode}): {e.stderr[:300]}")
+    except FileNotFoundError:
+        sys.exit("❌ `claude` CLI not found in PATH.")
+    return _parse_editor_output(result.stdout.strip(), slug)
+
+
+def _editor_via_api(slug: str, content: str, model: str) -> tuple[dict, int]:
     try:
         from anthropic import Anthropic
     except ImportError:
         sys.exit("❌ anthropic SDK missing. Run: pip install -r scripts/requirements-draft.txt")
     api_key = os.environ.get("ANTHROPIC_API_KEY", "").strip()
     if not api_key:
-        sys.exit("❌ ANTHROPIC_API_KEY not set. Set it in env or GitHub Secrets, "
-                 "or pass --dry-run for a no-API smoke test.")
-
+        sys.exit("❌ ANTHROPIC_API_KEY not set. Set CLAUDE_VIA_CLI=1 to use local claude CLI "
+                 "(Max auth) instead, or pass --dry-run for a heuristic smoke test.")
     client = Anthropic(api_key=api_key)
-    truncated = content if len(content) < 12000 else content[:12000] + "\n…(잘림)"
-    user_prompt = USER_PROMPT_TEMPLATE.format(slug=slug, content=truncated)
-
     msg = client.messages.create(
         model=model,
         max_tokens=900,
         system=SYSTEM_PROMPT,
-        messages=[{"role": "user", "content": user_prompt}],
+        messages=[{"role": "user", "content": _editor_user_prompt(slug, content)}],
     )
-    text = "".join(b.text for b in msg.content if getattr(b, "type", None) == "text").strip()
+    raw = "".join(b.text for b in msg.content if getattr(b, "type", None) == "text").strip()
+    return _parse_editor_output(raw, slug)
 
-    # The model sometimes wraps JSON in ```json fences despite the instruction; strip them.
-    text = re.sub(r"^```(?:json)?\s*|\s*```$", "", text, flags=re.MULTILINE).strip()
-    try:
-        parsed = json.loads(text)
-    except json.JSONDecodeError as e:
-        raise ValueError(f"editor returned non-JSON for {slug}: {e}\n--- raw ---\n{text[:500]}")
 
-    total = int(parsed.get("total") or sum(parsed.get("scores", {}).values()))
-    return parsed, total
+def call_claude(slug: str, content: str, model: str) -> tuple[dict, int]:
+    """Route to API or CLI based on CLAUDE_VIA_CLI env var."""
+    if os.environ.get("CLAUDE_VIA_CLI", "").strip() == "1":
+        return _editor_via_cli(slug, content)
+    return _editor_via_api(slug, content, model)
 
 
 def grade_one(path: Path, model: str, dry_run: bool) -> Grade:

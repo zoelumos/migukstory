@@ -64,6 +64,30 @@ git -C /Users/zoelumos/migukstory status
 3. **On failure** (non-zero exit code): forward the last 50 lines of the log to the configured `on_failure.slack` channel (or whatever notification mechanism Hermes uses).
 4. **Daily**: rotate logs older than 30 days (rm).
 
+## The drafting pipeline (uses Max, not API)
+
+The `daily-ingest.yml` job runs `scripts/draft_from_rss.py` and `scripts/editor_grade.py`
+with the env var `CLAUDE_VIA_CLI=1`. Both scripts have been modified to:
+
+- **Default behavior** (env var unset): call `api.anthropic.com` via the Anthropic SDK → needs `ANTHROPIC_API_KEY`.
+- **CLAUDE_VIA_CLI=1**: shell out to `claude -p "..."` instead → uses local Max-subscription auth, no API key.
+
+So Hermes can drive the entire drafting pipeline on the Mac mini using only Steve's Max
+subscription. The same scripts work in GitHub Actions too (with the env var unset and
+`ANTHROPIC_API_KEY` set), so this is non-breaking.
+
+The route logic is in `scripts/draft_from_rss.py::call_claude` and
+`scripts/editor_grade.py::call_claude`:
+
+```python
+def call_claude(...):
+    if os.environ.get("CLAUDE_VIA_CLI", "").strip() == "1":
+        return _call_claude_via_cli(...)  # subprocess to `claude -p`
+    return _call_claude_via_api(...)      # original SDK path
+```
+
+---
+
 ## Job schema (each `jobs/*.yml`)
 
 ```yaml
@@ -90,6 +114,7 @@ prerequisites:
 
 | File | Schedule (UTC) | Local approx (ET, EDT) | Purpose | Uses Claude? |
 |---|---|---|---|---|
+| `daily-ingest.yml` | `0 11 * * *` | 7:00 AM | **RSS → Claude draft → editor grade → open PR** (the big one) | Yes (`claude -p`, Max auth) |
 | `daily-publish.yml` | `0 12 * * *` | 8:00 AM | Trigger `daily-post.yml` workflow → publish 1 from queue | No (gh CLI only) |
 | `daily-editorial-review.yml` | `0 13 * * *` | 9:00 AM | Read `editor_report.json`, pick top draft for review, brief Steve | Yes |
 | `daily-health.yml` | `30 14 * * *` | 10:30 AM | Status snapshot (workflows, site, queue depth, drafts pending) | Yes |
