@@ -1,7 +1,7 @@
 ---
 title: 'FBAR 4월 15일 마감 — 한국 계좌 1만달러 이상 보고 의무 2026'
 description: '한국 은행 계좌 합계가 한 번이라도 1만 달러를 넘었다면 FBAR(FinCEN Form 114) 신고가 의무입니다. 2026년 마감일, 면제 규정, 미신고 페널티를 정리합니다.'
-pubDate: '2026-05-17'
+pubDate: '2026-05-19'
 tags: ['FBAR', '해외계좌', 'FinCEN', '세금', '한국계좌']
 category: 'tax'
 ageGroup: 'all'

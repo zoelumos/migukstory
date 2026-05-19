@@ -21,9 +21,22 @@ command: |
 
   # Generate drafts + grade them via Max-subscription claude CLI.
   # CLAUDE_VIA_CLI=1 → both scripts call `claude -p`, NOT api.anthropic.com.
+  # Hermes may run under its own stripped Python venv (no pip/packages), so use
+  # a small external venv for feedparser/PyYAML/anthropic deps.
+  PY_VENV=/tmp/migukstory-draft-venv
+  if [ ! -x "$PY_VENV/bin/python" ]; then
+    /opt/homebrew/bin/python3 -m venv "$PY_VENV"
+  fi
+  "$PY_VENV/bin/python" -m pip install -q -r scripts/requirements-draft.txt
+
   export CLAUDE_VIA_CLI=1
-  python3 scripts/draft_from_rss.py --max-drafts 5 || echo "  (draft script exited non-zero; continuing)"
-  python3 scripts/editor_grade.py --threshold 80 || echo "  (editor script exited non-zero; continuing)"
+  "$PY_VENV/bin/python" scripts/draft_from_rss.py --max-drafts 5 || echo "  (draft script exited non-zero; continuing)"
+  "$PY_VENV/bin/python" scripts/editor_grade.py --threshold 80 || echo "  (editor script exited non-zero; continuing)"
+
+  # Ensure labels exist before PR creation. Missing labels used to make this job
+  # fail after it had already pushed the branch.
+  gh label create draft --repo zoelumos/migukstory --color 0e8a16 --description 'AI draft automation' 2>/dev/null || true
+  gh label create automated --repo zoelumos/migukstory --color 1d76db --description 'Automated PR' 2>/dev/null || true
 
   git add drafts/ queue/ scripts/state/seen_urls.json scripts/state/editor_report.json 2>/dev/null || true
 
