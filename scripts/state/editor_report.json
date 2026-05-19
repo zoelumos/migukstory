@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-05-19T11:00:14.411892+00:00",
+  "threshold_promote": 80,
+  "threshold_review": 50,
+  "counts": {
+    "total": 0,
+    "promoted": 0,
+    "review": 0,
+    "discard_flag": 0
+  },
+  "grades": []
+}
