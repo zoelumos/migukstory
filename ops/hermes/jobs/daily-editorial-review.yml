@@ -1,0 +1,31 @@
+name: migukstory-daily-editorial-review
+description: |
+  Read scripts/state/editor_report.json (produced by the editor agent in
+  GitHub Actions), pick the highest-scoring draft in 'review' status, and
+  output a 5-line editorial brief Steve reads on his phone over coffee.
+enabled: true
+schedule: "0 13 * * *"          # 13:00 UTC = 9:00 AM ET EDT / 8:00 AM ET EST
+timezone: UTC
+working_dir: /Users/zoelumos/migukstory
+prompt_file: prompts/daily-editorial-review.md
+log_file: logs/daily-editorial-review-{date}.log
+command: |
+  set -euo pipefail
+  echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] daily-editorial-review starting"
+
+  # Pull latest so we see fresh editor_report.json from CI
+  git fetch -q origin main
+  git checkout origin/main -- scripts/state/editor_report.json 2>/dev/null || true
+
+  claude -p "$(cat ops/hermes/prompts/daily-editorial-review.md)" \
+    --output-format text \
+    --max-turns 10
+
+  echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] daily-editorial-review done"
+on_failure:
+  notify: slack
+  channel_or_recipient: "#migukstory-ops"
+  message: "🟡 daily-editorial-review failed — check log; site is unaffected"
+prerequisites:
+  - claude CLI authenticated with Max subscription
+  - Read-only — does not commit or push

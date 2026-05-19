@@ -1,0 +1,29 @@
+name: migukstory-daily-health
+description: |
+  Daily Korean-language health snapshot. Checks recent GitHub Actions runs,
+  site HTTP status, queue depth, drafts pending review, and editor agent
+  state. Posts a brief to the log (Hermes can forward to Slack on its end).
+enabled: true
+schedule: "30 14 * * *"         # 14:30 UTC = 10:30 AM ET EDT / 9:30 AM ET EST
+timezone: UTC
+working_dir: /Users/zoelumos/migukstory
+prompt_file: prompts/daily-health.md
+log_file: logs/daily-health-{date}.log
+command: |
+  set -euo pipefail
+  echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] daily-health starting"
+  git fetch -q origin main
+
+  claude -p "$(cat ops/hermes/prompts/daily-health.md)" \
+    --output-format text \
+    --max-turns 12
+
+  echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] daily-health done"
+on_failure:
+  notify: slack
+  channel_or_recipient: "#migukstory-ops"
+  message: "🟡 daily-health failed — operational check did not run"
+prerequisites:
+  - claude CLI working
+  - gh CLI authenticated
+  - curl available
