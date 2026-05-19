@@ -1,9 +1,10 @@
 name: Daily draft from RSS
 
 on:
-  # Daily at 13:00 UTC (~08:00 ET / 09:00 EDT). Adjust as needed.
+  # Every 4 hours (6× daily) — research recommends this cadence for breaking news.
+  # If queue stays full enough, we can revert to less frequent (e.g. '0 */6 * * *').
   schedule:
-    - cron: '0 13 * * *'
+    - cron: '0 */4 * * *'
   workflow_dispatch:
     inputs:
       max_drafts:
@@ -12,6 +13,14 @@ on:
         default: '5'
       dry_run:
         description: 'Dry run (no Claude calls, no writes)'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+      skip_editor:
+        description: 'Skip editor grading step (just produce drafts/)'
         required: false
         default: 'false'
         type: choice
@@ -62,24 +71,54 @@ jobs:
             python scripts/draft_from_rss.py --max-drafts "$MAX"
           fi
 
+      - name: Editor grade (auto-promote ≥80 → queue/)
+        # Per Steve's decision: Rubric + auto-PR. High-confidence drafts are
+        # git mv'd into queue/ so the PR already shows them as ready-for-publish;
+        # human still clicks merge. Low-confidence drafts stay in drafts/ for
+        # manual review. No auto-publish anywhere in this pipeline.
+        if: ${{ github.event.inputs.skip_editor != 'true' && github.event.inputs.dry_run != 'true' }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          set -euo pipefail
+          python scripts/editor_grade.py
+
       - name: Detect changes
         id: changes
         run: |
-          # Stage only the paths this workflow is allowed to modify.
-          # If the script ever wrote to queue/ or src/, we'd want to FAIL,
-          # not silently commit. Guard against that.
-          if ! git diff --quiet -- queue/ src/content/blog/; then
-            echo "::error::draft_from_rss.py modified queue/ or src/content/blog/ — refusing to PR."
-            git --no-pager diff -- queue/ src/content/blog/
+          # Allowed paths this workflow can modify:
+          #   drafts/                       — new AI drafts (draft_from_rss.py)
+          #   queue/                        — promotions from editor_grade.py
+          #   scripts/state/seen_urls.json  — dedupe store
+          #   scripts/state/editor_report.json — last grading report
+          # Anything else (src/, package.json, etc.) is a bug — fail loudly.
+          ALLOWED='^(drafts/|queue/|scripts/state/(seen_urls|editor_report)\.json$)'
+          OUT_OF_SCOPE=$(git status --porcelain | awk '{print $2}' | grep -vE "$ALLOWED" || true)
+          if [ -n "$OUT_OF_SCOPE" ]; then
+            echo "::error::workflow modified out-of-scope files — refusing to PR:"
+            echo "$OUT_OF_SCOPE"
+            git --no-pager diff
             exit 1
           fi
-          git add drafts/ scripts/state/seen_urls.json
+          git add drafts/ queue/ scripts/state/seen_urls.json scripts/state/editor_report.json
           if git diff --staged --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "No new drafts; nothing to PR."
+            echo "No new drafts or promotions; nothing to PR."
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
             git --no-pager diff --staged --stat
+
+            # Build a one-line summary for the PR title from the editor report (best-effort).
+            if [ -f scripts/state/editor_report.json ]; then
+              python -c "
+import json
+r = json.load(open('scripts/state/editor_report.json'))
+c = r.get('counts', {})
+print(f\"summary={c.get('promoted',0)} promoted, {c.get('review',0)} review, {c.get('discard_flag',0)} discard\")
+" >> "$GITHUB_OUTPUT"
+            else
+              echo "summary=drafts only" >> "$GITHUB_OUTPUT"
+            fi
           fi
 
       - name: Open pull request
@@ -91,21 +130,24 @@ jobs:
           base: main
           delete-branch: true
           commit-message: |
-            draft: daily RSS drafts (${{ github.run_id }})
-          title: "draft: daily RSS drafts"
+            draft: daily RSS drafts + editor grading (${{ github.run_id }})
+          title: "draft: daily RSS — ${{ steps.changes.outputs.summary }}"
           body: |
-            Auto-generated drafts from `scripts/draft_from_rss.py`.
+            Auto-generated from `scripts/draft_from_rss.py` + graded by
+            `scripts/editor_grade.py` (editor agent).
 
-            **Review before merge:**
-            - Open each file in `drafts/`, verify facts against the linked
-              source, edit tone / category / ageGroup as needed.
-            - When a draft is ready to publish, `git mv` it into `queue/`
-              (the daily-post workflow will pick it up).
-            - Delete drafts that aren't worth running.
+            **Files in this PR:**
+            - `drafts/` — items flagged for human review (score 50-79) or
+              likely-discard (score <50). Edit, promote, or delete.
+            - `queue/` — items the editor auto-promoted (score ≥80). These
+              are ready for publication via the manual `daily-post.yml`
+              workflow once you merge this PR.
+            - `scripts/state/seen_urls.json` — dedupe store (don't edit).
+            - `scripts/state/editor_report.json` — per-draft scores +
+              reasoning. Open it to see why each draft got its action.
 
-            The dedupe store at `scripts/state/seen_urls.json` is updated
-            so the same URLs aren't redrafted next run — merge this PR
-            even if you only keep some drafts, so dedupe stays accurate.
+            **No auto-publish anywhere in this pipeline.** Promoted items
+            sit in `queue/` until `daily-post.yml` is manually triggered.
 
             Run: ${{ github.run_id }} · workflow: daily-draft.yml
           labels: |
@@ -113,4 +155,6 @@ jobs:
             automated
           add-paths: |
             drafts/
+            queue/
             scripts/state/seen_urls.json
+            scripts/state/editor_report.json

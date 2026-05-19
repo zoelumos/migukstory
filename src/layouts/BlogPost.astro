@@ -13,14 +13,29 @@ import RelatedPosts from '../components/RelatedPosts.astro';
 import ArticleCTA from '../components/ArticleCTA.astro';
 import TableOfContents from '../components/TableOfContents.astro';
 import Comments from '../components/Comments.astro';
-import { SITE_AUTHOR, SITE_URL } from '../consts';
+import { SITE_AUTHOR, SITE_URL, AUTHORS, DEFAULT_AUTHOR_SLUG } from '../consts';
 import { estimateReadingTime } from '../utils/readingTime';
 
 type Props = CollectionEntry<'blog'>['data'] & { entry?: CollectionEntry<'blog'> };
 
 import { CATEGORIES } from '../content.config';
 
-const { title, description, pubDate, updatedDate, heroImage, tags = [], ageGroup, category, entry, faq, howTo } = Astro.props as any;
+const {
+	title,
+	description,
+	pubDate,
+	updatedDate,
+	heroImage,
+	tags = [],
+	ageGroup,
+	category,
+	entry,
+	faq,
+	howTo,
+	author,
+	aiAssisted,
+	editorNote,
+} = Astro.props as any;
 
 const ageLabel =
 	ageGroup === '20-35' ? '20–35세' :
@@ -28,6 +43,12 @@ const ageLabel =
 	ageGroup === '55+'   ? '55세 이상' : '전 세대';
 
 const catMeta = category ? (CATEGORIES as any)[category] : null;
+
+// Author resolution — show named human in the byline rail (E-E-A-T).
+const authorSlug = author || DEFAULT_AUTHOR_SLUG;
+const authorInfo = AUTHORS[authorSlug];
+const authorDisplayName = authorInfo?.name || SITE_AUTHOR;
+const authorPageUrl = authorInfo ? `/authors/${authorSlug}/` : '/about';
 
 // Find this entry for reading time + related posts
 const all = await getCollection('blog');
@@ -48,7 +69,7 @@ const breadcrumbs = [
 		<BaseHead
 			title={title}
 			description={description}
-			article={{ pubDate, updatedDate, tags }}
+			article={{ pubDate, updatedDate, tags, author: authorSlug }}
 			breadcrumbs={breadcrumbs}
 			faq={faq}
 			howTo={howTo}
@@ -87,7 +108,7 @@ const breadcrumbs = [
 								</a>
 							)}
 							<span class="rail-sep">·</span>
-							<span>{SITE_AUTHOR}</span>
+							<a class="byline-link" href={authorPageUrl} rel="author">{authorDisplayName}</a>
 							<span class="rail-sep">·</span>
 							<FormattedDate date={pubDate} />
 							<span class="rail-sep">·</span>
@@ -121,6 +142,16 @@ const breadcrumbs = [
 				<!-- ── Ad slot: header (above article) ──────────────────────── -->
 				<AdSlot position="header" />
 
+				<!-- ── Editor's note (E-E-A-T: named editor's KA-angle framing) ─ -->
+				{editorNote && (
+					<div class="container">
+						<aside class="editor-note">
+							<p class="editor-note-label">편집자 노트 · {authorDisplayName}</p>
+							<p class="editor-note-body">{editorNote}</p>
+						</aside>
+					</div>
+				)}
+
 				<!-- ── Auto-generated table of contents ─────────────────────── -->
 				<div class="container">
 					<TableOfContents />
@@ -132,6 +163,22 @@ const breadcrumbs = [
 						<slot />
 					</div>
 				</div>
+
+				<!-- ── AI-disclosure (when post is AI-assisted with human review) -->
+				{aiAssisted && (
+					<div class="container">
+						<aside class="ai-disclosure">
+							<p>
+								<strong>AI 활용 안내:</strong>
+								이 기사는 AI 도구를 활용해 1차 자료의 초안을 작성하고
+								<a href={authorPageUrl} rel="author">{authorDisplayName}</a>이(가) 사실관계 확인,
+								편집, 한국계 미국인 관점 추가 작업을 거쳐 발행했습니다.
+								인용된 모든 수치·날짜·기관명은 글 끝 「출처」 섹션의 1차 출처와 교차 확인되었습니다.
+								오류·정정 제보는 <a href="mailto:editor@migukstory.com">editor@migukstory.com</a>으로 보내주세요.
+							</p>
+						</aside>
+					</div>
+				)}
 
 				<!-- ── Inline newsletter (highest conversion mid-content spot) -->
 				<NewsletterSignup />
@@ -223,6 +270,14 @@ const breadcrumbs = [
 				flex-wrap: wrap;
 				justify-content: center;
 			}
+			.byline-link {
+				color: var(--ink-medium);
+				text-decoration: none;
+				border-bottom: 1px solid transparent;
+				font-weight: 500;
+				transition: all var(--duration) var(--ease-out);
+			}
+			.byline-link:hover { color: var(--brick); border-bottom-color: currentColor; }
 			.cat-badge {
 				display: inline-block;
 				font-size: 0.72rem;
@@ -286,6 +341,54 @@ const breadcrumbs = [
 				border-radius: 4px;
 				box-shadow: 0 4px 24px rgba(27, 24, 21, 0.12);
 			}
+
+			/* ── Editor's note (E-E-A-T) ───────────────────────────────── */
+			.editor-note {
+				max-width: var(--reading-width);
+				margin: var(--s-4) auto var(--s-2);
+				padding: var(--s-3);
+				background: var(--paper-soft);
+				border-left: 3px solid var(--brick);
+				border-radius: 2px;
+			}
+			.editor-note-label {
+				font-size: var(--text-xs);
+				font-weight: 700;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				color: var(--brick);
+				margin: 0 0 var(--s-1);
+			}
+			.editor-note-body {
+				font-size: 1rem;
+				line-height: 1.75;
+				color: var(--ink-soft);
+				margin: 0;
+				font-style: italic;
+			}
+
+			/* ── AI disclosure ────────────────────────────────────────── */
+			.ai-disclosure {
+				max-width: var(--reading-width);
+				margin: var(--s-4) auto var(--s-2);
+				padding: var(--s-3);
+				background: var(--paper-soft);
+				border: 1px dashed var(--rule);
+				border-radius: 4px;
+			}
+			.ai-disclosure p {
+				font-size: 0.82rem;
+				line-height: 1.7;
+				color: var(--ink-light);
+				margin: 0;
+			}
+			.ai-disclosure strong { color: var(--ink); }
+			.ai-disclosure a {
+				color: var(--brick);
+				text-decoration: none;
+				border-bottom: 1px solid var(--brick-soft);
+			}
+			.ai-disclosure a:hover { color: var(--brick-deep); border-color: currentColor; }
 
 			.prose {
 				max-width: var(--reading-width);
