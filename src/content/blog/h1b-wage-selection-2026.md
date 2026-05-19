@@ -1,7 +1,7 @@
 ---
 title: 'H-1B 추첨제 폐지, 연봉순 선발 시대 — 유학생 영향 정리'
 description: 'USCIS가 2026년 2월 27일부로 H-1B 추첨제를 폐지하고 연봉 가중 선발 방식으로 전환했습니다. 한국 유학생과 자영업자에게 미치는 실질적 영향을 정리했습니다.'
-pubDate: '2026-05-17'
+pubDate: '2026-05-19'
 tags: ['H-1B', '취업비자', '유학생', '연봉가중', 'USCIS']
 category: 'immigration'
 ageGroup: 'all'
