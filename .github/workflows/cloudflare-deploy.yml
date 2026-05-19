@@ -14,6 +14,10 @@ on:
       - 'astro.config.mjs'
       - '.github/workflows/cloudflare-deploy.yml'
 
+concurrency:
+  group: deploy-pages
+  cancel-in-progress: false
+
 permissions:
   contents: read
 
