@@ -4,6 +4,11 @@ Production site: **https://migukstory.com**
 
 Static blog for Korean-American immigrants — informative posts on immigration, taxes, healthcare, and Korean diaspora culture, sourced from legitimate news (USCIS, IRS, NPR, CNN, Korea Times, JoongAng, etc.).
 
+
+## Architecture
+
+End-to-end pipeline (RSS → Claude draft → editor agent → human PR → publish → Cloudflare → IndexNow) is documented with Mermaid diagrams in **[ARCHITECTURE.md](./ARCHITECTURE.md)**. GitHub renders the diagrams inline.
+
 ## Stack
 
 - **Framework:** [Astro](https://astro.build) 6.x — static site generator with content collections
