@@ -1,6 +1,11 @@
 # migukstory.com — Architecture (2026-05-19)
 
-**Status:** Site is live at https://migukstory.com. Deploy pipeline is fully automated. AI ingest pipeline has 2 known blockers (documented below).
+**Status:** Site is live at https://migukstory.com. Deploy pipeline is fully automated. AI ingest pipeline has 1 known blocker (documented below).
+
+> **2026-05-19 update:** `daily-post.yml` now has its own daily cron (12:00 UTC = 8am ET EDT).
+> The `migukstory-daily-publish` routine is disabled — redundant with the workflow's self-trigger.
+> Only blocker remaining for full-🟢: `ANTHROPIC_API_KEY` for `daily-draft.yml`.
+
 
 > GitHub renders Mermaid diagrams inline in `.md` files. If you're viewing raw text, paste any of the code blocks into <https://mermaid.live>.
 
@@ -14,8 +19,8 @@
 | **Indexing** | `notify_indexes.py` (IndexNow + Google) | 🟢 working | runs post-deploy, IndexNow free |
 | **AI ingest** | `daily-draft.yml` (RSS → Claude) | 🔴 blocked | needs `ANTHROPIC_API_KEY` (separate from Max) |
 | **Editor grading** | `editor_grade.py` | 🔴 blocked | depends on ingest producing drafts |
-| **Manual publish** | `daily-post.yml` | 🟢 working | triggered by routine or manually |
-| **Routine: daily-publish** | claude.ai cron | 🔴 blocked | needs GitHub MCP attached |
+| **Daily publish** | `daily-post.yml` | 🟢 working | cron `0 12 * * *` (8am ET) + manual dispatch |
+| **Routine: daily-publish** | claude.ai cron | ⚫ disabled | redundant with `daily-post.yml` cron above |
 | **Routine: editorial-review** | claude.ai cron | 🟢 working | will show "no data" until ingest fixed |
 | **Routine: daily-health** | claude.ai cron | 🟡 partial | site/queue checks work; workflow listing blocked w/o GH MCP |
 | **Routine: weekly-audit** | claude.ai cron | 🟢 working | runs every Monday |
@@ -208,13 +213,13 @@ All run in Anthropic's cloud, billed against Steve's Max subscription. Dashboard
 
 | Name | ID | Schedule (UTC) | Local approx (ET EDT) | Status | Dashboard |
 |---|---|---|---|---|---|
-| migukstory-daily-publish | `trig_01VDBqt2KmYvmH3wercFV5os` | `0 12 * * *` | 8:00 AM | 🔴 needs GH MCP | [link](https://claude.ai/code/routines/trig_01VDBqt2KmYvmH3wercFV5os) |
+| migukstory-daily-publish | `trig_01VDBqt2KmYvmH3wercFV5os` | `0 12 * * *` | 8:00 AM | ⚫ disabled (replaced by `daily-post.yml` cron) | [link](https://claude.ai/code/routines/trig_01VDBqt2KmYvmH3wercFV5os) |
 | migukstory-daily-editorial-review | `trig_01TwQNEERU2vYW6yxBPack2F` | `0 13 * * *` | 9:00 AM | 🟢 enabled | [link](https://claude.ai/code/routines/trig_01TwQNEERU2vYW6yxBPack2F) |
 | migukstory-daily-health | `trig_01L1Ebbgjf939HNHw5Wze4zf` | `30 14 * * *` | 10:30 AM | 🟡 partial | [link](https://claude.ai/code/routines/trig_01L1Ebbgjf939HNHw5Wze4zf) |
 | migukstory-weekly-audit | `trig_01PsRgvyDSmkhzvAbRtyhK3i` | `0 15 * * 1` | Mon 11:00 | 🟢 enabled | [link](https://claude.ai/code/routines/trig_01PsRgvyDSmkhzvAbRtyhK3i) |
 | migukstory-monthly-cf-rotate | `trig_01Te7SdsHkTivdYSY2aBLN2q` | `0 14 1 * *` | 1st 10:00 | 🟢 enabled | [link](https://claude.ai/code/routines/trig_01Te7SdsHkTivdYSY2aBLN2q) |
 
-MCPs auto-attached: Adobe-for-creativity, Vercel, Slack. **GitHub MCP NOT attached** (root cause of daily-publish blocker).
+MCPs auto-attached: Adobe-for-creativity, Vercel, Slack. **GitHub MCP does not exist in claude.ai's connector catalog** (only "GitHub Integration" for Claude Code Web repo browsing — different thing). Worked around by giving `daily-post.yml` its own cron, eliminating the dependency.
 
 ---
 
@@ -224,7 +229,7 @@ MCPs auto-attached: Adobe-for-creativity, Vercel, Slack. **GitHub MCP NOT attach
 |---|---|---|---|
 | `cloudflare-deploy.yml` | push to main (paths filter) | 🟢 working | Build Astro → wrangler deploy → IndexNow ping |
 | `daily-draft.yml` | cron `0 */4 * * *` (6×/day) | 🔴 failing | RSS → Claude → drafts → editor grade → auto-PR |
-| `daily-post.yml` | workflow_dispatch only | 🟢 working | Move N posts queue → blog → commit → push |
+| `daily-post.yml` | cron `0 12 * * *` + workflow_dispatch | 🟢 working | Move N posts queue → blog → commit → push (auto-deploys via push) |
 
 GitHub repo secrets currently set:
 - `CLOUDFLARE_API_TOKEN` ✅ (deploy works)
@@ -272,14 +277,14 @@ The `ops/hermes/` folder in the repo was created as an alternative path that use
 
 ---
 
-## 9. Tomorrow morning, what to expect (current state)
+## 9. Tomorrow morning, what to expect (post-update)
 
-🔴 Site unchanged (no new content gets published until 1 of 2 fixes)
-🔴 6 failed `daily-draft.yml` runs visible at https://github.com/zoelumos/migukstory/actions
-🟢 3 routine dashboards updated with results (editorial-review, daily-health, daily-publish)
-🟡 Some Slack messages (depending on if Slack MCP triggers correctly from routines)
+🟢 `daily-post.yml` fires at 12:00 UTC (8am ET) — publishes 1 post from queue → CF auto-deploys → live in ~50s
+🟢 `migukstory-daily-editorial-review` fires at 13:00 UTC (9am ET) — will report "no editor report yet" (daily-draft still blocked)
+🟡 `migukstory-daily-health` fires at 14:30 UTC (10:30am ET) — Korean status brief to Slack
+🔴 `daily-draft.yml` fires 6× — fails on each (no `ANTHROPIC_API_KEY`)
 
-**To make tomorrow actually productive:** address Blocker 1 (Option B is recommended — keep everything Max-only). Blocker 2 has a 5-minute fix (Option D — cron in daily-post.yml).
+**Net effect:** site DOES get a fresh post tomorrow (chicago → next alphabetical from queue). But AI drafting stays broken until `ANTHROPIC_API_KEY` is added OR drafting is rewritten as a routine.
 
 ---
 
