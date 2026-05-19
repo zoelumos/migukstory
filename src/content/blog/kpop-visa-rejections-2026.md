@@ -1,7 +1,7 @@
 ---
 title: 'K-pop 비자 거절 시대 — NCT WISH 공연 취소의 진짜 이유'
 description: 'NCT WISH가 SMTOWN LA 공연 직전 비자 발급 지연으로 무대에 오르지 못했습니다. 강화된 미국 비자 심사가 K-pop 산업에 어떤 영향을 주는지 정리했습니다.'
-pubDate: '2026-05-17'
+pubDate: '2026-05-19'
 tags: ['K-pop', 'P-1비자', 'NCT WISH', '비자거절', '공연취소']
 category: 'immigration'
 ageGroup: 'all'
