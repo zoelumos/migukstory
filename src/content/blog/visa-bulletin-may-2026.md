@@ -5,6 +5,9 @@ pubDate: '2026-05-18'
 tags: ['비자불레틴', '취업이민', '가족이민', '영주권', 'EB-3']
 category: 'immigration'
 ageGroup: 'all'
+author: 'steve-song'
+aiAssisted: true
+editorNote: '5월 한 달 동안 EB-2·EB-3 한인 신청자는 즉시 I-485 접수가 가능합니다. F-2A(영주권자의 배우자·미성년 자녀) 또한 가장 빠르게 진행 중이니, 가족 청원 상태를 점검해 보시기 바랍니다.'
 ---
 
 # 2026년 5월 비자불레틴 — EB-1·2 현행, EB-3는 2024년 6월 1일

@@ -65,3 +65,34 @@ sources:
     category: community
     enabled: false
     max_items: 2
+
+  # ── Economy / 경제 ─────────────────────────────────────────────────
+  # Hot KA-relevant economic topics: US Fed decisions, US-Korea trade,
+  # Treasury actions affecting immigrants (FBAR, sanctions), BLS jobs/inflation
+  # data, USTR trade policy. Korean-side sources (Bank of Korea, KITA) kept
+  # disabled until we add a Korean-language draft prompt; English source +
+  # Korean draft works well for US-focused stories.
+
+  - name: U.S. Treasury Press Releases
+    url: https://home.treasury.gov/news/press-releases/feed
+    category: economy
+    enabled: true
+    max_items: 3
+
+  - name: Federal Reserve Press (Monetary Policy)
+    url: https://www.federalreserve.gov/feeds/press_monetary.xml
+    category: economy
+    enabled: true
+    max_items: 2
+
+  - name: NPR Business
+    url: https://feeds.npr.org/1006/rss.xml
+    category: economy
+    enabled: true
+    max_items: 2
+
+  - name: Bank of Korea Press (English)
+    url: https://www.bok.or.kr/eng/bbs/E0000634/list.do?menuNo=400069&type=rss
+    category: economy
+    enabled: false
+    max_items: 2

@@ -3,7 +3,7 @@ name: Daily draft from RSS
 on:
   # Daily at 13:00 UTC (~08:00 ET / 09:00 EDT). Adjust as needed.
   schedule:
-    - cron: '0 13 * * *'
+    - cron: '0 */4 * * *'
   workflow_dispatch:
     inputs:
       max_drafts:

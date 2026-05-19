@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import type { ImageMetadata } from 'astro';
 import FallbackImage from '../assets/blog-placeholder-1.jpg';
-import { SITE_TITLE, SITE_AUTHOR, SITE_URL } from '../consts';
+import { SITE_TITLE, SITE_AUTHOR, SITE_URL, AUTHORS, ORG_SAME_AS, DEFAULT_AUTHOR_SLUG } from '../consts';
 
 interface Props {
 	title: string;
@@ -12,6 +12,7 @@ interface Props {
 		pubDate: Date;
 		updatedDate?: Date;
 		tags?: string[];
+		author?: string;   // author slug looked up in AUTHORS (consts.ts)
 	};
 	breadcrumbs?: { name: string; url: string }[];
 	faq?: { q: string; a: string }[];
@@ -42,7 +43,7 @@ const orgSchema = {
 	"actionableFeedbackPolicy": `${SITE_URL}/contact`,
 	"correctionsPolicy": `${SITE_URL}/disclosure`,
 	"foundingDate": "2026",
-	"sameAs": [],
+	"sameAs": ORG_SAME_AS,
 };
 const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
 	"@context": "https://schema.org",
@@ -54,6 +55,34 @@ const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
 		"item": new URL(b.url, SITE_URL).toString(),
 	})),
 } : null;
+
+// Author resolution: prefer named Person schema (better E-E-A-T) when author slug is known,
+// else fall back to Organization (legacy behavior preserved for posts without explicit author).
+const authorSlug = article?.author || DEFAULT_AUTHOR_SLUG;
+const authorInfo = AUTHORS[authorSlug];
+const authorSchema = authorInfo
+	? {
+		"@type": "Person",
+		"name": authorInfo.name,
+		...(authorInfo.nameEn ? { "alternateName": authorInfo.nameEn } : {}),
+		"jobTitle": authorInfo.jobTitle,
+		"url": `${SITE_URL}/authors/${authorSlug}/`,
+		"description": authorInfo.bio,
+		"knowsAbout": authorInfo.expertise,
+		...(authorInfo.email ? { "email": authorInfo.email } : {}),
+		...(authorInfo.sameAs.length > 0 ? { "sameAs": authorInfo.sameAs } : {}),
+		"worksFor": {
+			"@type": "NewsMediaOrganization",
+			"name": SITE_TITLE,
+			"url": SITE_URL,
+		},
+	}
+	: {
+		"@type": "Organization",
+		"name": SITE_AUTHOR,
+		"url": `${SITE_URL}/about`,
+	};
+
 const articleSchema = article ? {
 	"@context": "https://schema.org",
 	"@type": "NewsArticle",
@@ -61,11 +90,7 @@ const articleSchema = article ? {
 	"description": description,
 	"datePublished": article.pubDate.toISOString(),
 	"dateModified": (article.updatedDate || article.pubDate).toISOString(),
-	"author": {
-		"@type": "Organization",
-		"name": SITE_AUTHOR,
-		"url": `${SITE_URL}/about`,
-	},
+	"author": authorSchema,
 	"publisher": orgSchema,
 	"mainEntityOfPage": { "@type": "WebPage", "@id": canonicalURL.toString() },
 	"image": {
@@ -208,7 +233,7 @@ const howToSchema = howTo ? {
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
 
-<!-- JSON-LD structured data — Organization + Breadcrumbs + Article + FAQ + HowTo -->
+<!-- JSON-LD structured data — Organization + Breadcrumbs + Article (Person author) + FAQ + HowTo -->
 <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
 {breadcrumbSchema && (
 	<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

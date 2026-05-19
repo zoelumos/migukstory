@@ -50,7 +50,7 @@ DEFAULT_MODEL = "claude-sonnet-4-6"
 
 VALID_CATEGORIES = {
     "immigration", "tax", "health", "education",
-    "retirement", "community", "real-estate",
+    "retirement", "community", "real-estate", "economy",
 }
 
 # Stripped from query strings during URL canonicalization.
