@@ -293,20 +293,9 @@ sourceUrl: '{canonical_url}'
 """
 
 
-def call_claude(item: FeedItem, model: str) -> str:
-    try:
-        from anthropic import Anthropic
-    except ImportError:
-        sys.exit("❌ anthropic SDK missing. Run: pip install -r scripts/requirements-draft.txt")
-
-    api_key = os.environ.get("ANTHROPIC_API_KEY", "").strip()
-    if not api_key:
-        sys.exit("❌ ANTHROPIC_API_KEY is not set. "
-                 "Set it in your shell or GitHub Secrets. "
-                 "For local testing without a key, pass --dry-run.")
-
+def _build_user_prompt(item: FeedItem) -> str:
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    user_prompt = PROMPT_USER_TEMPLATE.format(
+    return PROMPT_USER_TEMPLATE.format(
         source_name=item.source_name,
         category=item.category,
         title=item.title,
@@ -316,15 +305,63 @@ def call_claude(item: FeedItem, model: str) -> str:
         today=today,
     )
 
+
+def _call_claude_via_cli(item: FeedItem) -> str:
+    """Call `claude -p` (uses local Max-subscription auth, no API key)."""
+    import subprocess
+    user_prompt = _build_user_prompt(item)
+    # claude -p takes a single prompt; combine system + user inline.
+    combined = (
+        PROMPT_SYSTEM
+        + "\n\nRespond with the markdown content only. Do NOT use any tools.\n\n"
+        + user_prompt
+    )
+    try:
+        result = subprocess.run(
+            ["claude", "-p", combined, "--output-format", "text"],
+            capture_output=True, text=True, check=True, timeout=240,
+        )
+        return result.stdout.strip()
+    except subprocess.TimeoutExpired:
+        raise RuntimeError("claude -p timed out (240s)")
+    except subprocess.CalledProcessError as e:
+        raise RuntimeError(f"claude -p failed (exit {e.returncode}): {e.stderr[:300]}")
+    except FileNotFoundError:
+        sys.exit("❌ `claude` CLI not found in PATH. Install Claude Code or run on a host that has it.")
+
+
+def _call_claude_via_api(item: FeedItem, model: str) -> str:
+    """Original code path — calls api.anthropic.com directly. Needs ANTHROPIC_API_KEY."""
+    try:
+        from anthropic import Anthropic
+    except ImportError:
+        sys.exit("❌ anthropic SDK missing. Run: pip install -r scripts/requirements-draft.txt")
+    api_key = os.environ.get("ANTHROPIC_API_KEY", "").strip()
+    if not api_key:
+        sys.exit("❌ ANTHROPIC_API_KEY is not set. "
+                 "Set it in your shell or GitHub Secrets, OR set CLAUDE_VIA_CLI=1 to use the "
+                 "local `claude` CLI with Max-subscription auth instead. "
+                 "For testing without either, pass --dry-run.")
     client = Anthropic(api_key=api_key)
     msg = client.messages.create(
         model=model,
         max_tokens=2400,
         system=PROMPT_SYSTEM,
-        messages=[{"role": "user", "content": user_prompt}],
+        messages=[{"role": "user", "content": _build_user_prompt(item)}],
     )
     parts = [b.text for b in msg.content if getattr(b, "type", None) == "text"]
     return "".join(parts).strip()
+
+
+def call_claude(item: FeedItem, model: str) -> str:
+    """Route to API or CLI based on CLAUDE_VIA_CLI env var.
+
+    Set CLAUDE_VIA_CLI=1 to invoke local `claude -p` (Max auth, no API key).
+    Default: use Anthropic API (ANTHROPIC_API_KEY required).
+    """
+    if os.environ.get("CLAUDE_VIA_CLI", "").strip() == "1":
+        return _call_claude_via_cli(item)
+    return _call_claude_via_api(item, model)
 
 
 # --------------------------------------------------------------------------
