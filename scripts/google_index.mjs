@@ -35,8 +35,11 @@ if (process.env.GSC_SERVICE_ACCOUNT_JSON) {
 	SA = JSON.parse(readFileSync(localPath, 'utf8'));
 }
 
-// Domain property in Search Console
-const SITE = 'sc-domain:migukstory.com';
+// URL-prefix property — the service account self-verified ownership of this
+// via the Site Verification API (the Domain property's "Add user" dialog
+// rejects service-account emails). Indexing API + Search Console both work
+// against this identifier.
+const SITE = 'https://migukstory.com/';
 const SITEMAP = 'https://migukstory.com/sitemap-index.xml';
 
 const b64url = (s) =>
