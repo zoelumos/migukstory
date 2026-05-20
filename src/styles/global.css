@@ -371,4 +371,18 @@ pre.mermaid { background: transparent; border: none; padding: 0; margin: 0; }
 	h3 { font-size: 1.25rem; }
 	.prose > p:first-of-type::first-letter { font-size: 3.5em; }
 	.mermaid-wrapper { margin: var(--s-3) calc(-1 * var(--s-2)); }
+
+	/* Wide comparison tables scroll inside their own box instead of
+	   squashing cells or forcing the whole page to scroll sideways. */
+	.prose table {
+		display: block;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		max-width: 100%;
+	}
+	.prose th, .prose td { padding: 0.6em 0.8em; }
+
+	/* iOS Safari zooms the page in when a focused field is under 16px.
+	   Keep every text control at 16px on mobile to prevent that jump. */
+	input, select, textarea { font-size: 16px; }
 }

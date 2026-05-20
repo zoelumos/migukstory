@@ -10,6 +10,7 @@
 
   const setOpen = (open) => {
     masthead.classList.toggle('nav-open', open);
+    document.documentElement.classList.toggle('nav-drawer-open', open);
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
   };
