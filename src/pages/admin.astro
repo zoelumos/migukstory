@@ -80,63 +80,39 @@ import { SITE_TITLE } from '../consts';
 		<Footer />
 
 		<script>
-			import { supabase } from '../lib/supabase';
-
 			const statusEl = document.querySelector('[data-status]') as HTMLElement | null;
 			const locked = document.querySelector('[data-locked]') as HTMLElement | null;
 			const dashboard = document.querySelector('[data-dashboard]') as HTMLElement | null;
 
 			const fmt = (n: number | null | undefined) => n == null ? '—' : n.toLocaleString('ko-KR');
 			const formatDate = (iso: string) => new Date(iso).toLocaleString('ko-KR');
+			const escapeHtml = (s: string) =>
+				s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-			const gate = async () => {
-				const { data: { session } } = await supabase.auth.getSession();
-				if (!session) {
-					if (statusEl) statusEl.textContent = '로그인이 필요합니다.';
-					if (locked) locked.hidden = false;
-					return false;
-				}
-				const { data: prof } = await supabase.from('profiles').select('is_admin, display_name, email').eq('id', session.user.id).maybeSingle();
-				if (!prof?.is_admin) {
-					if (statusEl) statusEl.textContent = `${session.user.email}는 관리자가 아닙니다.`;
-					if (locked) locked.hidden = false;
-					return false;
-				}
-				if (statusEl) statusEl.textContent = `환영합니다, ${prof.display_name} (${prof.email}) — 관리자`;
-				if (dashboard) dashboard.hidden = false;
-				return true;
+			const fetchAdmin = async () => {
+				const res = await fetch('/api/admin', { credentials: 'same-origin' });
+				const data = await res.json().catch(() => ({}));
+				if (!res.ok) throw new Error(data.error || res.statusText);
+				return data;
 			};
 
-			const loadStats = async () => {
-				// Counts via head: true + count: 'exact'
-				const [users, subs, allComments, hiddenComments] = await Promise.all([
-					supabase.from('profiles').select('id', { count: 'exact', head: true }),
-					supabase.from('subscribers').select('id', { count: 'exact', head: true }),
-					supabase.from('comments').select('id', { count: 'exact', head: true }),
-					supabase.from('comments').select('id', { count: 'exact', head: true }).eq('is_hidden', true),
-				]);
+			const renderStats = (stats: any) => {
 				const set = (sel: string, n: any) => { const el = document.querySelector(sel); if (el) el.textContent = fmt(n); };
-				set('[data-stat-users]', users.count);
-				set('[data-stat-subs]', subs.count);
-				set('[data-stat-comments]', allComments.count);
-				set('[data-stat-hidden]', hiddenComments.count);
+				set('[data-stat-users]', stats.users);
+				set('[data-stat-subs]', stats.subscribers);
+				set('[data-stat-comments]', stats.comments);
+				set('[data-stat-hidden]', stats.hidden);
 			};
 
-			const loadComments = async () => {
-				const { data, error } = await supabase
-					.from('comments')
-					.select('id, post_slug, body, created_at, is_hidden, is_pinned, profiles!comments_author_id_fkey(display_name, email)')
-					.order('created_at', { ascending: false })
-					.limit(30);
+			const renderComments = (comments: any[]) => {
 				const list = document.querySelector('[data-mod-list]') as HTMLElement | null;
 				if (!list) return;
-				if (error) { list.innerHTML = `<li class="loading">불러오기 실패: ${error.message}</li>`; return; }
-				if (!data || data.length === 0) { list.innerHTML = `<li class="loading">아직 댓글이 없습니다.</li>`; return; }
-				list.innerHTML = data.map((c: any) => `
-					<li class="mod-row ${c.is_hidden ? 'is-hidden' : ''} ${c.is_pinned ? 'is-pinned' : ''}" data-id="${c.id}">
+				if (!comments || comments.length === 0) { list.innerHTML = `<li class="loading">아직 댓글이 없습니다.</li>`; return; }
+				list.innerHTML = comments.map((c: any) => `
+					<li class="mod-row ${c.is_hidden ? 'is-hidden' : ''} ${c.is_pinned ? 'is-pinned' : ''}" data-id="${escapeHtml(c.id)}">
 						<header>
-							<a href="${c.post_slug}" target="_blank" class="mod-slug">${c.post_slug}</a>
-							<span class="mod-author">${c.profiles?.display_name || '익명'} · ${c.profiles?.email || ''}</span>
+							<a href="${escapeHtml(c.post_slug)}" target="_blank" class="mod-slug">${escapeHtml(c.post_slug)}</a>
+							<span class="mod-author">${escapeHtml(c.profiles?.display_name || '익명')} · ${escapeHtml(c.profiles?.email || '')}</span>
 							<time>${formatDate(c.created_at)}</time>
 						</header>
 						<p class="mod-body">${escapeHtml(c.body)}</p>
@@ -153,50 +129,50 @@ import { SITE_TITLE } from '../consts';
 						const b = e.currentTarget as HTMLButtonElement;
 						const row = b.closest('.mod-row') as HTMLElement;
 						const id = row?.dataset.id;
-						const action = b.dataset.action;
-						if (!id) return;
+						const action = b.dataset.action as any;
+						if (!id || !action) return;
+						if (action === 'delete' && !confirm('정말 삭제할까요? 되돌릴 수 없습니다.')) return;
 						b.disabled = true;
-						let result;
-						if (action === 'toggle-hide') {
-							const newVal = b.dataset.state !== 'true';
-							result = await supabase.from('comments').update({ is_hidden: newVal }).eq('id', id);
-						} else if (action === 'toggle-pin') {
-							const newVal = b.dataset.state !== 'true';
-							result = await supabase.from('comments').update({ is_pinned: newVal }).eq('id', id);
-						} else if (action === 'delete') {
-							if (!confirm('정말 삭제할까요? 되돌릴 수 없습니다.')) { b.disabled = false; return; }
-							result = await supabase.from('comments').delete().eq('id', id);
-						}
-						if (result?.error) alert('실패: ' + result.error.message);
+						const state = action === 'toggle-hide' || action === 'toggle-pin' ? b.dataset.state !== 'true' : undefined;
+						const res = await fetch('/api/admin', {
+							method: 'POST',
+							credentials: 'same-origin',
+							headers: { 'Content-Type': 'application/json' },
+							body: JSON.stringify({ id, action, state }),
+						});
+						const result = await res.json().catch(() => ({}));
+						if (!res.ok) alert('실패: ' + (result.error || res.statusText));
 						b.disabled = false;
-						await Promise.all([loadStats(), loadComments()]);
+						await loadDashboard();
 					});
 				});
 			};
 
-			const loadSubs = async () => {
-				const { data, error } = await supabase
-					.from('subscribers')
-					.select('email, source, created_at')
-					.order('created_at', { ascending: false })
-					.limit(20);
+			const renderSubscribers = (subscribers: any[]) => {
 				const tbody = document.querySelector('[data-sub-body]') as HTMLElement | null;
 				if (!tbody) return;
-				if (error) { tbody.innerHTML = `<tr><td colspan="3">${error.message}</td></tr>`; return; }
-				if (!data || data.length === 0) { tbody.innerHTML = `<tr><td colspan="3">아직 구독자가 없습니다.</td></tr>`; return; }
-				tbody.innerHTML = data.map((s: any) => `
+				if (!subscribers || subscribers.length === 0) { tbody.innerHTML = `<tr><td colspan="3">아직 구독자가 없습니다.</td></tr>`; return; }
+				tbody.innerHTML = subscribers.map((s: any) => `
 					<tr><td>${escapeHtml(s.email)}</td><td>${escapeHtml(s.source || '')}</td><td>${formatDate(s.created_at)}</td></tr>
 				`).join('');
 			};
 
-			const escapeHtml = (s: string) =>
-				s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+			const loadDashboard = async () => {
+				try {
+					const data = await fetchAdmin();
+					if (statusEl) statusEl.textContent = `환영합니다, ${data.user.name} (${data.user.email}) — 관리자`;
+					if (locked) locked.hidden = true;
+					if (dashboard) dashboard.hidden = false;
+					renderStats(data.stats || {});
+					renderComments(data.comments || []);
+					renderSubscribers(data.subscribers || []);
+				} catch (error: any) {
+					if (statusEl) statusEl.textContent = error?.message === 'unauthorized' ? '로그인이 필요합니다.' : '관리자 권한이 필요합니다.';
+					if (locked) locked.hidden = false;
+				}
+			};
 
-			(async () => {
-				const ok = await gate();
-				if (!ok) return;
-				await Promise.all([loadStats(), loadComments(), loadSubs()]);
-			})();
+			loadDashboard();
 		</script>
 
 		<style>
