@@ -22,7 +22,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          # fetch-depth 2 so the indexing step can diff HEAD~1..HEAD to find
+          # the blog .md file(s) added by this run's publish commit.
+          fetch-depth: 2
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -35,14 +37,42 @@ jobs:
         run: python scripts/publish_from_queue.py
 
       - name: Commit and push
+        id: publish
         run: |
           git config user.email "bot@migukstory.com"
           git config user.name "Miguk Story Bot"
           git add src/content/blog/ queue/
           if git diff --staged --quiet; then
             echo "Nothing to commit (queue may be empty)."
+            echo "published=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           today=$(date -u +"%Y-%m-%d")
           git commit -m "post: scheduled publish (${today})"
           git push
+          echo "published=true" >> "$GITHUB_OUTPUT"
+
+      - name: Notify search engines (IndexNow + Google Indexing API)
+        # Pings indexing APIs for the just-published blog URL(s) so a new post
+        # is submitted the moment it is published. This step lives here (not
+        # only in cloudflare-deploy.yml / google-index.yml) because the push
+        # above uses the default GITHUB_TOKEN, and GitHub deliberately does
+        # NOT trigger other workflows from a GITHUB_TOKEN push — so without
+        # this step a queue-published post would not be submitted until the
+        # next scheduled google-index.yml run (up to ~24h later).
+        #
+        # Secret: GSC_SERVICE_ACCOUNT — base64-encoded Google service-account
+        # JSON with the Indexing API enabled. notify_indexes.py also accepts a
+        # raw-JSON GOOGLE_SERVICE_ACCOUNT_JSON. IndexNow needs no secret (it
+        # reads the key file from public/<key>.txt).
+        # continue-on-error: indexing is best-effort; never fail a publish.
+        if: steps.publish.outputs.published == 'true'
+        continue-on-error: true
+        env:
+          SITE_URL: https://migukstory.com
+          GSC_SERVICE_ACCOUNT: ${{ secrets.GSC_SERVICE_ACCOUNT }}
+        run: |
+          # google-auth is a soft dependency — notify_indexes.py falls back to
+          # IndexNow-only when the import fails. Install is fast (~5s).
+          python3 -m pip install --quiet google-auth 2>&1 | tail -3 || true
+          python3 scripts/notify_indexes.py --auto
