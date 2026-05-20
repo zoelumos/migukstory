@@ -134,9 +134,18 @@ posts.forEach(p => { catCounts[p.data.category] = (catCounts[p.data.category] ||
 		</main>
 		<Footer />
 
-		<script is:inline>
+		<!--
+		  Bundled (NOT is:inline) on purpose. The production CSP in public/_headers
+		  sets `script-src 'self'` with no 'unsafe-inline', so a raw inline script is
+		  blocked by the browser — which is what silently disabled the category/tag
+		  filters. A processed <script> is bundled to /_astro/*.js and served
+		  same-origin, satisfying `script-src 'self'`.
+		-->
+		<script>
+			// @ts-nocheck -- DOM is rendered by this page; runtime guards below handle missing nodes.
 			(function () {
 				const archive = document.getElementById('archive');
+				if (!archive) return;
 				const items = Array.from(archive.querySelectorAll('.archive-item'));
 				const visibleCount = document.getElementById('visible-count');
 				const emptyMsg = document.getElementById('empty-msg');
