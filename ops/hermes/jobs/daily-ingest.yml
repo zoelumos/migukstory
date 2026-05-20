@@ -53,7 +53,11 @@ command: |
   gh label create draft --repo zoelumos/migukstory --color 0e8a16 --description 'AI draft automation' 2>/dev/null || true
   gh label create automated --repo zoelumos/migukstory --color 1d76db --description 'Automated PR' 2>/dev/null || true
 
-  git add drafts/ queue/ scripts/state/seen_urls.json scripts/state/editor_report.json 2>/dev/null || true
+  for path in drafts queue scripts/state/seen_urls.json scripts/state/editor_report.json; do
+    if [ -e "$path" ]; then
+      git add "$path"
+    fi
+  done
 
   if git diff --staged --quiet; then
     echo "  No new drafts; nothing to push."
