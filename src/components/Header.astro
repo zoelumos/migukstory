@@ -2,19 +2,24 @@
 import { SITE_TITLE, SITE_TAGLINE } from '../consts';
 import UserMenu from './UserMenu.astro';
 
-const navLinks = [
-	{ href: '/blog', label: '전체 글' },
-	{ href: '/category/immigration', label: '이민·비자' },
-	{ href: '/category/tax', label: '세금·재테크' },
-	{ href: '/category/economy', label: '경제·산업' },
-	{ href: '/category/health', label: '건강·보험' },
-	{ href: '/category/education', label: '교육·자녀' },
-	{ href: '/category/retirement', label: '은퇴·연금' },
-	{ href: '/category/community', label: '한인 커뮤니티' },
-	{ href: '/first-30-days', label: '도착 첫 30일' },
-	{ href: '/topics', label: '전체 토픽' },
-	{ href: '/pros', label: '추천 전문가' },
-	{ href: '/contribute', label: '칼럼 기고' },
+// Icons render only in the mobile drawer (hidden on desktop) so the desktop
+// nav row stays a plain text list. DOM order below == desktop row order.
+const categoryLinks = [
+	{ href: '/blog', label: '전체 글', icon: '📰' },
+	{ href: '/category/immigration', label: '이민·비자', icon: '🛂' },
+	{ href: '/category/tax', label: '세금·재테크', icon: '💰' },
+	{ href: '/category/economy', label: '경제·산업', icon: '📈' },
+	{ href: '/category/health', label: '건강·보험', icon: '🏥' },
+	{ href: '/category/education', label: '교육·자녀', icon: '🎓' },
+	{ href: '/category/retirement', label: '은퇴·연금', icon: '🌴' },
+	{ href: '/category/community', label: '한인 커뮤니티', icon: '🤝' },
+];
+
+const moreLinks = [
+	{ href: '/first-30-days', label: '도착 첫 30일', icon: '🛬' },
+	{ href: '/topics', label: '전체 토픽', icon: '🗂️' },
+	{ href: '/pros', label: '추천 전문가', icon: '⭐' },
+	{ href: '/contribute', label: '칼럼 기고', icon: '✍️' },
 ];
 
 // Highlight the nav link for the section the reader is currently in.
@@ -60,12 +65,35 @@ const isActive = (href: string) =>
 
 	<nav class="primary-nav" id="primary-nav">
 		<div class="container nav-inner">
-			{navLinks.map((l) => (
-				<a href={l.href} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a>
-			))}
-			<a href="/search" class="search-link" aria-label="검색">🔍 검색</a>
-			<a href="/login" class="mobile-login-link">로그인</a>
-			<a href="/contact" class="contact-link">문의 · 제보</a>
+			<p class="nav-label" id="nav-label-cat">카테고리</p>
+			<div class="nav-grid" role="group" aria-labelledby="nav-label-cat">
+				{categoryLinks.map((l) => (
+					<a href={l.href} class="nav-item" aria-current={isActive(l.href) ? 'page' : undefined}>
+						<span class="nav-icon" aria-hidden="true">{l.icon}</span>
+						<span class="nav-text">{l.label}</span>
+					</a>
+				))}
+			</div>
+
+			<p class="nav-label" id="nav-label-more">바로가기</p>
+			<div class="nav-more" role="group" aria-labelledby="nav-label-more">
+				{moreLinks.map((l) => (
+					<a href={l.href} class="nav-item" aria-current={isActive(l.href) ? 'page' : undefined}>
+						<span class="nav-icon" aria-hidden="true">{l.icon}</span>
+						<span class="nav-text">{l.label}</span>
+					</a>
+				))}
+			</div>
+
+			<div class="nav-cta">
+				<a href="/search" class="nav-cta-btn nav-search" aria-label="검색">
+					<span aria-hidden="true">🔍</span> 검색
+				</a>
+				<a href="/login" class="nav-cta-btn nav-login mobile-login-link">
+					<span aria-hidden="true">👤</span> 로그인
+				</a>
+				<a href="/contact" class="nav-cta-btn nav-contact contact-link">문의 · 제보</a>
+			</div>
 		</div>
 	</nav>
 </header>
@@ -234,6 +262,15 @@ const isActive = (href: string) =>
 		font-weight: 700;
 	}
 
+	/* Desktop flattens the mobile groups back into one row: display:contents
+	   drops the wrapper boxes so their <a> children become direct flex items
+	   of .nav-inner. Labels + icons are mobile-only. Desktop is unchanged. */
+	.nav-grid,
+	.nav-more,
+	.nav-cta { display: contents; }
+	.nav-label,
+	.nav-icon { display: none; }
+
 	@media (max-width: 720px) {
 		:global(html.nav-drawer-open),
 		:global(html.nav-drawer-open body) {
@@ -274,34 +311,114 @@ const isActive = (href: string) =>
 			max-height: 80vh;
 			overflow-y: auto;
 		}
+		/* Mobile drawer: a compact card grid instead of a long plain list */
 		.nav-inner {
 			flex-direction: column;
 			align-items: stretch;
 			gap: 0;
-			padding: var(--s-1) 0;
+			padding: var(--s-2);
 		}
-		.nav-inner a {
+
+		/* Search / login / contact CTAs — pulled to the top of the drawer */
+		.nav-cta {
+			display: flex;
+			flex-wrap: wrap;
+			gap: var(--s-1);
+			order: -1;
+		}
+		.nav-cta-btn {
+			flex: 1;
 			display: flex;
 			align-items: center;
-			min-height: 48px;          /* WCAG / Google tap-target minimum */
-			padding: 0 var(--s-3);
-			font-size: 0.95rem;
-			border-bottom: 1px solid var(--rule);
-		}
-		.nav-inner a:last-child { border-bottom: none; }
-		.nav-inner a::after { display: none; }
-		.nav-inner a:active { background: var(--paper-soft); }
-		.nav-inner a[aria-current="page"] {
-			background: color-mix(in srgb, var(--brick) 8%, transparent);
+			justify-content: center;
+			gap: 0.4em;
+			min-height: 48px;          /* WCAG tap-target minimum */
+			border: 1px solid var(--rule);
+			border-radius: 8px;
+			font-size: 0.9rem;
 			font-weight: 700;
+			letter-spacing: 0.02em;
+			text-decoration: none;
 		}
-		.nav-inner a[aria-current="page"]::before {
-			content: "";
-			width: 4px;
-			align-self: stretch;
-			margin: 0 var(--s-2) 0 calc(-1 * var(--s-3));
+		.nav-inner a.nav-cta-btn::after,
+		.nav-inner a.nav-item::after { display: none; }
+		.nav-search { background: var(--paper-soft); color: var(--ink); }
+		.nav-search:active { background: var(--rule); }
+		.nav-login {
+			display: flex;             /* override base .mobile-login-link { display:none } */
+			background: var(--ink);
+			color: var(--paper);
+			border-color: var(--ink);
+		}
+		.nav-login:active { background: var(--ink-soft); }
+		.nav-contact {
+			flex-basis: 100%;
+			margin-top: var(--s-1);
 			background: var(--brick);
+			color: #fff !important;    /* override base .contact-link red text */
+			border-color: var(--brick);
 		}
-		.mobile-login-link { display: flex; }
+		.nav-contact::before { content: none; }   /* drop desktop "→ " prefix */
+		.nav-contact:active { background: var(--brick-deep); }
+
+		/* Section labels (mobile-only) */
+		.nav-label {
+			display: block;
+			margin: var(--s-2) 0 var(--s-1);
+			font-size: var(--text-xs);
+			font-weight: 700;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+			color: var(--ink-light);
+		}
+
+		/* Category + shortcut card grids */
+		.nav-grid,
+		.nav-more {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: var(--s-1);
+		}
+		.nav-inner a.nav-item {
+			display: flex;
+			align-items: center;
+			gap: 0.6em;
+			min-height: 56px;          /* generous tap target */
+			padding: 0 0.7em;
+			border: 1px solid var(--rule);
+			border-radius: 10px;
+			background: var(--paper);
+			font-size: 0.9rem;
+			font-weight: 600;
+			color: var(--ink-soft);
+		}
+		.nav-item:active { background: var(--paper-soft); }
+		.nav-icon {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-shrink: 0;
+			width: 34px;
+			height: 34px;
+			font-size: 1.15rem;
+			line-height: 1;
+			background: var(--paper-soft);
+			border: 1px solid var(--rule-soft);
+			border-radius: 8px;
+		}
+		.nav-text {
+			flex: 1;
+			min-width: 0;
+		}
+		.nav-inner a.nav-item[aria-current="page"] {
+			border-color: var(--brick);
+			background: color-mix(in srgb, var(--brick) 7%, transparent);
+			color: var(--brick);
+		}
+		.nav-item[aria-current="page"] .nav-icon {
+			background: var(--brick);
+			border-color: var(--brick);
+			color: #fff;
+		}
 	}
 </style>
