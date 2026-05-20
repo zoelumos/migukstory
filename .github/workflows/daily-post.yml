@@ -2,8 +2,9 @@ name: Daily post from queue
 
 on:
   schedule:
-    # 14:00 UTC = 10am ET (EDT) / 9am ET (EST). Adjust to your timezone.
-    - cron: '0 14 * * *'
+    # Daily at 12:00 UTC = 8:00 AM ET EDT / 7:00 AM ET EST. Publishes 1 post from queue.
+    # (publish_from_queue.py defaults to POSTS_PER_RUN=1; can be overridden via manual dispatch.)
+    - cron: '0 12 * * *'
   workflow_dispatch:
     inputs:
       count:

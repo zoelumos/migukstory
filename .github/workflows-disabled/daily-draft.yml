@@ -1,0 +1,159 @@
+name: Daily draft from RSS
+
+on:
+  # Disabled schedule: GitHub Actions needs ANTHROPIC_API_KEY, while the working
+  # Claude Max path now runs locally via Hermes + `claude -p`. Keep manual
+  # dispatch available for future API-key testing without generating red cron runs.
+  workflow_dispatch:
+    inputs:
+      max_drafts:
+        description: 'Max drafts to generate this run (1..5)'
+        required: false
+        default: '5'
+      dry_run:
+        description: 'Dry run (no Claude calls, no writes)'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+      skip_editor:
+        description: 'Skip editor grading step (just produce drafts/)'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: daily-draft
+  cancel-in-progress: false
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+          cache-dependency-path: 'scripts/requirements-draft.txt'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r scripts/requirements-draft.txt
+
+      - name: Generate drafts
+        env:
+          # Secret — never echoed. Provided via repo/org Actions secrets.
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          set -euo pipefail
+          MAX="${{ github.event.inputs.max_drafts || '5' }}"
+          DRY="${{ github.event.inputs.dry_run || 'false' }}"
+          if [ "$DRY" = "true" ]; then
+            python scripts/draft_from_rss.py --dry-run --max-drafts "$MAX"
+          else
+            python scripts/draft_from_rss.py --max-drafts "$MAX"
+          fi
+
+      - name: Editor grade (auto-promote ≥80 → queue/)
+        # Per Steve's decision: Rubric + auto-PR. High-confidence drafts are
+        # git mv'd into queue/ so the PR already shows them as ready-for-publish;
+        # human still clicks merge. Low-confidence drafts stay in drafts/ for
+        # manual review. No auto-publish anywhere in this pipeline.
+        if: ${{ github.event.inputs.skip_editor != 'true' && github.event.inputs.dry_run != 'true' }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          set -euo pipefail
+          python scripts/editor_grade.py
+
+      - name: Detect changes
+        id: changes
+        run: |
+          # Allowed paths this workflow can modify:
+          #   drafts/                       — new AI drafts (draft_from_rss.py)
+          #   queue/                        — promotions from editor_grade.py
+          #   scripts/state/seen_urls.json  — dedupe store
+          #   scripts/state/editor_report.json — last grading report
+          # Anything else (src/, package.json, etc.) is a bug — fail loudly.
+          ALLOWED='^(drafts/|queue/|scripts/state/(seen_urls|editor_report)\.json$)'
+          OUT_OF_SCOPE=$(git status --porcelain | awk '{print $2}' | grep -vE "$ALLOWED" || true)
+          if [ -n "$OUT_OF_SCOPE" ]; then
+            echo "::error::workflow modified out-of-scope files — refusing to PR:"
+            echo "$OUT_OF_SCOPE"
+            git --no-pager diff
+            exit 1
+          fi
+          git add drafts/ queue/ scripts/state/seen_urls.json scripts/state/editor_report.json
+          if git diff --staged --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No new drafts or promotions; nothing to PR."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git --no-pager diff --staged --stat
+
+            # Build a one-line summary for the PR title from the editor report (best-effort).
+            if [ -f scripts/state/editor_report.json ]; then
+              python -c "
+import json
+r = json.load(open('scripts/state/editor_report.json'))
+c = r.get('counts', {})
+print(f\"summary={c.get('promoted',0)} promoted, {c.get('review',0)} review, {c.get('discard_flag',0)} discard\")
+" >> "$GITHUB_OUTPUT"
+            else
+              echo "summary=drafts only" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+
+      - name: Open pull request
+        if: steps.changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: bot/daily-draft
+          base: main
+          delete-branch: true
+          commit-message: |
+            draft: daily RSS drafts + editor grading (${{ github.run_id }})
+          title: "draft: daily RSS — ${{ steps.changes.outputs.summary }}"
+          body: |
+            Auto-generated from `scripts/draft_from_rss.py` + graded by
+            `scripts/editor_grade.py` (editor agent).
+
+            **Files in this PR:**
+            - `drafts/` — items flagged for human review (score 50-79) or
+              likely-discard (score <50). Edit, promote, or delete.
+            - `queue/` — items the editor auto-promoted (score ≥80). These
+              are ready for publication via the manual `daily-post.yml`
+              workflow once you merge this PR.
+            - `scripts/state/seen_urls.json` — dedupe store (don't edit).
+            - `scripts/state/editor_report.json` — per-draft scores +
+              reasoning. Open it to see why each draft got its action.
+
+            **No auto-publish anywhere in this pipeline.** Promoted items
+            sit in `queue/` until `daily-post.yml` is manually triggered.
+
+            Run: ${{ github.run_id }} · workflow: daily-draft.yml
+          labels: |
+            draft
+            automated
+          add-paths: |
+            drafts/
+            queue/
+            scripts/state/seen_urls.json
+            scripts/state/editor_report.json

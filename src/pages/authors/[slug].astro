@@ -1,0 +1,263 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { SITE_TITLE, SITE_URL, AUTHORS } from '../../consts';
+import { CATEGORIES } from '../../content.config';
+
+export async function getStaticPaths() {
+	return Object.entries(AUTHORS).map(([slug, info]) => ({
+		params: { slug },
+		props: { slug, info },
+	}));
+}
+
+const { slug, info } = Astro.props;
+
+// Posts by this author (most recent first)
+const all = await getCollection('blog');
+const authoredPosts = all
+	.filter(p => (p.data as any).author === slug)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const expertiseLabels = info.expertise
+	.map(k => (CATEGORIES as any)[k]?.label)
+	.filter(Boolean);
+
+// Person JSON-LD (in addition to the Organization schema BaseHead always emits)
+const personSchema = {
+	"@context": "https://schema.org",
+	"@type": "Person",
+	"name": info.name,
+	...(info.nameEn ? { "alternateName": info.nameEn } : {}),
+	"jobTitle": info.jobTitle,
+	"url": `${SITE_URL}/authors/${slug}/`,
+	"description": info.bioFull || info.bio,
+	"knowsAbout": info.expertise,
+	...(info.email ? { "email": info.email } : {}),
+	...(info.sameAs.length > 0 ? { "sameAs": info.sameAs } : {}),
+	"worksFor": {
+		"@type": "NewsMediaOrganization",
+		"name": SITE_TITLE,
+		"url": SITE_URL,
+	},
+};
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead
+			title={`${info.name} — ${info.jobTitle} · ${SITE_TITLE}`}
+			description={info.bio}
+		/>
+		<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="container narrow">
+				<header class="author-head">
+					<p class="eyebrow">AUTHOR · 저자</p>
+					<h1>{info.name}</h1>
+					{info.nameEn && <p class="name-en">{info.nameEn}</p>}
+					<p class="job-title">{info.jobTitle}</p>
+				</header>
+
+				<section class="bio prose">
+					<p class="lead">{info.bioFull || info.bio}</p>
+
+					{expertiseLabels.length > 0 && (
+						<>
+							<h2>전문 분야</h2>
+							<div class="expertise-chips">
+								{info.expertise.map((k: string) => {
+									const meta = (CATEGORIES as any)[k];
+									if (!meta) return null;
+									return (
+										<a class="expertise-chip" href={`/category/${meta.slug}`} style={`--cat: ${meta.color}`}>
+											{meta.label}
+										</a>
+									);
+								})}
+							</div>
+						</>
+					)}
+
+					<h2>연락처</h2>
+					<ul class="contact-list">
+						{info.email && <li>이메일: <a href={`mailto:${info.email}`}>{info.email}</a></li>}
+						{info.sameAs.length > 0 && info.sameAs.map((url: string) => (
+							<li><a href={url} rel="me noopener" target="_blank">{url}</a></li>
+						))}
+						{info.sameAs.length === 0 && !info.email && (
+							<li>현재 공개 프로필이 등록돼 있지 않습니다. 편집실 이메일: <a href="mailto:editor@migukstory.com">editor@migukstory.com</a></li>
+						)}
+					</ul>
+				</section>
+
+				{authoredPosts.length > 0 && (
+					<section class="recent-posts">
+						<h2 class="section-title"><span>최근 기사 ({authoredPosts.length}편)</span></h2>
+						<ol class="post-list">
+							{authoredPosts.slice(0, 20).map(post => {
+								const cat = (CATEGORIES as any)[post.data.category];
+								return (
+									<li>
+										<div class="post-meta">
+											{cat && <a class="cat-tag" href={`/category/${cat.slug}`} style={`--cat: ${cat.color}`}>{cat.label}</a>}
+											<FormattedDate date={post.data.pubDate} />
+										</div>
+										<a class="post-title" href={`/blog/${post.id}/`}>{post.data.title}</a>
+										<p class="post-desc">{post.data.description}</p>
+									</li>
+								);
+							})}
+						</ol>
+					</section>
+				)}
+			</div>
+		</main>
+		<Footer />
+		<style>
+			main { padding-bottom: var(--s-6); }
+			.narrow { max-width: 720px; }
+			.author-head {
+				padding: var(--s-6) 0 var(--s-4);
+				border-bottom: 1px solid var(--rule);
+				text-align: center;
+			}
+			.eyebrow {
+				font-size: var(--text-xs);
+				font-weight: 700;
+				letter-spacing: 0.18em;
+				color: var(--brick);
+				text-transform: uppercase;
+				margin: 0 0 var(--s-2);
+			}
+			.author-head h1 {
+				font-family: var(--font-display);
+				font-size: clamp(2rem, 4vw, 3rem);
+				margin: 0 0 var(--s-1);
+				letter-spacing: -0.02em;
+			}
+			.name-en {
+				font-size: 0.9rem;
+				color: var(--ink-light);
+				font-family: var(--font-mono);
+				letter-spacing: 0.1em;
+				margin: 0 0 var(--s-2);
+			}
+			.job-title {
+				color: var(--ink-medium);
+				margin: 0;
+				font-weight: 500;
+			}
+			.bio { padding: var(--s-4) 0; }
+			.bio .lead { font-size: var(--text-lg); line-height: 1.75; color: var(--ink-soft); }
+			.bio h2 {
+				font-family: var(--font-display);
+				font-size: 1.25rem;
+				margin: var(--s-4) 0 var(--s-2);
+				padding-bottom: var(--s-1);
+				border-bottom: 1px solid var(--rule);
+				letter-spacing: -0.01em;
+			}
+			.expertise-chips { display: flex; flex-wrap: wrap; gap: 0.5em; }
+			.expertise-chip {
+				display: inline-block;
+				font-size: 0.78rem;
+				font-weight: 600;
+				padding: 0.35em 0.8em;
+				background: var(--paper-soft);
+				border: 1px solid var(--rule);
+				border-left: 3px solid var(--cat, var(--brick));
+				border-radius: 2px;
+				color: var(--ink-soft);
+				text-decoration: none;
+				transition: all var(--duration) var(--ease-out);
+			}
+			.expertise-chip:hover { background: var(--paper); color: var(--cat, var(--brick)); }
+			.contact-list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				font-size: 0.95rem;
+				color: var(--ink-soft);
+			}
+			.contact-list li { margin-bottom: 0.4em; }
+			.contact-list a { color: var(--brick); text-decoration: none; border-bottom: 1px solid var(--brick-soft); }
+			.contact-list a:hover { color: var(--brick-deep); }
+
+			.recent-posts { padding: var(--s-4) 0; }
+			.section-title {
+				text-align: center;
+				font-family: var(--font-display);
+				font-size: 1.25rem;
+				font-weight: 700;
+				color: var(--ink);
+				position: relative;
+				margin: var(--s-4) 0 var(--s-4);
+			}
+			.section-title::before, .section-title::after {
+				content: "";
+				position: absolute;
+				top: 50%;
+				width: calc(50% - 8em);
+				height: 1px;
+				background: var(--rule);
+			}
+			.section-title::before { left: 0; }
+			.section-title::after { right: 0; }
+			.section-title span { padding: 0 var(--s-2); background: var(--paper); position: relative; }
+			@media (max-width: 720px) {
+				.section-title::before, .section-title::after { display: none; }
+			}
+			.post-list { list-style: none; padding: 0; margin: 0; }
+			.post-list li {
+				padding: var(--s-3) 0;
+				border-bottom: 1px solid var(--rule);
+			}
+			.post-list li:last-child { border-bottom: none; }
+			.post-meta {
+				display: flex;
+				gap: 0.5em;
+				font-size: var(--text-sm);
+				color: var(--ink-light);
+				margin-bottom: var(--s-1);
+				align-items: center;
+				flex-wrap: wrap;
+			}
+			.cat-tag {
+				display: inline-block;
+				font-size: 0.7rem;
+				font-weight: 700;
+				padding: 0.15em 0.55em;
+				background: var(--cat, var(--ink));
+				color: var(--paper);
+				border-radius: 2px;
+				text-decoration: none;
+				letter-spacing: 0.04em;
+			}
+			.post-title {
+				display: block;
+				font-family: var(--font-display);
+				font-size: 1.2rem;
+				color: var(--ink);
+				text-decoration: none;
+				margin: 0 0 0.3rem;
+				line-height: 1.4;
+				font-weight: 700;
+			}
+			.post-title:hover { color: var(--brick); }
+			.post-desc {
+				font-size: 0.92rem;
+				color: var(--ink-light);
+				margin: 0;
+				line-height: 1.6;
+			}
+		</style>
+	</body>
+</html>

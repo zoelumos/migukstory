@@ -1,0 +1,54 @@
+{
+  "_comment": "Canonical URLs already turned into drafts. Maintained by scripts/draft_from_rss.py. Safe to hand-edit.",
+  "version": 1,
+  "seen": {
+    "https://federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm": {
+      "first_seen": "2026-05-19",
+      "source": "Federal Reserve Press (Monetary Policy)",
+      "title": "Federal Reserve issues FOMC statement",
+      "draft": "drafts/2026-05-19-federal-reserve-issues-fomc-statement.md"
+    },
+    "https://news.bloombergtax.com/daily-tax-report-international/south-korea-tax-agency-issues-2026-individual-income-tax-guide-for-nonresidents-in-english-korean": {
+      "first_seen": "2026-05-18",
+      "source": "Bloomberg Tax — Daily Tax Report: International",
+      "title": "South Korea Tax Agency Issues 2026 Individual Income Tax Guide for Nonresidents in English, Korean",
+      "draft": "drafts/2026-05-18-korea-nts-nonresident-tax-2026.md"
+    },
+    "https://npr.org/sections/planet-money/2026/05/19/g-s1-122695/the-missing-men-of-the-american-marriage-market": {
+      "first_seen": "2026-05-19",
+      "source": "NPR Business",
+      "title": "The missing men of the American marriage market",
+      "draft": "drafts/2026-05-19-the-missing-men-of-the-american-marriage-market.md"
+    },
+    "https://tools.cdc.gov/api/embed/downloader/download.asp?c=765572&m=132608": {
+      "first_seen": "2026-05-19",
+      "source": "CDC Newsroom",
+      "title": "Transcript - Update on Ebola Outbreak in the Democratic Republic of the Congo and Uganda, 5/18/2026",
+      "draft": "drafts/2026-05-19-transcript-update-on-ebola-outbreak-in-the-democratic-republic-of-the-congo-and.md"
+    },
+    "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin/2026/visa-bulletin-for-may-2026.html": {
+      "first_seen": "2026-05-18",
+      "source": "U.S. Department of State — Bureau of Consular Affairs",
+      "title": "Visa Bulletin For May 2026",
+      "draft": "drafts/2026-05-18-visa-bulletin-may-2026.md"
+    },
+    "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/croatia-travel-advisory.html": {
+      "first_seen": "2026-05-19",
+      "source": "State Department Travel Advisories",
+      "title": "Croatia - Level 1: Exercise Normal Precautions",
+      "draft": "drafts/2026-05-19-croatia-level-1-exercise-normal-precautions.md"
+    },
+    "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/sweden-travel-advisory.html": {
+      "first_seen": "2026-05-19",
+      "source": "State Department Travel Advisories",
+      "title": "Sweden - Level 2: Exercise Increased Caution",
+      "draft": "drafts/2026-05-19-sweden-level-2-exercise-increased-caution.md"
+    },
+    "https://uscis.gov/newsroom/alerts/dhs-announces-consequences-for-unpaid-annual-asylum-fees-unveils-new-hr-1-requirements": {
+      "first_seen": "2026-05-18",
+      "source": "USCIS Newsroom",
+      "title": "DHS Announces Consequences for Unpaid Annual Asylum Fees, Unveils New H.R.1 Requirements",
+      "draft": "drafts/2026-05-18-uscis-annual-asylum-fee.md"
+    }
+  }
+}

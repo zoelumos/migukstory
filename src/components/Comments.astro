@@ -56,8 +56,6 @@
 </section>
 
 <script>
-	import { supabase } from '../lib/supabase';
-
 	const root = document.querySelector('.comments-section') as HTMLElement | null;
 	if (root) {
 		const postSlug = root.dataset.postSlug || window.location.pathname;
@@ -70,6 +68,7 @@
 		const charEl = root.querySelector('[data-char]') as HTMLElement | null;
 		const textarea = root.querySelector('textarea[name="body"]') as HTMLTextAreaElement | null;
 		const loginLink = root.querySelector('#comments-login-link') as HTMLAnchorElement | null;
+		let currentUser: any | null = null;
 
 		const escapeHtml = (s: string) =>
 			s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -87,7 +86,7 @@
 			}
 			list.innerHTML = comments.map((c) => {
 				const author = c.profiles || {};
-				const name = author.display_name || (author.email ? author.email.split('@')[0] : '익명');
+				const name = author.display_name || '익명';
 				const avatar = author.avatar_url
 					? `<img class="c-avatar" src="${escapeHtml(author.avatar_url)}" alt="" />`
 					: `<div class="c-avatar-fallback" aria-hidden="true">${escapeHtml(name.charAt(0))}</div>`;
@@ -104,30 +103,25 @@
 		};
 
 		const loadComments = async () => {
-			const { data, error } = await supabase
-				.from('comments')
-				.select('id, body, created_at, author_id, profiles!comments_author_id_fkey(display_name, email, avatar_url)')
-				.eq('post_slug', postSlug)
-				.eq('is_hidden', false)
-				.order('created_at', { ascending: true });
-			if (error) {
-				console.error('load comments', error);
+			const res = await fetch(`/api/comments?slug=${encodeURIComponent(postSlug)}`, { credentials: 'same-origin' });
+			const data = await res.json().catch(() => ({}));
+			if (!res.ok) {
+				console.error('load comments', data.error || res.statusText);
 				if (list) list.innerHTML = `<li class="empty">댓글을 불러오지 못했습니다.</li>`;
 				return;
 			}
-			renderList(data || []);
+			renderList(data.comments || []);
 		};
 
-		const updateAuthUI = (session: any | null) => {
-			if (session?.user) {
+		const updateAuthUI = (user: any | null) => {
+			currentUser = user;
+			if (user) {
 				if (composeForm) composeForm.hidden = false;
 				if (loginPrompt) loginPrompt.hidden = true;
-				const meta = session.user.user_metadata || {};
-				const name = meta.full_name || meta.name || (session.user.email || '').split('@')[0];
-				const ava = meta.avatar_url || meta.picture;
+				const name = user.name || (user.email || '').split('@')[0] || '독자';
 				if (meName) meName.textContent = name;
 				if (meAvatar) {
-					if (ava) { meAvatar.src = ava; meAvatar.hidden = false; }
+					if (user.avatar_url) { meAvatar.src = user.avatar_url; meAvatar.hidden = false; }
 					else { meAvatar.hidden = true; }
 				}
 			} else {
@@ -137,29 +131,37 @@
 			}
 		};
 
-		// Char counter
+		const loadSession = async () => {
+			try {
+				const res = await fetch('/api/auth/session', { credentials: 'same-origin' });
+				const data = await res.json();
+				updateAuthUI(data.authenticated ? data.user : null);
+			} catch {
+				updateAuthUI(null);
+			}
+		};
+
 		textarea?.addEventListener('input', () => {
 			if (charEl && textarea) charEl.textContent = `${textarea.value.length} / 5000`;
 		});
 
-		// Compose handler
 		composeForm?.addEventListener('submit', async (e) => {
 			e.preventDefault();
-			const { data: { session } } = await supabase.auth.getSession();
-			if (!session?.user || !textarea) return;
+			if (!currentUser || !textarea) return;
 			const body = textarea.value.trim();
 			if (body.length < 2) return;
 			const submitBtn = composeForm.querySelector('button[type="submit"]') as HTMLButtonElement | null;
 			if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '게시 중…'; }
 
-			const { error } = await supabase.from('comments').insert({
-				post_slug: postSlug,
-				author_id: session.user.id,
-				body,
+			const res = await fetch('/api/comments', {
+				method: 'POST',
+				credentials: 'same-origin',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ post_slug: postSlug, body }),
 			});
-
-			if (error) {
-				console.error('post comment', error);
+			const data = await res.json().catch(() => ({}));
+			if (!res.ok) {
+				console.error('post comment', data.error || res.statusText);
 				alert('댓글 게시에 실패했습니다. 잠시 후 다시 시도해 주세요.');
 			} else {
 				textarea.value = '';
@@ -169,16 +171,7 @@
 			if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = '댓글 게시'; }
 		});
 
-		// Init
-		supabase.auth.getSession().then(({ data }) => {
-			updateAuthUI(data.session);
-		});
-		supabase.auth.onAuthStateChange((_e, session) => {
-			updateAuthUI(session);
-			loadComments();
-		});
-
-		loadComments();
+		await Promise.all([loadSession(), loadComments()]);
 	}
 </script>
 

@@ -14,6 +14,18 @@ export default defineConfig({
 		mdx(),
 		sitemap({
 			i18n: { defaultLocale: 'ko', locales: { ko: 'ko-KR' } },
+			// Keep crawl budget focused on public editorial/commercial pages.
+			// Utility/auth/admin URLs should not be advertised in the sitemap.
+			filter: (page) => {
+				const url = new URL(page);
+				const path = url.pathname;
+				return !(
+					path.startsWith('/admin/') ||
+					path === '/admin/' ||
+					path.startsWith('/auth/') ||
+					path === '/login/'
+				);
+			},
 		}),
 	],
 	markdown: {

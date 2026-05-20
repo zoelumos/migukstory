@@ -46,5 +46,7 @@ Allow: /
 # Default
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /auth
 
 Sitemap: https://migukstory.com/sitemap-index.xml

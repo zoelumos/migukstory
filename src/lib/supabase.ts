@@ -25,10 +25,12 @@ if (!SUPABASE_URL || !SUPABASE_KEY) {
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
 	auth: {
-		persistSession: true,            // keep session across page loads / nav
-		autoRefreshToken: true,          // refresh JWT before it expires (1h default)
-		detectSessionInUrl: true,        // pick up OAuth #access_token=... fragment on /auth/callback
-		flowType: 'pkce',                // recommended OAuth flow for SPAs/static sites
+		// Auth is handled by /api/auth/* with HttpOnly cookies. Do not persist
+		// Supabase JWTs in localStorage or exchange OAuth codes in browser JS.
+		persistSession: false,
+		autoRefreshToken: false,
+		detectSessionInUrl: false,
+		flowType: 'pkce',
 	},
 });
 

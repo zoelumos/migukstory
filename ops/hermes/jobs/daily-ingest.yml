@@ -1,0 +1,74 @@
+name: migukstory-daily-ingest
+description: |
+  Daily RSS ingest → Korean drafts → editor grade → open PR.
+  Uses `claude -p` via the modified scripts (CLAUDE_VIA_CLI=1), which calls
+  the local Claude CLI using Steve's Max subscription auth — NO Anthropic
+  API key needed. The drafting + grading + PR-opening happens entirely on
+  the Mac mini.
+enabled: true
+schedule: "0 11 * * *"
+timezone: UTC
+working_dir: /Users/zoelumos/migukstory
+prompt_file: null
+log_file: logs/daily-ingest-{date}.log
+command: |
+  set -euo pipefail
+  echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] daily-ingest starting"
+
+  # Always start from latest main. bot/daily-draft is force-reset every run.
+  git fetch -q origin
+  git checkout -B bot/daily-draft origin/main
+
+  # Generate drafts + grade them via Max-subscription claude CLI.
+  # CLAUDE_VIA_CLI=1 → both scripts call `claude -p`, NOT api.anthropic.com.
+  # Hermes may run under its own stripped Python venv (no pip/packages), so use
+  # a small external venv for feedparser/PyYAML/anthropic deps.
+  PY_VENV=/tmp/migukstory-draft-venv
+  if [ ! -x "$PY_VENV/bin/python" ]; then
+    /opt/homebrew/bin/python3 -m venv "$PY_VENV"
+  fi
+  "$PY_VENV/bin/python" -m pip install -q -r scripts/requirements-draft.txt
+
+  export CLAUDE_VIA_CLI=1
+  "$PY_VENV/bin/python" scripts/draft_from_rss.py --max-drafts 5 || echo "  (draft script exited non-zero; continuing)"
+  "$PY_VENV/bin/python" scripts/editor_grade.py --threshold 80 || echo "  (editor script exited non-zero; continuing)"
+
+  # Ensure labels exist before PR creation. Missing labels used to make this job
+  # fail after it had already pushed the branch.
+  gh label create draft --repo zoelumos/migukstory --color 0e8a16 --description 'AI draft automation' 2>/dev/null || true
+  gh label create automated --repo zoelumos/migukstory --color 1d76db --description 'Automated PR' 2>/dev/null || true
+
+  git add drafts/ queue/ scripts/state/seen_urls.json scripts/state/editor_report.json 2>/dev/null || true
+
+  if git diff --staged --quiet; then
+    echo "  No new drafts; nothing to push."
+    exit 0
+  fi
+
+  TODAY=$(date -u +%Y-%m-%d)
+  git -c user.email=bot@migukstory.com -c user.name="Miguk Story Bot" \
+    commit -m "draft: Hermes RSS pickup ${TODAY}"
+  git push -fu origin bot/daily-draft
+
+  # Create PR if it doesn't already exist (idempotent).
+  PR_BODY="Auto-generated drafts via Hermes + claude -p (Max subscription auth, no API key). Drafts are in drafts/. Editor agent has promoted high-confidence (>=80/100) items to queue/. Merge this PR to land them on main. Next daily-post.yml cron (8 AM ET) will then publish 1 from queue automatically."
+  if ! gh pr view bot/daily-draft --repo zoelumos/migukstory >/dev/null 2>&1; then
+    gh pr create \
+      --repo zoelumos/migukstory \
+      --base main \
+      --head bot/daily-draft \
+      --title "draft: Hermes daily RSS pickup ${TODAY}" \
+      --body "$PR_BODY" \
+      --label "draft,automated"
+  fi
+
+  echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] daily-ingest done"
+on_failure:
+  notify: slack
+  channel_or_recipient: "#migukstory-ops"
+  message: "Hermes daily-ingest failed — check the latest ops/hermes/logs/daily-ingest-*.log"
+prerequisites:
+  - claude CLI installed + authenticated with Max sub (claude --version works)
+  - gh CLI authenticated as zoelumos
+  - Python 3.12+ on PATH
+  - pip install -r scripts/requirements-draft.txt already run
