@@ -1,7 +1,8 @@
 name: Google Indexing
 
-# Submits the sitemap to Search Console and pushes all URLs through the
-# Indexing API. Runs daily + after content changes on main + manual trigger.
+# Submits the sitemap to Search Console. On content pushes, pings only the
+# newly added blog URLs through IndexNow / Google Indexing API. Runs daily +
+# after content changes on main + manual trigger.
 #
 # Requires repo secret GSC_SERVICE_ACCOUNT (base64-encoded service account JSON).
 # Create/rotate it with:
@@ -15,6 +16,9 @@ on:
     paths:
       - 'src/content/**'        # only when content changes
       - 'src/pages/**'
+      - '.github/workflows/google-index.yml'
+      - 'scripts/google_index.mjs'
+      - 'scripts/notify_indexes.py'
   workflow_dispatch:            # manual "Run workflow" button
 
 jobs:
@@ -22,6 +26,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Needed so notify_indexes.py --auto can diff HEAD~1..HEAD and only
+          # submit newly-added blog URLs instead of burning quota on the whole site.
+          fetch-depth: 2
 
       - uses: actions/setup-node@v4
         with:
@@ -33,8 +41,21 @@ jobs:
           echo '${{ secrets.GSC_SERVICE_ACCOUNT }}' | base64 -d > .secrets/gsc-service-account.json
           node -e "JSON.parse(require('fs').readFileSync('.secrets/gsc-service-account.json','utf8'));console.log('key decoded OK')"
 
-      - name: Submit sitemap + push to Indexing API
-        run: node scripts/google_index.mjs all
+      - name: Submit sitemap to Search Console
+        run: node scripts/google_index.mjs sitemap
+
+      - name: Push newly-added blog URLs to indexing APIs
+        if: github.event_name == 'push'
+        # Indexing pings are best-effort. Google returns 429 when the daily
+        # publish quota is exhausted; that should not mark the cron/workflow as
+        # failed after the sitemap has already been submitted successfully.
+        continue-on-error: true
+        env:
+          SITE_URL: https://migukstory.com
+          GSC_SERVICE_ACCOUNT: ${{ secrets.GSC_SERVICE_ACCOUNT }}
+        run: |
+          python3 -m pip install --quiet google-auth 2>&1 | tail -3 || true
+          python3 scripts/notify_indexes.py --auto
 
       - name: Index-status report
         if: always()
