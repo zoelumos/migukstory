@@ -10,6 +10,8 @@ src/content/blog/ — promotion to queue/ requires human review.
 
 Usage:
   python scripts/draft_from_rss.py [--dry-run] [--max-drafts N]
+                                   [--manifest PATH] [--time-budget S]
+                                   [--cli-timeout S]
 
 Options:
   --dry-run        Fetch + dedupe + plan, but do not call the Claude API,
@@ -17,6 +19,13 @@ Options:
                    without ANTHROPIC_API_KEY.
   --max-drafts N   Cap drafts produced this run (default: 5). Hard ceiling
                    is also 5 — values larger than that are clamped.
+  --manifest PATH  Write a JSON manifest of the drafts created this run to
+                   PATH. editor_grade.py --manifest PATH then grades ONLY
+                   those, so grading work stays bounded per run.
+  --time-budget S  Stop generating once S wall-clock seconds have elapsed;
+                   remaining items are deferred to a later run. 0 = unlimited.
+  --cli-timeout S  Per `claude -p` call timeout (default: 180s). One slow
+                   call can never hang the whole job.
 
 Env vars:
   ANTHROPIC_API_KEY   Required unless --dry-run. Read from environment;
@@ -31,6 +40,7 @@ import json
 import os
 import re
 import sys
+import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -47,6 +57,7 @@ STATE = REPO / "scripts" / "state" / "seen_urls.json"
 HARD_CAP_DRAFTS = 5
 DEFAULT_MAX_ITEMS_PER_FEED = 3
 DEFAULT_MODEL = "claude-sonnet-4-6"
+DEFAULT_CLI_TIMEOUT = 180  # per `claude -p` call, seconds
 
 VALID_CATEGORIES = {
     "immigration", "tax", "health", "education",
@@ -306,7 +317,7 @@ def _build_user_prompt(item: FeedItem) -> str:
     )
 
 
-def _call_claude_via_cli(item: FeedItem) -> str:
+def _call_claude_via_cli(item: FeedItem, cli_timeout: int) -> str:
     """Call `claude -p` (uses local Max-subscription auth, no API key)."""
     import subprocess
     user_prompt = _build_user_prompt(item)
@@ -319,13 +330,14 @@ def _call_claude_via_cli(item: FeedItem) -> str:
     try:
         result = subprocess.run(
             ["claude", "-p", combined, "--output-format", "text"],
-            capture_output=True, text=True, check=True, timeout=240,
+            capture_output=True, text=True, check=True,
+            timeout=cli_timeout, stdin=subprocess.DEVNULL,
         )
         return result.stdout.strip()
     except subprocess.TimeoutExpired:
-        raise RuntimeError("claude -p timed out (240s)")
+        raise RuntimeError(f"claude -p timed out ({cli_timeout}s)")
     except subprocess.CalledProcessError as e:
-        raise RuntimeError(f"claude -p failed (exit {e.returncode}): {e.stderr[:300]}")
+        raise RuntimeError(f"claude -p failed (exit {e.returncode}): {(e.stderr or '')[:300]}")
     except FileNotFoundError:
         sys.exit("❌ `claude` CLI not found in PATH. Install Claude Code or run on a host that has it.")
 
@@ -353,15 +365,28 @@ def _call_claude_via_api(item: FeedItem, model: str) -> str:
     return "".join(parts).strip()
 
 
-def call_claude(item: FeedItem, model: str) -> str:
+def call_claude(item: FeedItem, model: str, cli_timeout: int) -> str:
     """Route to API or CLI based on CLAUDE_VIA_CLI env var.
 
     Set CLAUDE_VIA_CLI=1 to invoke local `claude -p` (Max auth, no API key).
     Default: use Anthropic API (ANTHROPIC_API_KEY required).
     """
     if os.environ.get("CLAUDE_VIA_CLI", "").strip() == "1":
-        return _call_claude_via_cli(item)
+        return _call_claude_via_cli(item, cli_timeout)
     return _call_claude_via_api(item, model)
+
+
+def write_manifest(path: Path, drafts: list[Path]) -> None:
+    """Record the drafts created this run so editor_grade.py can grade only them."""
+    payload = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "run_date": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+        "drafts": [str(p.relative_to(REPO)) if p.is_relative_to(REPO) else str(p)
+                   for p in drafts],
+    }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+                    encoding="utf-8")
 
 
 # --------------------------------------------------------------------------
@@ -391,6 +416,13 @@ def parse_args() -> argparse.Namespace:
                    help="Plan only — no API calls, no writes.")
     p.add_argument("--max-drafts", type=int, default=HARD_CAP_DRAFTS,
                    help=f"Cap drafts this run (1..{HARD_CAP_DRAFTS}). Default: {HARD_CAP_DRAFTS}.")
+    p.add_argument("--manifest", metavar="PATH",
+                   help="Write a JSON manifest of drafts created this run to PATH.")
+    p.add_argument("--time-budget", type=int, default=0,
+                   help="Wall-clock budget in seconds; remaining items are deferred. "
+                        "Default: 0 (unlimited).")
+    p.add_argument("--cli-timeout", type=int, default=DEFAULT_CLI_TIMEOUT,
+                   help=f"Per `claude -p` call timeout, seconds. Default: {DEFAULT_CLI_TIMEOUT}.")
     return p.parse_args()
 
 
@@ -454,12 +486,19 @@ def main() -> int:
 
     written: list[Path] = []
     failures: list[tuple[FeedItem, str]] = []
+    deferred = 0
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    start = time.monotonic()
 
-    for item in selected:
+    for idx, item in enumerate(selected):
+        if args.time_budget and (time.monotonic() - start) > args.time_budget:
+            deferred = len(selected) - idx
+            print(f"\n⏱  Time budget ({args.time_budget}s) exhausted — "
+                  f"deferring {deferred} item(s) to a later run.")
+            break
         print(f"\n🤖 Generating: {item.title[:80]}")
         try:
-            md = call_claude(item, model=model)
+            md = call_claude(item, model=model, cli_timeout=args.cli_timeout)
         except SystemExit:
             raise
         except Exception as e:
@@ -495,7 +534,13 @@ def main() -> int:
         save_seen(state)
         print(f"\n💾 Updated dedupe store: {STATE.relative_to(REPO)}")
 
-    print(f"\n📊 Wrote {len(written)} draft(s); {len(failures)} failure(s).")
+    # Record this run's drafts so editor_grade.py can grade only them.
+    if args.manifest:
+        write_manifest(Path(args.manifest), written)
+        print(f"📝 Manifest ({len(written)} draft(s)): {args.manifest}")
+
+    print(f"\n📊 Wrote {len(written)} draft(s); {len(failures)} failure(s); "
+          f"{deferred} deferred.")
     for it, why in failures:
         print(f"   ! {it.source_name} :: {it.title[:60]} — {why}")
 
