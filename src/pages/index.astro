@@ -4,7 +4,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import FormattedDate from '../components/FormattedDate.astro';
-import { SITE_DESCRIPTION, SITE_TAGLINE, SITE_TITLE, ISSUE_NUMBER } from '../consts';
+import { SITE_DESCRIPTION, SITE_TAGLINE, SITE_TITLE } from '../consts';
 import { CATEGORIES, type CategoryKey } from '../content.config';
 
 const posts = (await getCollection('blog')).sort(
@@ -37,6 +37,17 @@ const koDate = (d: Date) =>
 		<Header />
 
 		<main>
+			<section class="site-hero">
+				<div class="container site-hero-inner">
+					<p class="eyebrow">MIGUK STORY · 미국 생활 뉴스 가이드</p>
+					<h1 class="site-hero-title">미국 사는 한인에게 필요한 뉴스만, 출처까지 확인해서 쉽게</h1>
+					<p class="site-hero-desc">
+						이민·세금·건강보험·교육·은퇴·부동산까지, 오늘 결정에 필요한 정보를
+						공식 자료와 한인 가정의 관점으로 정리합니다.
+					</p>
+				</div>
+			</section>
+
 			<!-- LEAD ARTICLE -->
 			{lead && (() => {
 				const leadCat = (CATEGORIES as any)[lead.data.category];
@@ -44,9 +55,9 @@ const koDate = (d: Date) =>
 					<section class="lead">
 						<div class="container lead-inner">
 							<p class="eyebrow">오늘의 헤드라인</p>
-							<h1 class="lead-title">
+							<h2 class="lead-title">
 								<a href={`/blog/${lead.id}/`}>{lead.data.title}</a>
-							</h1>
+							</h2>
 							<p class="lead-desc">{lead.data.description}</p>
 							<div class="lead-meta">
 								{leadCat && (
@@ -168,9 +179,42 @@ const koDate = (d: Date) =>
 		<style>
 			main { padding-bottom: var(--s-6); }
 
+			/* ── Site hero ───────────────────────────────────────── */
+			.site-hero {
+				padding: var(--s-6) 0 var(--s-5);
+				border-bottom: 1px solid var(--rule);
+				background:
+					radial-gradient(circle at 20% 10%, rgba(185, 28, 28, 0.08), transparent 32%),
+					linear-gradient(180deg, var(--paper) 0%, var(--cream) 100%);
+			}
+			.site-hero-inner {
+				max-width: 980px;
+				margin: 0 auto;
+				text-align: center;
+			}
+			.site-hero-title {
+				font-family: var(--font-display);
+				font-size: clamp(2.75rem, 6.5vw, 5.4rem);
+				font-weight: 800;
+				line-height: 1.08;
+				letter-spacing: -0.045em;
+				margin: 0 auto var(--s-3);
+				max-width: 11em;
+				word-break: keep-all;
+				color: var(--ink);
+			}
+			.site-hero-desc {
+				font-size: clamp(1.05rem, 2vw, 1.28rem);
+				line-height: 1.75;
+				color: var(--ink-soft);
+				max-width: 46em;
+				margin: 0 auto;
+				word-break: keep-all;
+			}
+
 			/* ── Lead article ─────────────────────────────────────── */
 			.lead {
-				padding: var(--s-6) 0 var(--s-5);
+				padding: var(--s-5) 0 var(--s-5);
 				border-bottom: 1px solid var(--rule);
 			}
 			.lead-inner {
