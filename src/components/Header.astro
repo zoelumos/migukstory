@@ -16,6 +16,14 @@ const navLinks = [
 	{ href: '/pros', label: '추천 전문가' },
 	{ href: '/contribute', label: '칼럼 기고' },
 ];
+
+// Highlight the nav link for the section the reader is currently in.
+// Server-rendered (no client JS) so it stays CSP-safe.
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) =>
+	currentPath === href ||
+	currentPath === `${href}/` ||
+	currentPath.startsWith(`${href}/`);
 ---
 
 <header class="masthead">
@@ -52,7 +60,9 @@ const navLinks = [
 
 	<nav class="primary-nav" id="primary-nav">
 		<div class="container nav-inner">
-			{navLinks.map((l) => <a href={l.href}>{l.label}</a>)}
+			{navLinks.map((l) => (
+				<a href={l.href} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a>
+			))}
 			<a href="/search" class="search-link" aria-label="검색">🔍 검색</a>
 			<a href="/login" class="mobile-login-link">로그인</a>
 			<a href="/contact" class="contact-link">문의 · 제보</a>
@@ -210,8 +220,10 @@ const navLinks = [
 		transition: all var(--duration) var(--ease-out);
 		transform: translateX(-50%);
 	}
-	.nav-inner a:hover { color: var(--brick); }
-	.nav-inner a:hover::after { width: 80%; }
+	.nav-inner a:hover,
+	.nav-inner a[aria-current="page"] { color: var(--brick); }
+	.nav-inner a:hover::after,
+	.nav-inner a[aria-current="page"]::after { width: 80%; }
 	.contact-link {
 		color: var(--brick) !important;
 		font-weight: 700;
@@ -223,6 +235,11 @@ const navLinks = [
 	}
 
 	@media (max-width: 720px) {
+		:global(html.nav-drawer-open),
+		:global(html.nav-drawer-open body) {
+			overflow-x: hidden;
+		}
+
 		/* Mobile: utility-strip hidden, brand row tightened, nav collapses
 		   into a hamburger drawer. Header lands ~64px so H1 stays above fold. */
 		.utility-strip { display: none; }
@@ -274,6 +291,17 @@ const navLinks = [
 		.nav-inner a:last-child { border-bottom: none; }
 		.nav-inner a::after { display: none; }
 		.nav-inner a:active { background: var(--paper-soft); }
+		.nav-inner a[aria-current="page"] {
+			background: color-mix(in srgb, var(--brick) 8%, transparent);
+			font-weight: 700;
+		}
+		.nav-inner a[aria-current="page"]::before {
+			content: "";
+			width: 4px;
+			align-self: stretch;
+			margin: 0 var(--s-2) 0 calc(-1 * var(--s-3));
+			background: var(--brick);
+		}
 		.mobile-login-link { display: flex; }
 	}
 </style>
