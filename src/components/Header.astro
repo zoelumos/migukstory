@@ -60,30 +60,9 @@ const navLinks = [
 	</nav>
 </header>
 
-<script>
-	// Mobile hamburger toggle — accessible (aria-expanded), closes on Escape + outside click.
-	const masthead = document.querySelector('.masthead') as HTMLElement | null;
-	const toggle = masthead?.querySelector('.nav-toggle') as HTMLButtonElement | null;
-	const nav = masthead?.querySelector('#primary-nav') as HTMLElement | null;
-	if (toggle && nav && masthead) {
-		const setOpen = (open: boolean) => {
-			masthead.classList.toggle('nav-open', open);
-			toggle.setAttribute('aria-expanded', String(open));
-			toggle.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
-		};
-		toggle.addEventListener('click', (e) => {
-			e.stopPropagation();
-			setOpen(toggle.getAttribute('aria-expanded') !== 'true');
-		});
-		nav.addEventListener('click', (e) => {
-			if ((e.target as HTMLElement).closest('a')) setOpen(false);
-		});
-		document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
-		document.addEventListener('click', (e) => {
-			if (!masthead.contains(e.target as Node)) setOpen(false);
-		});
-	}
-</script>
+<!-- Hamburger JS lives in /public/js/nav-toggle.js — served as an external same-origin
+     file because the production CSP blocks inline scripts (no 'unsafe-inline'). -->
+<script src="/js/nav-toggle.js" defer></script>
 
 <style>
 	.masthead {
