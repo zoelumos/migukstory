@@ -41,7 +41,10 @@ jobs:
         run: |
           git config user.email "bot@migukstory.com"
           git config user.name "Miguk Story Bot"
-          git add src/content/blog/ queue/
+          git add -A src/content/blog
+          if [ -d queue ]; then
+            git add -A queue
+          fi
           if git diff --staged --quiet; then
             echo "Nothing to commit (queue may be empty)."
             echo "published=false" >> "$GITHUB_OUTPUT"
