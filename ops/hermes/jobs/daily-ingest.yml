@@ -30,8 +30,23 @@ command: |
   "$PY_VENV/bin/python" -m pip install -q -r scripts/requirements-draft.txt
 
   export CLAUDE_VIA_CLI=1
-  "$PY_VENV/bin/python" scripts/draft_from_rss.py --max-drafts 5 || echo "  (draft script exited non-zero; continuing)"
-  "$PY_VENV/bin/python" scripts/editor_grade.py --threshold 80 || echo "  (editor script exited non-zero; continuing)"
+  MANIFEST=$(mktemp)
+  trap 'rm -f "$MANIFEST"' EXIT
+
+  "$PY_VENV/bin/python" scripts/draft_from_rss.py \
+    --max-drafts 5 \
+    --manifest "$MANIFEST" \
+    --time-budget 420 \
+    --cli-timeout 150 \
+    || echo "  (draft script exited non-zero; continuing)"
+
+  "$PY_VENV/bin/python" scripts/editor_grade.py \
+    --threshold 80 \
+    --manifest "$MANIFEST" \
+    --max-drafts 5 \
+    --time-budget 420 \
+    --cli-timeout 90 \
+    || echo "  (editor script exited non-zero; continuing)"
 
   # Ensure labels exist before PR creation. Missing labels used to make this job
   # fail after it had already pushed the branch.
