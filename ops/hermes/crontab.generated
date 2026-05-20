@@ -1,0 +1,6 @@
+# ─── migukstory Hermes jobs (managed by install-cron.py) ───
+0 6 * * * /bin/bash /Users/zoelumos/migukstory/ops/hermes/bin/run-job.sh daily-editorial-review # migukstory-hermes:daily-editorial-review
+30 7 * * * /bin/bash /Users/zoelumos/migukstory/ops/hermes/bin/run-job.sh daily-health # migukstory-hermes:daily-health
+0 4 * * * /bin/bash /Users/zoelumos/migukstory/ops/hermes/bin/run-job.sh daily-ingest # migukstory-hermes:daily-ingest
+0 7 1 * * /bin/bash /Users/zoelumos/migukstory/ops/hermes/bin/run-job.sh monthly-cf-rotate # migukstory-hermes:monthly-cf-rotate
+0 8 * * 1 /bin/bash /Users/zoelumos/migukstory/ops/hermes/bin/run-job.sh weekly-audit # migukstory-hermes:weekly-audit

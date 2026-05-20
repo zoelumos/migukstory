@@ -3,7 +3,7 @@ description: |
   Trigger the GitHub Actions `daily-post.yml` workflow to publish ONE post
   from queue/ → src/content/blog/. The workflow itself handles the move,
   commit, and push. CF Pages auto-deploys on the push.
-enabled: true
+enabled: false   # DISABLED: daily-post.yml has its own cron (0 12 * * *); a Hermes trigger here would double-publish
 schedule: "0 12 * * *"          # 12:00 UTC = 8:00 AM ET EDT / 7:00 AM ET EST
 timezone: UTC
 working_dir: /Users/zoelumos/migukstory
