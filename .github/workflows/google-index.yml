@@ -1,0 +1,41 @@
+name: Google Indexing
+
+# Submits the sitemap to Search Console and pushes all URLs through the
+# Indexing API. Runs daily + after content changes on main + manual trigger.
+#
+# Requires repo secret GSC_SERVICE_ACCOUNT (base64-encoded service account JSON).
+# Create/rotate it with:
+#   base64 -i .secrets/gsc-service-account.json | gh secret set GSC_SERVICE_ACCOUNT
+
+on:
+  schedule:
+    - cron: '0 9 * * *'        # daily 09:00 UTC
+  push:
+    branches: [main]
+    paths:
+      - 'src/content/**'        # only when content changes
+      - 'src/pages/**'
+  workflow_dispatch:            # manual "Run workflow" button
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Decode service account key
+        run: |
+          mkdir -p .secrets
+          echo '${{ secrets.GSC_SERVICE_ACCOUNT }}' | base64 -d > .secrets/gsc-service-account.json
+          node -e "JSON.parse(require('fs').readFileSync('.secrets/gsc-service-account.json','utf8'));console.log('key decoded OK')"
+
+      - name: Submit sitemap + push to Indexing API
+        run: node scripts/google_index.mjs all
+
+      - name: Index-status report
+        if: always()
+        run: node scripts/google_index.mjs status
