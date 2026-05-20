@@ -14,7 +14,6 @@ Env vars (optional):
 
 import os
 import re
-import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -42,11 +41,11 @@ def next_queued() -> Path | None:
     return md_files[0] if md_files else None
 
 
-def publish_one() -> Path:
+def publish_one() -> Path | None:
     src = next_queued()
     if not src:
-        print("⚠️ Queue is empty — nothing to publish.", file=sys.stderr)
-        sys.exit(2)  # special exit code for empty queue
+        print("⚠️ Queue is empty — nothing to publish.")
+        return None
 
     dest = BLOG / src.name
     if dest.exists():
@@ -70,7 +69,8 @@ def publish_one() -> Path:
 def main():
     runs = int(os.environ.get("POSTS_PER_RUN", "1"))
     for i in range(runs):
-        publish_one()
+        if publish_one() is None:
+            break
 
     remaining = len(list(QUEUE.glob("*.md"))) if QUEUE.exists() else 0
     print(f"\n📦 Queue remaining: {remaining} post(s)")
