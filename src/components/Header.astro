@@ -54,6 +54,7 @@ const navLinks = [
 		<div class="container nav-inner">
 			{navLinks.map((l) => <a href={l.href}>{l.label}</a>)}
 			<a href="/search" class="search-link" aria-label="검색">🔍 검색</a>
+			<a href="/login" class="mobile-login-link">로그인</a>
 			<a href="/contact" class="contact-link">문의 · 제보</a>
 		</div>
 	</nav>
@@ -61,16 +62,22 @@ const navLinks = [
 
 <script>
 	// Mobile hamburger toggle — accessible (aria-expanded), closes on Escape + outside click.
-	const toggle = document.querySelector('.nav-toggle') as HTMLButtonElement | null;
-	const nav = document.getElementById('primary-nav');
-	const masthead = document.querySelector('.masthead');
+	const masthead = document.querySelector('.masthead') as HTMLElement | null;
+	const toggle = masthead?.querySelector('.nav-toggle') as HTMLButtonElement | null;
+	const nav = masthead?.querySelector('#primary-nav') as HTMLElement | null;
 	if (toggle && nav && masthead) {
 		const setOpen = (open: boolean) => {
 			masthead.classList.toggle('nav-open', open);
 			toggle.setAttribute('aria-expanded', String(open));
 			toggle.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
 		};
-		toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+		toggle.addEventListener('click', (e) => {
+			e.stopPropagation();
+			setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+		});
+		nav.addEventListener('click', (e) => {
+			if ((e.target as HTMLElement).closest('a')) setOpen(false);
+		});
 		document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
 		document.addEventListener('click', (e) => {
 			if (!masthead.contains(e.target as Node)) setOpen(false);
@@ -230,6 +237,7 @@ const navLinks = [
 		color: var(--brick) !important;
 		font-weight: 700;
 	}
+	.mobile-login-link { display: none; }
 	.contact-link::before {
 		content: "→ ";
 		font-weight: 700;
@@ -250,8 +258,14 @@ const navLinks = [
 		.brand { align-items: flex-start; }
 		.brand-ko { font-size: 1.45rem; line-height: 1; }
 		.brand-en { font-size: 0.5rem; letter-spacing: 0.3em; }
+		.meta-right :global(.user-menu) { display: none; } /* avoid the anonymous loading pill beside hamburger */
 		.contact-pill { display: none; }   /* lives inside the drawer on mobile */
-		.nav-toggle { display: flex; }
+		.nav-toggle {
+			display: flex;
+			background: var(--paper);
+			border-color: var(--rule-strong, var(--rule));
+			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+		}
 
 		/* Nav becomes a vertical drawer, collapsed by default */
 		.primary-nav {
@@ -281,5 +295,6 @@ const navLinks = [
 		.nav-inner a:last-child { border-bottom: none; }
 		.nav-inner a::after { display: none; }
 		.nav-inner a:active { background: var(--paper-soft); }
+		.mobile-login-link { display: flex; }
 	}
 </style>
