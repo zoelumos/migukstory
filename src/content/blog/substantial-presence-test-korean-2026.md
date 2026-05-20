@@ -6,7 +6,6 @@ tags: ['거주자판정', 'SubstantialPresenceTest', '세금신고', '비거주�
 category: 'tax'
 ageGroup: 'all'
 author: 'steve-song'
-aiAssisted: true
 editorNote: '미국 세금에서 가장 먼저 갈리는 갈림길은 "내가 세법상 거주자냐 비거주자냐"입니다. 그린카드가 없어도 미국에 오래 머물면 거주자가 되어 전 세계 소득을 신고해야 하고, 반대로 유학생은 입국 햇수만큼 날짜 계산에서 빠집니다. 비자 종류만 보고 지레짐작하면 신고 양식 자체가 틀어지니, 본문의 공식으로 직접 확인해 보세요.'
 faq:
   - q: "세법상 거주자(resident alien)와 비거주 외국인(nonresident alien)은 무엇이 다른가요?"

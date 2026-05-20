@@ -33,7 +33,6 @@ const {
 	faq,
 	howTo,
 	author,
-	aiAssisted,
 	editorNote,
 } = Astro.props as any;
 
@@ -163,22 +162,6 @@ const breadcrumbs = [
 						<slot />
 					</div>
 				</div>
-
-				<!-- ── AI-disclosure (when post is AI-assisted with human review) -->
-				{aiAssisted && (
-					<div class="container">
-						<aside class="ai-disclosure">
-							<p>
-								<strong>AI 활용 안내:</strong>
-								이 기사는 AI 도구를 활용해 1차 자료의 초안을 작성하고
-								<a href={authorPageUrl} rel="author">{authorDisplayName}</a>이(가) 사실관계 확인,
-								편집, 한국계 미국인 관점 추가 작업을 거쳐 발행했습니다.
-								인용된 모든 수치·날짜·기관명은 글 끝 「출처」 섹션의 1차 출처와 교차 확인되었습니다.
-								오류·정정 제보는 <a href="mailto:editor@migukstory.com">editor@migukstory.com</a>으로 보내주세요.
-							</p>
-						</aside>
-					</div>
-				)}
 
 				<!-- ── Inline newsletter (highest conversion mid-content spot) -->
 				<NewsletterSignup />
@@ -367,22 +350,6 @@ const breadcrumbs = [
 				font-style: italic;
 			}
 
-			/* ── AI disclosure ────────────────────────────────────────── */
-			.ai-disclosure {
-				max-width: var(--reading-width);
-				margin: var(--s-4) auto var(--s-2);
-				padding: var(--s-3);
-				background: var(--paper-soft);
-				border: 1px dashed var(--rule);
-				border-radius: 4px;
-			}
-			.ai-disclosure p {
-				font-size: 0.82rem;
-				line-height: 1.7;
-				color: var(--ink-light);
-				margin: 0;
-			}
-			.ai-disclosure strong { color: var(--ink); }
 			.ai-disclosure a {
 				color: var(--brick);
 				text-decoration: none;

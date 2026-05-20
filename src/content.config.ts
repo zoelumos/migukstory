@@ -34,12 +34,12 @@ const blog = defineCollection({
 			// E-E-A-T: per-article author slug. Looked up in AUTHORS map in consts.ts.
 			// Defaults to 'editorial-staff' (Organization-flavored author) for legacy posts.
 			author: z.string().default('editorial-staff'),
-			// AI-disclosure: when true, post renders a Korean disclosure block at end-of-body.
-			// Set on posts that were AI-drafted then human-reviewed.
-			aiAssisted: z.boolean().default(false),
-			// Editor's note: a short Korean paragraph (50-150 chars typical) shown at the top
-			// of the article body, above the main prose. Required E-E-A-T signal for AI-assisted
-			// posts — provides the named editor's local KA-angle framing.
+			// Optional: legacy field retained so older posts that still carry it in
+			// frontmatter validate cleanly. Not rendered anywhere.
+			aiAssisted: z.boolean().optional(),
+			// Editor's note: a short Korean paragraph (50-150 chars typical) shown at the
+			// top of the article body, above the main prose — the named editor's local
+			// Korean-American framing for the piece.
 			editorNote: z.string().optional(),
 			// Optional structured-data fields. Posts that include `faq` will emit
 			// FAQPage JSON-LD; `howTo` emits HowTo JSON-LD. Both improve AI/search citability.

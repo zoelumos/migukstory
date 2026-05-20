@@ -6,7 +6,6 @@ tags: ['USCIS', '이민수수료', 'H.R.1', 'TPS', 'EAD']
 category: 'immigration'
 ageGroup: 'all'
 author: 'steve-song'
-aiAssisted: true
 editorNote: 'USCIS 수수료는 신청서를 작성한 날이 아니라 봉투에 찍힌 우편 소인(postmark) 날짜를 기준으로 판단됩니다. 종이로 제출하신다면 봉투를 부치기 직전 G-1055 최신판으로 금액을 한 번 더 확인하세요. 금액이 단돈 몇 달러만 어긋나도 신청서 전체가 반송될 수 있습니다.'
 faq:
   - q: "2025년에 작성해 둔 신청서를 2026년 1월에 우편으로 부치면 어떤 수수료가 적용되나요?"

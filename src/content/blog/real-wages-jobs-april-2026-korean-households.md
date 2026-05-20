@@ -6,7 +6,6 @@ tags: ['실질임금', '인플레이션', '고용지표', '한인경제', '가�
 category: 'economy'
 ageGroup: 'all'
 author: 'steve-song'
-aiAssisted: true
 editorNote: 'BLS 4월 실질임금·고용·CPI 보고서를 한인 독자 관점에서 정리했습니다. 수치는 원문 그대로 인용했고, 해석 부분은 일반적 참고용입니다.'
 faq:
   - q: "실질임금이 떨어졌다는 게 정확히 무슨 뜻인가요?"

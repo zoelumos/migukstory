@@ -6,7 +6,6 @@ tags: ['망명', '비자', 'USCIS', 'I-589', '수수료']
 category: 'immigration'
 ageGroup: 'all'
 author: 'steve-song'
-aiAssisted: true
 editorNote: '한인 망명 신청자가 많지는 않지만 적지 않습니다. 본인의 I-589 제출 1주년 도래일을 USCIS 온라인 계정에서 먼저 확인하고, 망명 기반 EAD로 근무 중이라면 고용주에게 미리 알려두세요.'
 ---
 

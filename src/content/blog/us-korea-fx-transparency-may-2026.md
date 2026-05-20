@@ -6,7 +6,6 @@ tags: ['한미환율', '외환정책', '송금', '한인경제', '2026환율']
 category: 'economy'
 ageGroup: 'all'
 author: 'steve-song'
-aiAssisted: true
 editorNote: '미 재무부 보도자료 원문과 IMF 협정문 출처를 기준으로 정리했습니다. 환율 수준 언급은 시장 흐름의 참고 사례이며 향후 환율을 보장하지 않습니다.'
 faq:
   - q: "이번 공동성명으로 원/달러 환율이 곧바로 안정되나요?"

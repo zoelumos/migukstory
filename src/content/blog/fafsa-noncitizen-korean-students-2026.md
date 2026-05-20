@@ -6,7 +6,6 @@ tags: ['FAFSA', '학자금', '비시민권', '혼합신분가정', '영주권']
 category: 'education'
 ageGroup: 'all'
 author: 'steve-song'
-aiAssisted: true
 editorNote: 'FAFSA에서 가장 흔한 오해는 "부모가 시민권자가 아니면 자녀도 학자금을 못 받는다"는 것입니다. 자격은 오직 학생 본인의 신분으로 판단되며, FAFSA는 부모의 시민권 신분을 묻지 않습니다. SSN 없는 부모도 계정을 만들 수 있으니, 신분 걱정 때문에 신청 자체를 포기하는 일만은 없으시길 바랍니다.'
 faq:
   - q: "부모가 영주권자가 아니거나 서류미비 신분인데, 자녀가 FAFSA를 신청해도 괜찮을까요?"

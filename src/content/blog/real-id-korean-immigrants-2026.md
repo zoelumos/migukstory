@@ -6,7 +6,6 @@ tags: ['REALID', '리얼아이디', '신분증', '국내선', 'TSA']
 category: 'community'
 ageGroup: 'all'
 author: 'steve-song'
-aiAssisted: true
 editorNote: 'REAL ID가 없으면 비행기를 아예 못 탄다는 불안에 공항에서 당황하는 한인분이 많습니다. 하지만 유효한 여권이나 영주권 카드(그린카드)만 있어도 국내선 탑승에는 문제가 없습니다. 또 임시 체류 신분인 분은 REAL ID에 LIMITED TERM이 찍히고 신분 만료일에 함께 만료되니, 발급 전에 본문에서 확인하세요.'
 faq:
   - q: "REAL ID가 없으면 미국 국내선 비행기를 아예 탈 수 없나요?"

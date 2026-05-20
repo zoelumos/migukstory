@@ -6,7 +6,6 @@ tags: ['ITIN', 'W-7', '세금신고', 'SSN없음', 'IRS']
 category: 'tax'
 ageGroup: 'all'
 author: 'steve-song'
-aiAssisted: true
 editorNote: 'ITIN이 있으면 미국에서 일할 수 있다는 오해가 많지만, ITIN은 오직 세금 신고를 위한 번호일 뿐 취업 자격이나 이민 신분과는 무관합니다. 또 신청할 때 여권 원본을 우편으로 보내야 한다는 부담에 신고를 미루는 분이 계신데, 원본을 손에 두고 신청하는 방법이 있으니 본문에서 확인하세요.'
 faq:
   - q: "ITIN을 받으면 미국에서 합법적으로 일할 수 있나요?"

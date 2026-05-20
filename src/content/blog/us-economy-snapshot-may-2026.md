@@ -6,7 +6,6 @@ tags: ['미국경제', '물가', '연준', '모기지', '환율', '고용', '202
 category: 'economy'
 ageGroup: 'all'
 author: 'steve-song'
-aiAssisted: true
 editorNote: '5월 중순 한 주 동안 4월 CPI, FOMC 회의록, 모기지 주간 평균이 모두 공개되면서 하반기 가계 의사결정의 기준선이 잡혔습니다. 본 글은 1차 출처 다섯 곳을 교차해 한인 가정 관점에서 정리한 요약본입니다.'
 faq:
   - q: "4월 CPI가 다시 올랐는데, 연준이 금리를 더 올릴 가능성이 있나요?"

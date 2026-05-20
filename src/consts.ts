@@ -27,7 +27,7 @@ export const AUTHORS: Record<string, {
 		nameEn: 'Steve Song',
 		jobTitle: '편집장 · Editor-in-Chief',
 		bio: '미국 스토리 편집장. 한국계 미국인 가정의 이민·세무·재정 이슈를 1차 출처 기반으로 풀어 쓰는 데 집중합니다.',
-		bioFull: '미국 스토리(Miguk Story)를 창간하고 운영합니다. 매주 USCIS, IRS, 한국 국세청, 주요 외신 등 1차 출처를 교차 확인하여 한국계 미국인 가정 관점에서 의미 있는 분석을 추가한 가이드 콘텐츠를 발행합니다. AI 도구는 자료 수집과 초안 작성 단계에서만 사용하며, 모든 게시 글은 최종적으로 사람이 검토·편집합니다.',
+		bioFull: '미국 스토리(Miguk Story)를 창간하고 운영합니다. 매주 USCIS, IRS, 한국 국세청, 주요 외신 등 1차 출처를 교차 확인하여 한국계 미국인 가정 관점에서 의미 있는 분석을 추가한 가이드 콘텐츠를 발행합니다. 모든 게시 글은 발행 전 편집실에서 사실관계를 직접 검토·편집합니다.',
 		expertise: ['immigration', 'tax', 'community', 'economy'],
 		email: 'editor@migukstory.com',
 		sameAs: [

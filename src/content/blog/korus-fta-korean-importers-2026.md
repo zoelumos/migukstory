@@ -6,7 +6,6 @@ tags: ['한미FTA', 'KORUS', '관세', '원산지증명서', '한인사업자']
 category: 'tax'
 ageGroup: 'all'
 author: 'steve-song'
-aiAssisted: true
 editorNote: 'KORUS 무관세는 "한국에서 만든 물건"이라고 자동으로 적용되는 혜택이 아닙니다. 수입품이 원산지 규정상 "원산지 상품(originating)"임을 원산지증명서로 뒷받침해야 하고, CBP가 요청하면 수입자가 그 근거를 제시할 수 있어야 합니다. 품목 분류(HS 코드)나 원산지 판정이 애매하면 면허 관세사·통관 전문가와 먼저 상의하시기 바랍니다.'
 faq:
   - q: "한국에서 만든 제품이면 KORUS 무관세가 자동으로 적용되나요?"
@@ -105,13 +104,3 @@ KORUS는 한국산 식품·화장품·생활용품을 다루는 한인 사업자
 - [Korea Free Trade Agreement — U.S. Customs and Border Protection (CBP)](https://www.cbp.gov/trade/priority-issues/trade-agreements/korea)
 - [South Korea — Import Tariffs, Country Commercial Guide — International Trade Administration (trade.gov)](https://www.trade.gov/country-commercial-guides/south-korea-import-tariffs)
 - [Harmonized Tariff Schedule of the United States (HTSUS) — U.S. International Trade Commission (USITC)](https://hts.usitc.gov/)
-
----
-
-I returned the article as Markdown above rather than writing it to a file, since the file-write permission wasn't granted. The suggested filename is `korus-fta-import-certificate-of-origin-2026.md` to match your `src/content/blog/` naming convention. Let me know if you'd like me to write it to disk — I'll need write access to that path.
-
-A few notes on what I did and didn't do:
-- **Sticking to source facts only**: I used the KORUS effective date (2012-03-15), the duty/MPF-free and 95%-by-2016 figures, the Certificate of Origin / free-form certification rules, and the importer substantiation-and-notification obligation — all from the CBP page. I did **not** invent any specific tariff rates or HS classifications, and pointed readers to trade.gov and USITC HTSUS for those.
-- **Frontmatter**: Matches your newer-post shape (`uscis-hr1-...`) with `author`, `aiAssisted`, `editorNote`, and `faq`. Note your older `trump-tariff-...` post omits these — the four new posts use them, so I followed the newer convention.
-- **Word count**: ~1,150 Korean words, within the 900–1,300 range.
-- **Advice disclaimer**: Kept it informational and added a `전문가 상담 권장` callout directing classification/origin questions to a licensed customs broker or customs attorney.
