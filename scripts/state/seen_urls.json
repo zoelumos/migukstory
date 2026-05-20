@@ -2,6 +2,12 @@
   "_comment": "Canonical URLs already turned into drafts. Maintained by scripts/draft_from_rss.py. Safe to hand-edit.",
   "version": 1,
   "seen": {
+    "https://federalreserve.gov/newsevents/pressreleases/monetary20260414a.htm": {
+      "first_seen": "2026-05-20",
+      "source": "Federal Reserve Press (Monetary Policy)",
+      "title": "Minutes of the Board’s discount rate meetings on February 9 and March 18, 2026",
+      "draft": "drafts/2026-05-20-minutes-of-the-board-s-discount-rate-meetings-on-february-9-and-march-18-2026.md"
+    },
     "https://federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm": {
       "first_seen": "2026-05-19",
       "source": "Federal Reserve Press (Monetary Policy)",
@@ -14,6 +20,12 @@
       "title": "South Korea Tax Agency Issues 2026 Individual Income Tax Guide for Nonresidents in English, Korean",
       "draft": "drafts/2026-05-18-korea-nts-nonresident-tax-2026.md"
     },
+    "https://npr.org/2026/05/19/g-s1-122938/irs-trump-settlement-tax-returns-audit": {
+      "first_seen": "2026-05-20",
+      "source": "NPR Business",
+      "title": "U.S. government to drop tax claims against Trump in broadening of IRS settlement",
+      "draft": "drafts/2026-05-20-u-s-government-to-drop-tax-claims-against-trump-in-broadening-of-irs-settlement.md"
+    },
     "https://npr.org/sections/planet-money/2026/05/19/g-s1-122695/the-missing-men-of-the-american-marriage-market": {
       "first_seen": "2026-05-19",
       "source": "NPR Business",
@@ -25,6 +37,12 @@
       "source": "CDC Newsroom",
       "title": "Transcript - Update on Ebola Outbreak in the Democratic Republic of the Congo and Uganda, 5/18/2026",
       "draft": "drafts/2026-05-19-transcript-update-on-ebola-outbreak-in-the-democratic-republic-of-the-congo-and.md"
+    },
+    "https://tools.cdc.gov/api/embed/downloader/download.asp?c=765599&m=132608": {
+      "first_seen": "2026-05-20",
+      "source": "CDC Newsroom",
+      "title": "Transcript - Updates on CDC's Response to Ebola Outbreak in DRC and Uganda and Hantavirus Linked to M/V Hondius, 5/19/2026",
+      "draft": "drafts/2026-05-20-transcript-updates-on-cdc-s-response-to-ebola-outbreak-in-drc-and-uganda-and-han.md"
     },
     "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin/2026/visa-bulletin-for-may-2026.html": {
       "first_seen": "2026-05-18",
@@ -43,6 +61,18 @@
       "source": "State Department Travel Advisories",
       "title": "Sweden - Level 2: Exercise Increased Caution",
       "draft": "drafts/2026-05-19-sweden-level-2-exercise-increased-caution.md"
+    },
+    "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.hrv.html": {
+      "first_seen": "2026-05-20",
+      "source": "State Department Travel Advisories",
+      "title": "Croatia - Level 1: Exercise Normal Precautions",
+      "draft": "drafts/2026-05-20-croatia-level-1-exercise-normal-precautions.md"
+    },
+    "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ven.html": {
+      "first_seen": "2026-05-20",
+      "source": "State Department Travel Advisories",
+      "title": "Venezuela - Level 3: Reconsider Travel",
+      "draft": "drafts/2026-05-20-venezuela-level-3-reconsider-travel.md"
     },
     "https://uscis.gov/newsroom/alerts/dhs-announces-consequences-for-unpaid-annual-asylum-fees-unveils-new-hr-1-requirements": {
       "first_seen": "2026-05-18",
