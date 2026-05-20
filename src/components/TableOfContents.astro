@@ -2,10 +2,12 @@
 /**
  * Auto-generated table of contents.
  *
- * Client-side script scans the .prose container for H2 elements after
- * Markdown renders, builds nested <a> list with id-anchors, and injects.
- * Korean long-form readers scan-first → strong scroll affordance for
- * 1,500-2,500자 articles.
+ * The build logic lives in /public/js/article-toc.js — served as an external
+ * same-origin script because the site CSP (public/_headers) drops
+ * 'unsafe-inline', which blocks inline <script> blocks. It scans the .prose
+ * container for H2/H3 elements, builds a nested <a> list with id-anchors, and
+ * injects it. Korean long-form readers scan-first → strong scroll affordance
+ * for 1,500-2,500자 articles.
  *
  * Renders as collapsible <details> by default; opens on desktop.
  */
@@ -23,58 +25,7 @@
 	</nav>
 </details>
 
-<script is:inline>
-	(function () {
-		document.addEventListener('DOMContentLoaded', function () {
-			const prose = document.querySelector('.prose');
-			const list = document.getElementById('toc-list');
-			const wrap = document.getElementById('article-toc');
-			if (!prose || !list || !wrap) return;
-			const heads = prose.querySelectorAll('h2, h3');
-			if (heads.length < 3) {
-				wrap.style.display = 'none';
-				return;
-			}
-			let html = '';
-			heads.forEach(function (h, i) {
-				if (!h.id) {
-					h.id = 'sec-' + (i + 1) + '-' + (h.textContent || '')
-						.toLowerCase()
-						.replace(/[^a-z0-9가-힣]+/g, '-')
-						.replace(/^-|-$/g, '')
-						.slice(0, 40);
-				}
-				const lvl = h.tagName === 'H3' ? 'lvl-3' : 'lvl-2';
-				html += '<li class="' + lvl + '"><a href="#' + h.id + '">' + h.textContent + '</a></li>';
-			});
-			list.innerHTML = html;
-
-			// Active-section highlighting on scroll
-			const links = list.querySelectorAll('a');
-			const ioMap = {};
-			links.forEach(function (a) {
-				const id = a.getAttribute('href').slice(1);
-				ioMap[id] = a;
-			});
-			const io = new IntersectionObserver(function (entries) {
-				entries.forEach(function (entry) {
-					const a = ioMap[entry.target.id];
-					if (!a) return;
-					if (entry.isIntersecting) {
-						links.forEach(function (l) { l.classList.remove('active'); });
-						a.classList.add('active');
-					}
-				});
-			}, { rootMargin: '-20% 0% -70% 0%' });
-			heads.forEach(function (h) { io.observe(h); });
-
-			// Close TOC on mobile by default
-			if (window.matchMedia('(max-width: 720px)').matches) {
-				wrap.open = false;
-			}
-		});
-	})();
-</script>
+<script src="/js/article-toc.js" defer></script>
 
 <style>
 	.toc {
