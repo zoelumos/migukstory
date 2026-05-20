@@ -11,7 +11,8 @@ Pipelines:
                  Officially supported for JobPosting / BroadcastEvent only;
                  we use it for NewsArticle (works in practice; not contractual).
                  Requires service-account JSON with Search Console Owner role.
-                 Optional — runs only if GOOGLE_SERVICE_ACCOUNT_JSON is set.
+                 Optional — runs only if a service-account secret is set
+                 (GSC_SERVICE_ACCOUNT or GOOGLE_SERVICE_ACCOUNT_JSON).
 
 URL discovery:
   Run with explicit URLs:   notify_indexes.py https://… https://…
@@ -24,8 +25,13 @@ Env:
   INDEXNOW_KEY                   required for IndexNow. Read from this env OR
                                  falls back to scanning public/*.txt for a file
                                  whose name == content (standard IndexNow pattern).
-  GOOGLE_SERVICE_ACCOUNT_JSON    optional. Full JSON contents as a string.
-                                 When set, Google Indexing API path is also used.
+  GSC_SERVICE_ACCOUNT            optional. Google service-account JSON, either
+                                 raw or base64-encoded (auto-detected). This is
+                                 the GitHub Actions secret name used by this
+                                 repo — see .github/workflows/. When set, the
+                                 Google Indexing API path is also used.
+  GOOGLE_SERVICE_ACCOUNT_JSON    optional, legacy alias. Raw JSON string only.
+                                 Checked if GSC_SERVICE_ACCOUNT is unset.
 
 Exit codes:
   0  all submissions succeeded (or skipped cleanly)
@@ -161,6 +167,40 @@ def submit_google_indexing(urls: list[str], sa_json: str) -> list[tuple[str, boo
     return results
 
 
+def resolve_google_sa() -> str | None:
+    """Resolve the Google service-account JSON from the environment.
+
+    Accepts either secret name, in priority order:
+      1. GSC_SERVICE_ACCOUNT          — raw JSON OR base64-encoded JSON.
+                                        This is the GitHub Actions secret name
+                                        configured for this repo.
+      2. GOOGLE_SERVICE_ACCOUNT_JSON  — legacy alias; raw JSON only.
+
+    base64 values are auto-detected and decoded. Returns the raw JSON string,
+    or None if neither variable is set / usable. The value itself is never
+    logged — only which variable was used.
+    """
+    import base64
+
+    for var in ("GSC_SERVICE_ACCOUNT", "GOOGLE_SERVICE_ACCOUNT_JSON"):
+        raw = os.environ.get(var, "").strip()
+        if not raw:
+            continue
+        if raw.lstrip().startswith("{"):
+            return raw  # already JSON
+        # Otherwise treat it as base64-encoded JSON.
+        try:
+            decoded = base64.b64decode(raw, validate=True).decode("utf-8")
+        except Exception:
+            print(f"⚠️  {var} is set but is neither JSON nor valid base64 — ignoring.",
+                  file=sys.stderr)
+            continue
+        if decoded.lstrip().startswith("{"):
+            return decoded
+        print(f"⚠️  {var} decoded but does not look like JSON — ignoring.", file=sys.stderr)
+    return None
+
+
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Submit URLs to IndexNow + Google Indexing API.")
     p.add_argument("urls", nargs="*", help="Full URLs to submit. Omit with --auto to discover from git.")
@@ -206,9 +246,10 @@ def main() -> int:
             any_failure = True
 
     # Google Indexing API (optional)
-    sa = os.environ.get("GOOGLE_SERVICE_ACCOUNT_JSON", "").strip()
+    sa = resolve_google_sa()
     if not sa:
-        print("\nℹ️  Google Indexing API: GOOGLE_SERVICE_ACCOUNT_JSON not set — skipping.")
+        print("\nℹ️  Google Indexing API: no service-account secret set "
+              "(GSC_SERVICE_ACCOUNT / GOOGLE_SERVICE_ACCOUNT_JSON) — skipping.")
     else:
         print("\n🔔 Google Indexing API:")
         results = submit_google_indexing(urls, sa)

@@ -58,6 +58,34 @@ ageGroup: '20-35' | '35-55' | '55+' | 'all'
 npx wrangler pages deploy dist --project-name=migukstory --branch=main
 ```
 
+## Search indexing
+
+New posts are submitted to search engines automatically — no manual step:
+
+- **IndexNow** (Bing, Yandex, Naver, …) — no secret needed; the key file lives
+  at `public/<key>.txt`.
+- **Google Indexing API** — needs the repo secret **`GSC_SERVICE_ACCOUNT`**: a
+  Google service-account JSON (Indexing API enabled, account added as a Search
+  Console owner), **base64-encoded**. Rotate it with:
+
+  ```bash
+  base64 -i .secrets/gsc-service-account.json | gh secret set GSC_SERVICE_ACCOUNT
+  ```
+
+Three workflows cover every publish path, all using `GSC_SERVICE_ACCOUNT`:
+
+| Workflow | Trigger | What it submits |
+|---|---|---|
+| `google-index.yml` | daily 09:00 UTC · push to `src/content/**`,`src/pages/**` · manual | sitemap + every site URL |
+| `cloudflare-deploy.yml` | push to `main` (content/code) | URLs added in the last commit |
+| `daily-post.yml` | daily queue publish | URL(s) the queue-publish commit added |
+
+The `daily-post.yml` ping is required because its publish commit is pushed with
+the default `GITHUB_TOKEN`, which by design does **not** trigger the other two
+workflows. `scripts/notify_indexes.py` also accepts a raw-JSON
+`GOOGLE_SERVICE_ACCOUNT_JSON` as a legacy fallback when `GSC_SERVICE_ACCOUNT`
+is unset.
+
 ## Editorial principles
 
 - **Source every claim** — government (USCIS, IRS, SSA), major news (NYT, NPR, CNN, Korea Times, JoongAng)
