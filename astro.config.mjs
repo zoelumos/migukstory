@@ -23,9 +23,14 @@ export default defineConfig({
 					path.startsWith('/admin/') ||
 					path === '/admin/' ||
 					path.startsWith('/auth/') ||
-					path === '/login/'
+					path === '/login/' ||
+					path === '/404/'
 				);
 			},
+			// lastmod = build timestamp. The site rebuilds + redeploys on every
+			// content change, so the build date is a faithful "last updated"
+			// signal that helps Google/Bing prioritise re-crawls.
+			serialize: (item) => ({ ...item, lastmod: new Date().toISOString() }),
 		}),
 	],
 	markdown: {

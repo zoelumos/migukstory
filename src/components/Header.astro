@@ -1,6 +1,21 @@
 ---
 import { SITE_TITLE, SITE_TAGLINE } from '../consts';
 import UserMenu from './UserMenu.astro';
+
+const navLinks = [
+	{ href: '/blog', label: '전체 글' },
+	{ href: '/category/immigration', label: '이민·비자' },
+	{ href: '/category/tax', label: '세금·재테크' },
+	{ href: '/category/economy', label: '경제·산업' },
+	{ href: '/category/health', label: '건강·보험' },
+	{ href: '/category/education', label: '교육·자녀' },
+	{ href: '/category/retirement', label: '은퇴·연금' },
+	{ href: '/category/community', label: '한인 커뮤니티' },
+	{ href: '/first-30-days', label: '도착 첫 30일' },
+	{ href: '/topics', label: '전체 토픽' },
+	{ href: '/pros', label: '추천 전문가' },
+	{ href: '/contribute', label: '칼럼 기고' },
+];
 ---
 
 <header class="masthead">
@@ -21,28 +36,47 @@ import UserMenu from './UserMenu.astro';
 		<div class="meta-right">
 			<UserMenu />
 			<a href="/contact" class="contact-pill">문의하기 →</a>
+			<button
+				class="nav-toggle"
+				type="button"
+				aria-label="메뉴 열기"
+				aria-expanded="false"
+				aria-controls="primary-nav"
+			>
+				<span class="nav-toggle-bar" aria-hidden="true"></span>
+				<span class="nav-toggle-bar" aria-hidden="true"></span>
+				<span class="nav-toggle-bar" aria-hidden="true"></span>
+			</button>
 		</div>
 	</div>
 
-	<nav class="primary-nav">
+	<nav class="primary-nav" id="primary-nav">
 		<div class="container nav-inner">
-			<a href="/blog">전체 글</a>
-			<a href="/category/immigration">이민·비자</a>
-			<a href="/category/tax">세금·재테크</a>
-			<a href="/category/economy">경제·산업</a>
-			<a href="/category/health">건강·보험</a>
-			<a href="/category/education">교육·자녀</a>
-			<a href="/category/retirement">은퇴·연금</a>
-			<a href="/category/community">한인 커뮤니티</a>
-			<a href="/first-30-days">도착 첫 30일</a>
-			<a href="/topics">전체 토픽</a>
-			<a href="/pros">추천 전문가</a>
-			<a href="/contribute">칼럼 기고</a>
+			{navLinks.map((l) => <a href={l.href}>{l.label}</a>)}
 			<a href="/search" class="search-link" aria-label="검색">🔍 검색</a>
 			<a href="/contact" class="contact-link">문의 · 제보</a>
 		</div>
 	</nav>
 </header>
+
+<script>
+	// Mobile hamburger toggle — accessible (aria-expanded), closes on Escape + outside click.
+	const toggle = document.querySelector('.nav-toggle') as HTMLButtonElement | null;
+	const nav = document.getElementById('primary-nav');
+	const masthead = document.querySelector('.masthead');
+	if (toggle && nav && masthead) {
+		const setOpen = (open: boolean) => {
+			masthead.classList.toggle('nav-open', open);
+			toggle.setAttribute('aria-expanded', String(open));
+			toggle.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+		};
+		toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+		document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+		document.addEventListener('click', (e) => {
+			if (!masthead.contains(e.target as Node)) setOpen(false);
+		});
+	}
+</script>
 
 <style>
 	.masthead {
@@ -132,6 +166,32 @@ import UserMenu from './UserMenu.astro';
 		color: var(--brick);
 	}
 
+	/* Hamburger button — hidden on desktop */
+	.nav-toggle {
+		display: none;
+		flex-direction: column;
+		justify-content: center;
+		gap: 4px;
+		width: 44px;
+		height: 44px;
+		padding: 0;
+		background: transparent;
+		border: 1px solid var(--rule);
+		border-radius: 4px;
+		cursor: pointer;
+	}
+	.nav-toggle-bar {
+		display: block;
+		width: 20px;
+		height: 2px;
+		margin: 0 auto;
+		background: var(--ink);
+		transition: transform var(--duration) var(--ease-out), opacity var(--duration) var(--ease-out);
+	}
+	.masthead.nav-open .nav-toggle-bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+	.masthead.nav-open .nav-toggle-bar:nth-child(2) { opacity: 0; }
+	.masthead.nav-open .nav-toggle-bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
 	.primary-nav {
 		border-top: 3px double var(--ink);
 		background: var(--paper);
@@ -164,9 +224,7 @@ import UserMenu from './UserMenu.astro';
 		transition: all var(--duration) var(--ease-out);
 		transform: translateX(-50%);
 	}
-	.nav-inner a:hover {
-		color: var(--brick);
-	}
+	.nav-inner a:hover { color: var(--brick); }
 	.nav-inner a:hover::after { width: 80%; }
 	.contact-link {
 		color: var(--brick) !important;
@@ -178,33 +236,50 @@ import UserMenu from './UserMenu.astro';
 	}
 
 	@media (max-width: 720px) {
-		/* Mobile slim: utility-strip hidden (CTA lives in nav), brand row tightened,
-		   nav becomes horizontal scroll. Target header <120px so H1 lands above fold. */
+		/* Mobile: utility-strip hidden, brand row tightened, nav collapses
+		   into a hamburger drawer. Header lands ~64px so H1 stays above fold. */
 		.utility-strip { display: none; }
 		.masthead-inner {
-			grid-template-columns: 1fr auto;
+			grid-template-columns: auto 1fr auto;
 			text-align: left;
 			gap: var(--s-2);
-			padding: var(--s-1) var(--s-2);
+			padding: var(--s-2);
 		}
 		.meta-left { display: none; }
-		.meta-right { text-align: right; font-size: 0.65rem; }
+		.meta-right { text-align: right; font-size: 0.65rem; gap: 0.5em; }
 		.brand { align-items: flex-start; }
-		.brand-ko { font-size: 1.4rem; line-height: 1; }
+		.brand-ko { font-size: 1.45rem; line-height: 1; }
 		.brand-en { font-size: 0.5rem; letter-spacing: 0.3em; }
-		.contact-pill { font-size: 0.65rem; padding: 0.3em 0.6em; }
-		.primary-nav { border-top: 1px solid var(--rule); }
-		.nav-inner {
-			gap: var(--s-2);
-			font-size: 0.78rem;
-			padding: 0.4em var(--s-2);
-			flex-wrap: nowrap;
-			overflow-x: auto;
-			-webkit-overflow-scrolling: touch;
-			scrollbar-width: none;
-			justify-content: flex-start;
+		.contact-pill { display: none; }   /* lives inside the drawer on mobile */
+		.nav-toggle { display: flex; }
+
+		/* Nav becomes a vertical drawer, collapsed by default */
+		.primary-nav {
+			border-top: 1px solid var(--rule);
+			max-height: 0;
+			overflow: hidden;
+			transition: max-height var(--duration) var(--ease-out);
 		}
-		.nav-inner::-webkit-scrollbar { display: none; }
-		.nav-inner a { white-space: nowrap; padding: 0.25em 0; }
+		.masthead.nav-open .primary-nav {
+			max-height: 80vh;
+			overflow-y: auto;
+		}
+		.nav-inner {
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0;
+			padding: var(--s-1) 0;
+		}
+		.nav-inner a {
+			display: flex;
+			align-items: center;
+			min-height: 48px;          /* WCAG / Google tap-target minimum */
+			padding: 0 var(--s-3);
+			font-size: 0.95rem;
+			border-bottom: 1px solid var(--rule);
+		}
+		.nav-inner a:last-child { border-bottom: none; }
+		.nav-inner a::after { display: none; }
+		.nav-inner a:active { background: var(--paper-soft); }
 	}
 </style>

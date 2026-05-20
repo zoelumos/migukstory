@@ -1,0 +1,100 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+
+// Cloudflare Pages serves dist/404.html with a real HTTP 404 status for any
+// unmatched route — this kills the soft-404 problem (unknown URLs previously
+// returned HTTP 200 with homepage content).
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead
+			title={`페이지를 찾을 수 없습니다 (404) — ${SITE_TITLE}`}
+			description="요청하신 페이지를 찾을 수 없습니다. 미국 스토리 홈에서 이민·세금·건강·교육 정보를 확인하세요."
+			noindex={true}
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="container narrow">
+				<section class="notfound">
+					<p class="code">404</p>
+					<h1>페이지를 찾을 수 없습니다</h1>
+					<p class="lead">
+						주소가 바뀌었거나 삭제된 페이지일 수 있습니다.
+						아래에서 찾으시는 정보로 이동해 보세요.
+					</p>
+					<div class="links">
+						<a href="/" class="primary">홈으로 →</a>
+						<a href="/topics/">전체 토픽</a>
+						<a href="/blog">전체 글</a>
+						<a href="/search/">검색</a>
+						<a href="/first-30-days/">도착 첫 30일</a>
+					</div>
+					<p class="help">
+						찾으시는 정보가 있는데 보이지 않으면
+						<a href="/contact">제보·요청</a>을 보내주세요.
+					</p>
+				</section>
+			</div>
+		</main>
+		<Footer />
+
+		<style>
+			.notfound {
+				text-align: center;
+				padding: var(--s-6) 0;
+				max-width: 36em;
+				margin: 0 auto;
+			}
+			.code {
+				font-family: var(--font-display);
+				font-size: clamp(4rem, 14vw, 8rem);
+				line-height: 1;
+				color: var(--brick);
+				margin: 0;
+				letter-spacing: -0.04em;
+			}
+			.notfound h1 {
+				font-family: var(--font-display);
+				font-size: clamp(1.5rem, 4vw, 2.25rem);
+				margin: var(--s-2) 0 var(--s-3);
+				color: var(--ink);
+				letter-spacing: -0.02em;
+			}
+			.lead {
+				color: var(--ink-medium);
+				line-height: 1.7;
+				margin: 0 0 var(--s-4);
+			}
+			.links {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.6em;
+				justify-content: center;
+				margin-bottom: var(--s-4);
+			}
+			.links a {
+				display: inline-block;
+				padding: 0.6em 1.1em;
+				border: 1px solid var(--rule);
+				border-radius: 4px;
+				text-decoration: none;
+				color: var(--ink);
+				font-size: 0.92rem;
+				font-weight: 600;
+				transition: all var(--duration) var(--ease-out);
+			}
+			.links a:hover { border-color: var(--brick); color: var(--brick); }
+			.links a.primary { background: var(--brick); color: var(--paper); border-color: var(--brick); }
+			.links a.primary:hover { background: var(--brick-deep); color: var(--paper); }
+			.help { font-size: 0.88rem; color: var(--ink-light); }
+			.help a { color: var(--brick); border-bottom: 1px solid currentColor; text-decoration: none; }
+		</style>
+	</body>
+</html>

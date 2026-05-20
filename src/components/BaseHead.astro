@@ -21,10 +21,11 @@ interface Props {
 		totalTime?: string;
 		steps: { name: string; text: string }[];
 	};
+	noindex?: boolean;   // utility pages (login, auth, 404) — keep out of the index
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const { title, description, image = FallbackImage, article, breadcrumbs, faq, howTo } = Astro.props;
+const { title, description, image = FallbackImage, article, breadcrumbs, faq, howTo, noindex } = Astro.props;
 
 // JSON-LD schema for rich results
 const orgSchema = {
@@ -37,13 +38,34 @@ const orgSchema = {
 	"inLanguage": "ko",
 	"logo": {
 		"@type": "ImageObject",
-		"url": `${SITE_URL}/favicon.svg`,
+		"url": `${SITE_URL}/logo-512.png`,
+		"width": 512,
+		"height": 512,
 	},
 	"publishingPrinciples": `${SITE_URL}/about`,
 	"actionableFeedbackPolicy": `${SITE_URL}/contact`,
 	"correctionsPolicy": `${SITE_URL}/disclosure`,
-	"foundingDate": "2026",
+	"foundingDate": "2026-01-01",
 	"sameAs": ORG_SAME_AS,
+};
+
+// WebSite schema — enables the sitelinks search box (Pagefind search at /search/)
+const websiteSchema = {
+	"@context": "https://schema.org",
+	"@type": "WebSite",
+	"name": SITE_TITLE,
+	"alternateName": "Miguk Story",
+	"url": SITE_URL,
+	"inLanguage": "ko",
+	"publisher": { "@type": "NewsMediaOrganization", "name": SITE_TITLE, "url": SITE_URL },
+	"potentialAction": {
+		"@type": "SearchAction",
+		"target": {
+			"@type": "EntryPoint",
+			"urlTemplate": `${SITE_URL}/search/?q={search_term_string}`,
+		},
+		"query-input": "required name=search_term_string",
+	},
 };
 const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
 	"@context": "https://schema.org",
@@ -154,30 +176,40 @@ const howToSchema = howTo ? {
 
 <!--
   Font loading strategy (perf-tuned):
-  Body  = Pretendard Variable from jsdelivr CDN (Korean dynamic subset, async)
-  Display = Gowun Batang from Google Fonts (async, smart subset)
-  Both load with media=print → onload trick to avoid render-blocking.
+  Body    = Pretendard Variable from jsdelivr CDN (Korean dynamic subset, async)
+  Display = Gowun Batang — SELF-HOSTED, subsetted WOFF2 (~450KB/weight vs the
+            8.4MB unsubsetted TTF Google Fonts serves for Korean). Cuts ~16MB
+            of font payload to ~900KB and removes the gstatic dependency.
   System Korean fonts (Apple SD Gothic Neo / Malgun Gothic) render first.
 -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" href="/fonts/gowun-batang-400.woff2" as="font" type="font/woff2" crossorigin />
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
   media="print"
   onload="this.media='all'; this.onload=null"
 />
-<link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap"
-  media="print"
-  onload="this.media='all'; this.onload=null"
-/>
 <noscript>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" />
 </noscript>
+<style is:inline>
+  /* Self-hosted Gowun Batang — subsetted (Hangul + Latin + punctuation) WOFF2 */
+  @font-face {
+    font-family: 'Gowun Batang';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/gowun-batang-400.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Gowun Batang';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/gowun-batang-700.woff2') format('woff2');
+  }
+</style>
 
 <!-- Mermaid diagram loader (lazy, only when post has diagrams) -->
 <script type="module" is:inline>
@@ -217,6 +249,8 @@ const howToSchema = howTo ? {
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
 <!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="title" content={title} />
@@ -236,8 +270,9 @@ const howToSchema = howTo ? {
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
 
-<!-- JSON-LD structured data — Organization + Breadcrumbs + Article (Person author) + FAQ + HowTo -->
+<!-- JSON-LD structured data — Organization + WebSite + Breadcrumbs + Article + FAQ + HowTo -->
 <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 {breadcrumbSchema && (
 	<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 )}
