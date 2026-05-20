@@ -92,54 +92,7 @@ const { catMeta, posts } = Astro.props;
 					</>
 				)}
 
-				<!--
-				  Bundled (NOT is:inline) on purpose. The production CSP in
-				  public/_headers sets `script-src 'self'` with no 'unsafe-inline',
-				  so a raw inline script is blocked and the sort/search filter dies.
-				  A processed <script> is bundled to /_astro/*.js (same-origin) and
-				  satisfies `script-src 'self'`.
-				-->
-				<script>
-					// @ts-nocheck -- DOM is rendered by this page; runtime guards below handle missing nodes.
-					(function () {
-						const list = document.getElementById('cat-list');
-						if (!list) return;
-						const items = Array.from(list.querySelectorAll('.archive-item'));
-						const visibleCount = document.getElementById('visible-count');
-						const sortSelect = document.getElementById('sort-select');
-						const searchInput = document.getElementById('search-input');
-						const emptyMsg = document.getElementById('empty-filter');
-
-						function applyFilter() {
-							const q = searchInput.value.trim().toLowerCase();
-							let visible = 0;
-							items.forEach(it => {
-								const show = !q ||
-									it.dataset.title.includes(q) ||
-									it.dataset.desc.includes(q) ||
-									it.dataset.tags.toLowerCase().includes(q);
-								it.style.display = show ? '' : 'none';
-								if (show) visible++;
-							});
-							visibleCount.textContent = visible;
-							emptyMsg.hidden = visible !== 0;
-						}
-
-						function applySort() {
-							const mode = sortSelect.value;
-							const sorted = [...items].sort((a, b) => {
-								if (mode === 'newest') return b.dataset.date.localeCompare(a.dataset.date);
-								if (mode === 'oldest') return a.dataset.date.localeCompare(b.dataset.date);
-								if (mode === 'title')  return a.dataset.title.localeCompare(b.dataset.title, 'ko');
-								return 0;
-							});
-							sorted.forEach(it => list.appendChild(it));
-						}
-
-						searchInput.addEventListener('input', applyFilter);
-						sortSelect.addEventListener('change', applySort);
-					})();
-				</script>
+								<script src="/js/category-list-filters.js" defer></script>
 			</div>
 		</main>
 		<Footer />
