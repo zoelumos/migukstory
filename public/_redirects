@@ -1,6 +1,0 @@
-# Cloudflare Pages redirects
-# https://developers.cloudflare.com/pages/configuration/redirects/
-
-# Canonicalize www → apex (301). Prevents the entire site being duplicated
-# on a second hostname (SEO: one canonical host).
-https://www.migukstory.com/* https://migukstory.com/:splat 301
