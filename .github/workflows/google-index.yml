@@ -57,6 +57,18 @@ jobs:
           python3 -m pip install --quiet google-auth 2>&1 | tail -3 || true
           python3 scripts/notify_indexes.py --auto
 
+      - name: Push ALL sitemap URLs to Google Indexing API
+        # Manual-only full-site reindex. Scheduled/push runs are unchanged: the
+        # daily cron still only submits the sitemap, and content pushes still
+        # ping just the newly-added URLs. This step asks Google to (re)index
+        # every URL in the sitemap and only runs from the "Run workflow" button.
+        if: github.event_name == 'workflow_dispatch'
+        # Best-effort, same as above: Google's Indexing API returns 429 once the
+        # daily publish quota (~200 URLs) is exhausted. That must not fail the
+        # workflow after the sitemap was already submitted successfully.
+        continue-on-error: true
+        run: node scripts/google_index.mjs push
+
       - name: Index-status report
         if: always()
         run: node scripts/google_index.mjs status
