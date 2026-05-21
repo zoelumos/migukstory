@@ -1,6 +1,11 @@
 name: Daily post from queue
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'queue/**'
   schedule:
     # Daily at 12:00 UTC = 8:00 AM ET EDT / 7:00 AM ET EST. Publishes 1 post from queue.
     # (publish_from_queue.py defaults to POSTS_PER_RUN=1; can be overridden via manual dispatch.)
@@ -79,3 +84,37 @@ jobs:
           # IndexNow-only when the import fails. Install is fast (~5s).
           python3 -m pip install --quiet google-auth 2>&1 | tail -3 || true
           python3 scripts/notify_indexes.py --auto
+
+      - name: Setup Node for immediate deploy
+        if: steps.publish.outputs.published == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Build site for immediate deploy
+        if: steps.publish.outputs.published == 'true'
+        run: |
+          npm ci
+          npm run build
+
+      - name: Check Cloudflare secrets
+        if: steps.publish.outputs.published == 'true'
+        id: cf-secrets
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -n "$CLOUDFLARE_API_TOKEN" ] && [ -n "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Cloudflare deploy skipped: add repo secrets CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID."
+          fi
+
+      - name: Deploy to Cloudflare Pages immediately
+        if: steps.publish.outputs.published == 'true' && steps.cf-secrets.outputs.ready == 'true'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler pages deploy dist --project-name=migukstory --branch=main
