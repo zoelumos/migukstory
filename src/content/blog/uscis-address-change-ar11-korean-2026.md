@@ -1,7 +1,7 @@
 ---
 title: '이사한 뒤 USCIS 주소 변경, 한인 신청자가 놓치면 위험한 AR-11 체크리스트'
 description: '미국에서 이사한 뒤 USCIS 주소 변경을 언제, 어디서, 어떻게 해야 하는지 정리했습니다. 영주권자·비자 신청자·계류 중 사건이 있는 한인 가정을 위한 AR-11 실전 체크리스트입니다.'
-pubDate: '2026-05-20'
+pubDate: '2026-05-19'
 tags: ['USCIS', 'AR-11', '주소변경', '이민신청', '영주권']
 category: 'immigration'
 ageGroup: 'all'

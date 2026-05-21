@@ -1,4 +1,4 @@
-# RSS feed sources for daily-draft pipeline.
+# RSS feed sources for the daily-draft pipeline.
 #
 # Each source produces candidate items that scripts/draft_from_rss.py
 # turns into Korean-language drafts for human review.
@@ -10,22 +10,41 @@
 #               src/content.config.ts CATEGORIES. The generated draft's
 #               frontmatter `category` defaults to this value.
 #               (immigration | tax | health | education | retirement |
-#                community | real-estate)
+#                community | economy | real-estate)
 #   enabled   : Set to false to skip without deleting the entry.
-#   max_items : Optional. Cap items pulled from this feed per run.
-#               Default = 3.
+#   max_items : Optional. Cap items pulled from this feed per run. Default 3.
 #
-# Edit freely. Reviewers may add Korean-language outlets (조선일보,
-# 중앙일보 미주판, etc.) here. Avoid feeds requiring login / paywalled
-# content; those will yield thin drafts.
+# ─────────────────────────────────────────────────────────────────────────
+# 2026-05-20 audit: the legacy USCIS / IRS / Treasury / SSA feeds were all
+# verified DEAD — USCIS feed/59 returns zero <item> elements; IRS has no RSS
+# in 2026; the Treasury feed 404s; SSA 403s automated access. They are
+# replaced by the Federal Register API, the authoritative source for actual
+# immigration + tax + Social Security regulatory action. Tested live (71
+# items for combined DHS + IRS rules). No API key required.
+# ─────────────────────────────────────────────────────────────────────────
 
 sources:
-  - name: USCIS Newsroom
-    url: https://www.uscis.gov/news/rss-feed/59
+  # ── Tier 1: Federal Register API — regulatory action (RULE + PRORULE) ──
+  # Real fee changes, benefit rules, policy shifts. High signal, no NOTICE noise.
+  - name: Federal Register — Immigration Rules
+    url: https://www.federalregister.gov/api/v1/documents.rss?conditions%5Bagencies%5D%5B%5D=homeland-security-department&conditions%5Bagencies%5D%5B%5D=u-s-citizenship-and-immigration-services&conditions%5Btype%5D%5B%5D=RULE&conditions%5Btype%5D%5B%5D=PRORULE&order=newest
     category: immigration
     enabled: true
     max_items: 3
 
+  - name: Federal Register — Tax Rules (IRS)
+    url: https://www.federalregister.gov/api/v1/documents.rss?conditions%5Bagencies%5D%5B%5D=internal-revenue-service&conditions%5Btype%5D%5B%5D=RULE&conditions%5Btype%5D%5B%5D=PRORULE&order=newest
+    category: tax
+    enabled: true
+    max_items: 3
+
+  - name: Federal Register — Social Security Rules
+    url: https://www.federalregister.gov/api/v1/documents.rss?conditions%5Bagencies%5D%5B%5D=social-security-administration&conditions%5Btype%5D%5B%5D=RULE&conditions%5Btype%5D%5B%5D=PRORULE&order=newest
+    category: retirement
+    enabled: true
+    max_items: 2
+
+  # ── Tier 1: still-working agency feeds ──
   - name: State Department Travel Advisories
     url: https://travel.state.gov/_res/rss/TAsTWs.xml
     category: community
@@ -38,48 +57,13 @@ sources:
     enabled: true
     max_items: 2
 
-  # IRS/SSA official pages are important, but their current public URLs are
-  # not reliable RSS from GitHub Actions (IRS tested as 404 HTML; SSA blocks
-  # automated feed access with 403). Keep disabled until we add an official API
-  # or a verified RSS endpoint.
-  - name: IRS Newsroom
-    url: https://www.irs.gov/newsroom/news-releases-for-current-month
-    category: tax
-    enabled: false
-    max_items: 3
-
-  - name: SSA Press Releases
-    url: https://www.ssa.gov/news/press/releases/
-    category: retirement
-    enabled: false
-    max_items: 2
-
-  - name: NPR Asia
-    url: https://feeds.npr.org/1126/rss.xml
-    category: community
-    enabled: false
-    max_items: 2
-
-  - name: Korea Times US
-    url: https://www.koreatimes.co.kr/www/rss/world.xml
-    category: community
-    enabled: false
-    max_items: 2
-
-  # ── Economy / 경제 ─────────────────────────────────────────────────
-  # Hot KA-relevant economic topics: US Fed decisions, US-Korea trade,
-  # Treasury actions affecting immigrants (FBAR, sanctions), BLS jobs/inflation
-  # data, USTR trade policy. Korean-side sources (Bank of Korea, KITA) kept
-  # disabled until we add a Korean-language draft prompt; English source +
-  # Korean draft works well for US-focused stories.
-
-  - name: U.S. Treasury Press Releases
-    url: https://home.treasury.gov/news/press-releases/feed
-    category: economy
+  - name: CMS Newsroom (Medicare / Medicaid / ACA)
+    url: https://www.cms.gov/newsroom/rss-feeds
+    category: health
     enabled: true
-    max_items: 3
+    max_items: 2
 
-  - name: Federal Reserve Press (Monetary Policy)
+  - name: Federal Reserve — Monetary Policy
     url: https://www.federalreserve.gov/feeds/press_monetary.xml
     category: economy
     enabled: true
@@ -91,8 +75,29 @@ sources:
     enabled: true
     max_items: 2
 
-  - name: Bank of Korea Press (English)
-    url: https://www.bok.or.kr/eng/bbs/E0000634/list.do?menuNo=400069&type=rss
+  # ── DISABLED: verified broken 2026-05-20. Do NOT re-enable without a new URL.
+  - name: USCIS Newsroom            # feed/59 returns ZERO <item> elements — dead
+    url: https://www.uscis.gov/news/rss-feed/59
+    category: immigration
+    enabled: false
+    max_items: 3
+  - name: IRS Newsroom              # no working RSS in 2026 — use Federal Register
+    url: https://www.irs.gov/newsroom
+    category: tax
+    enabled: false
+    max_items: 3
+  - name: U.S. Treasury Press       # feed URL now 404s
+    url: https://home.treasury.gov/news/press-releases/feed
     category: economy
+    enabled: false
+    max_items: 3
+  - name: SSA Press Releases        # 403s automated access — use Federal Register
+    url: https://www.ssa.gov/news/press/releases/
+    category: retirement
+    enabled: false
+    max_items: 2
+  - name: Korea Times US            # feed moved; low KA-family relevance
+    url: https://www.koreatimes.co.kr/www/rss/world.xml
+    category: community
     enabled: false
     max_items: 2

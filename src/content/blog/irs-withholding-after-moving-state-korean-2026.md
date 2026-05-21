@@ -1,7 +1,7 @@
 ---
 title: '타주 이사·새 직장 뒤 세금 폭탄 피하려면: IRS 원천징수 점검 가이드'
 description: '주를 옮기거나 새 직장을 시작한 한인 근로자가 IRS Tax Withholding Estimator와 W-4를 어떻게 활용해야 하는지 정리했습니다. 환급보다 중요한 것은 벌금 없는 현금흐름입니다.'
-pubDate: '2026-05-20'
+pubDate: '2026-05-16'
 tags: ['IRS', 'W-4', '원천징수', '세금', '타주이사']
 category: 'tax'
 ageGroup: '20-35'

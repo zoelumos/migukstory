@@ -1,7 +1,7 @@
 ---
 title: 'ICE 단속 시민권자도 표적 — 한인사회 공포 확산'
 description: 'ICE 단속이 시카고, 미네소타, LA로 확대되면서 시민권자까지 잘못 체포되는 사례가 늘고 있습니다. 한인사회에 미치는 영향과 대응 방법을 정리했습니다.'
-pubDate: '2026-05-19'
+pubDate: '2026-04-26'
 tags: ['ICE', '단속', '한인사회', '시민권자', '이민단속']
 category: 'immigration'
 ageGroup: 'all'

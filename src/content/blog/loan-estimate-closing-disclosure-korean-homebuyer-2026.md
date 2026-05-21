@@ -1,7 +1,7 @@
 ---
 title: '집 살 때 Loan Estimate와 Closing Disclosure, 한인 첫 주택구입자 핵심 해석법'
 description: 'CFPB의 Loan Estimate와 Closing Disclosure 안내를 바탕으로 한인 첫 주택구입자가 대출비용, 현금준비금, 클로징 전 비교해야 할 항목을 정리했습니다.'
-pubDate: '2026-05-20'
+pubDate: '2026-05-17'
 tags: ['주택구입', '모기지', 'Loan Estimate', 'Closing Disclosure', 'CFPB']
 category: 'real-estate'
 ageGroup: '35-55'

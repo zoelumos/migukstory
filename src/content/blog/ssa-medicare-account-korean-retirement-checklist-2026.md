@@ -1,7 +1,7 @@
 ---
 title: '은퇴 전 my Social Security와 Medicare 선택지, 한인 55+ 체크리스트'
 description: '55세 이상 한인 가정이 은퇴 전 my Social Security 계정, 예상 연금, Medicare Original과 Advantage 비교를 어떻게 점검해야 하는지 정리했습니다.'
-pubDate: '2026-05-20'
+pubDate: '2026-05-18'
 tags: ['Social Security', 'Medicare', '은퇴', '연금', '55+']
 category: 'retirement'
 ageGroup: '55+'

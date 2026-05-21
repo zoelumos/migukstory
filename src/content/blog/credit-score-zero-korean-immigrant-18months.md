@@ -1,7 +1,7 @@
 ---
 title: '신용점수 0에서 시작 — 한국인 미국 정착 18개월 신용 형성 가이드 2026'
 description: '신용점수 0에서 시작하는 한국인 미국 이민자를 위한 18개월 신용 형성 로드맵. Nova Credit, Capital One Secured 카드, ITIN 신청 가능 카드, FAQ까지 2026년 최신 정보.'
-pubDate: '2026-05-17'
+pubDate: '2026-04-09'
 tags: ['신용점수', '미국정착', '한국인이민자', 'secured카드', 'NovaCredit', '신용형성', '2026이민자']
 ageGroup: '20-35'
 category: 'tax'

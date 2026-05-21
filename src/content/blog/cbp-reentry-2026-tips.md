@@ -1,7 +1,7 @@
 ---
 title: '입국 심사 강화 2026 — 한국 다녀온 뒤 재입국 시 주의사항'
 description: '강화된 CBP 입국 심사로 2차 심사·전자기기 검색이 늘고 있습니다. 한국 방문 후 미국 재입국 시 비자·영주권 소지자가 반드시 알아야 할 5가지를 정리했습니다.'
-pubDate: '2026-05-17'
+pubDate: '2026-04-07'
 tags: ['CBP', '재입국', '2차심사', 'SEVIS', '영주권']
 category: 'immigration'
 ageGroup: 'all'

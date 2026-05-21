@@ -1,7 +1,7 @@
 ---
 title: 'REAL ID 완전정복 2026 — 국내선 탑승, 한인 이민자가 챙겨야 할 신분증'
 description: '2025년 5월 7일부터 미국 국내선 비행기 탑승과 일부 연방시설 출입에 REAL ID가 필요합니다. REAL ID란 무엇인지, 한인 이민자가 발급받을 때 필요한 서류, 비시민권자의 LIMITED TERM 표기, 그리고 여권·영주권 카드 등 대체 신분증까지 — DHS·TSA 공식 안내를 바탕으로 정리한 2026 가이드입니다.'
-pubDate: '2026-05-19'
+pubDate: '2026-05-03'
 tags: ['REALID', '리얼아이디', '신분증', '국내선', 'TSA']
 category: 'community'
 ageGroup: 'all'

@@ -1,7 +1,7 @@
 ---
 title: '여름 전 자녀 여권·유권자 등록, 한인 커뮤니티가 지금 확인할 행정 체크리스트'
 description: '미성년 자녀 여권 신청과 유권자 등록은 가족 일정에 직접 영향을 줍니다. State Department와 USA.gov 안내를 바탕으로 한인 가정이 오늘 확인할 항목을 정리했습니다.'
-pubDate: '2026-05-20'
+pubDate: '2026-05-09'
 tags: ['여권', '유권자등록', '한인가정', '시민권', '커뮤니티']
 category: 'community'
 ageGroup: 'all'

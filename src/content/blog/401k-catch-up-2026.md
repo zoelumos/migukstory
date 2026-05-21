@@ -1,7 +1,7 @@
 ---
 title: '2026 401k 한도 $24,500 — 50세 이상 catch-up $8,000 활용법'
 description: '2026년 IRS 401(k) 한도가 $24,500으로 인상되고 50세 이상 catch-up은 $8,000이 됩니다. 60~63세 슈퍼 catch-up까지 포함한 활용 가이드.'
-pubDate: '2026-05-17'
+pubDate: '2026-04-02'
 tags: ['401k', '은퇴저축', '세금', 'catch-up', 'IRS']
 category: 'tax'
 ageGroup: 'all'

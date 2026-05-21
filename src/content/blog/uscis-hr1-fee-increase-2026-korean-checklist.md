@@ -1,7 +1,7 @@
 ---
 title: 'H.R.1 이민 수수료 인상 2026 — 망명·TPS·가석방 신청자를 위한 USCIS 수수료 체크리스트'
 description: '2026년 1월 1일부터 H.R.1 이민 관련 수수료가 인플레이션 조정으로 인상됐고, USCIS는 5월 6일 새 수수료표(G-1055)를 발표했습니다. 망명·TPS·가석방·EAD 신청자가 알아야 할 금액과 납부 방법을 한눈에 정리합니다.'
-pubDate: '2026-05-19'
+pubDate: '2026-05-09'
 tags: ['USCIS', '이민수수료', 'H.R.1', 'TPS', 'EAD']
 category: 'immigration'
 ageGroup: 'all'

@@ -1,7 +1,7 @@
 ---
 title: '2026년 5월 비자불레틴 — EB-1·2 현행, EB-3는 2024년 6월 1일'
 description: '미 국무부 2026년 5월 비자불레틴: 한국 포함 일반(All Chargeability) EB-1·EB-2는 Current, EB-3 최종행동일은 2024년 6월 1일. F-2A는 2024년 8월 1일까지 도래.'
-pubDate: '2026-05-18'
+pubDate: '2026-04-20'
 tags: ['비자불레틴', '취업이민', '가족이민', '영주권', 'EB-3']
 category: 'immigration'
 ageGroup: 'all'

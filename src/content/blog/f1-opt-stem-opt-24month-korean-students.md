@@ -1,7 +1,7 @@
 ---
 title: 'F-1 → OPT → STEM OPT 24개월 연장 완벽 가이드 2026 — 한국 유학생 필독'
 description: '2026년 F-1 유학생을 위한 OPT 12개월 + STEM OPT 24개월 연장 완벽 가이드. 졸업 90일 전 신청 시점, E-Verify 고용주 요건, I-983 작성, 무직 150일 한도까지 한국 유학생 필수 정보 정리.'
-pubDate: '2026-05-17'
+pubDate: '2026-04-09'
 tags: ['F1비자', 'OPT', 'STEMOPT', '한국유학생', '미국취업비자', 'EAD카드', '2026유학', 'H1B', 'I983', '이민변호사']
 ageGroup: '20-35'
 category: 'immigration'

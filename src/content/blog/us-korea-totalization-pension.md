@@ -1,7 +1,7 @@
 ---
 title: '한미 사회보장협정으로 양국 연금 모두 받는 법 — 2026년 최신 가이드'
 description: '한미 사회보장협정으로 미국 Social Security와 한국 국민연금을 모두 받는 방법을 2026년 최신 기준으로 정리했습니다. WEP 폐지, 합산 자격, 신청 절차까지 한 번에.'
-pubDate: '2026-05-17'
+pubDate: '2026-04-17'
 tags: ['한미사회보장협정', 'SocialSecurity', '국민연금', '양국연금', '한국계미국인은퇴', '토탈리제이션']
 ageGroup: '55+'
 category: 'retirement'

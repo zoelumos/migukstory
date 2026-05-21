@@ -1,7 +1,7 @@
 ---
 title: 'FAFSA 작성 전 부모 신분·Contributor 초대, 한인 가정이 헷갈리는 지점'
 description: 'FAFSA 작성 과정에서 학생 시민권·비시민권 자격, 부모 Contributor 초대, 세금정보 제공을 어떻게 이해해야 하는지 한인 가정 관점에서 정리했습니다.'
-pubDate: '2026-05-20'
+pubDate: '2026-05-15'
 tags: ['FAFSA', '학자금', 'Contributor', '유학생', '대학']
 category: 'education'
 ageGroup: '20-35'

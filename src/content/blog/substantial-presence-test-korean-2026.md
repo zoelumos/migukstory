@@ -1,7 +1,7 @@
 ---
 title: '미국 세법상 거주자인가 비거주자인가 — 실질적 체류 요건(Substantial Presence Test) 2026'
 description: '미국 세금은 이민 신분이 아니라 세법상 거주자 판정에 따라 달라집니다. 영주권 시험과 실질적 체류 요건(Substantial Presence Test)의 31일·183일 공식, 날짜를 세지 않는 면제 대상자(F·J 비자), 밀접한 관계 예외와 첫해 선택, 이중 신분과 한미 조세조약까지 — IRS 공식 안내를 바탕으로 정리한 2026 가이드입니다.'
-pubDate: '2026-05-19'
+pubDate: '2026-05-06'
 tags: ['거주자판정', 'SubstantialPresenceTest', '세금신고', '비거주외국인', 'IRS']
 category: 'tax'
 ageGroup: 'all'

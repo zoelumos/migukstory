@@ -1,7 +1,7 @@
 ---
 title: '65세 한국 회귀 — F-5-13 비자와 Medicare 포기 실제 계산 2026'
 description: '한국 영주권 F-5-13 비자 요건과 Medicare 포기 시 실제 비용 차이를 2026년 한국 GNI 기준으로 계산합니다. 연금 ₩9,991만 원 이상 수령자가 대상입니다.'
-pubDate: '2026-05-19'
+pubDate: '2026-05-05'
 tags: ['은퇴', '한국회귀', 'F-5비자', 'Medicare', '국민건강보험']
 category: 'retirement'
 ageGroup: 'all'

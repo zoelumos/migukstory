@@ -1,7 +1,7 @@
 ---
 title: 'USCIS 연례 망명 수수료 시행 — 5월 29일부터 미납자 신청 거부'
 description: 'USCIS가 2026년 5월 29일부터 연례 망명 수수료 미납자의 I-589 신청을 거부하고 망명 기반 EAD 발급도 중단합니다. 한인 망명 신청자가 알아야 할 핵심 정리.'
-pubDate: '2026-05-18'
+pubDate: '2026-04-19'
 tags: ['망명', '비자', 'USCIS', 'I-589', '수수료']
 category: 'immigration'
 ageGroup: 'all'

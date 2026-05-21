@@ -1,7 +1,7 @@
 ---
 title: 'FAFSA 한국어 가이드 2026 — 한인 학부모 단계별 신청법'
 description: '2026-2027 FAFSA가 한국어 포함 11개 언어로 제공됩니다. 자녀 대학 진학을 앞둔 한인 학부모를 위한 FAFSA 신청 변경사항, 절차, 마감일을 단계별로 정리했습니다.'
-pubDate: '2026-05-19'
+pubDate: '2026-04-21'
 tags: ['FAFSA', '학자금', '대학진학', '재정지원', '한인학부모']
 category: 'education'
 ageGroup: 'all'

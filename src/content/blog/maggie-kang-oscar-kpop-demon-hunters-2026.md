@@ -1,7 +1,7 @@
 ---
 title: '매기 강 감독, 오스카 무대에서 눈물의 인사 — KPop Demon Hunters 최초 한국계 감독 수상의 의미'
 description: '한국 태생 매기 강 감독이 KPop Demon Hunters로 한국계 최초 오스카 장편 애니메이션상을 수상했습니다. 수상 연설, 작품의 의미, 한류 흐름을 정리했습니다.'
-pubDate: '2026-05-17'
+pubDate: '2026-04-13'
 tags: ['매기강', '오스카', 'KPopDemonHunters', '한국계감독', '한류', 'Parasite', 'SonyPicturesAnimation', '한국계미국인영화']
 ageGroup: 'all'
 category: 'community'
