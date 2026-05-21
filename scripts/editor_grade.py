@@ -130,9 +130,9 @@ USER_PROMPT_TEMPLATE = """다음은 사람 검토 전 AI가 작성한 한국어 
 
 ## 판정 기준
 
-총점이 80 이상이면 자동으로 queue/로 승격되어 사람 한 명이 PR 머지만 누르면
-발행됩니다. 따라서 80점 이상은 **사실관계가 명확하고 한인 관점이 살아있는 글**
-에만 부여하세요. 의심스러우면 보수적으로 79점 이하를 주세요.
+총점이 {threshold} 이상이면 자동으로 queue/로 승격되어 사람 한 명이 PR 머지만 누르면
+발행됩니다. 따라서 {threshold}점 이상은 **사실관계가 명확하고 한인 관점이 살아있는 글**
+에만 부여하세요. 의심스러우면 보수적으로 {below_threshold}점 이하를 주세요.
 
 ## 입력 초안 (파일명: {slug}.md)
 
@@ -160,9 +160,14 @@ USER_PROMPT_TEMPLATE = """다음은 사람 검토 전 AI가 작성한 한국어 
 """
 
 
-def _editor_user_prompt(slug: str, content: str) -> str:
+def _editor_user_prompt(slug: str, content: str, threshold: int) -> str:
     truncated = content if len(content) < 12000 else content[:12000] + "\n…(잘림)"
-    return USER_PROMPT_TEMPLATE.format(slug=slug, content=truncated)
+    return USER_PROMPT_TEMPLATE.format(
+        slug=slug,
+        content=truncated,
+        threshold=threshold,
+        below_threshold=max(0, threshold - 1),
+    )
 
 
 def _parse_editor_output(raw: str, slug: str) -> tuple[dict, int]:
@@ -204,12 +209,12 @@ def _extract_first_json_object(raw: str) -> dict | None:
     return None
 
 
-def _editor_via_cli(slug: str, content: str, cli_timeout: int) -> tuple[dict, int]:
+def _editor_via_cli(slug: str, content: str, threshold: int, cli_timeout: int) -> tuple[dict, int]:
     import subprocess
     combined = (
         SYSTEM_PROMPT
         + "\n\nRespond with the JSON object only — no code fences, no preamble. Do NOT use any tools.\n\n"
-        + _editor_user_prompt(slug, content)
+        + _editor_user_prompt(slug, content, threshold)
     )
     try:
         result = subprocess.run(
@@ -226,7 +231,7 @@ def _editor_via_cli(slug: str, content: str, cli_timeout: int) -> tuple[dict, in
     return _parse_editor_output(result.stdout.strip(), slug)
 
 
-def _editor_via_api(slug: str, content: str, model: str) -> tuple[dict, int]:
+def _editor_via_api(slug: str, content: str, threshold: int, model: str) -> tuple[dict, int]:
     try:
         from anthropic import Anthropic
     except ImportError:
@@ -240,17 +245,18 @@ def _editor_via_api(slug: str, content: str, model: str) -> tuple[dict, int]:
         model=model,
         max_tokens=900,
         system=SYSTEM_PROMPT,
-        messages=[{"role": "user", "content": _editor_user_prompt(slug, content)}],
+        messages=[{"role": "user", "content": _editor_user_prompt(slug, content, threshold)}],
     )
     raw = "".join(b.text for b in msg.content if getattr(b, "type", None) == "text").strip()
     return _parse_editor_output(raw, slug)
 
 
-def call_claude(slug: str, content: str, model: str, cli_timeout: int) -> tuple[dict, int]:
+def call_claude(slug: str, content: str, model: str, threshold: int,
+                cli_timeout: int) -> tuple[dict, int]:
     """Route to API or CLI based on CLAUDE_VIA_CLI env var."""
     if os.environ.get("CLAUDE_VIA_CLI", "").strip() == "1":
-        return _editor_via_cli(slug, content, cli_timeout)
-    return _editor_via_api(slug, content, model)
+        return _editor_via_cli(slug, content, threshold, cli_timeout)
+    return _editor_via_api(slug, content, threshold, model)
 
 
 def grade_one(path: Path, model: str, dry_run: bool, threshold: int,
@@ -272,7 +278,10 @@ def grade_one(path: Path, model: str, dry_run: bool, threshold: int,
         )
 
     try:
-        parsed, total = call_claude(slug, content, model=model, cli_timeout=cli_timeout)
+        parsed, total = call_claude(
+            slug, content, model=model, threshold=threshold,
+            cli_timeout=cli_timeout,
+        )
     except Exception as e:
         # A single bad/slow/refused draft is recorded as "review" — never fatal.
         print(f"   ❌ grading failed for {slug}: {e}", file=sys.stderr)
