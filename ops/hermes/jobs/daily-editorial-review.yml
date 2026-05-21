@@ -3,7 +3,9 @@ description: |
   Read scripts/state/editor_report.json (produced by the editor agent in
   GitHub Actions), pick the highest-scoring draft in 'review' status, and
   output a 5-line editorial brief Steve reads on his phone over coffee.
-enabled: true
+  Disabled as a standalone cron: daily-ingest now invokes this immediately after
+  ingest → validate/improve → editor grading, so reports cannot go stale/race.
+enabled: false
 schedule: "0 13 * * *"          # 13:00 UTC = 9:00 AM ET EDT / 8:00 AM ET EST
 timezone: UTC
 working_dir: /Users/zoelumos/migukstory

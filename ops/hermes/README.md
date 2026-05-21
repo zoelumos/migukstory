@@ -66,8 +66,7 @@ git -C /Users/zoelumos/migukstory status
 
 ## The drafting pipeline (uses Max, not API)
 
-The `daily-ingest.yml` job runs `scripts/draft_from_rss.py` and `scripts/editor_grade.py`
-with the env var `CLAUDE_VIA_CLI=1`. Both scripts have been modified to:
+The `daily-ingest.yml` job runs the full sequential pipeline: `scripts/draft_from_rss.py` → `scripts/improve_drafts.py` → `scripts/editor_grade.py` → immediate read-only editorial brief, with the env var `CLAUDE_VIA_CLI=1`. Both scripts have been modified to:
 
 - **Default behavior** (env var unset): call `api.anthropic.com` via the Anthropic SDK → needs `ANTHROPIC_API_KEY`.
 - **CLAUDE_VIA_CLI=1**: shell out to `claude -p "..."` instead → uses local Max-subscription auth, no API key.
@@ -114,9 +113,9 @@ prerequisites:
 
 | File | Schedule (UTC) | Local approx (ET, EDT) | Purpose | Uses Claude? |
 |---|---|---|---|---|
-| `daily-ingest.yml` | `0 11 * * *` | 7:00 AM | **RSS → Claude draft → editor grade → open PR** (the big one) | Yes (`claude -p`, Max auth) |
+| `daily-ingest.yml` | `0 11 * * *` | 7:00 AM | **RSS → draft → validate/improve → editor grade → immediate editorial brief → open PR** (sequential pipeline) | Yes (`claude -p`, Max auth) |
 | `daily-publish.yml` | `0 12 * * *` | 8:00 AM | Trigger `daily-post.yml` workflow → publish 1 from queue | No (gh CLI only) |
-| `daily-editorial-review.yml` | `0 13 * * *` | 9:00 AM | Read `editor_report.json`, pick top draft for review, brief Steve | Yes |
+| `daily-editorial-review.yml` | disabled | n/a | Standalone review disabled; invoked immediately by `daily-ingest` after fresh grading | Yes |
 | `daily-health.yml` | `30 14 * * *` | 10:30 AM | Status snapshot (workflows, site, queue depth, drafts pending) | Yes |
 | `weekly-audit.yml` | `0 15 * * 1` | Mon 11:00 AM | Weekly content stats in Korean | Yes |
 | `monthly-cf-rotate.yml` | `0 14 1 * *` | 1st 10:00 AM | Reminder to rotate Cloudflare API token | No (just message) |

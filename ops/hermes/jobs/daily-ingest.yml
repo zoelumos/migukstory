@@ -1,10 +1,11 @@
 name: migukstory-daily-ingest
 description: |
-  Daily RSS ingest → Korean drafts → editor grade → open PR.
+  Daily RSS ingest → validate/improve → editor grade → editorial brief → open PR.
   Uses `claude -p` via the modified scripts (CLAUDE_VIA_CLI=1), which calls
   the local Claude CLI using Steve's Max subscription auth — NO Anthropic
   API key needed. The drafting + grading + PR-opening happens entirely on
   the Mac mini.
+  Runs sequentially in one job so editorial never races a stale report.
 enabled: true
 schedule: "0 11 * * *"
 timezone: UTC
@@ -34,17 +35,25 @@ command: |
   trap 'rm -f "$MANIFEST"' EXIT
 
   "$PY_VENV/bin/python" scripts/draft_from_rss.py \
-    --max-drafts 5 \
+    --max-drafts 24 \
+    --max-per-category 3 \
     --manifest "$MANIFEST" \
-    --time-budget 420 \
+    --time-budget 1800 \
     --cli-timeout 150 \
     || echo "  (draft script exited non-zero; continuing)"
 
-  "$PY_VENV/bin/python" scripts/editor_grade.py \
-    --threshold 80 \
+  "$PY_VENV/bin/python" scripts/improve_drafts.py \
     --manifest "$MANIFEST" \
-    --max-drafts 5 \
-    --time-budget 420 \
+    --max-drafts 24 \
+    --time-budget 1800 \
+    --cli-timeout 180 \
+    || echo "  (validate/improve script exited non-zero; continuing)"
+
+  "$PY_VENV/bin/python" scripts/editor_grade.py \
+    --threshold 70 \
+    --manifest "$MANIFEST" \
+    --max-drafts 24 \
+    --time-budget 1800 \
     --cli-timeout 90 \
     || echo "  (editor script exited non-zero; continuing)"
 
@@ -70,7 +79,7 @@ command: |
   git push -fu origin bot/daily-draft
 
   # Create PR if it doesn't already exist (idempotent).
-  PR_BODY="Auto-generated drafts via Hermes + claude -p (Max subscription auth, no API key). Drafts are in drafts/. Editor agent has promoted high-confidence (>=80/100) items to queue/. Merge this PR to land them on main. Next daily-post.yml cron (8 AM ET) will then publish 1 from queue automatically."
+  PR_BODY="Auto-generated drafts via Hermes + claude -p (Max subscription auth, no API key). Pipeline: ingest RSS candidates → validate/improve with source-backed context and Korean-American impact analysis → editor grade at >=70/100 → queue/. Drafts stay in drafts/; promoted items move to queue/. Merge this PR to land the reviewed batch on main. Next daily-post.yml cron (8 AM ET) will then publish from queue automatically."
   OPEN_PR_URL=$(gh pr list \
     --repo zoelumos/migukstory \
     --head bot/daily-draft \
@@ -90,6 +99,9 @@ command: |
   fi
 
   echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] daily-ingest done"
+
+  # Immediate read-only editorial phone brief from the fresh draft branch/report.
+  /Users/zoelumos/.hermes/scripts/migukstory-daily-editorial-review.sh || true
 on_failure:
   notify: slack
   channel_or_recipient: "#migukstory-ops"
