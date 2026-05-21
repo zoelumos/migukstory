@@ -2,6 +2,24 @@
   "_comment": "Canonical URLs already turned into drafts. Maintained by scripts/draft_from_rss.py. Safe to hand-edit.",
   "version": 1,
   "seen": {
+    "https://federalregister.gov/documents/2026/05/13/2026-09479/excepted-fertility-benefits": {
+      "first_seen": "2026-05-21",
+      "source": "Federal Register — Tax Rules (IRS)",
+      "title": "Excepted Fertility Benefits",
+      "draft": "drafts/2026-05-21-excepted-fertility-benefits.md"
+    },
+    "https://federalregister.gov/documents/2026/05/18/2026-09941/electronic-furnishing-of-payee-statements-regarding-digital-asset-sales-by-brokers-hearing": {
+      "first_seen": "2026-05-21",
+      "source": "Federal Register — Tax Rules (IRS)",
+      "title": "Electronic Furnishing of Payee Statements Regarding Digital Asset Sales by Brokers; Hearing",
+      "draft": "drafts/2026-05-21-electronic-furnishing-of-payee-statements-regarding-digital-asset-sales-by-broke.md"
+    },
+    "https://federalregister.gov/documents/2026/05/20/2026-10116/returns-relating-to-sales-or-exchanges-of-certain-partnership-interests": {
+      "first_seen": "2026-05-21",
+      "source": "Federal Register — Tax Rules (IRS)",
+      "title": "Returns Relating to Sales or Exchanges of Certain Partnership Interests",
+      "draft": "drafts/2026-05-21-returns-relating-to-sales-or-exchanges-of-certain-partnership-interests.md"
+    },
     "https://federalreserve.gov/newsevents/pressreleases/monetary20260414a.htm": {
       "first_seen": "2026-05-20",
       "source": "Federal Reserve Press (Monetary Policy)",
@@ -14,6 +32,12 @@
       "title": "Federal Reserve issues FOMC statement",
       "draft": "drafts/2026-05-19-federal-reserve-issues-fomc-statement.md"
     },
+    "https://federalreserve.gov/newsevents/pressreleases/monetary20260520a.htm": {
+      "first_seen": "2026-05-21",
+      "source": "Federal Reserve — Monetary Policy",
+      "title": "Minutes of the Federal Open Market Committee, April 28-29, 2026",
+      "draft": "drafts/2026-05-21-minutes-of-the-federal-open-market-committee-april-28-29-2026.md"
+    },
     "https://news.bloombergtax.com/daily-tax-report-international/south-korea-tax-agency-issues-2026-individual-income-tax-guide-for-nonresidents-in-english-korean": {
       "first_seen": "2026-05-18",
       "source": "Bloomberg Tax — Daily Tax Report: International",
@@ -25,6 +49,18 @@
       "source": "NPR Business",
       "title": "U.S. government to drop tax claims against Trump in broadening of IRS settlement",
       "draft": "drafts/2026-05-20-u-s-government-to-drop-tax-claims-against-trump-in-broadening-of-irs-settlement.md"
+    },
+    "https://npr.org/2026/05/20/nx-s1-5758092/eeoc-wants-to-stop-collecting-data-used-to-fight-discrimination": {
+      "first_seen": "2026-05-21",
+      "source": "NPR Business",
+      "title": "EEOC wants to stop collecting data used to fight discrimination",
+      "draft": "drafts/2026-05-21-eeoc-wants-to-stop-collecting-data-used-to-fight-discrimination.md"
+    },
+    "https://npr.org/2026/05/21/nx-s1-5827724/spencer-pratt-los-angeles-mayor-ai-slop-manosphere": {
+      "first_seen": "2026-05-21",
+      "source": "NPR Business",
+      "title": "Spencer Pratt is 'winning the internet,' but can he become mayor of Los Angeles?",
+      "draft": "drafts/2026-05-21-spencer-pratt-is-winning-the-internet-but-can-he-become-mayor-of-los-angeles.md"
     },
     "https://npr.org/sections/planet-money/2026/05/19/g-s1-122695/the-missing-men-of-the-american-marriage-market": {
       "first_seen": "2026-05-19",
@@ -44,17 +80,35 @@
       "title": "Transcript - Updates on CDC's Response to Ebola Outbreak in DRC and Uganda and Hantavirus Linked to M/V Hondius, 5/19/2026",
       "draft": "drafts/2026-05-20-transcript-updates-on-cdc-s-response-to-ebola-outbreak-in-drc-and-uganda-and-han.md"
     },
+    "https://tools.cdc.gov/api/embed/downloader/download.asp?c=765604&m=132608": {
+      "first_seen": "2026-05-21",
+      "source": "CDC Newsroom",
+      "title": "Transcript - Update on Ebola Outbreak in the Democratic Republic of the Congo and Uganda, 5/20/2026",
+      "draft": "drafts/2026-05-21-transcript-update-on-ebola-outbreak-in-the-democratic-republic-of-the-congo-and.md"
+    },
     "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin/2026/visa-bulletin-for-may-2026.html": {
       "first_seen": "2026-05-18",
       "source": "U.S. Department of State — Bureau of Consular Affairs",
       "title": "Visa Bulletin For May 2026",
       "draft": "drafts/2026-05-18-visa-bulletin-may-2026.md"
     },
+    "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/argentina-travel-advisory.html": {
+      "first_seen": "2026-05-21",
+      "source": "State Department Travel Advisories",
+      "title": "Argentina - Level 1: Exercise Normal Precautions",
+      "draft": "drafts/2026-05-21-argentina-level-1-exercise-normal-precautions.md"
+    },
     "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/croatia-travel-advisory.html": {
       "first_seen": "2026-05-19",
       "source": "State Department Travel Advisories",
       "title": "Croatia - Level 1: Exercise Normal Precautions",
       "draft": "drafts/2026-05-19-croatia-level-1-exercise-normal-precautions.md"
+    },
+    "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/dominica-travel-advisory.html": {
+      "first_seen": "2026-05-21",
+      "source": "State Department Travel Advisories",
+      "title": "Dominica - Level 1: Exercise Normal Precautions",
+      "draft": "drafts/2026-05-21-dominica-level-1-exercise-normal-precautions.md"
     },
     "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/sweden-travel-advisory.html": {
       "first_seen": "2026-05-19",
