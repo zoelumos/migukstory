@@ -1,11 +1,10 @@
 ---
 title: '연준, 2월·3월 재할인율 회의 회의록 공개'
 description: '미국 연방준비제도(Fed) 이사회가 2월 9일과 3월 18일에 연 재할인율 회의의 회의록을 4월 14일 공개했습니다. 본 기사는 발표 사실과 한인 가계 금융에 주는 의미를 정리했습니다.'
-pubDate: '2026-05-20'
+pubDate: '2026-05-19'
 tags: ['연방준비제도', '재할인율', '통화정책']
 category: 'economy'
 ageGroup: 'all'
-draft: true
 source: 'Federal Reserve Press (Monetary Policy)'
 sourceUrl: 'https://federalreserve.gov/newsevents/pressreleases/monetary20260414a.htm'
 ---

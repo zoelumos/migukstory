@@ -1,11 +1,10 @@
 ---
 title: '2026년 뉴저지 최저임금 시간당 15.92달러로 인상'
 description: '2026년 1월 1일부터 뉴저지 최저임금이 대부분 근로자 기준 시간당 15.92달러로 올랐습니다. 소규모·계절 사업장, 팁 근로자, 농업 근로자별 인상폭과 한인 자영업주가 챙겨야 할 점을 뉴저지 노동부 자료를 기준으로 정리했습니다.'
-pubDate: '2026-05-19'
+pubDate: '2026-05-17'
 tags: ['뉴저지', '최저임금', '자영업', '노동법']
 category: 'economy'
 ageGroup: 'all'
-draft: true
 source: 'New Jersey Department of Labor and Workforce Development'
 sourceUrl: 'https://www.nj.gov/labor/lwdhome/press/2025/20251001_Minimum_Wage.shtml'
 ---

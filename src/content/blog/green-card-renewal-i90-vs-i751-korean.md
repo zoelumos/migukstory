@@ -1,11 +1,10 @@
 ---
 title: '영주권 갱신, I-90과 I-751을 헷갈리면 안 되는 이유'
 description: '10년짜리 영주권 갱신은 Form I-90, 결혼 기반 2년 조건부 영주권은 Form I-751로 신청합니다. 두 양식의 차이와 신청 시기, 잘못 제출했을 때의 위험을 USCIS 공식 자료를 기준으로 정리했습니다.'
-pubDate: '2026-05-19'
+pubDate: '2026-05-15'
 tags: ['영주권갱신', 'I-90', 'I-751', '조건부영주권']
 category: 'immigration'
 ageGroup: 'all'
-draft: true
 source: 'U.S. Citizenship and Immigration Services'
 sourceUrl: 'https://www.uscis.gov/i-90'
 ---

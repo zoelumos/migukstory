@@ -1,11 +1,10 @@
 ---
 title: '분기별 예납세금(1040-ES), 한인 자영업자의 필수 체크리스트'
 description: '월급에서 세금이 원천징수되지 않는 자영업자·1099 소득자는 분기마다 예납세금을 직접 납부해야 합니다. 납부 대상 기준, 안전항(safe harbor) 규정, 2026년 납부 기한을 IRS 공식 자료를 기준으로 정리했습니다.'
-pubDate: '2026-05-19'
+pubDate: '2026-05-15'
 tags: ['예납세금', '자영업세금', '1040-ES', '세금']
 category: 'tax'
 ageGroup: 'all'
-draft: true
 source: 'Internal Revenue Service'
 sourceUrl: 'https://www.irs.gov/faqs/estimated-tax'
 ---

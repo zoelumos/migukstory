@@ -1,11 +1,10 @@
 ---
 title: '베네수엘라 여행경보 3단계: 범죄·납치 위험에 여행 재고 권고'
 description: '미국 국무부가 베네수엘라에 여행경보 3단계를 유지하며 범죄, 납치, 테러, 열악한 의료 환경을 이유로 여행 재고를 권고했습니다. 카라카스 주재 미국대사관은 운영을 재개했지만 영사 서비스는 여전히 제한적입니다.'
-pubDate: '2026-05-20'
+pubDate: '2026-05-21'
 tags: ['베네수엘라', '여행경보', '국무부']
 category: 'community'
 ageGroup: 'all'
-draft: true
 source: 'State Department Travel Advisories'
 sourceUrl: 'https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ven.html'
 ---

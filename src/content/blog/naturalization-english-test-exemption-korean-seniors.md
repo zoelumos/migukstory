@@ -1,11 +1,10 @@
 ---
 title: '시민권 영어시험 면제, 한인 시니어를 위한 50/20·55/15·65/20 규정'
 description: '오래 영주권을 유지해 온 한인 시니어는 나이와 거주 기간에 따라 시민권 영어시험을 면제받고 한국어로 시험을 볼 수 있습니다. 50/20·55/15·65/20 규정과 2025년 개정 시민과목 시험을 USCIS 자료를 기준으로 정리했습니다.'
-pubDate: '2026-05-19'
+pubDate: '2026-05-17'
 tags: ['시민권', '영어시험면제', '귀화', '시니어']
 category: 'immigration'
 ageGroup: '55+'
-draft: true
 source: 'U.S. Citizenship and Immigration Services'
 sourceUrl: 'https://www.uscis.gov/citizenship/exceptions-and-accommodations'
 ---

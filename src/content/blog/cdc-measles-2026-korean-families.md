@@ -1,11 +1,10 @@
 ---
 title: '2026년 미국 홍역 확산, 한인 가정의 MMR 백신 점검 사항'
 description: '2026년 미국 내 홍역 확진이 1,800건을 넘어섰습니다. CDC와 뉴욕주 보건당국 자료를 기준으로 현재 상황과 MMR 백신 권고, 한국 방문을 앞둔 한인 가정이 점검할 사항을 정리했습니다.'
-pubDate: '2026-05-19'
+pubDate: '2026-05-13'
 tags: ['홍역', 'MMR백신', '건강', '예방접종']
 category: 'health'
 ageGroup: 'all'
-draft: true
 source: 'Centers for Disease Control and Prevention'
 sourceUrl: 'https://www.cdc.gov/measles/data-research/index.html'
 ---

@@ -5,7 +5,6 @@ pubDate: '2026-05-20'
 tags: ['CDC', '에볼라', '한타바이러스']
 category: 'health'
 ageGroup: 'all'
-draft: true
 source: 'CDC Newsroom'
 sourceUrl: 'https://tools.cdc.gov/api/embed/downloader/download.asp?c=765599&m=132608'
 ---

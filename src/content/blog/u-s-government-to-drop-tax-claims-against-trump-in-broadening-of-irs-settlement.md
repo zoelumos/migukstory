@@ -1,11 +1,10 @@
 ---
 title: '美 정부, 트럼프 세금 청구 철회… IRS 합의 확대'
 description: '미국 정부가 도널드 트럼프 대통령과 그의 아들들, 트럼프 그룹의 현행 세금 문제를 더 이상 조사하거나 기소하지 않기로 했습니다. 미국 법무부 문서로 공개된 이번 IRS 합의 확대 조치의 핵심을 정리했습니다.'
-pubDate: '2026-05-20'
+pubDate: '2026-05-21'
 tags: ['트럼프', 'IRS', '세금']
 category: 'economy'
 ageGroup: 'all'
-draft: true
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/05/19/g-s1-122938/irs-trump-settlement-tax-returns-audit'
 ---

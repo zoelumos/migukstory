@@ -5,7 +5,6 @@ pubDate: '2026-05-19'
 tags: ['에볼라', 'CDC', '공중보건']
 category: 'health'
 ageGroup: 'all'
-draft: true
 source: 'CDC Newsroom'
 sourceUrl: 'https://tools.cdc.gov/api/embed/downloader/download.asp?c=765572&m=132608'
 ---

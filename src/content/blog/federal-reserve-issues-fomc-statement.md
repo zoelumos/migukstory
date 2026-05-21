@@ -1,11 +1,10 @@
 ---
 title: '연방준비제도(Fed), 4월 FOMC 성명 발표'
 description: '연방준비제도가 2026년 4월 29일 연방공개시장위원회(FOMC) 정례 회의 결과를 담은 성명을 공식 발표했습니다. 자세한 본문은 원문 링크를 통해 확인하시기 바랍니다.'
-pubDate: '2026-05-19'
+pubDate: '2026-05-15'
 tags: ['연준', 'FOMC', '통화정책']
 category: 'economy'
 ageGroup: 'all'
-draft: true
 source: 'Federal Reserve Press (Monetary Policy)'
 sourceUrl: 'https://federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm'
 ---

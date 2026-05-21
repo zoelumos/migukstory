@@ -1,11 +1,10 @@
 ---
 title: '미 국무부, 스웨덴 여행경보 2단계 유지… 테러 경계 권고'
 description: '미 국무부가 스웨덴 여행경보를 2단계로 유지하며 테러 위험에 대한 각별한 주의를 권고했습니다. 관광지와 교통 거점 등 공공장소에서의 경계가 필요합니다.'
-pubDate: '2026-05-19'
+pubDate: '2026-05-18'
 tags: ['여행경보', '스웨덴', '국무부']
 category: 'community'
 ageGroup: 'all'
-draft: true
 source: 'State Department Travel Advisories'
 sourceUrl: 'https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/sweden-travel-advisory.html'
 ---

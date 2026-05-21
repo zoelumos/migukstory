@@ -1,11 +1,10 @@
 ---
 title: 'E-2 투자비자, 한인 창업자가 알아야 할 핵심 요건'
 description: '한국은 미국과 통상항해조약을 맺은 E-2 조약국입니다. 상당한 규모의 투자, 비생계형 사업체, 50% 이상 한국인 소유 등 한인 자영업·창업 희망자가 신청 전 반드시 확인해야 할 요건을 정부 1차 출처를 기준으로 정리했습니다.'
-pubDate: '2026-05-19'
+pubDate: '2026-05-14'
 tags: ['E-2비자', '투자비자', '한인창업', '자영업']
 category: 'immigration'
 ageGroup: 'all'
-draft: true
 source: 'U.S. Department of State — Bureau of Consular Affairs'
 sourceUrl: 'https://travel.state.gov/content/travel/en/us-visas/employment/treaty-trader-investor-visa-e.html'
 ---

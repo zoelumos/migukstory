@@ -1,11 +1,10 @@
 ---
 title: 'SBA 7(a) 대출, 한인 소상공인을 위한 기본 안내'
 description: '연방중소기업청(SBA) 7(a) 대출은 한인 자영업자가 사업 자금을 마련하는 대표적 통로입니다. 대출 한도와 용도, 자격 요건, 신청 방법을 SBA 공식 자료를 기준으로 한인 소상공인 관점에서 정리했습니다.'
-pubDate: '2026-05-19'
+pubDate: '2026-05-17'
 tags: ['SBA대출', '소상공인', '사업자금', '자영업']
 category: 'economy'
 ageGroup: 'all'
-draft: true
 source: 'U.S. Small Business Administration'
 sourceUrl: 'https://www.sba.gov/funding-programs/loans/7a-loans'
 ---

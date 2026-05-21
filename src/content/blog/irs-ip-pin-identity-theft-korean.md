@@ -1,11 +1,10 @@
 ---
 title: '세금 신분도용 막는 IRS IP PIN, 한인 납세자 활용법'
 description: 'IP PIN은 타인이 내 SSN이나 ITIN으로 가짜 세금보고를 하지 못하게 막는 6자리 번호입니다. 발급 자격과 신청 방법, 그리고 IP PIN을 빙자한 사기 주의점을 IRS 공식 자료를 기준으로 정리했습니다.'
-pubDate: '2026-05-19'
+pubDate: '2026-05-16'
 tags: ['IP PIN', '신분도용', '세금사기', '세금']
 category: 'tax'
 ageGroup: 'all'
-draft: true
 source: 'Internal Revenue Service'
 sourceUrl: 'https://www.irs.gov/identity-theft-fraud-scams/get-an-identity-protection-pin'
 ---

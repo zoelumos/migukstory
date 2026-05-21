@@ -5,7 +5,6 @@ pubDate: '2026-05-19'
 tags: ['결혼', '경제격차', '미국사회']
 category: 'economy'
 ageGroup: 'all'
-draft: true
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/sections/planet-money/2026/05/19/g-s1-122695/the-missing-men-of-the-american-marriage-market'
 ---
