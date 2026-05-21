@@ -17,8 +17,10 @@ Options:
   --dry-run        Fetch + dedupe + plan, but do not call the Claude API,
                    write drafts, or update the dedupe store. Safe to run
                    without ANTHROPIC_API_KEY.
-  --max-drafts N   Cap drafts produced this run (default: 5). Hard ceiling
-                   is also 5 — values larger than that are clamped.
+  --max-drafts N   Global cap for drafts produced this run (default: 24).
+  --max-per-category N
+                   Target cap per category (default: 3), so the editor sees
+                   enough candidates across immigration/tax/health/etc.
   --manifest PATH  Write a JSON manifest of the drafts created this run to
                    PATH. editor_grade.py --manifest PATH then grades ONLY
                    those, so grading work stays bounded per run.
@@ -54,8 +56,9 @@ BLOG = REPO / "src" / "content" / "blog"
 CONFIG = REPO / "scripts" / "config" / "rss_sources.yml"
 STATE = REPO / "scripts" / "state" / "seen_urls.json"
 
-HARD_CAP_DRAFTS = 5
-DEFAULT_MAX_ITEMS_PER_FEED = 3
+DEFAULT_MAX_DRAFTS = 24
+DEFAULT_MAX_PER_CATEGORY = 3
+DEFAULT_MAX_ITEMS_PER_FEED = 6
 DEFAULT_MODEL = "claude-sonnet-4-6"
 DEFAULT_CLI_TIMEOUT = 180  # per `claude -p` call, seconds
 
@@ -179,8 +182,16 @@ def fetch_feed(source: dict) -> list[FeedItem]:
     items: list[FeedItem] = []
     for entry in parsed.entries[:max_items]:
         link = (entry.get("link") or "").strip()
-        title = (entry.get("title") or "").strip()
+        title = strip_html(entry.get("title") or "").strip()
         if not link or not title:
+            continue
+        canonical = canonical_url(link)
+        parsed_link = urlparse(canonical)
+        if parsed_link.scheme not in ("http", "https") or not parsed_link.netloc:
+            print(f"⚠️  {name}: skipping invalid link for {title[:60]!r}: {link[:120]!r}", file=sys.stderr)
+            continue
+        if "<" in link or ">" in link or "%3c" in canonical.lower() or "%3e" in canonical.lower():
+            print(f"⚠️  {name}: skipping HTML-looking link for {title[:60]!r}: {link[:120]!r}", file=sys.stderr)
             continue
         summary = strip_html(entry.get("summary") or entry.get("description") or "")
         published = entry.get("published") or entry.get("updated") or ""
@@ -189,7 +200,7 @@ def fetch_feed(source: dict) -> list[FeedItem]:
             category=category,
             title=title,
             url=link,
-            canonical_url=canonical_url(link),
+            canonical_url=canonical,
             summary=summary[:1200],
             published=published,
         ))
@@ -414,8 +425,10 @@ def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     p.add_argument("--dry-run", action="store_true",
                    help="Plan only — no API calls, no writes.")
-    p.add_argument("--max-drafts", type=int, default=HARD_CAP_DRAFTS,
-                   help=f"Cap drafts this run (1..{HARD_CAP_DRAFTS}). Default: {HARD_CAP_DRAFTS}.")
+    p.add_argument("--max-drafts", type=int, default=DEFAULT_MAX_DRAFTS,
+                   help=f"Global cap for drafts this run. Default: {DEFAULT_MAX_DRAFTS}.")
+    p.add_argument("--max-per-category", type=int, default=DEFAULT_MAX_PER_CATEGORY,
+                   help=f"Target cap per category. Default: {DEFAULT_MAX_PER_CATEGORY}.")
     p.add_argument("--manifest", metavar="PATH",
                    help="Write a JSON manifest of drafts created this run to PATH.")
     p.add_argument("--time-budget", type=int, default=0,
@@ -428,7 +441,8 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
-    max_drafts = max(1, min(args.max_drafts, HARD_CAP_DRAFTS))
+    max_drafts = max(1, args.max_drafts)
+    max_per_category = max(1, args.max_per_category)
     model = os.environ.get("ANTHROPIC_MODEL", DEFAULT_MODEL)
 
     # Guardrail: this script must never write to queue/ or blog/.
@@ -460,21 +474,28 @@ def main() -> int:
         print("✅ Nothing new — all feed items already seen.")
         return 0
 
-    # Round-robin across sources so one feed can't monopolize the quota.
-    by_source: dict[str, list[FeedItem]] = {}
+    # Select by category first, then round-robin sources inside each category.
+    # This prevents early feeds (e.g. government notices) from consuming the
+    # whole run and gives each configured category about max_per_category shots.
+    by_category_source: dict[str, dict[str, list[FeedItem]]] = {}
     for c in candidates:
-        by_source.setdefault(c.source_name, []).append(c)
+        by_category_source.setdefault(c.category, {}).setdefault(c.source_name, []).append(c)
+
     selected: list[FeedItem] = []
-    while len(selected) < max_drafts and any(by_source.values()):
-        for name in list(by_source):
-            if not by_source[name]:
-                continue
-            selected.append(by_source[name].pop(0))
-            if len(selected) >= max_drafts:
-                break
+    for category in sorted(by_category_source):
+        picked_for_category = 0
+        by_source = by_category_source[category]
+        while picked_for_category < max_per_category and len(selected) < max_drafts and any(by_source.values()):
+            for name in sorted(by_source):
+                if not by_source[name]:
+                    continue
+                selected.append(by_source[name].pop(0))
+                picked_for_category += 1
+                if picked_for_category >= max_per_category or len(selected) >= max_drafts:
+                    break
 
     print(f"\n🎯 Planning {len(selected)} draft(s) "
-          f"(max {max_drafts}, hard cap {HARD_CAP_DRAFTS}):")
+          f"(max {max_drafts}, max/category {max_per_category}):")
     for it in selected:
         print(f"   - [{it.category}] {it.source_name}: {it.title[:80]}")
 

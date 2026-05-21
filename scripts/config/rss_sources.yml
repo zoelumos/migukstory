@@ -27,7 +27,7 @@ sources:
   # ── Tier 1: Federal Register API — regulatory action (RULE + PRORULE) ──
   # Real fee changes, benefit rules, policy shifts. High signal, no NOTICE noise.
   - name: Federal Register — Immigration Rules
-    url: https://www.federalregister.gov/api/v1/documents.rss?conditions%5Bagencies%5D%5B%5D=homeland-security-department&conditions%5Bagencies%5D%5B%5D=u-s-citizenship-and-immigration-services&conditions%5Btype%5D%5B%5D=RULE&conditions%5Btype%5D%5B%5D=PRORULE&order=newest
+    url: https://www.federalregister.gov/api/v1/documents.rss?conditions%5Bagencies%5D%5B%5D=u-s-citizenship-and-immigration-services&conditions%5Btype%5D%5B%5D=RULE&conditions%5Btype%5D%5B%5D=PRORULE&order=newest
     category: immigration
     enabled: true
     max_items: 3
@@ -60,7 +60,7 @@ sources:
   - name: CMS Newsroom (Medicare / Medicaid / ACA)
     url: https://www.cms.gov/newsroom/rss-feeds
     category: health
-    enabled: true
+    enabled: false  # disabled: this is an HTML feed listing page, not RSS; caused <a href> slugs
     max_items: 2
 
   - name: Federal Reserve — Monetary Policy
