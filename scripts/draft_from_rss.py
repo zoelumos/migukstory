@@ -261,6 +261,9 @@ Hard rules (non-negotiable):
   sentences verbatim.
 - Every factual claim must be traceable to the source provided. Do NOT
   introduce numbers, names, or events not present in the source.
+- Add original editorial synthesis using only source-grounded facts: explain
+  concrete implications for Korean-American readers instead of merely
+  translating/summarizing the source.
 - Always include a final "## 출처 (Sources)" section with the source name
   and the canonical URL given to you. Do not invent additional sources.
 - Never give legal, tax, or medical advice. Where the topic touches
@@ -299,9 +302,13 @@ sourceUrl: '{canonical_url}'
 
 # 한국어 제목
 
-[3~5문단의 한국어 본문. 한 문단당 2~4문장. 직접 인용은 25자 이내.
-숫자/날짜/이름은 원문에 있는 것만 사용. 한인 독자 관점에서 왜 중요한지
-한 문단 정도 분석을 더해도 좋음. 단, 원문에 없는 새로운 사실은 금지.]
+[4~6문단의 한국어 본문. 한 문단당 2~4문장. 직접 인용은 25자 이내.
+숫자/날짜/이름은 원문에 있는 것만 사용.
+반드시 한 문단은 "미주 한인에게 왜 중요한가"를 구체적으로 다루세요:
+한인 자영업자, 유학생, 취업비자/영주권자, 은퇴자, 부모 세대, 한인 가정 중
+해당되는 독자 그룹을 골라 실제 의사결정·서류·세금·건강·생활비·커뮤니티
+영향을 설명하세요. 단, 원문에 없는 새로운 사실은 금지하고 원문 사실에서
+논리적으로 따라오는 영향 분석만 하세요.]
 
 ## 핵심 요약
 
