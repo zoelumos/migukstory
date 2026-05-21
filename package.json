@@ -16,9 +16,11 @@
     "@astrojs/mdx": "^5.0.6",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
+    "@resvg/resvg-js": "^2.6.2",
     "@supabase/ssr": "^0.10.3",
     "@supabase/supabase-js": "^2.105.4",
     "astro": "^6.3.3",
+    "satori": "^0.26.0",
     "sharp": "^0.34.3",
     "typescript": "^6.0.3"
   },
