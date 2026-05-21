@@ -5,7 +5,8 @@ high-confidence drafts from drafts/ → queue/ for human one-click merge.
 
 Rubric (0-20 each, total 0-100):
   1. factuality       — claims traceable to ## 출처 (Sources) section
-  2. source_diversity — ≥2 distinct publishers in sources
+  2. source_diversity — sourcing is credible and traceable (a single
+                        authoritative primary source is acceptable)
   3. ka_angle         — explicit Korean-American framing (not generic news)
   4. originality      — adds analysis/commentary beyond source summary
   5. structure        — has frontmatter, body, summary bullets, sources
@@ -106,9 +107,14 @@ USER_PROMPT_TEMPLATE = """다음은 사람 검토 전 AI가 작성한 한국어 
    「## 출처 (Sources)」 섹션의 링크로 추적 가능한가? 검증 불가능한 새로운
    사실을 만들어내지 않았는가? 출처 섹션 자체가 비어있거나 부실하면 5점 이하.
 
-2. **source_diversity (출처 다양성)**: 출처 섹션에 **서로 다른 publisher 2곳
-   이상**의 1차/반-1차 자료가 인용돼 있는가? 같은 publisher의 여러 페이지만
-   인용했다면 10점 이하. 출처 1개만 있으면 5점 이하.
+2. **source_diversity (출처 신뢰도)**: 이 사이트의 초안은 기사 1건을 바탕으로
+   하는 **단일 출처 구조가 설계상 정상**입니다. 출처 "개수"가 아니라 인용된
+   출처의 **신뢰도와 추적 가능성**을 평가하세요.
+   - 정부·규제기관·공식 통계·주요 언론사 등 신뢰할 수 있는 1차/반-1차 출처가
+     정확한 링크와 함께 인용돼 있으면, 출처가 1곳뿐이어도 14~18점을 줍니다.
+   - 서로 다른 publisher 2곳 이상이 인용돼 맥락이 교차 검증되면 19~20점.
+   - 출처가 개인 블로그·SNS 등 신뢰도가 낮거나, 링크가 깨졌거나, 출처 섹션이
+     비어 있거나 본문 주장과 무관하면 6점 이하.
 
 3. **ka_angle (한인 관점)**: 단순 정보 전달이 아니라, 미주 한인 가정·자영업자·
    유학생 등 구체적 한인 그룹에 어떤 의미가 있는지 명시적으로 풀어쓴 분석
