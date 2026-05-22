@@ -54,7 +54,7 @@ jobs:
           SITE_URL: https://migukstory.com
           GSC_SERVICE_ACCOUNT: ${{ secrets.GSC_SERVICE_ACCOUNT }}
         run: |
-          python3 -m pip install --quiet google-auth 2>&1 | tail -3 || true
+          python3 -m pip install --quiet google-auth requests 2>&1 | tail -3 || true
           python3 scripts/notify_indexes.py --auto
 
       - name: Push ALL sitemap URLs to Google Indexing API

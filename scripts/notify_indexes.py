@@ -128,9 +128,8 @@ def submit_google_indexing(urls: list[str], sa_json: str) -> list[tuple[str, boo
     try:
         from google.oauth2 import service_account
         from google.auth.transport.requests import Request
-        from google.auth.transport.urllib3 import AuthorizedHttp
-    except ImportError:
-        return [(u, False, "google-auth not installed (pip install google-auth)") for u in urls]
+    except ImportError as e:
+        return [(u, False, f"google-auth/requests not installed (pip install google-auth requests): {e}") for u in urls]
 
     try:
         info = json.loads(sa_json)

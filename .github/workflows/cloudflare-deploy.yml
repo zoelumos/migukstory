@@ -84,5 +84,5 @@ jobs:
         run: |
           # google-auth is a soft dependency — script falls back to IndexNow only
           # when import fails. Install is fast (~5s) so always attempt it.
-          python3 -m pip install --quiet google-auth 2>&1 | tail -3 || true
+          python3 -m pip install --quiet google-auth requests 2>&1 | tail -3 || true
           python3 scripts/notify_indexes.py --auto
