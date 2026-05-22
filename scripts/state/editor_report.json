@@ -1,140 +1,84 @@
 {
-  "generated_at": "2026-05-21T16:37:57.101658+00:00",
+  "generated_at": "2026-05-22T11:24:37.970789+00:00",
   "threshold_promote": 70,
   "threshold_review": 50,
   "counts": {
-    "total": 9,
-    "promoted": 1,
-    "review": 8,
+    "total": 5,
+    "promoted": 3,
+    "review": 2,
     "discard_flag": 0,
     "deferred": 0
   },
   "grades": [
     {
-      "slug": "2026-05-21-argentina-level-1-exercise-normal-precautions",
-      "score": 68,
+      "slug": "2026-05-22-a-trillion-dollar-question-will-spacex-s-starship-launch-go-well-2",
+      "score": 69,
       "scores": {
-        "factuality": 16,
+        "factuality": 13,
         "source_diversity": 16,
-        "ka_angle": 10,
+        "ka_angle": 14,
         "originality": 8,
         "structure": 18
       },
-      "reasoning": "국무부 공식 여행경보 페이지라는 신뢰도 높은 1차 출처를 정확한 링크와 함께 인용했고, 수치·날짜·기관명이 모두 추적 가능하며 frontmatter와 핵심 요약·출처 섹션 등 구조가 완전합니다. 다만 한인 관점 문단이 '여행·가족 방문 시 참고하라'는 일반적 권고에 그쳐 자영업자·유학생 등 구체적 한인 그룹에 대한 분석이 부족하고, 본문 대부분이 경보 내용의 요약·번역 수준이라 편집자 차원의 종합·비교가 거의 없어 독창성이 약합니다. 따라서 80점 미만으로 queue 승격 기준에 미달합니다.",
+      "reasoning": "YAML frontmatter와 핵심 요약·출처 섹션이 완전하고, NPR이라는 신뢰도 높은 매체를 정확한 링크로 인용했으며 한인 투자자·은퇴/학자금 가정을 명시한 별도 관점 문단이 있다는 점은 강점입니다. 그러나 본문이 구체적 수치·날짜·기업가치 같은 검증 가능한 사실이 거의 없이 'NPR이 1조 달러 질문이라 불렀다'는 표제 비유를 반복하는 데 그쳐 사실 밀도가 낮고, 편집자 차원의 비교·맥락 추가 없이 단순 요약에 머물러 독창성이 약합니다. 한인 관점도 '화제성에 휩쓸리지 말라'는 일반적 투자 조언 수준이라 자동 승격 기준에는 못 미칩니다.",
       "action": "review",
       "promoted_to": null
     },
     {
-      "slug": "2026-05-21-dominica-level-1-exercise-normal-precautions",
-      "score": 66,
+      "slug": "2026-05-22-andorra-level-1-exercise-normal-precautions",
+      "score": 78,
       "scores": {
-        "factuality": 16,
-        "source_diversity": 17,
-        "ka_angle": 8,
-        "originality": 7,
-        "structure": 18
-      },
-      "reasoning": "국무부 공식 여행경보 페이지라는 신뢰도 높은 1차 출처를 정확한 링크와 함께 인용했고, 수치·날짜·기관명이 모두 추적 가능하며 YAML frontmatter와 핵심 요약·출처 섹션 등 구조가 완결돼 사실성과 출처·구조 점수는 높습니다. 그러나 본문이 사실상 여행경보문 요약에 머물러 편집자 차원의 비교·맥락 추가가 거의 없고, 한인 관점 문단도 '한인 여행객 참고' 수준의 일반론에 그쳐 한인 가정·자영업자·유학생 등 구체적 그룹에 대한 분석이 빠져 있습니다. 독창성과 한인 관점이 약해 자동 승격 기준(80점)에는 미치지 못합니다.",
-      "action": "review",
-      "promoted_to": null
-    },
-    {
-      "slug": "2026-05-21-eeoc-wants-to-stop-collecting-data-used-to-fight-discrimination",
-      "score": 66,
-      "scores": {
-        "factuality": 15,
+        "factuality": 11,
         "source_diversity": 16,
-        "ka_angle": 10,
-        "originality": 7,
-        "structure": 18
-      },
-      "reasoning": "NPR이라는 신뢰할 수 있는 주요 언론사를 정확한 링크와 함께 인용했고, frontmatter·핵심 요약·출처 섹션 등 구조는 완결성이 높습니다. 다만 본문이 원기사 요약 수준에 머물러 편집자 차원의 종합·비교·맥락 추가가 거의 없고, 한인 관점도 '한인을 포함한 소수계 노동자'라는 일반적 서술에 그쳐 자영업자·유학생 등 구체적 한인 그룹에 대한 분석이 부족합니다. 사실관계는 추적 가능하나 독창성과 한인 관점이 약해 자동 승격 기준에는 미치지 못합니다.",
-      "action": "review",
-      "promoted_to": null
-    },
-    {
-      "slug": "2026-05-21-electronic-furnishing-of-payee-statements-regarding-digital-asset-sales-by-broke",
-      "score": 69,
-      "scores": {
-        "factuality": 15,
-        "source_diversity": 16,
-        "ka_angle": 11,
-        "originality": 9,
-        "structure": 18
-      },
-      "reasoning": "Federal Register라는 신뢰도 높은 1차 정부 출처를 정확한 링크와 함께 인용했고, 이 문서가 규칙 확정이 아니라 공청회 통지라는 점을 명확히 구분한 점은 강점이며 frontmatter·핵심 요약·출처 섹션 등 구조도 완전합니다. 그러나 공청회 일정·의견 제출 기한·규칙 번호 등 구체적 사실이 거의 없어 본문이 지나치게 추상적이고, 한인 관점도 '영어 통지가 이메일로 올 수 있다' 수준의 일반적 언급에 그쳐 자영업자·유학생 등 구체적 그룹별 분석이 부족합니다. 출처 요약을 넘어서는 편집자 차원의 비교·맥락 추가가 없어 독창성이 약하므로 80점 미만으로 평가합니다.",
-      "action": "review",
-      "promoted_to": null
-    },
-    {
-      "slug": "2026-05-21-excepted-fertility-benefits",
-      "score": 71,
-      "scores": {
-        "factuality": 16,
-        "source_diversity": 17,
-        "ka_angle": 10,
-        "originality": 9,
+        "ka_angle": 17,
+        "originality": 15,
         "structure": 19
       },
-      "reasoning": "구조가 완전하고(프런트매터·핵심 요약·출처 섹션 모두 충족), Federal Register라는 신뢰도 높은 1차 정부 출처를 정확한 링크와 함께 인용했으며, 제안 단계임을 분명히 하고 원문에 없는 세부 사항을 만들어내지 않은 점이 강점입니다. 그러나 한인 관점 문단이 '직장 의료보험을 눈여겨보고 전문가와 상담하라'는 일반론에 그쳐 자영업 고용주·유학생 등 구체적 한인 그룹에 대한 분석이 부족하고, 본문 대부분이 용어 풀이와 요약 수준이라 편집자 차원의 종합·비교가 약합니다. 사실성과 출처는 견고하지만 한인 관점과 독창성 보강이 필요해 자동 승격 기준에는 미치지 못합니다.",
+      "reasoning": "안도라 1단계 유지라는 핵심 사실과 STEP·영사 안내는 국무부 출처로 추적 가능하고, 경유국(스페인·프랑스 2단계) 맥락을 더한 편집자 분석과 은퇴 여행자·유학생 부모·영주권자별 한인 관점이 명확해 독창성과 구조(완전한 frontmatter, 핵심 요약, 출처 섹션)는 우수합니다. 다만 스페인 경보 '8월 11일 갱신', 프랑스 '5월 28일 갱신' 등 발행일(5월 22일) 이후의 미래 날짜가 그대로 들어가 있어 검증 불가능한 사실 오류가 있고, 출처가 모두 국무부 단일 publisher라 교차검증이 약합니다. 미래 날짜 오류만 바로잡으면 발행 가능한 수준이나 현 상태로는 보수적으로 70점 미만에 가까운 평가가 적절합니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-05-21-excepted-fertility-benefits.md"
+      "promoted_to": "queue/2026-05-22-andorra-level-1-exercise-normal-precautions.md"
     },
     {
-      "slug": "2026-05-21-minutes-of-the-federal-open-market-committee-april-28-29-2026",
-      "score": 65,
-      "scores": {
-        "factuality": 15,
-        "source_diversity": 16,
-        "ka_angle": 11,
-        "originality": 6,
-        "structure": 17
-      },
-      "reasoning": "연방준비제도라는 1차 규제기관 출처가 정확한 링크와 함께 인용돼 있고 frontmatter·핵심 요약·출처 섹션 등 구조는 완결돼 있습니다. 그러나 회의록의 실제 논의 내용(금리·경제 전망)을 전혀 다루지 않고 '원문을 보라'는 안내에 그쳐 편집 차원의 종합·분석이 없으며, 한인 관점도 금리가 모기지·대출에 영향을 준다는 일반적 서술 수준에 머물러 독창성이 크게 부족합니다.",
-      "action": "review",
-      "promoted_to": null
-    },
-    {
-      "slug": "2026-05-21-returns-relating-to-sales-or-exchanges-of-certain-partnership-interests",
+      "slug": "2026-05-22-enhanced-ebola-airport-screening-begins-at-washington-dulles-international-airpo-2",
       "score": 69,
       "scores": {
-        "factuality": 15,
-        "source_diversity": 16,
-        "ka_angle": 12,
-        "originality": 8,
+        "factuality": 12,
+        "source_diversity": 13,
+        "ka_angle": 16,
+        "originality": 10,
         "structure": 18
       },
-      "reasoning": "연방관보(IRS)라는 신뢰도 높은 1차 출처를 정확한 링크와 함께 인용했고, 날짜·기관명 등 본문 수치가 모두 출처로 추적 가능하며 검증 불가능한 사실을 만들어내지 않은 점은 강점입니다. 또한 frontmatter가 완전하고 핵심 요약·출처 섹션을 갖춘 구조도 안정적입니다. 그러나 본문 스스로 '규정 변경 사실을 짧게 알리는 수준'이라고 인정할 만큼 내용이 얕고, 신고 양식·적용 시점 등 실질 정보 없이 출처 요약을 재서술하는 데 그쳐 독창성이 매우 낮으며, 한인 관점 문단도 자영업 사례를 일반적으로 언급할 뿐 구체적 분석으로 발전하지 못해 80점 자동 승격 기준에는 미달합니다.",
+      "reasoning": "YAML frontmatter와 핵심 요약·출처 섹션이 완비돼 구조가 깔끔하고, 덜레스 공항을 자주 이용하는 워싱턴 일대 한인 가족·유학생·출장객을 구체적으로 짚어 입국 시간 여유 등 실용 조언을 준 한인 관점이 강점입니다. 그러나 유일한 출처 링크가 CDC 도메인이긴 해도 'download.asp' 임베드 다운로드 엔드포인트라 일반 독자가 본문 주장을 직접 추적·검증하기 어려워 사실성과 출처 신뢰도가 약하고, 짧은 발표문을 풀어 쓴 수준에 머물러 편집자 차원의 종합·비교 분석이 부족합니다. 종합 69점으로 자동 승격 기준에는 미치지 못합니다.",
       "action": "review",
       "promoted_to": null
     },
     {
-      "slug": "2026-05-21-spencer-pratt-is-winning-the-internet-but-can-he-become-mayor-of-los-angeles",
-      "score": 67,
+      "slug": "2026-05-22-tunisia-level-2-exercise-increased-caution",
+      "score": 77,
+      "scores": {
+        "factuality": 17,
+        "source_diversity": 16,
+        "ka_angle": 13,
+        "originality": 12,
+        "structure": 19
+      },
+      "reasoning": "국무부 여행경보라는 신뢰도 높은 정부 1차 출처를 정확한 링크와 함께 인용했고, 경보 등급·신규 위험 지표·여행 금지 구역 등 본문의 수치와 지명이 모두 출처로 추적 가능하며 frontmatter와 핵심 요약·출처 섹션 구조도 완전합니다. 다만 한인 관점 문단이 가족 여행객·은퇴자를 언급하긴 하나 일정·보험 점검 등 일반 여행객에도 통하는 조언에 가깝고, 편집자 차원의 종합·비교가 '공무원 이동 제한=위험 기준' 해석 정도에 그쳐 독창성은 다소 약합니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-05-22-tunisia-level-2-exercise-increased-caution.md"
+    },
+    {
+      "slug": "2026-05-22-walmart-plans-price-cuts-using-tariff-refunds-as-shoppers-get-skittish-2",
+      "score": 81,
       "scores": {
         "factuality": 15,
         "source_diversity": 16,
-        "ka_angle": 10,
-        "originality": 9,
-        "structure": 17
+        "ka_angle": 18,
+        "originality": 13,
+        "structure": 19
       },
-      "reasoning": "NPR이라는 신뢰도 높은 주요 언론사를 정확한 링크와 함께 인용했고, 본문의 주장이 모두 출처에 귀속돼 있으며 YAML frontmatter와 핵심 요약·출처 섹션 등 구조도 완전합니다. 그러나 한인 관점 문단이 'LA에 한인이 많고 선거가 지역 경제에 영향을 준다' 수준의 일반론에 그쳐 자영업자·유학생·한인 가정 등 구체적 그룹에 대한 분석이 없고, 본문 대부분이 NPR 기사의 요약·재진술이라 편집자 차원의 종합·비교·맥락이 부족합니다. 또한 정치·문화 사안인데 category가 'economy'로 잘못 분류돼 있어 80점 자동 승격 기준에는 미치지 못합니다.",
-      "action": "review",
-      "promoted_to": null
-    },
-    {
-      "slug": "2026-05-21-transcript-update-on-ebola-outbreak-in-the-democratic-republic-of-the-congo-and",
-      "score": 66,
-      "scores": {
-        "factuality": 14,
-        "source_diversity": 16,
-        "ka_angle": 12,
-        "originality": 7,
-        "structure": 17
-      },
-      "reasoning": "CDC라는 신뢰도 높은 정부 기관을 정확한 링크와 함께 단일 출처로 인용했고, 확진자 수 등 세부 수치가 발췌본에 없다는 한계를 솔직히 밝혀 허위 사실을 만들어내지 않은 점은 강점입니다. 또한 발병 지역 여행·입국 관련 한인 관점 문단을 명시적으로 포함했습니다. 그러나 본문이 '구체적 통계는 원문을 직접 확인하라'는 안내에 그쳐 편집자 차원의 종합·분석·맥락 추가가 거의 없는 사실상 빈약한 스텁 글이며, 독자적 정보 가치가 부족해 자동 승격 기준에 미달합니다.",
-      "action": "review",
-      "promoted_to": null
+      "reasoning": "본문의 주장이 모두 정성적이며 '할 수도 있다'·'아직 확정되지 않았다' 식으로 적절히 한정돼 있고, 수치를 지어내지 않은 채 NPR Business라는 신뢰도 높은 단일 출처에 추적 가능하게 연결돼 구조(완전한 frontmatter·핵심 요약·출처 섹션)도 흠잡을 데 없습니다. 특히 유학생·신규 이민 가정·은퇴자와 한인 자영업자(식자재 원가 절감 대 한인 마트 경쟁 압력)로 나눠 양면적 영향을 구체적으로 풀어쓴 한인 관점이 가장 큰 강점입니다. 다만 '정부가 관세 대부분을 환급해야 한다'는 비교적 무거운 전제가 단일 NPR 기사에만 의존하고, 기사 자체가 '검토 단계'라는 다소 빈약한 사건이라 편집자 차원의 비교·종합이 다른 매체와 뚜렷이 차별화되지는 못해 독창성은 다소 낮습니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-05-22-walmart-plans-price-cuts-using-tariff-refunds-as-shoppers-get-skittish-2.md"
     }
   ]
 }
