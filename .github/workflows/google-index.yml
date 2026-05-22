@@ -1,16 +1,14 @@
 name: Google Indexing
 
 # Submits the sitemap to Search Console. On content pushes, pings only the
-# newly added blog URLs through IndexNow / Google Indexing API. Runs daily +
-# after content changes on main + manual trigger.
+# newly added blog URLs through IndexNow / Google Indexing API. Runs after
+# content changes on main + manual trigger.
 #
 # Requires repo secret GSC_SERVICE_ACCOUNT (base64-encoded service account JSON).
 # Create/rotate it with:
 #   base64 -i .secrets/gsc-service-account.json | gh secret set GSC_SERVICE_ACCOUNT
 
 on:
-  schedule:
-    - cron: '0 9 * * *'        # daily 09:00 UTC
   push:
     branches: [main]
     paths:

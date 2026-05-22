@@ -6,10 +6,6 @@ on:
       - main
     paths:
       - 'queue/**'
-  schedule:
-    # Daily at 12:00 UTC = 8:00 AM ET EDT / 7:00 AM ET EST. Publishes 1 post from queue.
-    # (publish_from_queue.py defaults to POSTS_PER_RUN=1; can be overridden via manual dispatch.)
-    - cron: '0 12 * * *'
   workflow_dispatch:
     inputs:
       count:
