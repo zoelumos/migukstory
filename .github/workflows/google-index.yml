@@ -45,7 +45,7 @@ jobs:
       - name: Push newly-added blog URLs to indexing APIs
         if: github.event_name == 'push'
         # Indexing pings are best-effort. Google returns 429 when the daily
-        # publish quota is exhausted; that should not mark the cron/workflow as
+        # publish quota is exhausted; that should not mark the workflow as
         # failed after the sitemap has already been submitted successfully.
         continue-on-error: true
         env:
@@ -56,10 +56,10 @@ jobs:
           python3 scripts/notify_indexes.py --auto
 
       - name: Push ALL sitemap URLs to Google Indexing API
-        # Manual-only full-site reindex. Scheduled/push runs are unchanged: the
-        # daily cron still only submits the sitemap, and content pushes still
-        # ping just the newly-added URLs. This step asks Google to (re)index
-        # every URL in the sitemap and only runs from the "Run workflow" button.
+        # Manual-only full-site reindex. Push runs are unchanged: content
+        # pushes still ping just the newly-added URLs. This step asks Google
+        # to (re)index every URL in the sitemap and only runs from the
+        # "Run workflow" button.
         if: github.event_name == 'workflow_dispatch'
         # Best-effort, same as above: Google's Indexing API returns 429 once the
         # daily publish quota (~200 URLs) is exhausted. That must not fail the
@@ -69,4 +69,8 @@ jobs:
 
       - name: Index-status report
         if: always()
+        # Status output is informational only; never let a hung report or a
+        # non-zero exit fail the workflow after indexing has already run.
+        timeout-minutes: 5
+        continue-on-error: true
         run: node scripts/google_index.mjs status
