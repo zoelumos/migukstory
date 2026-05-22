@@ -7,6 +7,8 @@ export const CATEGORIES = {
 	'immigration': { label: '이민·비자',       slug: 'immigration', color: '#B91C1C' },
 	'tax':         { label: '세금·재테크',     slug: 'tax',         color: '#1E40AF' },
 	'economy':     { label: '경제·산업',       slug: 'economy',     color: '#0F766E' },
+	'ai':          { label: 'AI·자동화',       slug: 'ai',          color: '#6D28D9' },
+	'robotics':    { label: '로봇·미래직업',   slug: 'robotics',    color: '#C2410C' },
 	'health':      { label: '건강·보험',       slug: 'health',      color: '#047857' },
 	'education':   { label: '교육·자녀',       slug: 'education',   color: '#7C3AED' },
 	'retirement':  { label: '은퇴·연금',       slug: 'retirement',  color: '#B7791F' },
@@ -27,8 +29,8 @@ const blog = defineCollection({
 			heroImage: z.optional(image()),
 			tags: z.array(z.string()).default([]),
 			category: z.enum([
-				'immigration', 'tax', 'economy', 'health', 'education',
-				'retirement', 'community', 'real-estate',
+				'immigration', 'tax', 'economy', 'ai', 'robotics', 'health',
+				'education', 'retirement', 'community', 'real-estate',
 			]),
 			ageGroup: z.enum(['20-35', '35-55', '55+', 'all']).default('all'),
 			// E-E-A-T: per-article author slug. Looked up in AUTHORS map in consts.ts.

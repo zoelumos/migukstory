@@ -65,6 +65,7 @@ DEFAULT_CLI_TIMEOUT = 180  # per `claude -p` call, seconds
 VALID_CATEGORIES = {
     "immigration", "tax", "health", "education",
     "retirement", "community", "real-estate", "economy",
+    "ai", "robotics",
 }
 
 # Stripped from query strings during URL canonicalization.
@@ -307,7 +308,9 @@ sourceUrl: '{canonical_url}'
 반드시 한 문단은 "미주 한인에게 왜 중요한가"를 구체적으로 다루세요:
 한인 자영업자, 유학생, 취업비자/영주권자, 은퇴자, 부모 세대, 한인 가정 중
 해당되는 독자 그룹을 골라 실제 의사결정·서류·세금·건강·생활비·커뮤니티
-영향을 설명하세요. 단, 원문에 없는 새로운 사실은 금지하고 원문 사실에서
+영향을 설명하세요. AI/robotics 카테고리는 일자리, 소상공인 자동화, 자녀 교육·진로,
+투자 위험, 이민자 노동자, 한인 가정 영향 중 원문에서 논리적으로 이어지는 축으로
+풀어 쓰세요. 단, 원문에 없는 새로운 사실은 금지하고 원문 사실에서
 논리적으로 따라오는 영향 분석만 하세요.]
 
 ## 핵심 요약

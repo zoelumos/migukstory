@@ -10,7 +10,7 @@
 #               src/content.config.ts CATEGORIES. The generated draft's
 #               frontmatter `category` defaults to this value.
 #               (immigration | tax | health | education | retirement |
-#                community | economy | real-estate)
+#                community | economy | ai | robotics | real-estate)
 #   enabled   : Set to false to skip without deleting the entry.
 #   max_items : Optional. Cap items pulled from this feed per run. Default 3.
 #
@@ -72,6 +72,32 @@ sources:
   - name: NPR Business
     url: https://feeds.npr.org/1006/rss.xml
     category: economy
+    enabled: true
+    max_items: 2
+
+  # ── AI / automation — high-signal tech and policy-adjacent coverage ──
+  - name: TechCrunch AI
+    url: https://techcrunch.com/category/artificial-intelligence/feed/
+    category: ai
+    enabled: true
+    max_items: 2
+
+  - name: MIT Technology Review — AI
+    url: https://www.technologyreview.com/topic/artificial-intelligence/feed/
+    category: ai
+    enabled: true
+    max_items: 2
+
+  # ── Robotics / future work — credible engineering and industry coverage ──
+  - name: IEEE Spectrum — Robotics
+    url: https://spectrum.ieee.org/feeds/topic/robotics.rss
+    category: robotics
+    enabled: true
+    max_items: 2
+
+  - name: The Robot Report
+    url: https://www.therobotreport.com/feed/
+    category: robotics
     enabled: true
     max_items: 2
 
