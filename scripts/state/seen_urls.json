@@ -2,6 +2,12 @@
   "_comment": "Canonical URLs already turned into drafts. Maintained by scripts/draft_from_rss.py. Safe to hand-edit.",
   "version": 1,
   "seen": {
+    "https://bls.gov/bls": {
+      "first_seen": "2026-05-23",
+      "source": "BLS Latest Numbers",
+      "title": "Major Economic Indicators Latest Numbers",
+      "draft": "drafts/2026-05-23-major-economic-indicators-latest-numbers-2.md"
+    },
     "https://federalregister.gov/documents/2026/05/13/2026-09479/excepted-fertility-benefits": {
       "first_seen": "2026-05-21",
       "source": "Federal Register — Tax Rules (IRS)",
@@ -44,6 +50,66 @@
       "title": "South Korea Tax Agency Issues 2026 Individual Income Tax Guide for Nonresidents in English, Korean",
       "draft": "drafts/2026-05-18-korea-nts-nonresident-tax-2026.md"
     },
+    "https://news.google.com/rss/articles/CBMidEFVX3lxTE9aT3A0TmdoSFpNakdsYnFoQi1KdFhmbmVuSnBMb19Ua19qREZNRHNDLXlQak5wMERWU3dpbHBKSUhJbFowVjJLY01GRDNWN1R3c3Nzdl93RXU2T1pkb3IzZTExUGNscDU4dS1zU3BiTjd3LVVt?oc=5": {
+      "first_seen": "2026-05-23",
+      "source": "Google News — CPI / Interest Rate Watch",
+      "title": "EPIC EXPLAINER: CPI and PPI - The Economic Policy Innovation Center",
+      "draft": "drafts/2026-05-23-epic-explainer-cpi-and-ppi-the-economic-policy-innovation-center-2.md"
+    },
+    "https://news.google.com/rss/articles/CBMifEFVX3lxTFAwd2ZnLUhTaW5DMVBiN0VoSXFwY3VqZzVOOW9tR1FOLW5BTFRwTWt0Vlo1UW9OM2RXcVJ0YklrTTY2dWFUTkN5bURDR2d1Vjk0N213aGJub3IxZXFSN3RKRVI0TzlDZGJ1M20wTUg4dUxjNG1MLS1XUUZDcTc?oc=5": {
+      "first_seen": "2026-05-23",
+      "source": "Google News — USCIS / Green Card Watch",
+      "title": "DHS Quits Granting Green Cards—Almost Entirely - Cato Institute",
+      "draft": "drafts/2026-05-23-dhs-quits-granting-green-cards-almost-entirely-cato-institute-2.md"
+    },
+    "https://news.google.com/rss/articles/CBMigwJBVV95cUxPTTNjN3k4NGdrSjVQcVJfeUg3OTFMVVp6WW5LTFkxMGljcHUyRGYxX1dlbVE0ellveUxRY2cxbVROREZKSnhtX1VDZTJNSkd1TlVodDl4ZzBHQVh1ZDFOX3lWZjZ2NmFYSVdxWDFPRklxQTJEd25DYTl3QjBZLUxPY3N2ZEVCZEZJUFVTYVRxdG1ZTWRWLW1mMmZCYTRONkdDYWU0OU1oeUJ4QVgyNXkwcjg0WkFIb0ZiTG82YUhKdU9IcFA3N0ZsUkI5VHB5SGRjSjFZeUVXTFEyeVJ1S3RlVlVHdjRPWUI5RFR6N002Z0VtX1VmSHZBd3NWcW9ITFF2TWlF?oc=5": {
+      "first_seen": "2026-05-23",
+      "source": "Google News — IRS / Tax Guidance Watch",
+      "title": "Protect Your Potential COVID-19 Disaster Relief Refunds By Filing Formal or Protective Claims for Refund (Part III) - Taxpayer Advocate Service (.gov)",
+      "draft": "drafts/2026-05-23-protect-your-potential-covid-19-disaster-relief-refunds-by-filing-formal-or-prot-2.md"
+    },
+    "https://news.google.com/rss/articles/CBMihAJBVV95cUxQTFRjNVo3Mk50elFhWnhfWlUtZFNJWVJWWWRyNkg4aWxIWjc5a0EwSnBZWUJSM2RpUDZUVUN6QlpNX2l2NWhJLU9mcjRua3pVTG1qbTh5a0h3NUlSc1I4X1hxM2RqNWx6UFRaY1prT05hQVhwaGotOEhHLXRFbEF1eXFjNi1ETWI1d0MtMDhGS1FZdVhybGd3TGxJbUVDaWQtcmg3cmZNc3lRd3RkdzZnc1NDRVN2X2E2Y1Z1dnNkUnZCMHpwM2pxdENIWUhrY282MVdQV21oU21FbTBTbVhsemlWNk9iZ1lGOXFURjZ2M3Q5YXIyT2pqb1pOZnJRdEplQkVnVw?oc=5": {
+      "first_seen": "2026-05-23",
+      "source": "Google News — USCIS / Green Card Watch",
+      "title": "Preparing Your I-485 in the Era of Discretionary Scrutiny: What H-1B and L-1 Applicants Should Submit to Demonstrate Positive Discretionary Factors - Reddy Neumann Brown PC",
+      "draft": "drafts/2026-05-23-preparing-your-i-485-in-the-era-of-discretionary-scrutiny-what-h-1b-and-l-1-appl-2.md"
+    },
+    "https://news.google.com/rss/articles/CBMikgFBVV95cUxPaVVHUTRKOGpZaWlTYXN4eUcyTW1JbEp2Tnp3YVA4Xy05Y2s2a1ZjdHB5SWY2VnRwSXBjOGVCMERNRERJdTVCVTB0ZUZUUG5GU2lxQWxBeUxJUU9LLXNwLTloYUprcjNkMEl1YVZzUUo1Z21qam9sYkhJLUlmZzVONFN5cUNwTEZRZG5IaGFfZnFSUdIBlwFBVV95cUxQS2JMeGpQTUNyci1qZXhYYTFIdDZQVHNOUU1hM1JQOWtkcWZzTjFqZldUY0xXQkJoc1RhY3VzUUxXMVo0N2VYcXJfaEMtRXZjRl8zbmxFSUxtQnlQQnZKdEM5eHBQdHY2TERXNXQwSHVmdjVmWmh2Wnd1MU5mTXhoWHFSRkN3OVNCN0lJeUgwVVBlZ2FORmNr?oc=5": {
+      "first_seen": "2026-05-23",
+      "source": "Google News — Health Policy / Recall Watch",
+      "title": "How a shutdown will impact health agencies and Social Security - The Hill",
+      "draft": "drafts/2026-05-23-how-a-shutdown-will-impact-health-agencies-and-social-security-the-hill.md"
+    },
+    "https://news.google.com/rss/articles/CBMingFBVV95cUxNWEVJTV9YOXVDQk1hcTJqQTBSRmNYR1V4OTBmc1kzQ3VDZmU2T0txSVc2NjJZT25HM0h5anhpYnYycmF3b2NZRFlkSWMtMzRfVk1lVExyc2EwLTlqdDQ4NDVBYUdGVERDblNlRzRjQTJONW5zWnVfdHVENkw2a0dFUVZlTWJQOEJPcGdaT2FVb3p5elNQelMxclZFZWdmUQ?oc=5": {
+      "first_seen": "2026-05-23",
+      "source": "Google News — CPI / Interest Rate Watch",
+      "title": "December 2025 CPI report released: What the data means and how it might affect interest rates - Chase Bank",
+      "draft": "drafts/2026-05-23-december-2025-cpi-report-released-what-the-data-means-and-how-it-might-affect-in-2.md"
+    },
+    "https://news.google.com/rss/articles/CBMipwFBVV95cUxQcjJuUVdlVG51QkRnOFpxU3dKMFg0bWRPUU5oYUxlM0l4SElNLWNEQVdDM2xhZkcxNm5CWFFwTUN3MkNmTTA1WnB3eGVKanRic0JhLXN6VVBKelFnUlFORmhjUWV6TmVCY3dSQkJuenNkZzV1c1l2MGd4WFYxRmZfUTBUTlVtQW9PdFhPQVQ5THoyVm1HUDA2WDQyZGMwbWNqZlJNelNPaw?oc=5": {
+      "first_seen": "2026-05-23",
+      "source": "Google News — USCIS / Green Card Watch",
+      "title": "Pending Adjustment (I-485) Cases in Danger — Is This the End of the Road for AOS? - Reddy Neumann Brown PC",
+      "draft": "drafts/2026-05-23-pending-adjustment-i-485-cases-in-danger-is-this-the-end-of-the-road-for-aos-red-2.md"
+    },
+    "https://news.google.com/rss/articles/CBMitAFBVV95cUxPZzZBTG0yM0lpU0NFS2YxNWllaXVpWGp6WUQxSUdraDF6LU9FR0Juc1FPWHFiTlBfbzZuUmlGQVdJdXVjSlZ3QUxWX3hoVEptdDZMdWFqVXVSb2JycmRCRFpjUGxNVnR4UGYwWUx6MTljbjJPLXhyd2ZibG1tV2R2RUpQaDZOY3gwYnFGLW91cVp4NS03YWVOcWJmM1NYdDZZUjRzYkVKbTc2MFIxT25PMng2OEk?oc=5": {
+      "first_seen": "2026-05-23",
+      "source": "Google News — USCIS / Green Card Watch",
+      "title": "Top 5 Things to Know about the New USCIS Adjustment of Status Policy - Quarles",
+      "draft": "drafts/2026-05-23-top-5-things-to-know-about-the-new-uscis-adjustment-of-status-policy-quarles-2.md"
+    },
+    "https://news.google.com/rss/articles/CBMitgFBVV95cUxPRE5iSzJkeG00UTY0al9WdWRPbHZuWFhFLUJYQ09LS0pWM3h0bDVyaWlYZUxEYko2RUN2cHVCaFhqZFJOcHkwTElzVXczbUxtclBMRTVab3VZendxdHdzcmRQNHJtb29xYkJHb1MwZmhwQVRjOFkxdjZQWjVaQ2pkRWRRQkdsX29OQWNGUXh5LWNwRk4zSGFFcEVTU1paam9HdkZ3VnlJNVQzREhRekxpZnR1UFNfQdIBuwFBVV95cUxPQ1IyZjFCQlB0Yi1tQjFsZDlYbWV1eUJJNjE1S21YZXg0OWxpN3RYVG5wam1nSGdLWklkNHhtaGdoYlctQ3BKZWdrS0RCS0lqTkI3UWlQVHR3dlRzODIySHlYb0pfTDdpdjhCSV9reWJfcG1JbDlZci05WjlSU2lJSmNJRFRWc2poMFY2a1ZfSGFETFYwVEpneW9zaXBmVllWNDNvRDBrbWhYM0V0NzV0YXhiSmMzNlF4RUlz?oc=5": {
+      "first_seen": "2026-05-23",
+      "source": "Google News — IRS / Tax Guidance Watch",
+      "title": "Filing 2025 Taxes in 2026: Your Go-To Guide - TurboTax",
+      "draft": "drafts/2026-05-23-filing-2025-taxes-in-2026-your-go-to-guide-turbotax-2.md"
+    },
+    "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPZUUtSlVkME1ETDFRUHh3YlVabmlzYUUzZFJMcVVzRjBtdlZ1akJSVG5ENEEyVG9LYkFSVGRVNDY2VzJmOHdxYm9QMUxxUkxYNWEwYnVXWmVTZ2t4MHVKazhNNllzTTZBeUpRSXhQTVRGYklFMW0teDVkdnh6WDEwcmlYZXpRM0lDd1hULWpCWWhHc1pyeExjQ1JzTWRTOW9CRENORll1WXZOUkVzWXFlOTU4dlZwc2tzeGVtYnVxM1Y1OC14RmJuRtIBzgFBVV95cUxNeUlVSzhrbHNvV0ZTOEwxR3RMNWZuVUYzV1M3R3FObkx0Nm41enBsOFEwcURHUUlBVUNkMVFNczg0Z090RDlrbzV0U2xXbThxVUxrQ3kyNDduOTA2V3luSXBjSDJ4YWpGQUs1ZmxuXzVxZGNQR2RsRDFRQmxFSXRKbklqLUpBbWIza2F4UW45dHVxVjV1SlRVcmkzT3RrNlprSl9YZGdRXzg3R1BQZHcwSVdUQWluSDh1clNtdHdONjBkQU9NMFFERXRVMmtyUQ?oc=5": {
+      "first_seen": "2026-05-23",
+      "source": "Google News — CPI / Interest Rate Watch",
+      "title": "Fed won't get key inflation data before next rate decision as BLS cancels October CPI release - CNBC",
+      "draft": "drafts/2026-05-23-fed-won-t-get-key-inflation-data-before-next-rate-decision-as-bls-cancels-octobe-2.md"
+    },
     "https://npr.org/2026/05/19/g-s1-122938/irs-trump-settlement-tax-returns-audit": {
       "first_seen": "2026-05-20",
       "source": "NPR Business",
@@ -80,6 +146,42 @@
       "title": "The missing men of the American marriage market",
       "draft": "drafts/2026-05-19-the-missing-men-of-the-american-marriage-market.md"
     },
+    "https://spectrum.ieee.org/open-source-robot-ai-platforms": {
+      "first_seen": "2026-05-23",
+      "source": "IEEE Spectrum — Robotics",
+      "title": "Open-Source Software Is Starting to Help Robots Think",
+      "draft": "drafts/2026-05-23-open-source-software-is-starting-to-help-robots-think-2.md"
+    },
+    "https://spectrum.ieee.org/video-friday-humanoid-robot-learning": {
+      "first_seen": "2026-05-23",
+      "source": "IEEE Spectrum — Robotics",
+      "title": "Video Friday: Atlas Versus a Fridge",
+      "draft": "drafts/2026-05-23-video-friday-atlas-versus-a-fridge-2.md"
+    },
+    "https://techcrunch.com/2026/05/22/ai-is-being-used-to-resurrect-the-voices-of-dead-pilots": {
+      "first_seen": "2026-05-23",
+      "source": "TechCrunch AI",
+      "title": "AI is being used to resurrect the voices of dead pilots",
+      "draft": "drafts/2026-05-23-ai-is-being-used-to-resurrect-the-voices-of-dead-pilots-2.md"
+    },
+    "https://technologyreview.com/2026/05/21/1137756/roundtables-can-ai-learn-to-understand-the-world": {
+      "first_seen": "2026-05-23",
+      "source": "MIT Technology Review — AI",
+      "title": "Roundtables: Can AI Learn to Understand the World?",
+      "draft": "drafts/2026-05-23-roundtables-can-ai-learn-to-understand-the-world-2.md"
+    },
+    "https://technologyreview.com/2026/05/22/1137813/google-i-o-showed-how-the-path-for-ai-science-is-shifting": {
+      "first_seen": "2026-05-23",
+      "source": "MIT Technology Review — AI",
+      "title": "Google I/O showed how the path for AI-driven science is shifting",
+      "draft": "drafts/2026-05-23-google-i-o-showed-how-the-path-for-ai-driven-science-is-shifting-2.md"
+    },
+    "https://therobotreport.com/exploring-plc-and-robot-integration-with-yrg-robotics-chris-elston": {
+      "first_seen": "2026-05-23",
+      "source": "The Robot Report",
+      "title": "Exploring PLC and robot integration with YRG Robotics Chris Elston",
+      "draft": "drafts/2026-05-23-exploring-plc-and-robot-integration-with-yrg-robotics-chris-elston-2.md"
+    },
     "https://tools.cdc.gov/api/embed/downloader/download.asp?c=765572&m=132608": {
       "first_seen": "2026-05-19",
       "source": "CDC Newsroom",
@@ -104,6 +206,18 @@
       "title": "Enhanced Ebola Airport Screening Begins at Washington-Dulles International Airport",
       "draft": "drafts/2026-05-22-enhanced-ebola-airport-screening-begins-at-washington-dulles-international-airpo-2.md"
     },
+    "https://tools.cdc.gov/api/embed/downloader/download.asp?c=765615&m=132608": {
+      "first_seen": "2026-05-23",
+      "source": "CDC Newsroom",
+      "title": "Transcript - Update on Ebola Outbreak in the Democratic Republic of the Congo and Uganda, 5/22/2026",
+      "draft": "drafts/2026-05-23-transcript-update-on-ebola-outbreak-in-the-democratic-republic-of-the-congo-and-2.md"
+    },
+    "https://tools.cdc.gov/api/embed/downloader/download.asp?c=765618&m=132608": {
+      "first_seen": "2026-05-23",
+      "source": "CDC Newsroom",
+      "title": "Statement: Update on Title 42 Order",
+      "draft": "drafts/2026-05-23-statement-update-on-title-42-order-2.md"
+    },
     "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin/2026/visa-bulletin-for-may-2026.html": {
       "first_seen": "2026-05-18",
       "source": "U.S. Department of State — Bureau of Consular Affairs",
@@ -116,11 +230,23 @@
       "title": "Andorra - Level 1: Exercise Normal Precautions",
       "draft": "drafts/2026-05-22-andorra-level-1-exercise-normal-precautions.md"
     },
+    "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/anguilla-travel-advisory.html": {
+      "first_seen": "2026-05-23",
+      "source": "State Department Travel Advisories",
+      "title": "Anguilla - Level 1: Exercise Normal Precautions",
+      "draft": "drafts/2026-05-23-anguilla-level-1-exercise-normal-precautions-2.md"
+    },
     "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/argentina-travel-advisory.html": {
       "first_seen": "2026-05-21",
       "source": "State Department Travel Advisories",
       "title": "Argentina - Level 1: Exercise Normal Precautions",
       "draft": "drafts/2026-05-21-argentina-level-1-exercise-normal-precautions.md"
+    },
+    "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/british-virgin-islands-travel-advisory.html": {
+      "first_seen": "2026-05-23",
+      "source": "State Department Travel Advisories",
+      "title": "British Virgin Islands - Level 1: Exercise Normal Precautions",
+      "draft": "drafts/2026-05-23-british-virgin-islands-level-1-exercise-normal-precautions-2.md"
     },
     "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/croatia-travel-advisory.html": {
       "first_seen": "2026-05-19",
