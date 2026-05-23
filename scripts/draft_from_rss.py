@@ -12,6 +12,7 @@ Usage:
   python scripts/draft_from_rss.py [--dry-run] [--max-drafts N]
                                    [--manifest PATH] [--time-budget S]
                                    [--cli-timeout S]
+                                   [--urgent-only] [--tier1-only]
 
 Options:
   --dry-run        Fetch + dedupe + plan, but do not call the Claude API,
@@ -21,6 +22,10 @@ Options:
   --max-per-category N
                    Target cap per category (default: 3), so the editor sees
                    enough candidates across immigration/tax/health/etc.
+                   Items matching URGENT_TERMS (USCIS / I-485 / IRS guidance
+                   / FDA recall / CPI / interest rate / etc.) are picked
+                   FIRST and bypass this per-category cap so a single noisy
+                   category never silently buries a high-impact story.
   --manifest PATH  Write a JSON manifest of the drafts created this run to
                    PATH. editor_grade.py --manifest PATH then grades ONLY
                    those, so grading work stays bounded per run.
@@ -28,6 +33,12 @@ Options:
                    remaining items are deferred to a later run. 0 = unlimited.
   --cli-timeout S  Per `claude -p` call timeout (default: 180s). One slow
                    call can never hang the whole job.
+  --urgent-only    Only draft items matching URGENT_TERMS. Used by the
+                   second daily "Tier-1 urgent" Hermes ingest so it does
+                   NOT spam non-urgent content into the editor PR.
+  --tier1-only     Restrict candidate categories to the Tier-1 set
+                   (immigration, tax, health, economy). Pairs with
+                   --urgent-only for the urgent-ingest job.
 
 Env vars:
   ANTHROPIC_API_KEY   Required unless --dry-run. Read from environment;
@@ -67,6 +78,45 @@ VALID_CATEGORIES = {
     "retirement", "community", "real-estate", "economy",
     "ai", "robotics",
 }
+
+# Tier-1 high-impact categories. The second daily "urgent" ingest restricts
+# itself to these so it never burns time on AI/robotics commentary when the
+# goal is catching things like USCIS adjustment-of-status policy memos.
+TIER1_CATEGORIES = {"immigration", "tax", "health", "economy"}
+
+# Patterns that mark an item as "urgent / high-impact" for Korean-American
+# readers. Matched case-insensitively against title + summary. Items that
+# match bypass the per-category cap during selection so a single noisy
+# feed never crowds out a real policy story.
+#
+# Editorial review (editor_grade.py) still grades urgent items against the
+# same rubric, so a false-positive urgent match becomes a draft, not a
+# publish.
+URGENT_TERMS = [
+    # Immigration
+    r"\buscis\b", r"green\s*card", r"adjustment of status",
+    r"\bi-?485\b", r"\bi-?130\b", r"\bi-?765\b", r"\bi-?864\b",
+    r"policy memo", r"\bvisa bulletin\b", r"\bvisa\b",
+    r"deport", r"asylum", r"\bdaca\b", r"travel ban",
+    r"\bopt\b", r"\bh-?1b\b", r"\beb-?[1-5]\b", r"\btps\b",
+    # Tax
+    r"irs guidance", r"tax deadline", r"\b1099\b", r"withholding",
+    r"tax credit", r"refund delay", r"\bw-?2\b", r"\bfbar\b",
+    # Health
+    r"fda recall", r"\bmedicare\b", r"medicaid", r"\baca\b", r"obamacare",
+    r"vaccine", r"outbreak", r"\bcdc\b advisory",
+    # Economy / benefits
+    r"social security", r"\bcpi\b", r"interest rate",
+    r"fed (?:raises|cuts|holds|hike|cut|funds rate)",
+    r"unemployment", r"\bfomc\b", r"recession", r"inflation report",
+]
+URGENT_RE = re.compile("|".join(URGENT_TERMS), re.IGNORECASE)
+
+
+def is_urgent(item: "FeedItem") -> bool:
+    """True if title or summary matches any URGENT_TERMS pattern."""
+    hay = f"{item.title}\n{item.summary}"
+    return bool(URGENT_RE.search(hay))
 
 # Stripped from query strings during URL canonicalization.
 TRACKING_PARAM_PREFIXES = ("utm_", "fbclid", "gclid", "mc_cid", "mc_eid",
@@ -446,6 +496,12 @@ def parse_args() -> argparse.Namespace:
                         "Default: 0 (unlimited).")
     p.add_argument("--cli-timeout", type=int, default=DEFAULT_CLI_TIMEOUT,
                    help=f"Per `claude -p` call timeout, seconds. Default: {DEFAULT_CLI_TIMEOUT}.")
+    p.add_argument("--urgent-only", action="store_true",
+                   help="Restrict candidates to URGENT_TERMS matches only "
+                        "(second daily Tier-1 ingest).")
+    p.add_argument("--tier1-only", action="store_true",
+                   help="Restrict candidate categories to "
+                        f"{sorted(TIER1_CATEGORIES)}.")
     return p.parse_args()
 
 
@@ -484,16 +540,55 @@ def main() -> int:
         print("✅ Nothing new — all feed items already seen.")
         return 0
 
-    # Select by category first, then round-robin sources inside each category.
-    # This prevents early feeds (e.g. government notices) from consuming the
-    # whole run and gives each configured category about max_per_category shots.
-    by_category_source: dict[str, dict[str, list[FeedItem]]] = {}
-    for c in candidates:
-        by_category_source.setdefault(c.category, {}).setdefault(c.source_name, []).append(c)
+    if args.tier1_only:
+        before = len(candidates)
+        candidates = [c for c in candidates if c.category in TIER1_CATEGORIES]
+        print(f"🎯 --tier1-only: kept {len(candidates)}/{before} candidates "
+              f"in categories {sorted(TIER1_CATEGORIES)}")
 
+    if args.urgent_only:
+        before = len(candidates)
+        candidates = [c for c in candidates if is_urgent(c)]
+        print(f"🚨 --urgent-only: kept {len(candidates)}/{before} URGENT candidates")
+        if not candidates:
+            print("✅ No urgent candidates this run — nothing to draft.")
+            return 0
+
+    # Urgent items get picked FIRST (up to max_drafts) so a per-category cap
+    # never silently drops, e.g., a USCIS adjustment-of-status policy memo
+    # because that day already had two unrelated immigration items.
     selected: list[FeedItem] = []
+    urgent_picks: list[FeedItem] = []
+    remaining: list[FeedItem] = []
+    for c in candidates:
+        if is_urgent(c):
+            urgent_picks.append(c)
+        else:
+            remaining.append(c)
+    urgent_by_source: dict[str, list[FeedItem]] = {}
+    for it in urgent_picks:
+        urgent_by_source.setdefault(it.source_name, []).append(it)
+    while len(selected) < max_drafts and any(urgent_by_source.values()):
+        for name in sorted(urgent_by_source):
+            bucket = urgent_by_source[name]
+            if not bucket:
+                continue
+            selected.append(bucket.pop(0))
+            if len(selected) >= max_drafts:
+                break
+
+    # Round-robin the rest by category, respecting max_per_category. Urgent
+    # picks above also count toward the per-category cap so we don't blow
+    # past intent when one category is unusually loud.
+    by_category_source: dict[str, dict[str, list[FeedItem]]] = {}
+    for c in remaining:
+        by_category_source.setdefault(c.category, {}).setdefault(c.source_name, []).append(c)
+    category_quota_used: dict[str, int] = {}
+    for it in selected:
+        category_quota_used[it.category] = category_quota_used.get(it.category, 0) + 1
+
     for category in sorted(by_category_source):
-        picked_for_category = 0
+        picked_for_category = category_quota_used.get(category, 0)
         by_source = by_category_source[category]
         while picked_for_category < max_per_category and len(selected) < max_drafts and any(by_source.values()):
             for name in sorted(by_source):
@@ -504,10 +599,13 @@ def main() -> int:
                 if picked_for_category >= max_per_category or len(selected) >= max_drafts:
                     break
 
+    urgent_in_selected = sum(1 for s in selected if is_urgent(s))
     print(f"\n🎯 Planning {len(selected)} draft(s) "
-          f"(max {max_drafts}, max/category {max_per_category}):")
+          f"(max {max_drafts}, max/category {max_per_category}, "
+          f"urgent-prio {urgent_in_selected}):")
     for it in selected:
-        print(f"   - [{it.category}] {it.source_name}: {it.title[:80]}")
+        flag = "🚨" if is_urgent(it) else "  "
+        print(f"   {flag} [{it.category}] {it.source_name}: {it.title[:80]}")
 
     if args.dry_run:
         print("\n🧪 --dry-run: skipping Claude calls and file writes.")

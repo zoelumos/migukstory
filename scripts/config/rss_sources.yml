@@ -32,8 +32,26 @@ sources:
     enabled: true
     max_items: 3
 
+  # Google News backup catches high-impact USCIS policy memos / alerts that do
+  # not appear as Federal Register RULE/PRORULE items. Validated 2026-05-22 via
+  # feedparser (100 entries). Keep max_items low; urgent keyword priority in
+  # draft_from_rss.py decides what deserves Claude time.
+  - name: Google News — USCIS / Green Card Watch
+    url: https://news.google.com/rss/search?q=USCIS%20green%20card%20OR%20I-485%20OR%20adjustment%20of%20status&hl=en-US&gl=US&ceid=US:en
+    category: immigration
+    enabled: true
+    max_items: 4
+
   - name: Federal Register — Tax Rules (IRS)
     url: https://www.federalregister.gov/api/v1/documents.rss?conditions%5Bagencies%5D%5B%5D=internal-revenue-service&conditions%5Btype%5D%5B%5D=RULE&conditions%5Btype%5D%5B%5D=PRORULE&order=newest
+    category: tax
+    enabled: true
+    max_items: 3
+
+  # Backup for IRS guidance / tax deadline stories that are not formal rules.
+  # Validated 2026-05-22 via feedparser (100 entries).
+  - name: Google News — IRS / Tax Guidance Watch
+    url: https://news.google.com/rss/search?q=IRS%20tax%20guidance%20OR%20tax%20deadline&hl=en-US&gl=US&ceid=US:en
     category: tax
     enabled: true
     max_items: 3
@@ -57,6 +75,20 @@ sources:
     enabled: true
     max_items: 2
 
+  - name: FDA Press Announcements
+    url: https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/press-releases/rss.xml
+    category: health
+    enabled: true
+    max_items: 2
+
+  # Backup for recalls / Medicare / urgent public-health stories. Validated
+  # 2026-05-22 via feedparser (71 entries). Kept narrow + low-volume.
+  - name: Google News — Health Policy / Recall Watch
+    url: https://news.google.com/rss/search?q=FDA%20recall%20OR%20CDC%20Medicare%20health&hl=en-US&gl=US&ceid=US:en
+    category: health
+    enabled: true
+    max_items: 3
+
   - name: CMS Newsroom (Medicare / Medicaid / ACA)
     url: https://www.cms.gov/newsroom/rss-feeds
     category: health
@@ -68,6 +100,20 @@ sources:
     category: economy
     enabled: true
     max_items: 2
+
+  - name: BLS Latest Numbers
+    url: https://www.bls.gov/feed/bls_latest.rss
+    category: economy
+    enabled: true
+    max_items: 1
+
+  # Backup for CPI / rate-sensitive stories. Validated 2026-05-22 via
+  # feedparser (52 entries). Kept low-volume to avoid generic market noise.
+  - name: Google News — CPI / Interest Rate Watch
+    url: https://news.google.com/rss/search?q=CPI%20interest%20rates%20BLS%20Federal%20Reserve&hl=en-US&gl=US&ceid=US:en
+    category: economy
+    enabled: true
+    max_items: 3
 
   - name: NPR Business
     url: https://feeds.npr.org/1006/rss.xml
@@ -120,6 +166,36 @@ sources:
   - name: SSA Press Releases        # 403s automated access — use Federal Register
     url: https://www.ssa.gov/news/press/releases/
     category: retirement
+    enabled: false
+    max_items: 2
+  - name: USCIS Newsroom All News   # 0 entries / bozo on 2026-05-22; use Google News watch + Federal Register
+    url: https://www.uscis.gov/newsroom/all-news/feed
+    category: immigration
+    enabled: false
+    max_items: 2
+  - name: USCIS Alerts              # 0 entries / bozo on 2026-05-22; no reliable RSS found
+    url: https://www.uscis.gov/news/alerts/feed
+    category: immigration
+    enabled: false
+    max_items: 2
+  - name: AP Immigration            # 0 entries / bozo on 2026-05-22 from public RSS URL
+    url: https://apnews.com/hub/immigration/rss
+    category: immigration
+    enabled: false
+    max_items: 2
+  - name: Politico Immigration      # 0 entries / bozo on 2026-05-22 from public RSS URL
+    url: https://www.politico.com/rss/immigration.xml
+    category: immigration
+    enabled: false
+    max_items: 2
+  - name: HHS News Releases         # 0 entries / bozo on 2026-05-22 from public RSS URL
+    url: https://www.hhs.gov/about/news/news-releases/rss.xml
+    category: health
+    enabled: false
+    max_items: 2
+  - name: BEA News                  # 0 entries / bozo on 2026-05-22 from public RSS URL
+    url: https://www.bea.gov/news/rss.xml
+    category: economy
     enabled: false
     max_items: 2
   - name: Korea Times US            # feed moved; low KA-family relevance

@@ -1,0 +1,109 @@
+name: migukstory-urgent-ingest
+description: |
+  Lightweight second daily Tier-1 RSS ingest for urgent/high-impact stories.
+  Restricts to immigration, tax, health, and economy, then drafts only items
+  matching the urgent keyword guard in scripts/draft_from_rss.py. It opens or
+  updates the same bot/daily-draft PR path as daily-ingest. It never publishes
+  or deploys; public publishing/deploy/indexing remains owned by daily-publish
+  and GitHub Actions daily-post.yml.
+enabled: true
+schedule: "0 23 * * *"          # 23:00 UTC = 7:00 PM ET EDT / 6:00 PM ET EST
+timezone: UTC
+working_dir: /Users/zoelumos/migukstory
+prompt_file: null
+log_file: logs/urgent-ingest-{date}.log
+command: |
+  set -euo pipefail
+  echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] urgent-ingest starting"
+
+  git fetch -q origin
+  if git ls-remote --exit-code --heads origin bot/daily-draft >/dev/null 2>&1; then
+    git checkout -B bot/daily-draft origin/bot/daily-draft
+  else
+    git checkout -B bot/daily-draft origin/main
+  fi
+
+  PY_VENV=/tmp/migukstory-draft-venv
+  if [ ! -x "$PY_VENV/bin/python" ]; then
+    /opt/homebrew/bin/python3 -m venv "$PY_VENV"
+  fi
+  "$PY_VENV/bin/python" -m pip install -q -r scripts/requirements-draft.txt
+
+  export CLAUDE_VIA_CLI=1
+  MANIFEST=$(mktemp)
+  trap 'rm -f "$MANIFEST"' EXIT
+
+  "$PY_VENV/bin/python" scripts/draft_from_rss.py \
+    --tier1-only \
+    --urgent-only \
+    --max-drafts 8 \
+    --max-per-category 3 \
+    --manifest "$MANIFEST" \
+    --time-budget 900 \
+    --cli-timeout 150 \
+    || echo "  (urgent draft script exited non-zero; continuing)"
+
+  "$PY_VENV/bin/python" scripts/improve_drafts.py \
+    --manifest "$MANIFEST" \
+    --max-drafts 8 \
+    --time-budget 900 \
+    --cli-timeout 180 \
+    || echo "  (urgent validate/improve script exited non-zero; continuing)"
+
+  "$PY_VENV/bin/python" scripts/editor_grade.py \
+    --threshold 70 \
+    --manifest "$MANIFEST" \
+    --max-drafts 8 \
+    --time-budget 900 \
+    --cli-timeout 90 \
+    || echo "  (urgent editor script exited non-zero; continuing)"
+
+  gh label create draft --repo zoelumos/migukstory --color 0e8a16 --description 'AI draft automation' 2>/dev/null || true
+  gh label create automated --repo zoelumos/migukstory --color 1d76db --description 'Automated PR' 2>/dev/null || true
+  gh label create urgent-watch --repo zoelumos/migukstory --color d93f0b --description 'Tier-1 urgent ingest' 2>/dev/null || true
+
+  for path in drafts queue scripts/state/seen_urls.json scripts/state/editor_report.json; do
+    if [ -e "$path" ]; then
+      git add "$path"
+    fi
+  done
+
+  if git diff --staged --quiet; then
+    echo "  No urgent drafts; nothing to push."
+    echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] urgent-ingest done: no changes"
+    exit 0
+  fi
+
+  TODAY=$(date -u +%Y-%m-%d)
+  git -c user.email=bot@migukstory.com -c user.name="Miguk Story Bot" \
+    commit -m "draft: Hermes urgent RSS pickup ${TODAY}"
+  git push -fu origin bot/daily-draft
+
+  PR_BODY="Urgent Tier-1 RSS watch via Hermes + claude -p (Max subscription auth, no API key). Pipeline: immigration/tax/health/economy candidates only → urgent keyword guard → source-backed Korean-American drafts → validate/improve → editor grade at >=70/100 → queue/. This PR is draft material only. It does NOT publish or deploy. Merge to land queue items on main; daily-post.yml/daily-publish then publishes at most one queued post and handles Cloudflare deploy/indexing."
+  OPEN_PR_URL=$(gh pr list \
+    --repo zoelumos/migukstory \
+    --head bot/daily-draft \
+    --state open \
+    --json url \
+    --jq '.[0].url // ""')
+  if [ -z "$OPEN_PR_URL" ]; then
+    gh pr create \
+      --repo zoelumos/migukstory \
+      --base main \
+      --head bot/daily-draft \
+      --title "draft: Hermes urgent RSS pickup ${TODAY}" \
+      --body "$PR_BODY" \
+      --label "draft,automated,urgent-watch"
+  else
+    echo "$OPEN_PR_URL"
+  fi
+
+  echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] urgent-ingest done"
+on_failure:
+  notify: slack
+  channel_or_recipient: "#migukstory-ops"
+  message: "Hermes urgent-ingest failed — check ops/hermes/logs/urgent-ingest-*.log"
+prerequisites:
+  - claude CLI installed + authenticated with Max sub
+  - gh CLI authenticated as zoelumos
+  - Python 3.12+ on PATH

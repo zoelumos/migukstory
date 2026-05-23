@@ -113,8 +113,9 @@ prerequisites:
 
 | File | Schedule (UTC) | Local approx (ET, EDT) | Purpose | Uses Claude? |
 |---|---|---|---|---|
-| `daily-ingest.yml` | `0 11 * * *` | 7:00 AM | **RSS → draft → validate/improve → editor grade → immediate editorial brief → open PR** (sequential pipeline) | Yes (`claude -p`, Max auth) |
-| `daily-publish.yml` | `0 12 * * *` | 8:00 AM | Trigger `daily-post.yml` workflow → publish 1 from queue | No (gh CLI only) |
+| `daily-ingest.yml` | `0 11 * * *` | 7:00 AM | **Full RSS → draft → validate/improve → editor grade → open PR** (max 24, all active categories) | Yes (`claude -p`, Max auth) |
+| `urgent-ingest.yml` | `0 23 * * *` | 7:00 PM | **Tier-1 urgent watch** (immigration/tax/health/economy only, urgent keywords only, max 8) → same draft PR; never publishes/deploys | Yes (`claude -p`, Max auth) |
+| `daily-publish.yml` | `0 12 * * *` | 8:00 AM | Trigger `daily-post.yml` workflow → publish at most 1 from queue; workflow handles main push, Cloudflare deploy, indexing | No (gh CLI only) |
 | `daily-editorial-review.yml` | disabled | n/a | Standalone review disabled; invoked immediately by `daily-ingest` after fresh grading | Yes |
 | `daily-health.yml` | `30 14 * * *` | 10:30 AM | Status snapshot (workflows, site, queue depth, drafts pending) | Yes |
 | `weekly-audit.yml` | `0 15 * * 1` | Mon 11:00 AM | Weekly content stats in Korean | Yes |
