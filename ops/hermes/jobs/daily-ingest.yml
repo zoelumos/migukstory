@@ -78,8 +78,10 @@ command: |
     commit -m "draft: Hermes RSS pickup ${TODAY}"
   git push -fu origin bot/daily-draft
 
-  # Create PR if it doesn't already exist (idempotent).
-  PR_BODY="Auto-generated drafts via Hermes + claude -p (Max subscription auth, no API key). Pipeline: ingest RSS candidates → validate/improve with source-backed context and Korean-American impact analysis → editor grade at >=70/100 → queue/. Drafts stay in drafts/; promoted items move to queue/. Merge this PR to land the reviewed batch on main. Next daily-post.yml cron (8 AM ET) will then publish from queue automatically."
+  # Create PR if it doesn't already exist (idempotent), then auto-merge it
+  # when GitHub reports the branch is clean/mergeable. This lands queue/ on main
+  # so the daily publish workflow has fresh posts to publish.
+  PR_BODY="Auto-generated drafts via Hermes + claude -p (Max subscription auth, no API key). Pipeline: ingest RSS candidates → validate/improve with source-backed context and Korean-American impact analysis → editor grade at >=70/100 → queue/. Drafts stay in drafts/; promoted items move to queue/. This Hermes cron auto-merges the PR after creation when GitHub reports it is mergeable/clean. Next daily-post.yml cron (8 AM ET) will then publish from queue automatically."
   OPEN_PR_URL=$(gh pr list \
     --repo zoelumos/migukstory \
     --head bot/daily-draft \
@@ -87,15 +89,30 @@ command: |
     --json url \
     --jq '.[0].url // ""')
   if [ -z "$OPEN_PR_URL" ]; then
-    gh pr create \
+    PR_URL=$(gh pr create \
       --repo zoelumos/migukstory \
       --base main \
       --head bot/daily-draft \
       --title "draft: Hermes daily RSS pickup ${TODAY}" \
       --body "$PR_BODY" \
-      --label "draft,automated"
+      --label "draft,automated")
   else
-    echo "$OPEN_PR_URL"
+    PR_URL="$OPEN_PR_URL"
+  fi
+  echo "$PR_URL"
+
+  PR_NUMBER=$(gh pr view "$PR_URL" --repo zoelumos/migukstory --json number --jq '.number')
+  MERGE_STATE=$(gh pr view "$PR_NUMBER" --repo zoelumos/migukstory --json mergeStateStatus --jq '.mergeStateStatus')
+  if [ "$MERGE_STATE" = "CLEAN" ] || [ "$MERGE_STATE" = "UNSTABLE" ] || [ "$MERGE_STATE" = "HAS_HOOKS" ]; then
+    gh pr merge "$PR_NUMBER" \
+      --repo zoelumos/migukstory \
+      --squash \
+      --delete-branch \
+      --subject "draft: Hermes RSS pickup ${TODAY}" \
+      --body "Automated merge of Hermes daily ingest queue PR."
+    echo "  Auto-merged PR #${PR_NUMBER}."
+  else
+    echo "  PR #${PR_NUMBER} not auto-merged because mergeStateStatus=${MERGE_STATE}."
   fi
 
   echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] daily-ingest done"
