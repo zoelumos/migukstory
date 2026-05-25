@@ -1,7 +1,7 @@
 ---
 title: 'PLC와 로봇 통합, YRG 로보틱스 크리스 엘스턴이 전망하는 자동화의 미래'
 description: 'The Robot Report가 YRG 로보틱스의 크리스 엘스턴과 PLC·로봇 통합, 야마하 로보틱스, AI 기반 자동화의 접근성과 혁신 방향을 짚었습니다.'
-pubDate: '2026-05-23'
+pubDate: '2026-05-25'
 tags: ['로봇', '자동화', 'PLC', 'AI', '야마하 로보틱스']
 category: 'robotics'
 ageGroup: 'all'

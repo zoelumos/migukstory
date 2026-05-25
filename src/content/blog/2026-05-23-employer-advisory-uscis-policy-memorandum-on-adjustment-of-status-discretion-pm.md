@@ -1,7 +1,7 @@
 ---
 title: 'USCIS, 신분조정(I-485) 재량권 재확인 정책각서 PM-602-0199 발표 (2026-05-21)'
 description: 'USCIS가 2026년 5월 21일 신분조정(I-485) 심사를 "예외적 구제(extraordinary relief)"로 재정의한 정책각서 PM-602-0199를 발표했습니다. 한인 H-1B/L-1 직장인, F-1 유학생, 가족 초청 신청자에게 어떤 의미인지 공식 자료를 바탕으로 정리합니다.'
-pubDate: '2026-05-23'
+pubDate: '2026-05-25'
 tags: ['USCIS', '영주권', '신분조정', 'I-485', '이민정책', 'H-1B', 'L-1', 'F-1']
 category: 'immigration'
 ageGroup: 'all'

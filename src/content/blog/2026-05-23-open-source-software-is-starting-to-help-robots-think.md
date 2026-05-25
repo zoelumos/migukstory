@@ -1,7 +1,7 @@
 ---
 title: '오픈소스 소프트웨어, 로봇에게 ''생각하는 능력''을 가르치기 시작했다'
 description: 'Hugging Face, Nvidia, Alibaba 등이 로봇 추론·판단 영역에 오픈소스를 도입하며 로봇 개발의 진입 장벽이 빠르게 낮아질 전망입니다. 미주 한인 가정에 미칠 영향을 짚어봅니다.'
-pubDate: '2026-05-23'
+pubDate: '2026-05-25'
 tags: ['오픈소스', '로봇공학', 'AI', '자동화', '한인커뮤니티']
 category: 'robotics'
 ageGroup: 'all'
