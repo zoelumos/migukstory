@@ -11,13 +11,13 @@ import { SITE_TITLE } from '../../consts';
 		<BaseHead
 			title={`MFA 등록 — 관리자 — ${SITE_TITLE}`}
 			description="관리자 2단계 인증 (TOTP) 등록"
+			noindex={true}
 			breadcrumbs={[
 				{ name: '홈', url: '/' },
 				{ name: '관리자', url: '/admin' },
 				{ name: 'MFA 등록', url: '/admin/enroll-mfa' },
 			]}
 		/>
-		<meta name="robots" content="noindex, nofollow" />
 	</head>
 	<body>
 		<Header />
@@ -67,7 +67,7 @@ import { SITE_TITLE } from '../../consts';
 				<aside class="done" hidden data-done>
 					<h2>등록 완료 ✓</h2>
 					<p>TOTP 2단계 인증이 활성화되어 있습니다. 다음 로그인 시 인증 앱의 6자리 코드를 입력하세요.</p>
-					<p><a href="/admin">관리자 대시보드로 →</a></p>
+					<p><a href="/admin" rel="nofollow">관리자 대시보드로 →</a></p>
 				</aside>
 
 				<!-- Challenge required (already enrolled but session is aal1) -->

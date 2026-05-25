@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro check && astro build && pagefind --site dist --output-subdir _pagefind",
+    "build": "astro check && astro build && node scripts/audit_indexability.mjs && pagefind --site dist --output-subdir _pagefind",
     "preview": "astro preview",
     "astro": "astro"
   },
