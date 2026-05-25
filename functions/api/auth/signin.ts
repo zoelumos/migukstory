@@ -16,7 +16,7 @@ export const onRequestGet: PagesFunction<Env> = async ({ request, env }) => {
 	const next = nextRaw.startsWith('/') && !nextRaw.startsWith('//') ? nextRaw : '/';
 
 	if (!['google'].includes(provider)) {
-		return Response.redirect(new URL('/login?error=invalid_provider', url.origin).toString(), 302);
+		return Response.redirect(new URL('/login/?error=invalid_provider', url.origin).toString(), 302);
 	}
 
 	const cookies: any[] = [];
@@ -33,7 +33,7 @@ export const onRequestGet: PagesFunction<Env> = async ({ request, env }) => {
 	if (error || !data?.url) {
 		console.error('[/api/auth/signin]', error?.message);
 		return Response.redirect(
-			new URL(`/login?error=${encodeURIComponent(error?.message || 'signin_failed')}`, url.origin).toString(),
+			new URL(`/login/?error=${encodeURIComponent(error?.message || 'signin_failed')}`, url.origin).toString(),
 			302
 		);
 	}

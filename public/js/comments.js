@@ -89,7 +89,7 @@
 			} else {
 				if (composeForm) composeForm.hidden = true;
 				if (loginPrompt) loginPrompt.hidden = false;
-				if (loginLink) loginLink.href = `/login?next=${encodeURIComponent(window.location.pathname)}`;
+				if (loginLink) loginLink.href = `/login/?next=${encodeURIComponent(window.location.pathname)}`;
 			}
 		};
 

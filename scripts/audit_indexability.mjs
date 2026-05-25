@@ -7,7 +7,7 @@
  * - no <meta name="robots" content="noindex..."> on sitemap URLs
  * - no dist/_headers X-Robots-Tag: noindex for broad public routes
  */
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 const dist = new URL('../dist/', import.meta.url);
@@ -59,5 +59,38 @@ if (existsSync(headersPath)) {
   if (broadNoindex) fail('Broad /* X-Robots-Tag noindex found in dist/_headers');
 }
 
+const htmlFiles = [];
+const walkHtml = (dir) => {
+  for (const entry of readdirSync(dir)) {
+    const path = join(dir, entry);
+    const stat = statSync(path);
+    if (stat.isDirectory()) walkHtml(path);
+    else if (entry.endsWith('.html')) htmlFiles.push(path);
+  }
+};
+walkHtml(dist.pathname);
+
+const canonicalUtilityPath = /^\/(?:login|admin|admin\/enroll-mfa|auth\/callback)\/$/;
+for (const file of htmlFiles) {
+  const rel = `/${file.slice(dist.pathname.length).replace(/index\.html$/, '').replace(/\\/g, '/')}`;
+  const pathname = rel === '//' ? '/' : rel;
+  const html = readFileSync(file, 'utf8');
+
+  if (canonicalUtilityPath.test(pathname) || pathname === '/404/') {
+    const robotsTags = [...html.matchAll(/<meta\s+[^>]*name=["']robots["'][^>]*>/gi)].map((m) => m[0]);
+    if (!robotsTags.some((tag) => /content=["'][^"']*noindex/i.test(tag))) {
+      fail(`Utility/private page missing noindex robots meta: ${pathname}`);
+    }
+  }
+
+  const anchors = [...html.matchAll(/<a\s+[^>]*href=["'](\/(?:login|admin|auth(?:\/|$))(?:["'?#][^>]*)?)[^>]*>/gi)].map((m) => m[0]);
+  for (const anchor of anchors) {
+    const href = anchor.match(/href=["']([^"']+)/i)?.[1] || '';
+    const bareUtility = /^\/(?:login|admin|auth\/callback)(?:[?#].*)?$/.test(href);
+    if (bareUtility) fail(`Internal utility link uses redirecting non-canonical URL in ${pathname}: ${anchor}`);
+    if (!/rel=["'][^"']*nofollow/i.test(anchor)) fail(`Internal utility link missing rel=\"nofollow\" in ${pathname}: ${anchor}`);
+  }
+}
+
 if (process.exitCode) process.exit(process.exitCode);
-console.log('✅ Sitemap URLs are indexable; utility noindex pages are not advertised.');
+console.log('✅ Sitemap URLs are indexable; utility noindex pages are not advertised or linked as redirect targets.');

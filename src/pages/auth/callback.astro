@@ -35,7 +35,7 @@ import { SITE_TITLE } from '../../consts';
 			const msg = document.querySelector('[data-msg]') as HTMLElement | null;
 			if (msg) msg.textContent = '로그인 경로를 확인하고 있습니다…';
 			setTimeout(() => {
-				window.location.href = `/login?next=${encodeURIComponent(next)}`;
+				window.location.href = `/login/?next=${encodeURIComponent(next)}`;
 			}, 800);
 		</script>
 
