@@ -3,9 +3,8 @@ description: |
   Lightweight second daily Tier-1 RSS ingest for urgent/high-impact stories.
   Restricts to immigration, tax, health, and economy, then drafts only items
   matching the urgent keyword guard in scripts/draft_from_rss.py. It opens or
-  updates the same bot/daily-draft PR path as daily-ingest. It never publishes
-  or deploys; public publishing/deploy/indexing remains owned by daily-publish
-  and GitHub Actions daily-post.yml.
+  updates the same bot/daily-draft PR path as daily-ingest. It never publishes directly; when merged, queue/** triggers daily-post.yml,
+  which drains up to the safe batch cap and immediately deploys/indexes.
 enabled: true
 schedule: "0 23 * * *"          # 23:00 UTC = 7:00 PM ET EDT / 6:00 PM ET EST
 timezone: UTC
@@ -89,7 +88,7 @@ command: |
     commit -m "draft: Hermes urgent RSS pickup ${TODAY}"
   git push -fu origin bot/daily-draft
 
-  PR_BODY="Urgent Tier-1 RSS watch via Hermes + claude -p (Max subscription auth, no API key). Pipeline: immigration/tax/health/economy candidates only → urgent keyword guard → source-backed Korean-American drafts → validate/improve → editor grade at >=70/100 → queue/. This PR is draft material only. It does NOT publish or deploy. Merge to land queue items on main; daily-post.yml/daily-publish then publishes at most one queued post and handles Cloudflare deploy/indexing."
+  PR_BODY="Urgent Tier-1 RSS watch via Hermes + claude -p (Max subscription auth, no API key). Pipeline: immigration/tax/health/economy candidates only → urgent keyword guard → source-backed Korean-American drafts → validate/improve → editor grade at >=70/100 → queue/. This PR is draft material only. It does NOT publish or deploy. Merge to land queue items on main; daily-post.yml/daily-publish then drains queue items up to the safe batch cap and handles immediate Cloudflare deploy/indexing."
   OPEN_PR_URL=$(gh pr list \
     --repo zoelumos/migukstory \
     --head bot/daily-draft \
@@ -97,15 +96,30 @@ command: |
     --json url \
     --jq '.[0].url // ""')
   if [ -z "$OPEN_PR_URL" ]; then
-    gh pr create \
+    PR_URL=$(gh pr create \
       --repo zoelumos/migukstory \
       --base main \
       --head bot/daily-draft \
       --title "draft: Hermes urgent RSS pickup ${TODAY}" \
       --body "$PR_BODY" \
-      --label "draft,automated,urgent-watch"
+      --label "draft,automated,urgent-watch")
   else
-    echo "$OPEN_PR_URL"
+    PR_URL="$OPEN_PR_URL"
+  fi
+  echo "$PR_URL"
+
+  PR_NUMBER=$(gh pr view "$PR_URL" --repo zoelumos/migukstory --json number --jq '.number')
+  MERGE_STATE=$(gh pr view "$PR_NUMBER" --repo zoelumos/migukstory --json mergeStateStatus --jq '.mergeStateStatus')
+  if [ "$MERGE_STATE" = "CLEAN" ] || [ "$MERGE_STATE" = "UNSTABLE" ] || [ "$MERGE_STATE" = "HAS_HOOKS" ]; then
+    gh pr merge "$PR_NUMBER" \
+      --repo zoelumos/migukstory \
+      --squash \
+      --delete-branch \
+      --subject "draft: Hermes urgent RSS pickup ${TODAY}" \
+      --body "Automated merge of Hermes urgent ingest queue PR."
+    echo "  Auto-merged urgent PR #${PR_NUMBER}; queue/** push will trigger daily-post deploy/index."
+  else
+    echo "  Urgent PR #${PR_NUMBER} not auto-merged because mergeStateStatus=${MERGE_STATE}."
   fi
 
   echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] urgent-ingest done"
