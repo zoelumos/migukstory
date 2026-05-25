@@ -24,9 +24,19 @@ command: |
   fi
 
   PY_VENV=/tmp/migukstory-draft-venv
-  if [ ! -x "$PY_VENV/bin/python" ]; then
+  ensure_py_venv() {
+    if [ -x "$PY_VENV/bin/python" ] && "$PY_VENV/bin/python" - <<'PY' >/dev/null 2>&1
+  import sys
+  raise SystemExit(0 if sys.prefix != sys.base_prefix else 1)
+  PY
+    then
+      return 0
+    fi
+    rm -rf "$PY_VENV"
     /opt/homebrew/bin/python3 -m venv "$PY_VENV"
-  fi
+    "$PY_VENV/bin/python" -m ensurepip --upgrade >/dev/null 2>&1 || true
+  }
+  ensure_py_venv
   "$PY_VENV/bin/python" -m pip install -q -r scripts/requirements-draft.txt
 
   export CLAUDE_VIA_CLI=1
