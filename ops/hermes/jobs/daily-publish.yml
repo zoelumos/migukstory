@@ -1,52 +1,38 @@
 name: migukstory-daily-publish
 description: |
-  Trigger the GitHub Actions `daily-post.yml` workflow to publish ONE post
-  from queue/ → src/content/blog/. The workflow itself handles the move,
-  commit, and push. CF Pages auto-deploys on the push.
-enabled: false   # DISABLED: daily-post.yml has its own cron (0 12 * * *); a Hermes trigger here would double-publish
-schedule: "0 12 * * *"          # 12:00 UTC = 8:00 AM ET EDT / 7:00 AM ET EST
+  Hand control to `claude -p` to orchestrate publication. Claude counts the
+  posts in queue/ on origin/main and triggers daily-post.yml exactly once with
+  count = min(queue_size, 10) — draining the day's freshly-merged drafts in a
+  single workflow run. That run handles publish → Cloudflare deploy → indexing
+  in the SAME GitHub Actions run, so a successful Hermes execution means the
+  site is already updated. Steve's rule: publishing must be Claude-orchestrated,
+  never raw shell.
+enabled: true
+schedule: "30 12 * * *"         # 12:30 UTC = 8:30 AM ET EDT / 7:30 AM ET EST
 timezone: UTC
 working_dir: /Users/zoelumos/migukstory
-prompt_file: null               # Pure shell, no Claude needed
+prompt_file: prompts/daily-publish.md
 log_file: logs/daily-publish-{date}.log
 command: |
   set -euo pipefail
   echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] daily-publish starting"
+  cd /Users/zoelumos/migukstory
+  git fetch -q origin main
 
-  # 1. Trigger the workflow with count=1
-  gh workflow run daily-post.yml \
-    --repo zoelumos/migukstory \
-    -f count=1
-
-  echo "  workflow_dispatch sent. Waiting 90s for run to start + complete..."
-  sleep 90
-
-  # 2. Check the latest daily-post.yml run
-  STATUS=$(gh run list --repo zoelumos/migukstory --workflow=daily-post.yml --limit 1 \
-    --json status,conclusion,url | jq -r '.[0] | "\(.status)/\(.conclusion)|\(.url)"')
-  IFS='|' read -r STATE URL <<< "$STATUS"
-
-  case "$STATE" in
-    completed/success)
-      echo "  ✅ daily-post run succeeded: $URL"
-      ;;
-    completed/failure|completed/cancelled|completed/timed_out)
-      echo "  ❌ daily-post run failed ($STATE): $URL"
-      exit 1
-      ;;
-    in_progress/*|queued/*)
-      echo "  ⏳ still running after 90s: $URL — not a failure, will resolve itself"
-      ;;
-    *)
-      echo "  ⚠️ unknown state: $STATE — $URL"
-      exit 1
-      ;;
-  esac
+  # The orchestration prompt lives in ops/hermes/prompts/daily-publish.md.
+  # The live wrapper that actually runs on cron is
+  # /Users/zoelumos/.hermes/scripts/migukstory-daily-publish.sh — keep these in
+  # sync if either changes.
+  claude -p "$(cat ops/hermes/prompts/daily-publish.md)" \
+    --permission-mode bypassPermissions \
+    --output-format text \
+    --max-turns 40
   echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] daily-publish done"
 on_failure:
   notify: slack
   channel_or_recipient: "#migukstory-ops"
   message: "🔴 migukstory daily-publish cron failed — check the latest ops/hermes/logs/daily-publish-*.log"
 prerequisites:
+  - claude CLI authenticated with Max subscription
   - gh CLI authenticated as zoelumos with actions:write
-  - jq installed (pre-installed on macOS 12+)
+  - Run AFTER migukstory-daily-automerge so queue/ on origin/main reflects today's draft PR

@@ -9,9 +9,15 @@ on:
   workflow_dispatch:
     inputs:
       count:
-        description: 'How many queued posts to publish this run'
+        description: 'How many queued posts to publish this run (default: drain queue up to 10)'
         required: false
-        default: '1'
+        default: '10'
+
+# Max posts a single run will publish, regardless of trigger. Protects against
+# an accidental 50-item queue draining all at once. Tune up if you need bigger
+# scheduled batches.
+env:
+  POSTS_PER_RUN_CAP: '10'
 
 permissions:
   contents: write
@@ -32,9 +38,28 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Determine batch size
+        id: batch
+        # On push (queue/** changed via merged PR): drain the queue up to the
+        # cap so we don't strand 9 freshly-merged drafts behind a count=1.
+        # On workflow_dispatch: honor inputs.count, still capped.
+        run: |
+          cap="${POSTS_PER_RUN_CAP:-10}"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            n="${{ github.event.inputs.count }}"
+            [ -z "$n" ] && n="$cap"
+          else
+            n=$(ls -1 queue/*.md 2>/dev/null | wc -l | tr -d ' ')
+            [ -z "$n" ] && n=0
+          fi
+          if [ "$n" -gt "$cap" ]; then n="$cap"; fi
+          if [ "$n" -lt 1 ]; then n=1; fi
+          echo "count=$n" >> "$GITHUB_OUTPUT"
+          echo "Will publish up to $n post(s) (cap=$cap, event=${{ github.event_name }})."
+
       - name: Publish from queue
         env:
-          POSTS_PER_RUN: ${{ github.event.inputs.count || '1' }}
+          POSTS_PER_RUN: ${{ steps.batch.outputs.count }}
         run: python scripts/publish_from_queue.py
 
       - name: Commit and push
