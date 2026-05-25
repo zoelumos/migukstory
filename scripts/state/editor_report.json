@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-23T23:04:14.271529+00:00",
+  "generated_at": "2026-05-25T23:03:25.099881+00:00",
   "threshold_promote": 70,
   "threshold_review": 50,
   "counts": {
@@ -11,18 +11,18 @@
   },
   "grades": [
     {
-      "slug": "2026-05-23-employer-advisory-uscis-policy-memorandum-on-adjustment-of-status-discretion-pm",
-      "score": 93,
+      "slug": "2026-05-25-2026-irs-disaster-relief-tax-deadline-extensions-turbotax",
+      "score": 82,
       "scores": {
-        "factuality": 18,
-        "source_diversity": 20,
-        "ka_angle": 18,
-        "originality": 17,
-        "structure": 20
+        "factuality": 14,
+        "source_diversity": 16,
+        "ka_angle": 17,
+        "originality": 16,
+        "structure": 19
       },
-      "reasoning": "USCIS 보도자료와 정책각서 원문 PDF를 1차 출처로 인용하고 WR Immigration·Boundless·Ogletree·McLane Middleton 등 복수 로펌 분석을 교차 검증해 사실성과 출처 신뢰도가 매우 높습니다. H-1B/L-1 직장인, F-1 유학생, 가족 초청 신청자 등 한인 그룹별로 실무적 의미를 구분해 분석했고, 'RFE·NOID 증가' 같은 편집자 차원의 종합 시나리오까지 제시해 독창성도 충분합니다. frontmatter와 핵심 요약·출처 섹션 구조도 완결돼 있어 자동 승격 기준을 충분히 충족합니다.",
+      "reasoning": "IRS 공식 페이지와 테네시 구제 고시 등 신뢰도 높은 1차 출처가 명확한 링크와 함께 인용돼 있고, 조지아·하와이 한인 밀집지의 자영업자·유학생·은퇴자 등 구체적 그룹별 시사점이 분석 문단으로 잘 풀려 있어 한인 관점과 독창성이 살아 있습니다. 다만 본문에 등장하는 지역별 세부 마감일(8/20, 7/8, 6/8 등)이 인용된 출처 링크 한 건(테네시)을 제외하면 직접 추적이 어렵고, 텍사스 종료일(2/2)·§7508A 1년 한도 같은 수치도 출처 매핑이 약해 사실성에서 감점이 있습니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-05-23-employer-advisory-uscis-policy-memorandum-on-adjustment-of-status-discretion-pm.md"
+      "promoted_to": "queue/2026-05-25-2026-irs-disaster-relief-tax-deadline-extensions-turbotax.md"
     }
   ]
 }
