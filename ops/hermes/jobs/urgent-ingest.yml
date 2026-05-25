@@ -48,14 +48,14 @@ command: |
     --max-drafts 8 \
     --max-per-category 3 \
     --manifest "$MANIFEST" \
-    --time-budget 900 \
+    --time-budget 240 \
     --cli-timeout 150 \
     || echo "  (urgent draft script exited non-zero; continuing)"
 
   "$PY_VENV/bin/python" scripts/improve_drafts.py \
     --manifest "$MANIFEST" \
     --max-drafts 8 \
-    --time-budget 900 \
+    --time-budget 240 \
     --cli-timeout 180 \
     || echo "  (urgent validate/improve script exited non-zero; continuing)"
 
@@ -63,7 +63,7 @@ command: |
     --threshold 70 \
     --manifest "$MANIFEST" \
     --max-drafts 8 \
-    --time-budget 900 \
+    --time-budget 240 \
     --cli-timeout 90 \
     || echo "  (urgent editor script exited non-zero; continuing)"
 
