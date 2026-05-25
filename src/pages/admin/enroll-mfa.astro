@@ -14,8 +14,8 @@ import { SITE_TITLE } from '../../consts';
 			noindex={true}
 			breadcrumbs={[
 				{ name: '홈', url: '/' },
-				{ name: '관리자', url: '/admin' },
-				{ name: 'MFA 등록', url: '/admin/enroll-mfa' },
+				{ name: '관리자', url: '/admin/' },
+				{ name: 'MFA 등록', url: '/admin/enroll-mfa/' },
 			]}
 		/>
 	</head>
@@ -67,7 +67,7 @@ import { SITE_TITLE } from '../../consts';
 				<aside class="done" hidden data-done>
 					<h2>등록 완료 ✓</h2>
 					<p>TOTP 2단계 인증이 활성화되어 있습니다. 다음 로그인 시 인증 앱의 6자리 코드를 입력하세요.</p>
-					<p><a href="/admin" rel="nofollow">관리자 대시보드로 →</a></p>
+					<p><a href="/admin/" rel="nofollow">관리자 대시보드로 →</a></p>
 				</aside>
 
 				<!-- Challenge required (already enrolled but session is aal1) -->
@@ -103,7 +103,7 @@ import { SITE_TITLE } from '../../consts';
 				const { data: { session } } = await supabase.auth.getSession();
 				if (!session) {
 					if (statusEl) statusEl.textContent = '로그인이 필요합니다.';
-					if (notAdmin) { notAdmin.hidden = false; const a = notAdmin.querySelector('a'); if (a) a.textContent = '로그인 →'; if (a) a.href = '/login?next=/admin/enroll-mfa'; }
+					if (notAdmin) { notAdmin.hidden = false; const a = notAdmin.querySelector('a'); if (a) a.textContent = '로그인 →'; if (a) a.href = '/login/?next=/admin/enroll-mfa/'; }
 					return;
 				}
 				const { data: profile } = await supabase.from('profiles').select('is_admin, display_name').eq('id', session.user.id).maybeSingle();
@@ -162,7 +162,7 @@ import { SITE_TITLE } from '../../consts';
 					return;
 				}
 				if (msgEl) { msgEl.textContent = '등록 완료 ✓ AAL2 활성화. 잠시 후 관리자 대시보드로 이동합니다.'; msgEl.dataset.kind = 'success'; }
-				setTimeout(() => { window.location.href = '/admin'; }, 1200);
+				setTimeout(() => { window.location.href = '/admin/'; }, 1200);
 			});
 
 			// Challenge existing factor
@@ -178,7 +178,7 @@ import { SITE_TITLE } from '../../consts';
 					return;
 				}
 				if (challengeMsg) { challengeMsg.textContent = 'AAL2 격상 완료. 이동 중…'; challengeMsg.dataset.kind = 'success'; }
-				setTimeout(() => { window.location.href = '/admin'; }, 800);
+				setTimeout(() => { window.location.href = '/admin/'; }, 800);
 			});
 		</script>
 
