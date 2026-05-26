@@ -116,6 +116,7 @@ command: |
 
   PR_NUMBER=$(gh pr view "$PR_URL" --repo zoelumos/migukstory --json number --jq '.number')
   MERGE_STATE=$(gh pr view "$PR_NUMBER" --repo zoelumos/migukstory --json mergeStateStatus --jq '.mergeStateStatus')
+  PUBLISH_AFTER_INGEST=0
   if [ "$MERGE_STATE" = "CLEAN" ] || [ "$MERGE_STATE" = "UNSTABLE" ] || [ "$MERGE_STATE" = "HAS_HOOKS" ]; then
     gh pr merge "$PR_NUMBER" \
       --repo zoelumos/migukstory \
@@ -124,11 +125,20 @@ command: |
       --subject "draft: Hermes RSS pickup ${TODAY}" \
       --body "Automated merge of Hermes daily ingest queue PR."
     echo "  Auto-merged PR #${PR_NUMBER}."
+    PUBLISH_AFTER_INGEST=1
   else
     echo "  PR #${PR_NUMBER} not auto-merged because mergeStateStatus=${MERGE_STATE}."
   fi
 
   echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] daily-ingest done"
+
+  # EventBridge-style handoff: once ingest's draft PR is merged and queue/ is on
+  # origin/main, immediately trigger the Claude-orchestrated publish wrapper.
+  # This removes the old 60-90 minute wait for a separate daily-publish cron.
+  if [ "${PUBLISH_AFTER_INGEST:-0}" = "1" ]; then
+    echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] queue merged; triggering daily-publish"
+    /Users/zoelumos/.hermes/scripts/migukstory-daily-publish.sh
+  fi
 
   # NOTE: do NOT invoke the editorial-review script from inside this job.
   # Ingest already runs editor_grade.py and writes scripts/state/editor_report.json;

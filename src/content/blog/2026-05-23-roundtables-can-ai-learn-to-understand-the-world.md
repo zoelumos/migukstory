@@ -1,7 +1,7 @@
 ---
 title: 'AI는 세상을 이해할 수 있을까: MIT 테크놀로지 리뷰 월드 모델 라운드테이블'
 description: 'MIT 테크놀로지 리뷰가 LLM의 한계를 넘어 외부 세계를 이해하는 "월드 모델(world models)"을 주제로 편집장·AI 에디터 라운드테이블을 공개했습니다. 미주 한인 가정의 자녀 진로·자영업 AI 도입 판단에 무엇을 의미하는지 분석합니다.'
-pubDate: '2026-05-23'
+pubDate: '2026-05-26'
 tags: ['AI', '월드모델', 'LLM', 'MIT테크놀로지리뷰']
 category: 'ai'
 ageGroup: 'all'

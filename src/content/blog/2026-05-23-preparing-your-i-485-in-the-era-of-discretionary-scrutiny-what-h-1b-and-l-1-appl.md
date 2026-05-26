@@ -1,7 +1,7 @@
 ---
 title: 'H-1B·L-1 영주권 신청, USCIS 재량 강화 시대의 I-485 준비법 — 2026년 5월 메모 분석'
 description: '2026년 5월 21일 USCIS PM-602-0199 메모로 I-485가 "예외적 구제"로 재정의된 흐름과, H-1B·L-1 한인 신청자가 긍정적 재량 요인을 어떻게 입증해야 하는지 정리했습니다.'
-pubDate: '2026-05-23'
+pubDate: '2026-05-26'
 tags: ['I-485', 'H-1B', 'L-1', '영주권', '이민', 'USCIS']
 category: 'immigration'
 ageGroup: 'all'

@@ -1,7 +1,7 @@
 ---
 title: 'CDC, 콩고·우간다 분디부교(Bundibugyo) 에볼라 발병 업데이트 — 한인이 알아야 할 핵심'
 description: 'CDC가 2026년 5월 22일 콩고민주공화국·우간다에서 진행 중인 분디부교 에볼라 발병 상황을 브리핑했습니다. WHO 국제공중보건비상사태(PHEIC) 선언, 미국 입국 검역, FDA 승인 치료제 부재 등 한인 독자가 실제로 확인해야 할 사항을 정리합니다.'
-pubDate: '2026-05-23'
+pubDate: '2026-05-26'
 tags: ['에볼라', 'CDC', 'WHO', '공중보건', '아프리카', 'Bundibugyo']
 category: 'health'
 ageGroup: 'all'
