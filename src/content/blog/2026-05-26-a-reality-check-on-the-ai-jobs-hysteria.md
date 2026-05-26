@@ -31,3 +31,5 @@ sourceUrl: 'https://technologyreview.com/2026/05/26/1137855/a-reality-check-on-t
 ## 출처 (Sources)
 
 - [MIT Technology Review — AI](https://technologyreview.com/2026/05/26/1137855/a-reality-check-on-the-ai-jobs-hysteria)
+
+<!-- deploy-trigger: manual-publish-2026-05-26 -->
