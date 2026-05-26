@@ -9,7 +9,7 @@ interface Props {
 const { source = 'newsletter_form' } = Astro.props;
 ---
 
-<form class="newsletter" data-source={source}>
+<form class="newsletter" action="/api/subscribers" method="post" data-source={source}>
 	<div class="newsletter-inner">
 		<div class="copy">
 			<p class="kicker">무료 가입 선물 · 위클리 뉴스레터</p>
@@ -22,74 +22,15 @@ const { source = 'newsletter_form' } = Astro.props;
 		<div class="form-row">
 			<label class="sr-only" for="newsletter-email">이메일</label>
 			<input id="newsletter-email" type="email" name="email" placeholder="email@example.com" autocomplete="email" required />
+			<input type="hidden" name="source" value={source} />
 			<button type="submit">구독하기</button>
 			<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;width:1px;height:1px;" />
 		</div>
 		<p class="trust">스팸 없음 · 광고 없음 · 검증된 정보만</p>
-		<p class="msg" data-msg></p>
+		<p class="msg" data-msg aria-live="polite"></p>
 	</div>
 </form>
-
-<script>
-	document.querySelectorAll<HTMLFormElement>('.newsletter').forEach((form) => {
-		form.addEventListener('submit', async (e) => {
-			e.preventDefault();
-			const fd = new FormData(form);
-			const email = String(fd.get('email') || '').trim().toLowerCase();
-			const website = String(fd.get('website') || '');
-			const source = form.dataset.source || 'newsletter_form';
-			const msgEl = form.querySelector('[data-msg]') as HTMLElement | null;
-			const button = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
-			if (!msgEl || !button) return;
-
-			if (website) return;  // honeypot
-			if (!email.includes('@')) {
-				msgEl.textContent = '올바른 이메일을 입력해 주세요.';
-				msgEl.dataset.kind = 'error';
-				return;
-			}
-
-			button.disabled = true;
-			const orig = button.textContent;
-			button.textContent = '가입 중…';
-			msgEl.textContent = '';
-			delete msgEl.dataset.kind;
-
-			try {
-				const res = await fetch('/api/subscribers', {
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({
-						email, source,
-						metadata: {
-							locale: navigator.language,
-							pathname: window.location.pathname,
-							referrer: document.referrer || null,
-						},
-					}),
-				});
-				const result = await res.json().catch(() => ({}));
-				if (!res.ok && !result.ok) {
-					msgEl.textContent = '잠시 후 다시 시도해 주세요. 문제가 계속되면 editor@migukstory.com 으로 알려주세요.';
-					msgEl.dataset.kind = 'error';
-				} else if (result.duplicate) {
-					msgEl.textContent = '이미 구독 중이신 이메일입니다. 매주 화요일 뉴스레터를 보내드리고 있습니다 ✓';
-					msgEl.dataset.kind = 'info';
-				} else {
-					msgEl.textContent = '가입 완료 ✓ 「미국 정착 첫 90일 PDF」 발송 안내를 곧 보내드립니다.';
-					msgEl.dataset.kind = 'success';
-					form.reset();
-				}
-			} catch (err) {
-				msgEl.textContent = '네트워크 오류입니다. 잠시 후 다시 시도해 주세요.';
-				msgEl.dataset.kind = 'error';
-			} finally {
-				button.disabled = false;
-				button.textContent = orig;
-			}
-		});
-	});
-</script>
+<script src="/js/newsletter-signup.js" defer></script>
 
 <style>
 	.newsletter { max-width: var(--reading-width); margin: var(--s-5) auto; padding: var(--s-4) var(--s-3); background: var(--paper-soft); border-left: 4px solid var(--brick); border-radius: 0 6px 6px 0; }

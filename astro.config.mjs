@@ -48,6 +48,7 @@ export default defineConfig({
 					path === '/admin/' ||
 					path.startsWith('/auth/') ||
 					path === '/login/' ||
+					path === '/subscribed/' ||
 					path === '/404/'
 				);
 			},
