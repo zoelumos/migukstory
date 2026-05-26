@@ -27,11 +27,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          # fetch-depth 2 so notify_indexes.py can diff HEAD~1..HEAD to find
-          # newly-added src/content/blog/*.md files to submit for indexing.
-          fetch-depth: 2
+        # Anonymous checkout avoids intermittent GITHUB_TOKEN 403s on this
+        # public repo while still fetching enough history for indexing diffs.
+        run: |
+          git init .
+          git remote add origin https://github.com/zoelumos/migukstory.git
+          git fetch --depth=2 origin "$GITHUB_SHA"
+          git checkout --force FETCH_HEAD
 
       - name: Setup Node
         uses: actions/setup-node@v4

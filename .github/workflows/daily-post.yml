@@ -27,11 +27,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
-        with:
-          # fetch-depth 2 so the indexing step can diff HEAD~1..HEAD to find
-          # the blog .md file(s) added by this run's publish commit.
-          fetch-depth: 2
+        # Anonymous checkout avoids intermittent GITHUB_TOKEN 403s on this
+        # public repo. The publish step configures an authenticated push URL.
+        run: |
+          git init .
+          git remote add origin https://github.com/zoelumos/migukstory.git
+          git fetch --depth=2 origin "$GITHUB_SHA"
+          git checkout --force FETCH_HEAD
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -78,6 +80,7 @@ jobs:
           fi
           today=$(date -u +"%Y-%m-%d")
           git commit -m "post: scheduled publish (${today})"
+          git remote set-url origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
           git push
           echo "published=true" >> "$GITHUB_OUTPUT"
 

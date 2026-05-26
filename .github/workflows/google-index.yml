@@ -23,11 +23,14 @@ jobs:
   index:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          # Needed so notify_indexes.py --auto can diff HEAD~1..HEAD and only
-          # submit newly-added blog URLs instead of burning quota on the whole site.
-          fetch-depth: 2
+      - name: Checkout
+        # Anonymous checkout avoids intermittent GITHUB_TOKEN 403s on this
+        # public repo while still fetching enough history for indexing diffs.
+        run: |
+          git init .
+          git remote add origin https://github.com/zoelumos/migukstory.git
+          git fetch --depth=2 origin "$GITHUB_SHA"
+          git checkout --force FETCH_HEAD
 
       - uses: actions/setup-node@v4
         with:
