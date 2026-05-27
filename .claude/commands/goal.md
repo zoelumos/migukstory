@@ -23,6 +23,20 @@ ingest → source validation → Claude draft/review → quality gate → queue/
 - Failures must be loud: Korean status/error notification with the failing stage and next recovery step.
 - Follow Google new-site basics: crawlable pages, stable canonical URLs, clean sitemap, helpful/original Korean-American content, strong internal links, no spammy backlinks or thin-content bursts.
 
+## Editorial differentiation: visualization first
+
+Migukstory is not just another Korean news rewrite site. Its product difference is **visual explanation**.
+
+Every article draft/review should ask: “What does the reader need to SEE to understand this faster?”
+
+Required visual gate:
+
+- Process / eligibility / application / visa / benefit path → include a Mermaid `flowchart TD` or equivalent mobile-safe flow.
+- Date-driven update / phased rollout / deadline story → include a timeline or staged cards.
+- Old vs new rule / option comparison / risk comparison → include a Markdown comparison table.
+- Immigration/legal/benefit/tax/health policy articles normally need at least one visual element. If none is included, the review should explain why; otherwise mark the article incomplete.
+- The visual must be source-grounded, short-label, Korean, and mobile-readable. Decorative filler does not count.
+
 ## Review response format
 
 Return:

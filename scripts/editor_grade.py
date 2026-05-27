@@ -89,7 +89,7 @@ class Grade:
 
 
 SYSTEM_PROMPT = """You are the editor-in-chief of migukstory.com, a Korean-American
-community news site. You grade AI-drafted posts on a strict 5-axis rubric before
+community news site. You grade AI-drafted posts on a strict rubric before
 they're allowed into the publishing queue. Your goal is to protect the site from
 Google's helpful-content / spam-update penalties (which target thin AI rewrites
 and machine-translated content) AND from publishing factually weak material.
@@ -100,6 +100,8 @@ Output is JSON only. No preamble, no postscript, no code fences."""
 USER_PROMPT_TEMPLATE = """다음은 사람 검토 전 AI가 작성한 한국어 초안입니다.
 편집장으로서 5개 축에 대해 각 0–20점으로 평가하고, 총점(0–100)과 짧은
 판단 근거를 한국어로 작성하세요. 결과는 JSON 한 개로만 출력하세요.
+
+중요: Migukstory의 차별점은 시각화입니다. 글에 주제에 맞는 flowchart/timeline/비교표가 없으면 자동 승격 대상이 아닙니다.
 
 ## 평가 축 (각 0–20점)
 
@@ -124,15 +126,20 @@ USER_PROMPT_TEMPLATE = """다음은 사람 검토 전 AI가 작성한 한국어 
    비교·맥락 추가가 있는가? 다른 매체가 이미 쓴 것과 차별점이 있는가?
    요약만 있고 분석이 없으면 8점 이하.
 
-5. **structure (구조)**: YAML frontmatter가 완전한가(title, description,
+5. **structure (구조 + 시각화)**: YAML frontmatter가 완전한가(title, description,
    pubDate, tags, category, ageGroup)? 본문이 3문단 이상이고 「## 핵심 요약」
    불릿 리스트와 「## 출처 (Sources)」 섹션이 있는가? 깨진 마크다운이 없는가?
+   또한 주제에 맞는 시각화가 있는가? 절차/자격/신청/이민/혜택/정책 변경 글은
+   Mermaid flowchart, 타임라인/단계 목록, 또는 Markdown 비교표 중 하나가 있어야
+   합니다. 시각화가 없거나 장식용이면 structure는 최대 10점, 총점은 자동승격
+   기준 미만으로 평가하세요.
 
 ## 판정 기준
 
-총점이 {threshold} 이상이면 자동으로 queue/로 승격되어 사람 한 명이 PR 머지만 누르면
-발행됩니다. 따라서 {threshold}점 이상은 **사실관계가 명확하고 한인 관점이 살아있는 글**
-에만 부여하세요. 의심스러우면 보수적으로 {below_threshold}점 이하를 주세요.
+총점이 {threshold} 이상이면 자동으로 queue/로 승격되어 발행 파이프라인에 들어갑니다.
+따라서 {threshold}점 이상은 **사실관계가 명확하고 한인 관점과 시각화가 살아있는 글**
+에만 부여하세요. 시각화가 빠진 글은 아무리 문장이 좋아도 {below_threshold}점 이하입니다.
+의심스러우면 보수적으로 {below_threshold}점 이하를 주세요.
 
 ## 입력 초안 (파일명: {slug}.md)
 
@@ -168,6 +175,26 @@ def _editor_user_prompt(slug: str, content: str, threshold: int) -> str:
         threshold=threshold,
         below_threshold=max(0, threshold - 1),
     )
+
+
+VISUAL_PATTERNS = (
+    "```mermaid",
+    "flowchart",
+    "sequenceDiagram",
+    "timeline",
+    "## 한눈에 보는",
+    "## 타임라인",
+    "| 구분 |",
+    "| 항목 |",
+    "| 비교 |",
+)
+
+
+def _has_visual_explanation(content: str) -> bool:
+    if any(pattern in content for pattern in VISUAL_PATTERNS):
+        return True
+    # Markdown table heuristic: header row + separator row.
+    return bool(re.search(r"^\|.+\|\s*\n\|\s*:?-{3,}:?\s*(?:\|\s*:?-{3,}:?\s*)+\|", content, re.MULTILINE))
 
 
 def _parse_editor_output(raw: str, slug: str) -> tuple[dict, int]:
@@ -268,12 +295,14 @@ def grade_one(path: Path, model: str, dry_run: bool, threshold: int,
         # Heuristic stub so we can smoke-test workflow plumbing without API spend.
         sources = content.count("](http")
         score = 60 + min(20, sources * 3)  # crude proxy
+        if not _has_visual_explanation(content):
+            score = min(score, threshold - 1)
         return Grade(
             slug=slug,
             score=score,
             scores={"factuality": 12, "source_diversity": 12, "ka_angle": 12,
-                    "originality": 12, "structure": 12},
-            reasoning="dry-run heuristic: not a real evaluation",
+                    "originality": 12, "structure": 12 if _has_visual_explanation(content) else 6},
+            reasoning="dry-run heuristic: not a real evaluation" + ("; visual gate missing" if not _has_visual_explanation(content) else ""),
             action="promote" if score >= threshold else "review",
         )
 
@@ -289,6 +318,12 @@ def grade_one(path: Path, model: str, dry_run: bool, threshold: int,
             slug=slug, score=0, scores={}, reasoning=f"grading error: {e}",
             action="review",
         )
+
+    if not _has_visual_explanation(content):
+        total = min(total, threshold - 1)
+        parsed.setdefault("scores", {})["structure"] = min(int(parsed.get("scores", {}).get("structure", 0) or 0), 10)
+        parsed["total"] = total
+        parsed["reasoning"] = (parsed.get("reasoning", "").rstrip() + " 시각화(flowchart/timeline/비교표)가 없어 자동 승격하지 않습니다.").strip()
 
     if total >= threshold:
         action = "promote"

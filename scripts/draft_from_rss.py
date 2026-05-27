@@ -315,6 +315,11 @@ Hard rules (non-negotiable):
 - Add original editorial synthesis using only source-grounded facts: explain
   concrete implications for Korean-American readers instead of merely
   translating/summarizing the source.
+- Visualization is Migukstory's core differentiation. Every draft must include
+  at least one useful visual explanation: Mermaid flowchart for processes/
+  eligibility paths, timeline/stage list for date-driven changes, or Markdown
+  comparison table for old-vs-new/options/risks. The visual must be accurate,
+  mobile-readable, and not decorative filler.
 - Always include a final "## 출처 (Sources)" section with the source name
   and the canonical URL given to you. Do not invent additional sources.
 - Never give legal, tax, or medical advice. Where the topic touches
@@ -368,6 +373,14 @@ sourceUrl: '{canonical_url}'
 - [핵심 포인트 1]
 - [핵심 포인트 2]
 - [핵심 포인트 3]
+
+## 한눈에 보는 변화
+
+[기사 성격에 맞게 반드시 하나 이상 포함하세요:
+- 절차/자격/신청 흐름이면 Mermaid `flowchart TD`
+- 날짜/단계 변화면 짧은 타임라인 또는 단계별 카드 목록
+- 기존/변경/선택지 비교면 Markdown 비교표
+시각화는 원문 사실에 근거해야 하며, 모바일에서 읽히도록 짧은 한국어 라벨을 사용하세요.]
 
 ## 출처 (Sources)
 
