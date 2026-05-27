@@ -44,6 +44,18 @@ USCIS 정책각서는 표현 한 줄의 해석이 결과를 가르는 분야입�
 - F-1 등 단일의도 비자 소지자는 미국 내 신분조정 시 위험이 커졌습니다.
 - 한인 고용주는 현재 직원의 I-485 케이스 점검, 신분 전환 검토, 영사처리 대안 마련이 필요합니다.
 
+## 한눈에 보는 시각화: 고용주와 신청자 체크 흐름
+
+| 단계 | 확인할 질문 | 한인 신청자/고용주가 바로 할 일 |
+|---|---|---|
+| 1. 신분 유지 확인 | 현재 체류 신분과 I-94 기록이 일치하는가? | I-94, 비자, 승인서, 최근 입국 기록을 한 폴더에 모읍니다. |
+| 2. 고용 기록 정리 | 스폰서 고용 조건과 실제 근무 기록이 맞는가? | 직무, 임금, 근무지, 재직증명서 내용을 서로 대조합니다. |
+| 3. 리스크 문서화 | 공백, 이직, 주소 변경, 체류 기간 문제가 있는가? | 설명서와 보완 증빙을 미리 준비합니다. |
+| 4. 제출 전 검토 | USCIS가 재량 판단에서 볼 수 있는 약점이 남았는가? | 변호사/HR과 마지막 체크리스트를 돌립니다. |
+| 5. 접수 후 추적 | RFE·NOID·인터뷰 요청에 바로 대응 가능한가? | 담당자, 마감일, 보완자료 위치를 공유합니다. |
+
+이 표의 핵심은 “서류를 많이 내는 것”보다 **기록 간 불일치를 줄이는 것**입니다. 신분조정은 단순 양식 제출이 아니라, 과거 체류·고용·주소·세금 기록이 하나의 이야기로 맞아야 안전합니다.
+
 ## 출처 (Sources)
 
 - [Google News — USCIS / Green Card Watch](https://news.google.com/rss/articles/CBMizAFBVV95cUxOenh3VUpXbzMwRk11aFBnMXk4WExSNDIxbUJxaV92TmVsU0RSdHdvczB1R3IwT0R3WG9YZXluUUhuM21PZG1XdnNYSzBWTzd2cmh5ZUMydmg2bXFfTVpFelhIMVNheGduYVF6cEpQMV9UUEhRcTlxMlBzXzhTaFJZb1MwWmYzalFsMVlmZk52dC1seVRMQ2tsUC1xbTlxZXZmNEExSGJRZ0p0ZmtRUHI2ZEJEMXVNRVBjYUZER0FpcERLUDYyUUtibjRLdFY?oc=5)
