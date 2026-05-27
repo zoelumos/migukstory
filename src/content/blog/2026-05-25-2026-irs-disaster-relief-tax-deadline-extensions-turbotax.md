@@ -5,7 +5,7 @@ pubDate: '2026-05-26'
 tags: ['IRS', '세금', '재난구제']
 category: 'tax'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — IRS / Tax Guidance Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiqgFBVV95cUxNSU1OMWZtNkJpd1FjazQyaDNwSVItM0VibEdjTGsyWVZTUjkzblBRUjJMX0w4cElMdjMxUmdZU3V2ZzFoQ2dGZVZiZkJyb3NxY19PWUF2aHl4dnhMSXFOSUdjSWdwTXdxdWxqcEp2WHBiQWp2UmVlX1lWbmFtMzlpY3pCVnF6LThyZUVZYlMzQnVJS3ROZ0FXNFVCRVNYSjl3UHpxTVctcUllZ9IBrwFBVV95cUxPRy14eFFxOFZvZ3N3Q25yNGJyQUJzMi1RMVFLQ1FyVHpwZ2VfNFBUcVI4MTdqcVU3b0huMUczWlBjbTdqcUcyRXhRLVhQMXBGcTdTOEVsekpOa0ZLRzctQlp3Wld0N3dTTnc4d0tfekpGVDZQMEpNQkU0Y19MdzlSWWtmcHM1X0dsOFhDYUROR04wX2l5UTNzTVlIRXhOLXVKRG1pYXdzcndmclRBeUZB?oc=5'
 ---

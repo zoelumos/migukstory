@@ -5,7 +5,7 @@ pubDate: '2026-05-26'
 tags: ['CPI', '금리', '연준', '미국경제', '한인경제']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — CPI / Interest Rate Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMizgFBVV95cUxPTGZ5d3U1ZlJieFFsUF9jU25wM0xjRG13aHc5X05xMnVFMTBlV1ZQSDhXM2lJd2JlSFNEN1FBWjVkZ3NkRkZoRGZ6Wl9VbkJzS21SMWhsU2hmaTgzR3dJU2RGWGlQbFRSNURHazh3WExvSG41cUpLc1pjbGxKQ0Q3ZDQwVDJtdm95WnFmb2Y5dkpqMnFuRXdINzk0Q2xDWWRMQVZGRk9vRnluZk9NZFpDd3drSzRJNTNhY3JQV2ZUaTlIQmQwbVNBQl9kWVlJUQ?oc=5'
 ---

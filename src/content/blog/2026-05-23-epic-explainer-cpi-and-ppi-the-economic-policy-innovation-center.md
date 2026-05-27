@@ -5,7 +5,7 @@ pubDate: '2026-05-25'
 tags: ['CPI', 'PPI', '물가지수', '미국경제', '인플레이션', '연준', '한인경제']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — CPI / Interest Rate Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMidEFVX3lxTE9aT3A0TmdoSFpNakdsYnFoQi1KdFhmbmVuSnBMb19Ua19qREZNRHNDLXlQak5wMERWU3dpbHBKSUhJbFowVjJLY01GRDNWN1R3c3Nzdl93RXU2T1pkb3IzZTExUGNscDU4dS1zU3BiTjd3LVVt?oc=5'
 ---

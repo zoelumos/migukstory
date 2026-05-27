@@ -5,7 +5,7 @@ pubDate: '2026-05-27'
 tags: ['구글', '덕덕고', 'AI검색', '프라이버시', '한인소상공인']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'TechCrunch AI'
 sourceUrl: 'https://techcrunch.com/2026/05/26/duckduckgo-installs-are-up-30-as-users-reject-being-force-fed-googles-ai-search'
 ---

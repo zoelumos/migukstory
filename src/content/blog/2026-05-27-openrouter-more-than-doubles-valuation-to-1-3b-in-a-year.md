@@ -5,7 +5,7 @@ pubDate: '2026-05-27'
 tags: ['OpenRouter', 'AI 스타트업', '한인 창업']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'TechCrunch AI'
 sourceUrl: 'https://techcrunch.com/2026/05/26/openrouter-more-than-doubles-valuation-to-1-3b-in-a-year'
 ---

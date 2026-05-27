@@ -5,7 +5,7 @@ pubDate: '2026-05-25'
 tags: ['USCIS', '영주권', '신분조정', 'I-485', '이민정책', 'H-1B', 'L-1', 'F-1']
 category: 'immigration'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'USCIS Newsroom / Policy Memorandum PM-602-0199'
 sourceUrl: 'https://www.uscis.gov/sites/default/files/document/memos/PM-602-0199-AdjustmentOfStatusAndDiscretion-20260521.pdf'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-05-26'
 tags: ['아틀라스', '휴머노이드', '보스턴다이내믹스', '강화학습']
 category: 'robotics'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'IEEE Spectrum — Robotics'
 sourceUrl: 'https://spectrum.ieee.org/video-friday-humanoid-robot-learning'
 ---

@@ -33,6 +33,20 @@ def update_pub_date(content: str, new_date: str) -> str:
     )
 
 
+def mark_published(content: str) -> str:
+    """Ensure a queued draft becomes a real published post.
+
+    Draft files intentionally carry `draft: true` while they sit under drafts/
+    or queue/. Once moved to src/content/blog/, leaving that flag behind is
+    ambiguous for RSS/sitemap/build-time SEO guards and future content filters.
+    """
+    if re.search(r"^draft:\s*true\s*$", content, flags=re.MULTILINE):
+        return re.sub(r"^draft:\s*true\s*$", "draft: false", content, count=1, flags=re.MULTILINE)
+    if not re.search(r"^draft:\s*", content, flags=re.MULTILINE):
+        return re.sub(r"^(---\n)", "---\ndraft: false\n", content, count=1)
+    return content
+
+
 def next_queued() -> Path | None:
     """First .md file in queue/ alphabetically."""
     if not QUEUE.exists():
@@ -56,6 +70,7 @@ def publish_one() -> Path | None:
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     content = src.read_text(encoding="utf-8")
     content = update_pub_date(content, today)
+    content = mark_published(content)
 
     BLOG.mkdir(parents=True, exist_ok=True)
     dest.write_text(content, encoding="utf-8")

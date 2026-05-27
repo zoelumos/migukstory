@@ -5,7 +5,7 @@ pubDate: '2026-05-25'
 tags: ['오픈소스', '로봇공학', 'AI', '자동화', '한인커뮤니티']
 category: 'robotics'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'IEEE Spectrum — Robotics'
 sourceUrl: 'https://spectrum.ieee.org/open-source-robot-ai-platforms'
 ---

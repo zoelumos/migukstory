@@ -5,7 +5,7 @@ pubDate: '2026-05-26'
 tags: ['콜버트', 'CBS', '미디어']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/05/25/nx-s1-5833860/colbert-only-in-monroe-viral-cbs-paramount'
 ---

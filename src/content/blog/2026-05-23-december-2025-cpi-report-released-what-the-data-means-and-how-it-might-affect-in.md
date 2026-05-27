@@ -5,7 +5,7 @@ pubDate: '2026-05-25'
 tags: ['CPI', '금리', '인플레이션']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — CPI / Interest Rate Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMingFBVV95cUxNWEVJTV9YOXVDQk1hcTJqQTBSRmNYR1V4OTBmc1kzQ3VDZmU2T0txSVc2NjJZT25HM0h5anhpYnYycmF3b2NZRFlkSWMtMzRfVk1lVExyc2EwLTlqdDQ4NDVBYUdGVERDblNlRzRjQTJONW5zWnVfdHVENkw2a0dFUVZlTWJQOEJPcGdaT2FVb3p5elNQelMxclZFZWdmUQ?oc=5'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-05-27'
 tags: ['로봇공학', 'GMSL', '비전시스템']
 category: 'robotics'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'The Robot Report'
 sourceUrl: 'https://therobotreport.com/gmsl-and-the-growing-ecosystem-around-robotic-vision-systems-2'
 ---

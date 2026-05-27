@@ -5,7 +5,7 @@ pubDate: '2026-05-26'
 tags: ['AI', '고용', '신입채용', '한인청년', '진로', 'OPT', 'H-1B']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'MIT Technology Review — AI'
 sourceUrl: 'https://technologyreview.com/2026/05/26/1137865/its-time-to-address-the-looming-crisis-in-entry-level-work'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-05-25'
 tags: ['CPI', '연준', '금리', '셧다운', 'BLS']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — CPI / Interest Rate Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiyAFBVV95cUxPZUUtSlVkME1ETDFRUHh3YlVabmlzYUUzZFJMcVVzRjBtdlZ1akJSVG5ENEEyVG9LYkFSVGRVNDY2VzJmOHdxYm9QMUxxUkxYNWEwYnVXWmVTZ2t4MHVKazhNNllzTTZBeUpRSXhQTVRGYklFMW0teDVkdnh6WDEwcmlYZXpRM0lDd1hULWpCWWhHc1pyeExjQ1JzTWRTOW9CRENORll1WXZOUkVzWXFlOTU4dlZwc2tzeGVtYnVxM1Y1OC14RmJuRtIBzgFBVV95cUxNeUlVSzhrbHNvV0ZTOEwxR3RMNWZuVUYzV1M3R3FObkx0Nm41enBsOFEwcURHUUlBVUNkMVFNczg0Z090RDlrbzV0U2xXbThxVUxrQ3kyNDduOTA2V3luSXBjSDJ4YWpGQUs1ZmxuXzVxZGNQR2RsRDFRQmxFSXRKbklqLUpBbWIza2F4UW45dHVxVjV1SlRVcmkzT3RrNlprSl9YZGdRXzg3R1BQZHcwSVdUQWluSDh1clNtdHdONjBkQU9NMFFERXRVMmtyUQ?oc=5'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-05-27'
 tags: ['휴머노이드', '로봇공학', '자동화']
 category: 'robotics'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'The Robot Report'
 sourceUrl: 'https://therobotreport.com/how-humanoids-learn-to-read-the-room-2'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-05-26'
 tags: ['I-485', '신분조정', '영주권', '이민정책', 'AOS', 'EAD', 'AdvanceParole']
 category: 'immigration'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — USCIS / Green Card Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMipwFBVV95cUxQcjJuUVdlVG51QkRnOFpxU3dKMFg0bWRPUU5oYUxlM0l4SElNLWNEQVdDM2xhZkcxNm5CWFFwTUN3MkNmTTA1WnB3eGVKanRic0JhLXN6VVBKelFnUlFORmhjUWV6TmVCY3dSQkJuenNkZzV1c1l2MGd4WFYxRmZfUTBUTlVtQW9PdFhPQVQ5THoyVm1HUDA2WDQyZGMwbWNqZlJNelNPaw?oc=5'
 ---

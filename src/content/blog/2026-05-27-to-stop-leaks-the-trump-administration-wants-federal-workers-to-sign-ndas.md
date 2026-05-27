@@ -5,7 +5,7 @@ pubDate: '2026-05-27'
 tags: ['트럼프행정부', '연방공무원', 'NDA', '정보유출', '미주한인']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/05/26/nx-s1-5835300/trump-opm-nda-leaks-federal-employees'
 ---

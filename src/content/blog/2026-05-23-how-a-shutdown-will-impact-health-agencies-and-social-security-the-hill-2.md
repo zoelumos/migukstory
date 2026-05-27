@@ -5,7 +5,7 @@ pubDate: '2026-05-25'
 tags: ['연방셧다운', '사회보장국', '보건정책', 'FDA', 'CDC']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Policy / Recall Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMikgFBVV95cUxPaVVHUTRKOGpZaWlTYXN4eUcyTW1JbEp2Tnp3YVA4Xy05Y2s2a1ZjdHB5SWY2VnRwSXBjOGVCMERNRERJdTVCVTB0ZUZUUG5GU2lxQWxBeUxJUU9LLXNwLTloYUprcjNkMEl1YVZzUUo1Z21qam9sYkhJLUlmZzVONFN5cUNwTEZRZG5IaGFfZnFSUdIBlwFBVV95cUxQS2JMeGpQTUNyci1qZXhYYTFIdDZQVHNOUU1hM1JQOWtkcWZzTjFqZldUY0xXQkJoc1RhY3VzUUxXMVo0N2VYcXJfaEMtRXZjRl8zbmxFSUxtQnlQQnZKdEM5eHBQdHY2TERXNXQwSHVmdjVmWmh2Wnd1MU5mTXhoWHFSRkN3OVNCN0lJeUgwVVBlZ2FORmNr?oc=5'
 ---

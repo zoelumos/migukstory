@@ -5,7 +5,7 @@ pubDate: '2026-05-26'
 tags: ['AI', '월드모델', 'LLM', 'MIT테크놀로지리뷰']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'MIT Technology Review — AI'
 sourceUrl: 'https://technologyreview.com/2026/05/21/1137756/roundtables-can-ai-learn-to-understand-the-world'
 ---

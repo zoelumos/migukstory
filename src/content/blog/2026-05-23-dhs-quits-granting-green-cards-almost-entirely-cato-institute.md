@@ -5,7 +5,7 @@ pubDate: '2026-05-23'
 tags: ['영주권', 'DHS', 'USCIS', '이민정책', 'I-485', 'H-1B']
 category: 'immigration'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — USCIS / Green Card Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMifEFVX3lxTFAwd2ZnLUhTaW5DMVBiN0VoSXFwY3VqZzVOOW9tR1FOLW5BTFRwTWt0Vlo1UW9OM2RXcVJ0YklrTTY2dWFUTkN5bURDR2d1Vjk0N213aGJub3IxZXFSN3RKRVI0TzlDZGJ1M20wTUg4dUxjNG1MLS1XUUZDcTc?oc=5)'
 ---

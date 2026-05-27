@@ -5,7 +5,7 @@ pubDate: '2026-05-26'
 tags: ['I-485', 'H-1B', 'L-1', '영주권', '이민', 'USCIS']
 category: 'immigration'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — USCIS / Green Card Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMihAJBVV95cUxQTFRjNVo3Mk50elFhWnhfWlUtZFNJWVJWWWRyNkg4aWxIWjc5a0EwSnBZWUJSM2RpUDZUVUN6QlpNX2l2NWhJLU9mcjRua3pVTG1qbTh5a0h3NUlSc1I4X1hxM2RqNWx6UFRaY1prT05hQVhwaGotOEhHLXRFbEF1eXFjNi1ETWI1d0MtMDhGS1FZdVhybGd3TGxJbUVDaWQtcmg3cmZNc3lRd3RkdzZnc1NDRVN2X2E2Y1Z1dnNkUnZCMHpwM2pxdENIWUhrY282MVdQV21oU21FbTBTbVhsemlWNk9iZ1lGOXFURjZ2M3Q5YXIyT2pqb1pOZnJRdEplQkVnVw?oc=5'
 ---

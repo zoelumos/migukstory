@@ -5,7 +5,7 @@ pubDate: '2026-05-24'
 tags: ['AI', 'NTSB', '항공안전', '프라이버시', '데이터윤리', 'UPS2976']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'TechCrunch AI'
 sourceUrl: 'https://techcrunch.com/2026/05/22/ai-is-being-used-to-resurrect-the-voices-of-dead-pilots'
 ---

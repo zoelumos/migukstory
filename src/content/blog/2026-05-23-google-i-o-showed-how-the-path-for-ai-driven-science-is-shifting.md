@@ -5,7 +5,7 @@ pubDate: '2026-05-25'
 tags: ['구글', 'AI', '과학연구', '딥마인드', '한인커뮤니티']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'MIT Technology Review — AI'
 sourceUrl: 'https://technologyreview.com/2026/05/22/1137813/google-i-o-showed-how-the-path-for-ai-science-is-shifting'
 ---

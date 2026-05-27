@@ -5,7 +5,7 @@ pubDate: '2026-05-26'
 tags: ['AI', '일자리', '테크업계', '한인직장인']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'MIT Technology Review — AI'
 sourceUrl: 'https://technologyreview.com/2026/05/26/1137855/a-reality-check-on-the-ai-jobs-hysteria'
 ---

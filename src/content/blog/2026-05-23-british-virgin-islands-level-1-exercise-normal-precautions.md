@@ -5,7 +5,7 @@ pubDate: '2026-05-25'
 tags: ['여행경보', '국무부', '카리브해', 'CDC', '허리케인']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'State Department Travel Advisories'
 sourceUrl: 'https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/british-virgin-islands-travel-advisory.html'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-05-25'
 tags: ['로봇', '자동화', 'PLC', 'AI', '야마하 로보틱스']
 category: 'robotics'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'The Robot Report'
 sourceUrl: 'https://therobotreport.com/exploring-plc-and-robot-integration-with-yrg-robotics-chris-elston'
 ---

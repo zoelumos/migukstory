@@ -5,7 +5,7 @@ pubDate: '2026-05-21'
 tags: ['불임치료', '건강보험', '연방규정']
 category: 'tax'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Federal Register — Tax Rules (IRS)'
 sourceUrl: 'https://federalregister.gov/documents/2026/05/13/2026-09479/excepted-fertility-benefits'
 ---

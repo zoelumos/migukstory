@@ -22,6 +22,10 @@ env:
 permissions:
   contents: write
 
+concurrency:
+  group: daily-post-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   publish:
     runs-on: ubuntu-latest

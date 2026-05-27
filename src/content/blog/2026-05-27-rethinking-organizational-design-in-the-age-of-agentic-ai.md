@@ -5,7 +5,7 @@ pubDate: '2026-05-27'
 tags: ['에이전트AI', '기업조직', '일자리', 'H-1B', '한인소상공인']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'MIT Technology Review — AI'
 sourceUrl: 'https://technologyreview.com/2026/05/26/1137584/rethinking-organizational-design-in-the-age-of-agentic-ai'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-05-26'
 tags: ['에볼라', 'CDC', 'WHO', '공중보건', '아프리카', 'Bundibugyo']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'CDC Newsroom'
 sourceUrl: 'https://tools.cdc.gov/api/embed/downloader/download.asp?c=765615&m=132608'
 ---

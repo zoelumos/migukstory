@@ -5,7 +5,7 @@ pubDate: '2026-05-27'
 tags: ['걸프새우', '수입경쟁', '연료비', '소상공인', '식자재']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/05/26/nx-s1-5831103/gulf-shrimpers-high-gas-prices-help-congress-cheap-imports'
 ---

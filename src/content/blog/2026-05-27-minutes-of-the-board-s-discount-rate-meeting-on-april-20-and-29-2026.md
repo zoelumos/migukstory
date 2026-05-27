@@ -5,7 +5,7 @@ pubDate: '2026-05-27'
 tags: ['연준', '할인율', '금리', '미국경제', '한인경제']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Federal Reserve — Monetary Policy'
 sourceUrl: 'https://federalreserve.gov/newsevents/pressreleases/monetary20260526a.htm'
 ---

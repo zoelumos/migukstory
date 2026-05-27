@@ -5,7 +5,7 @@ pubDate: '2026-05-26'
 tags: ['ClickUp', 'AI 에이전트', '대량 해고', '미래의 일']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'TechCrunch AI'
 sourceUrl: 'https://techcrunch.com/2026/05/25/what-clickups-mass-layoff-tells-us-about-the-future-of-work'
 ---

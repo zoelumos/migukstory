@@ -5,7 +5,7 @@ pubDate: '2026-05-25'
 tags: ['BLS', '소비자물가', '고용지표', 'PPI', '실질임금']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'BLS Latest Numbers'
 sourceUrl: 'https://bls.gov/bls'
 ---

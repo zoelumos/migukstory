@@ -5,7 +5,7 @@ pubDate: '2026-05-26'
 tags: ['FDA', '담배규제', '청소년건강', '한인자영업']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'FDA Press Announcements'
 sourceUrl: 'https://fda.gov/news-events/press-announcements/fda-warns-retailers-selling-illegal-tobacco-products-look-everyday-products'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-05-27'
 tags: ['USCIS', '신분조정', '영주권', '취업비자', 'H-1B', 'F-1', '이민']
 category: 'immigration'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — USCIS / Green Card Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMizAFBVV95cUxOenh3VUpXbzMwRk11aFBnMXk4WExSNDIxbUJxaV92TmVsU0RSdHdvczB1R3IwT0R3WG9YZXluUUhuM21PZG1XdnNYSzBWTzd2cmh5ZUMydmg2bXFfTVpFelhIMVNheGduYVF6cEpQMV9UUEhRcTlxMlBzXzhTaFJZb1MwWmYzalFsMVlmZk52dC1seVRMQ2tsUC1xbTlxZXZmNEExSGJRZ0p0ZmtRUHI2ZEJEMXVNRVBjYUZER0FpcERLUDYyUUtibjRLdFY?oc=5'
 ---
