@@ -1,7 +1,7 @@
 ---
 title: 'USCIS, 신분조정을 "재량적 특혜"로 재정의 — 한인 취업비자·유학생·고용주가 챙겨야 할 것'
 description: 'USCIS가 2026년 5월 21일 정책각서 PM-602-0199를 통해 신분조정(AOS)을 "재량(discretion)에 의한 비상적 구제(extraordinary relief)"로 재규정했습니다. H-1B·L-1 이중의도 비자조차 자동 승인을 보장받지 못하며, F-1 유학생과 한인 고용주에게 즉각적 실무 영향이 발생합니다.'
-pubDate: '2026-05-26'
+pubDate: '2026-05-27'
 tags: ['USCIS', '신분조정', '영주권', '취업비자', 'H-1B', 'F-1', '이민']
 category: 'immigration'
 ageGroup: 'all'
