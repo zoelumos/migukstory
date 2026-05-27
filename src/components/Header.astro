@@ -344,16 +344,23 @@ const isActive = (href: string) =>
 		}
 		.nav-inner a.nav-cta-btn::after,
 		.nav-inner a.nav-item::after { display: none; }
-		.nav-search { background: var(--paper-soft); color: var(--ink); }
+		.nav-inner a.nav-search { background: var(--paper-soft); color: var(--ink); }
 		.nav-search:active { background: var(--rule); }
-		.nav-login {
+		.nav-inner a.nav-login {
 			display: flex;             /* override base .mobile-login-link { display:none } */
 			background: var(--ink);
-			color: var(--paper);
+			color: var(--paper) !important;
 			border-color: var(--ink);
+			box-shadow: 0 2px 0 var(--brick);
 		}
-		.nav-login:active { background: var(--ink-soft); }
-		.nav-contact {
+		.nav-inner a.nav-login:hover,
+		.nav-inner a.nav-login:focus-visible {
+			background: var(--brick);
+			border-color: var(--brick);
+			color: #fff !important;
+		}
+		.nav-inner a.nav-login:active { background: var(--ink-soft); }
+		.nav-inner a.nav-contact {
 			flex-basis: 100%;
 			margin-top: var(--s-1);
 			background: var(--brick);
