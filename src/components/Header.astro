@@ -348,18 +348,25 @@ const isActive = (href: string) =>
 		.nav-search:active { background: var(--rule); }
 		.nav-inner a.nav-login {
 			display: flex;             /* override base .mobile-login-link { display:none } */
-			background: var(--ink);
-			color: var(--paper) !important;
-			border-color: var(--ink);
+			background: var(--cream);
+			color: var(--brick-deep) !important;
+			border-color: var(--brick);
 			box-shadow: 0 2px 0 var(--brick);
 		}
-		.nav-inner a.nav-login:hover,
+		.nav-inner a.nav-login:hover {
+			background: var(--cream-deep);
+			color: var(--brick-deep) !important;
+		}
 		.nav-inner a.nav-login:focus-visible {
+			outline: 2px solid var(--brick);
+			outline-offset: 2px;
+			background: var(--cream-deep);
+		}
+		.nav-inner a.nav-login:active {
 			background: var(--brick);
 			border-color: var(--brick);
 			color: #fff !important;
 		}
-		.nav-inner a.nav-login:active { background: var(--ink-soft); }
 		.nav-inner a.nav-contact {
 			flex-basis: 100%;
 			margin-top: var(--s-1);
