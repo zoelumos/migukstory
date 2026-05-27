@@ -81,7 +81,9 @@ jobs:
           today=$(date -u +"%Y-%m-%d")
           git commit -m "post: scheduled publish (${today})"
           git remote set-url origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
-          git push
+          # Checkout is intentionally detached to avoid intermittent checkout-token
+          # failures, so push the current commit explicitly back to main.
+          git push origin HEAD:main
           echo "published=true" >> "$GITHUB_OUTPUT"
 
       - name: Notify search engines (IndexNow + Google Indexing API)
