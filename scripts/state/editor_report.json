@@ -1,154 +1,98 @@
 {
-  "generated_at": "2026-05-27T11:15:14.781334+00:00",
+  "generated_at": "2026-05-28T23:10:45.204608+00:00",
   "threshold_promote": 70,
   "threshold_review": 50,
   "counts": {
-    "total": 10,
-    "promoted": 8,
-    "review": 2,
+    "total": 6,
+    "promoted": 6,
+    "review": 0,
     "discard_flag": 0,
     "deferred": 0
   },
   "grades": [
     {
-      "slug": "2026-05-27-duckduckgo-installs-are-up-30-as-users-reject-being-force-fed-google-s-ai-search",
-      "score": 94,
-      "scores": {
-        "factuality": 18,
-        "source_diversity": 19,
-        "ka_angle": 19,
-        "originality": 18,
-        "structure": 20
-      },
-      "reasoning": "TechCrunch와 Tom's Guide 두 매체의 구체적 수치(18.1%, 30.5%, 69.9%, 22.7%)와 인용이 출처 링크로 정확히 추적 가능하며, YAML frontmatter·핵심 요약·출처 섹션 등 구조도 완결적입니다. 한인 자영업자의 구글 비즈니스 프로필 관리, 유학생·이민자의 USCIS/IRS 원문 확인, 시니어 가정의 번역 신뢰 패턴까지 세 그룹별로 구체적 함의를 풀어냈고, 검색 트래픽 구조 재편이라는 편집자 차원의 분석도 추가돼 단순 번역을 넘어선 독창성이 살아 있습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-05-27-duckduckgo-installs-are-up-30-as-users-reject-being-force-fed-google-s-ai-search.md"
-    },
-    {
-      "slug": "2026-05-27-gmsl-and-the-growing-ecosystem-around-robotic-vision-systems",
+      "slug": "2026-05-28-alert-update-growing-number-of-salmonella-illnesses-and-outbreaks-linked-to-mori",
       "score": 85,
       "scores": {
-        "factuality": 17,
-        "source_diversity": 15,
-        "ka_angle": 18,
-        "originality": 15,
-        "structure": 20
-      },
-      "reasoning": "The Robot Report 원문 링크가 정확히 명시되어 있고 본문의 인용·표현이 출처 범위 안에서 신중하게 다뤄져 사실성과 구조 면에서 안정적입니다. 단일 출처지만 업계 전문 매체로 신뢰도가 확보되며, 한인 자영업자·2세 STEM 진로·이민자 노동 영향·가정 단위 투자까지 구체적인 한인 관점 분석이 살아 있어 단순 번역을 넘어선 편집자 부가가치가 분명합니다. 다만 GMSL 기술 자체에 대한 추가 수치나 경쟁 기술 비교가 부족해 독창성은 다소 제한적입니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-05-27-gmsl-and-the-growing-ecosystem-around-robotic-vision-systems.md"
-    },
-    {
-      "slug": "2026-05-27-gulf-shrimpers-want-help-from-congress-as-fuel-costs-climb",
-      "score": 83,
-      "scores": {
         "factuality": 16,
         "source_diversity": 15,
         "ka_angle": 18,
-        "originality": 15,
+        "originality": 17,
         "structure": 19
       },
-      "reasoning": "NPR 원문 링크가 정확히 인용돼 있고, 본문이 원문에 없는 수치를 임의로 만들어내지 않은 점이 사실성 측면에서 강점입니다. 걸프 연안 한인 자영업자와 가정·유학생 등 구체적 그룹별로 영향을 풀어쓴 한인 관점 분석이 충실하며, frontmatter와 핵심 요약·출처 섹션 구조도 완전합니다. 다만 단일 출처에 의존해 정책·통계 교차 검증이 부족하고, 독창적 데이터나 비교 분석은 제한적이라는 점이 약점입니다.",
+      "reasoning": "CDC·FDA 공식 출처를 정확히 링크하고 본문 주장과 일치시켜 사실성과 출처 신뢰도가 안정적이며, 한인 가정의 이유식·보양식 사용 패턴과 자영업자 책임 문제까지 구체적으로 풀어낸 한인 관점 분석이 돋보입니다. 비교표와 6단계 체크리스트로 시각화 요건을 충족했고 frontmatter·요약·출처 구조도 완전합니다. 다만 출처가 CDC/FDA 두 도메인에 한정돼 다주 발병 통계의 교차 검증이 약한 점은 감점 요소입니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-05-27-gulf-shrimpers-want-help-from-congress-as-fuel-costs-climb.md"
+      "promoted_to": "queue/2026-05-28-alert-update-growing-number-of-salmonella-illnesses-and-outbreaks-linked-to-mori.md"
     },
     {
-      "slug": "2026-05-27-how-humanoids-learn-to-read-the-room",
-      "score": 81,
+      "slug": "2026-05-28-medicare-and-fda-propose-granting-rapid-coverage-for-breakthrough-radiology-devi",
+      "score": 88,
       "scores": {
         "factuality": 17,
-        "source_diversity": 15,
-        "ka_angle": 16,
-        "originality": 14,
-        "structure": 19
-      },
-      "reasoning": "The Robot Report 원문의 핵심 표현(움직임·균형·시각·반응성, 'read the room')을 충실히 인용하고 검증 불가능한 수치를 만들어내지 않았으며, 한인 자영업 자동화와 자녀 STEM 진로라는 두 개의 구체적 한인 관점 분석 문단이 살아있습니다. 다만 출처가 The Robot Report 1곳뿐이고 원문 자체가 Analog Devices 후원 콘텐츠라는 한계가 있으며, 시장 규모·일정 등 수치가 부재해 분석의 깊이가 다소 제한됩니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-05-27-how-humanoids-learn-to-read-the-room.md"
-    },
-    {
-      "slug": "2026-05-27-is-adjustment-of-status-still-a-viable-green-card-path-us-employment-law-worldvi",
-      "score": 62,
-      "scores": {
-        "factuality": 9,
-        "source_diversity": 8,
-        "ka_angle": 16,
-        "originality": 11,
-        "structure": 18
-      },
-      "reasoning": "한인 관점(H-1B 직장인, OPT 유학생, 가족 초청) 분석은 구체적이고 구조도 프론트매터·핵심 요약·출처 섹션을 모두 갖춰 양호합니다. 그러나 원문이 헤드라인만 노출된 RSS 단계라 본문 내용·정책 변경·통계 인용 없이 '제목이 의문형이라는 점'만으로 업계 회의론을 추정하고 있어 사실성이 약하고, 출처도 Google News 리다이렉트 단일 링크여서 1차 매체 추적이 어렵습니다.",
-      "action": "review",
-      "promoted_to": null
-    },
-    {
-      "slug": "2026-05-27-minutes-of-the-board-s-discount-rate-meeting-on-april-20-and-29-2026",
-      "score": 76,
-      "scores": {
-        "factuality": 16,
-        "source_diversity": 15,
-        "ka_angle": 15,
-        "originality": 11,
-        "structure": 19
-      },
-      "reasoning": "연준 공식 보도자료를 1차 출처로 정확히 링크했고 회의 날짜·공개일·할인율 개념 설명이 출처 범위 안에서 검증 가능하며, 자영업자·모기지 가정·은퇴자 등 한인 그룹별 시사점을 구체적으로 풀어쓴 점이 강점입니다. 다만 회의록 자체의 구체적 논의 내용(위원들 발언, 표결, 인상·인하 신호 등)이 본문에 거의 인용되지 않아 독창적 분석보다는 보도자료 요약 성격이 강하고, 교차 검증용 2차 출처가 없어 맥락 보강이 아쉽습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-05-27-minutes-of-the-board-s-discount-rate-meeting-on-april-20-and-29-2026.md"
-    },
-    {
-      "slug": "2026-05-27-openrouter-more-than-doubles-valuation-to-1-3b-in-a-year",
-      "score": 84,
-      "scores": {
-        "factuality": 17,
-        "source_diversity": 15,
+        "source_diversity": 17,
         "ka_angle": 18,
-        "originality": 15,
+        "originality": 17,
         "structure": 19
       },
-      "reasoning": "TechCrunch 원문에 근거한 핵심 수치(1억 1,300만 달러, 13억 달러, 6개월간 5배 사용량 증가, CapitalG 주도)가 일관되게 인용되어 있고, 출처 섹션의 링크도 명확하게 추적 가능합니다. 한인 자영업자·유학생·학부모·투자자 관점을 구체 지역과 업종까지 들어 분리해 풀어쓴 점이 강점이며, 투자 신중론까지 덧붙여 단순 번역 수준을 넘어섰습니다. 다만 출처가 단일 publisher 한 곳이고 OpenRouter 공식 발표나 CapitalG 측 코멘트 등 교차 검증이 없어 source_diversity와 originality에서 만점은 어렵습니다.",
+      "reasoning": "CMS TCET·FDA Breakthrough Devices 등 핵심 사실이 공식 1차 출처(CMS, FDA) 링크로 추적 가능하며, 확정되지 않은 세부사항을 명확히 구분해 신중하게 서술한 점이 강점입니다. 한인 메디케어 이용자·영상의학 의료진·의료기기 종사자라는 구체적 그룹별 영향 분석과 비교표·번호 체크리스트 등 시각화 구조가 잘 갖춰져 있어 차별성이 높습니다. 다만 1차 보도 원문이 Google News 리디렉션 링크 한 건뿐이라 교차 검증 측면에서는 만점은 아니며, 일부 변화 전망은 추정적 표현임을 더 명시하면 좋겠습니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-05-27-openrouter-more-than-doubles-valuation-to-1-3b-in-a-year.md"
+      "promoted_to": "queue/2026-05-28-medicare-and-fda-propose-granting-rapid-coverage-for-breakthrough-radiology-devi.md"
     },
     {
-      "slug": "2026-05-27-rethinking-organizational-design-in-the-age-of-agentic-ai",
-      "score": 90,
+      "slug": "2026-05-28-new-alert-growing-number-of-salmonella-illnesses-and-outbreaks-linked-to-moringa",
+      "score": 88,
       "scores": {
         "factuality": 17,
-        "source_diversity": 18,
+        "source_diversity": 16,
         "ka_angle": 19,
         "originality": 17,
         "structure": 19
       },
-      "reasoning": "Celonis 2026 보고서의 핵심 수치(85%/76%/82%)와 PwC·BCG·McKinsey 인용이 모두 출처 섹션의 MIT Technology Review 원문 및 Celonis 보도자료 링크로 추적 가능하며, 서로 다른 publisher 4곳이 인용돼 신뢰도가 높습니다. 한인 관점에서도 H-1B 직무 일치성, 한국계 미국 법인의 본사 위계 충돌, 소상공인 단일 워크플로 접근법, STEM 진로 자녀 부모 등 4개 한인 세부 그룹별로 구체적 분석이 살아있고, ABT 프레임에 한국식 결재 문화 충돌이라는 편집자 차원의 종합도 더해져 단순 번역을 넘어섭니다. 약점은 McKinsey의 '75% 직무 재설계'와 'AI fluency 7배' 수치가 원문 출처 링크에서 직접 추적되는지 다소 모호하다는 점입니다.",
+      "reasoning": "CDC·FDA 등 1차 출처를 정확히 인용하고 살모넬라 통계·증상·고위험군 정보가 출처로 추적 가능하며, 한인 마트·카페·고령 부모 가정 등 구체적 한인 그룹별 권장 조치를 표로 정리한 점이 강점입니다. 비교표와 번호 단계 체크리스트로 시각화 요건도 충족했고 frontmatter·핵심 요약·출처 섹션 구조가 완전합니다. 다만 CDC 경보 링크가 다운로더 형태라 일반 독자가 직접 열기 어렵고, 브랜드·로트 구체 정보가 아직 없는 단계라는 한계가 있어 후속 업데이트 여지가 남습니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-05-27-rethinking-organizational-design-in-the-age-of-agentic-ai.md"
+      "promoted_to": "queue/2026-05-28-new-alert-growing-number-of-salmonella-illnesses-and-outbreaks-linked-to-moringa.md"
     },
     {
-      "slug": "2026-05-27-three-years-of-declining-overdose-deaths-begets-cautious-optimism-and-some-conce",
-      "score": 66,
+      "slug": "2026-05-28-new-era-of-uscis-adjustment-adjudications-what-eb-5-investors-need-to-know-wr-im",
+      "score": 70,
       "scores": {
-        "factuality": 10,
-        "source_diversity": 11,
-        "ka_angle": 15,
-        "originality": 12,
+        "factuality": 12,
+        "source_diversity": 9,
+        "ka_angle": 17,
+        "originality": 14,
         "structure": 18
       },
-      "reasoning": "구조는 frontmatter, 핵심 요약, 출처 섹션을 모두 갖추고 있고 한인 가정·자영업자·유학생 관점도 구체적으로 풀어쓴 점은 강점입니다. 다만 STAT News 보도를 인용한다고 하면서도 실제 출처는 Google News 리다이렉트 링크 한 개뿐이며, '3년 연속 감소'라는 핵심 수치를 뒷받침할 구체적 통계·기관(CDC 등)·인용이 본문에 없어 사실성과 출처 신뢰도가 약합니다. 원문 요약 수준을 크게 넘어서는 비교·맥락 추가가 부족해 독창성도 제한적입니다.",
-      "action": "review",
-      "promoted_to": null
+      "reasoning": "비교표와 번호 체크리스트로 시각화 요건을 충족했고 한인 가정·투자자 관점의 실무 분석이 구체적입니다. 다만 출처가 Google News 리다이렉트 링크 한 건뿐이고 WR Immigration 원문 링크가 직접 인용되지 않아 사실성·출처 신뢰도가 약하며, '새 시대'라는 표현 외에 검증 가능한 정책 수치가 부족합니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-05-28-new-era-of-uscis-adjustment-adjudications-what-eb-5-investors-need-to-know-wr-im.md"
     },
     {
-      "slug": "2026-05-27-to-stop-leaks-the-trump-administration-wants-federal-workers-to-sign-ndas",
-      "score": 85,
+      "slug": "2026-05-28-new-uscis-memo-may-force-most-green-card-applicants-to-apply-from-abroad-causing",
+      "score": 71,
+      "scores": {
+        "factuality": 13,
+        "source_diversity": 10,
+        "ka_angle": 17,
+        "originality": 14,
+        "structure": 17
+      },
+      "reasoning": "AIC 보도를 기반으로 한인 직장인·유학생·가족 초청·투자 이민 전반에 미치는 영향을 구체적으로 풀어내고, 비교표와 행동 체크리스트로 시각적 구조를 잘 갖췄습니다. 다만 출처가 Google News 리다이렉트 링크 단 1개로 AIC 원문이나 USCIS 메모 원본 링크가 빠져 있어 사실성·출처 신뢰도가 약하고, 메모의 발표 시점·문서번호 등 구체적 식별 정보가 부족합니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-05-28-new-uscis-memo-may-force-most-green-card-applicants-to-apply-from-abroad-causing.md"
+    },
+    {
+      "slug": "2026-05-28-the-green-card-rules-just-changed-what-employers-and-foreign-nationals-need-to-k",
+      "score": 88,
       "scores": {
         "factuality": 17,
-        "source_diversity": 15,
+        "source_diversity": 18,
         "ka_angle": 18,
-        "originality": 15,
-        "structure": 20
+        "originality": 17,
+        "structure": 18
       },
-      "reasoning": "NPR 단일 출처에 충실하면서 검증 불가능한 수치를 만들어내지 않았고, 워싱턴 권역 한인 공무원·취업 준비생·자영업자로 한인 관점을 구체적으로 풀어낸 점이 강점입니다. 다만 NDA의 구체적 조항·시행 시점 등 세부 정보가 원문 자체에서 제한적이라 분석의 깊이에 한계가 있고, 출처가 1곳뿐이라 교차 검증은 부족합니다.",
+      "reasoning": "JD Supra 원문이 단정하지 않는 부분을 명확히 구분하고 USCIS·DOL·DHS 공식 출처로 수치와 절차를 뒷받침해 사실성과 출처 신뢰도가 높습니다. 한인 자영업 스폰서·H-1B 직장인·I-485 신청자·가족 초청 가정별 분석과 비교표·5단계 체크리스트 시각화가 살아있어 한인 관점과 구조 모두 자동승격 기준을 충족합니다. 다만 원문이 구체 시행일을 제시하지 않아 '변화의 방향성' 수준에 머무는 한계가 있습니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-05-27-to-stop-leaks-the-trump-administration-wants-federal-workers-to-sign-ndas.md"
+      "promoted_to": "queue/2026-05-28-the-green-card-rules-just-changed-what-employers-and-foreign-nationals-need-to-k.md"
     }
   ]
 }
