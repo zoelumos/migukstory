@@ -5,7 +5,7 @@ pubDate: '2026-05-28'
 tags: ['미국경제', '생활비', '한인가정', '인플레이션', '브루킹스']
 category: 'economy'
 ageGroup: 'all'
-draft: false
+draft: true
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/05/28/nx-s1-5836525/affordability-report-brookings-inflation-wages'
 ---
@@ -55,3 +55,6 @@ flowchart TD
 ## 출처 (Sources)
 
 - [NPR Business](https://npr.org/2026/05/28/nx-s1-5836525/affordability-report-brookings-inflation-wages)
+
+
+> 편집 보류 메모: Steve 지적에 따라 라이브에서 내림. 2026 기사로 발행됐지만 핵심 데이터가 2024년 기준이고, 제목/요약이 현재 긴급 기사처럼 오해될 수 있음. Mermaid flowchart도 publish 전 검토 실패. 원문 재검토 후 evergreen/해설형으로 완전 재작성하거나 폐기.
