@@ -22,7 +22,11 @@ command: |
   if [ -n "$(git status --porcelain)" ]; then
     STASH_MSG="auto-stash-before-daily-ingest-$(date -u +%Y%m%d)"
     echo "  Worktree not clean; stashing local changes as: ${STASH_MSG}"
-    git stash push -u -m "$STASH_MSG"
+    git -c user.email=bot@migukstory.com -c user.name="Miguk Story Bot" stash push -u -m "$STASH_MSG" || {
+      echo "  ⚠️ auto-stash failed; preserving publish reliability by forced reset/clean"
+      git reset --hard HEAD
+      git clean -fd
+    }
   fi
   git fetch -q origin
   git checkout -B bot/daily-draft origin/main
