@@ -1,6 +1,6 @@
 ---
-title: 'USCIS 새 메모, 영주권 신청자 대부분 해외에서 신청해야 할 수도 — 한인 가정 영향과 대비책'
-description: '미국이민협회(AIC) 분석에 따르면 새 USCIS 메모로 영주권 신청자 상당수가 미국 내 신분조정(I-485) 대신 해외 영사 절차(Consular Processing)를 거쳐야 할 가능성이 제기됐습니다. 한인 직장인·유학생·가족초청·자영업자에게 미치는 실제 영향과 출국 전 점검 항목을 정리합니다.'
+title: '영주권 신청자 비상: USCIS 새 메모가 “미국 내 I-485” 길을 흔들 수 있다'
+description: 'AIC는 새 USCIS 메모가 일부 영주권 신청자를 미국 내 신분조정(I-485) 대신 해외 영사 절차로 밀어낼 수 있다고 경고했습니다. 한인 직장인·유학생·가족초청·자영업자가 지금 확인해야 할 출국·인터뷰·재입국 리스크를 정리합니다.'
 pubDate: '2026-05-28'
 tags: ['USCIS', '영주권', '신분조정', '영사절차', '이민정책', 'I-485']
 category: 'immigration'
@@ -10,7 +10,7 @@ source: 'Google News — USCIS / Green Card Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMigAFBVV95cUxPMjFwZHIyTFh0M01CZF9uLW5maUwzWjFpemxjR0VGd2J1YlllZXFCcE40N1hXZ3p6Ym9NVi1ydElrX0dWRjhhaWRCaGVPQks0RXJFU29oLUlIMmVSV0RBUXRtQ1dyZHEzQ0thZUFBR292M09BYWVFdU5jSmctakp1UQ?oc=5'
 ---
 
-# USCIS 새 메모, 영주권 신청자 대부분 해외에서 신청해야 할 수도
+# 영주권 신청자 비상: USCIS 새 메모가 “미국 내 I-485” 길을 흔들 수 있다
 
 미국이민협회(American Immigration Council, AIC)가 새로 공개된 USCIS 내부 메모를 분석한 결과, 영주권 신청자 상당수가 앞으로는 미국 내에서 신분조정(adjustment of status, I-485)을 받는 대신 본국 또는 제3국에 있는 미국 영사관을 통해 영주권을 신청해야 할 가능성이 제기됐습니다. AIC는 이번 변화가 "혼란과 혼선(chaos and confusion)"을 불러올 것이라고 경고했습니다.
 

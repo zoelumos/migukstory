@@ -1,6 +1,6 @@
 ---
-title: 'USCIS 신정책 메모: 가족 기반 영주권 신청자가 알아야 할 변화'
-description: 'USCIS가 신분 조정(Adjustment of Status) 관련 신정책 메모를 발표했습니다. 가족 기반 영주권 신청자, 특히 미주 한인 가정에 미치는 영향과 점검 포인트를 정리합니다.'
+title: '가족초청 영주권도 영향권? USCIS 신분조정 메모, 접수 전 꼭 볼 점검표'
+description: 'USCIS 신분조정(Adjustment of Status) 관련 메모는 가족 기반 영주권 신청자의 접수일·인터뷰·출국 일정에 영향을 줄 수 있습니다. 한인 가정이 지금 확인해야 할 체크포인트를 정리합니다.'
 pubDate: '2026-05-28'
 tags: ['USCIS', '영주권', '가족이민', '신분조정', 'Adjustment of Status']
 category: 'immigration'
@@ -10,7 +10,7 @@ source: 'Google News — USCIS / Green Card Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiwwFBVV95cUxOWHpqbktSRVFyWGVCU3NMRzhXb2MwR3pVWVNLQjRILUtpenZVS2IzNm4wNGljazNZVlJTVnlwSGJHcFE4eXhWREI3TWxsR3JIR0wxOTlMcmRmRWNZYzVLdjJreXdGeUR5QUVJcW5FRUR6cFBrTUpaS3NCako1d29ySFBWRGlLT3NkZ2drSzNOempsZkxGUTR3RW9uUzZPNDJPYmFGcnZEZmlITlp6ZXFrVU1XNFlUR0NBZjM5ZU51ZkZRMFU?oc=5'
 ---
 
-# USCIS 신정책 메모: 가족 기반 영주권 신청자가 알아야 할 변화
+# 가족초청 영주권도 영향권? USCIS 신분조정 메모, 접수 전 꼭 볼 점검표
 
 미국 이민서비스국(USCIS)이 신분 조정(Adjustment of Status, AOS) 절차에 적용되는 새 정책 메모를 발표했습니다. Boundless Immigration 등 이민 전문 매체가 보도한 바에 따르면, 이번 메모는 특히 가족 기반(family-based) 영주권 신청자가 미국 내에서 영주권 신분으로 전환할 때 적용되는 기준과 절차에 영향을 줍니다. 메모의 구체적 조항·예외·발효 시점은 USCIS의 공식 정책 매뉴얼(Policy Manual) 업데이트와 원문 PDF에서 직접 확인하셔야 합니다.
 

@@ -7,13 +7,48 @@ import FormattedDate from '../components/FormattedDate.astro';
 import { SITE_DESCRIPTION, SITE_TAGLINE, SITE_TITLE } from '../consts';
 import { CATEGORIES, type CategoryKey } from '../content.config';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const posts = (await getCollection('blog'))
+	.filter((p) => !p.data.draft)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const [lead, ...rest] = posts;
-const aboveFold = rest.slice(0, 2);    // sub-leads
-const cont = rest.slice(2, 6);          // continued page
+// Homepage editorial priority: Steve wants the top headline to be viral/high-stakes,
+// not merely the newest generic item. Immigration comes first for Miguk Story's
+// audience, then war/conflict/geopolitics, then major public-safety/policy items.
+// The secondary "slides" also use this ranking so at least two strong items sit
+// above the fold with the hero.
+const viralKeywords = [
+	'영주권', 'USCIS', '이민', '비자', 'I-485', '신분조정', '가족초청', '추방', 'ICE', '망명',
+	'전쟁', '분쟁', '공습', '휴전', '우크라이나', '가자', '이스라엘', '중국', '북한', '대만',
+	'리콜', '경보', '살모넬라', '대법원', '트럼프', '세금폭탄',
+];
+const newestPubDay = Math.max(...posts.map((p) => Date.UTC(
+	p.data.pubDate.getUTCFullYear(),
+	p.data.pubDate.getUTCMonth(),
+	p.data.pubDate.getUTCDate(),
+)));
+const headlineScore = (post: (typeof posts)[number]) => {
+	const text = `${post.data.title} ${post.data.description} ${(post.data.tags || []).join(' ')}`;
+	const postDay = Date.UTC(
+		post.data.pubDate.getUTCFullYear(),
+		post.data.pubDate.getUTCMonth(),
+		post.data.pubDate.getUTCDate(),
+	);
+	const ageDays = Math.max(0, Math.round((newestPubDay - postDay) / 86_400_000));
+	let score = 50_000 - ageDays * 6_000;
+	if (ageDays === 0) score += 30_000; // today's batch must own the hero/slides when available
+	if (post.data.category === 'immigration') score += 10_000;
+	if (/전쟁|분쟁|공습|휴전|우크라이나|가자|이스라엘|중국|북한|대만/i.test(text)) score += 8_000;
+	if (/리콜|경보|살모넬라|대법원|트럼프|세금폭탄/i.test(text)) score += 3_000;
+	viralKeywords.forEach((kw) => { if (text.includes(kw)) score += 250; });
+	// Keep weak evergreen/generic economy explainers from taking the hero slot.
+	if (post.data.category === 'economy' && !/전쟁|이민|USCIS|리콜|경보|대법원|트럼프/i.test(text)) score -= 5_000;
+	return score;
+};
+const headlinePosts = [...posts].sort((a, b) => headlineScore(b) - headlineScore(a));
+const [lead, ...headlineRest] = headlinePosts;
+const aboveFold = headlineRest.filter((p) => p.id !== lead?.id).slice(0, 2);    // headline slides/sub-leads
+const usedAboveFold = new Set([lead?.id, ...aboveFold.map((p) => p.id)]);
+const cont = posts.filter((p) => !usedAboveFold.has(p.id)).slice(0, 6);          // continued page
 
 // Group posts by category (in CATEGORIES order, skip empty)
 const byCategory = (Object.keys(CATEGORIES) as CategoryKey[])
@@ -79,13 +114,13 @@ const koDate = (d: Date) =>
 
 			<div class="container divider-mark"></div>
 
-			<!-- ABOVE-FOLD secondary leads (2-column) -->
+			<!-- ABOVE-FOLD headline slides (2-column) -->
 			{aboveFold.length > 0 && (
-				<section class="above-fold">
+				<section class="above-fold" aria-label="오늘의 주요 헤드라인 슬라이드">
 					<div class="container two-col">
 						{aboveFold.map((post, i) => (
 							<article class="story">
-								<p class="eyebrow">{i === 0 ? '두 번째 기사' : '세 번째 기사'}</p>
+								<p class="eyebrow">{i === 0 ? '헤드라인 슬라이드 1' : '헤드라인 슬라이드 2'}</p>
 								<h2><a href={`/blog/${post.id}/`}>{post.data.title}</a></h2>
 								<p class="story-desc">{post.data.description}</p>
 								<div class="story-meta">
