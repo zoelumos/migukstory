@@ -83,78 +83,7 @@ import { SITE_TITLE } from '../consts';
 		</main>
 		<Footer />
 
-		<script>
-			// All OAuth + magic-link flows are server-side (HttpOnly cookies).
-			const params = new URLSearchParams(window.location.search);
-			const next = params.get('next') || '/';
-
-			// One-time localStorage cleanup — removes leftover verifier/token entries
-			// from the pre-migration localStorage architecture. Safe no-op once cleared.
-			try {
-				Object.keys(localStorage).filter((k) => k.startsWith('sb-')).forEach((k) => localStorage.removeItem(k));
-			} catch (e) { /* private mode etc. */ }
-
-			// If already logged in, show a soft notice (don't auto-redirect — that
-			// confuses users who explicitly navigated here to switch accounts).
-			fetch('/api/auth/session', { credentials: 'same-origin' })
-				.then((r) => r.json())
-				.then((data) => {
-					if (data.authenticated && data.user) {
-						const notice = document.querySelector('[data-logged-in-notice]') as HTMLElement | null;
-						if (notice) {
-							const nameEl = notice.querySelector('[data-name]');
-							if (nameEl) nameEl.textContent = data.user.name;
-							notice.hidden = false;
-						}
-					}
-				})
-				.catch(() => {});
-
-			// Surface server error if redirected back from a failed callback
-			const errParam = params.get('error');
-			if (errParam) {
-				setTimeout(() => setMsg(decodeURIComponent(errParam), 'error'), 100);
-			}
-
-			const msgEl = document.querySelector('[data-msg]') as HTMLElement | null;
-			const setMsg = (text: string, kind: 'success' | 'error' | 'info' = 'info') => {
-				if (!msgEl) return;
-				msgEl.textContent = text;
-				msgEl.dataset.kind = kind;
-			};
-
-			// Google sign-in is now a plain <a> link to /api/auth/signin?provider=google
-			// (server generates PKCE verifier as HttpOnly cookie, redirects to Google).
-			// Just patch the href to include the current `next` param.
-			const googleLink = document.getElementById('google-signin') as HTMLAnchorElement | null;
-			if (googleLink) {
-				googleLink.href = `/api/auth/signin?provider=google&next=${encodeURIComponent(next)}`;
-			}
-
-			// Email magic link — POST to server-side /api/auth/magic-link
-			document.getElementById('email-magic-link')?.addEventListener('submit', async (e) => {
-				e.preventDefault();
-				const form = e.target as HTMLFormElement;
-				const email = String(new FormData(form).get('email') || '').trim().toLowerCase();
-				if (!email.includes('@')) {
-					setMsg('올바른 이메일을 입력해 주세요.', 'error');
-					return;
-				}
-				setMsg('전송 중…', 'info');
-				const res = await fetch('/api/auth/magic-link', {
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({ email, next }),
-				});
-				const result = await res.json().catch(() => ({}));
-				if (!res.ok) {
-					setMsg(result.error || '이메일 전송에 실패했습니다. 잠시 후 다시 시도해 주세요.', 'error');
-				} else {
-					setMsg(`${email}으로 로그인 링크를 보내드렸습니다. 메일을 확인해 주세요.`, 'success');
-					form.reset();
-				}
-			});
-		</script>
+		<script src="/js/login.js" defer></script>
 
 		<style>
 			.login-head {
