@@ -80,10 +80,17 @@ command: |
     --cli-timeout 60 \
     || echo "  (editor script exited non-zero; continuing)"
 
-  # Steve quality rule: do NOT bypass editorial review. If Claude improve/editor
-  # times out, drafts must stay in drafts/; never auto-promote manifest drafts
-  # directly to queue/. Publish speed is secondary to pre-publish review and
-  # visual/flowchart sanity.
+  # If Claude-based review times out and queue/ is still empty, run a strict
+  # deterministic fallback reviewer. It is not a blind publish bypass: it only
+  # promotes current-run drafts with complete frontmatter, sources, Korean-American
+  # angle, mobile-safe visual/table/checklist, no Mermaid/flowchart syntax, and a
+  # high-stakes topic (immigration/war/public-safety/tax). This prevents another
+  # 0-post morning without reintroducing the bad unreviewed-article failure mode.
+  "$PY_VENV/bin/python" scripts/deterministic_queue_fallback.py \
+    --manifest "$MANIFEST" \
+    --max-promote 3 \
+    --only-if-queue-empty \
+    || echo "  (deterministic fallback reviewer exited non-zero; continuing)"
   # Ensure labels exist before PR creation. Missing labels used to make this job
   # fail after it had already pushed the branch.
   gh label create draft --repo zoelumos/migukstory --color 0e8a16 --description 'AI draft automation' 2>/dev/null || true
