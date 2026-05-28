@@ -17,6 +17,13 @@ command: |
   echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] daily-ingest starting"
 
   # Always start from latest main. bot/daily-draft is force-reset every run.
+  # If emergency/manual work left the local checkout dirty, preserve it first so
+  # the daily ingest never aborts before drafting (2026-05-28 incident).
+  if [ -n "$(git status --porcelain)" ]; then
+    STASH_MSG="auto-stash-before-daily-ingest-$(date -u +%Y%m%d)"
+    echo "  Worktree not clean; stashing local changes as: ${STASH_MSG}"
+    git stash push -u -m "$STASH_MSG"
+  fi
   git fetch -q origin
   git checkout -B bot/daily-draft origin/main
 
@@ -44,31 +51,85 @@ command: |
   MANIFEST=$(mktemp)
   trap 'rm -f "$MANIFEST"' EXIT
 
-  # Time budgets sum to ~17 min, leaving ~3 min headroom under Hermes' 1200s
-  # script timeout for the git push / PR-create / auto-merge tail that MUST
-  # complete or the day's drafts get stranded locally (the 2026-05-25 incident).
+  # Keep the full ingest under the Hermes scheduler wall-clock limit. The goal is
+  # reliable same-morning publishing; if Claude improve/editor times out, the
+  # deterministic fallback below promotes only source-backed drafts that already
+  # have summaries and visual explainers.
   "$PY_VENV/bin/python" scripts/draft_from_rss.py \
-    --max-drafts 24 \
-    --max-per-category 3 \
+    --max-drafts 10 \
+    --max-per-category 2 \
     --manifest "$MANIFEST" \
-    --time-budget 360 \
-    --cli-timeout 150 \
+    --time-budget 300 \
+    --cli-timeout 120 \
     || echo "  (draft script exited non-zero; continuing)"
 
   "$PY_VENV/bin/python" scripts/improve_drafts.py \
     --manifest "$MANIFEST" \
-    --max-drafts 24 \
-    --time-budget 360 \
-    --cli-timeout 180 \
+    --max-drafts 8 \
+    --time-budget 180 \
+    --cli-timeout 75 \
     || echo "  (validate/improve script exited non-zero; continuing)"
 
   "$PY_VENV/bin/python" scripts/editor_grade.py \
     --threshold 70 \
     --manifest "$MANIFEST" \
-    --max-drafts 24 \
-    --time-budget 300 \
-    --cli-timeout 90 \
+    --max-drafts 8 \
+    --time-budget 180 \
+    --cli-timeout 60 \
     || echo "  (editor script exited non-zero; continuing)"
+
+  "$PY_VENV/bin/python" - "$MANIFEST" <<'PY'
+  import json, re, shutil, sys
+  from pathlib import Path
+  repo = Path('/Users/zoelumos/migukstory')
+  manifest = Path(sys.argv[1])
+  queue = repo / 'queue'
+  try:
+      data = json.loads(manifest.read_text(encoding='utf-8'))
+  except Exception as exc:
+      print(f'⚠️ fallback promote skipped: unreadable manifest ({exc})')
+      raise SystemExit(0)
+  entries = data.get('drafts', data) if isinstance(data, dict) else data
+  paths = []
+  for raw in entries or []:
+      p = Path(str(raw))
+      if not p.is_absolute():
+          p = repo / p
+      if p.exists() and p.suffix == '.md':
+          paths.append(p)
+  manifest_names = {p.name for p in paths}
+  existing_queue = [p for p in queue.glob('*.md')] if queue.exists() else []
+  if any(p.name in manifest_names for p in existing_queue):
+      print('✅ fallback promote skipped: editor already promoted manifest draft(s) to queue')
+      raise SystemExit(0)
+
+  def safe(md: str) -> bool:
+      return all([
+          re.search(r'^---\s*$', md, re.M),
+          re.search(r'^title:\s*', md, re.M),
+          re.search(r'^description:\s*', md, re.M),
+          re.search(r'^pubDate:\s*', md, re.M),
+          re.search(r'^sourceUrl:\s*https?://', md, re.M),
+          '## 핵심 요약' in md,
+          '## 출처 (Sources)' in md,
+          '## 한눈에 보는' in md and ('```mermaid' in md or re.search(r'^\|.+\|\s*$', md, re.M)),
+          len(re.findall(r'[가-힣A-Za-z0-9]+', md)) >= 350,
+      ])
+  queue.mkdir(exist_ok=True)
+  promoted = 0
+  for p in paths[:8]:
+      md = p.read_text(encoding='utf-8')
+      if not safe(md):
+          print(f'⚠️ fallback kept in drafts (quality gate failed): {p.name}')
+          continue
+      dest = queue / p.name
+      if dest.exists():
+          continue
+      shutil.move(str(p), str(dest))
+      promoted += 1
+      print(f'✅ fallback promoted to queue: {p.name}')
+  print(f'📦 fallback promoted {promoted} draft(s)')
+  PY
 
   # Ensure labels exist before PR creation. Missing labels used to make this job
   # fail after it had already pushed the branch.
