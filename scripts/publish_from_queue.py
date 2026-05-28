@@ -21,6 +21,42 @@ REPO = Path(__file__).resolve().parent.parent
 QUEUE = REPO / "queue"
 BLOG = REPO / "src" / "content" / "blog"
 
+FORBIDDEN_VISUAL_PATTERNS = (
+    "```mermaid",
+    "flowchart TD",
+    "sequenceDiagram",
+)
+
+REVIEW_MARKERS = (
+    "편집 보류 메모",
+    "needs-review",
+    "Steve 지적",
+)
+
+
+def validate_publishable(content: str, src: Path) -> None:
+    """Final non-LLM safety gate before queue/ files become live posts.
+
+    Editorial review should catch these earlier, but publish is the last
+    irreversible step before RSS/sitemap exposure. Keep this deterministic and
+    conservative.
+    """
+    failures: list[str] = []
+    if any(pattern in content for pattern in FORBIDDEN_VISUAL_PATTERNS):
+        failures.append("forbidden code-style diagram/Mermaid found")
+    if any(marker in content for marker in REVIEW_MARKERS):
+        failures.append("review-hold marker found")
+    if re.search(r"2024년\s*기준", content) and re.search(r"(절반|기본 생활비|financial edge|households)", content, re.I):
+        failures.append("stale 2024 household-affordability framing requires human rewrite")
+    required = ["## 핵심 요약", "## 출처 (Sources)"]
+    for marker in required:
+        if marker not in content:
+            failures.append(f"missing required section: {marker}")
+    if not re.search(r"^sourceUrl:\s*['\"]?https?://", content, flags=re.MULTILINE):
+        failures.append("missing sourceUrl")
+    if failures:
+        raise ValueError(f"publish safety gate failed for {src.name}: " + "; ".join(failures))
+
 
 def update_pub_date(content: str, new_date: str) -> str:
     """Replace pubDate in frontmatter."""
@@ -69,6 +105,7 @@ def publish_one() -> Path | None:
 
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     content = src.read_text(encoding="utf-8")
+    validate_publishable(content, src)
     content = update_pub_date(content, today)
     content = mark_published(content)
 
