@@ -22,17 +22,17 @@ faq:
 
 ## 1. 전체 시간표 한눈에 보기
 
-```mermaid
-flowchart LR
-    A[F-1 입국] --> B[학업 4년]
-    B --> C[Pre-completion OPT<br/>선택]
-    B --> D[졸업]
-    D --> E[Post-completion OPT<br/>12개월]
-    E --> F{STEM 전공?}
-    F -->|예| G[STEM OPT +24개월<br/>총 36개월]
-    F -->|아니오| H[12개월 안에<br/>H-1B Change of Status]
-    G --> I[H-1B 또는 O-1, EB로<br/>장기 체류 전환]
-```
+### 모바일용 흐름 요약
+
+1. F-1 입국
+2. 학업 4년
+3. Pre-completion OPT / 선택
+4. 졸업
+5. Post-completion OPT / 12개월
+6. STEM 전공?
+7. STEM OPT +24개월 / 총 36개월
+8. 12개월 안에 / H-1B Change of Status
+9. H-1B 또는 O-1, EB로 / 장기 체류 전환
 
 핵심은 "12개월 + 24개월 = 36개월" 공식을 머릿속에 새기는 것입니다. STEM 전공자라면 36개월 동안 H-1B 추첨에 최대 3번 도전할 수 있고, 비STEM 전공자는 단 1번의 기회만 주어집니다.
 

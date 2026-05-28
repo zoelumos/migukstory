@@ -37,17 +37,14 @@ sourceUrl: 'https://techcrunch.com/2026/05/26/openrouter-more-than-doubles-valua
 | 기업 고객 | 비용·속도·품질 최적화 | 요청별로 모델 선택 | 고객지원, 문서처리, 마케팅 자동화 비용을 줄일 수 있습니다. |
 | 투자자 | AI 인프라 성장성 | 사용량 기반 플랫폼 가치 평가 | AI 앱보다 “AI 배관”도 큰 시장이 될 수 있습니다. |
 
-```mermaid
-flowchart LR
-  A[개발자 앱] --> B[OpenRouter/API 라우터]
-  B --> C[모델 A]
-  B --> D[모델 B]
-  B --> E[모델 C]
-  C --> F[응답/비용/속도 비교]
-  D --> F
-  E --> F
-  F --> A
-```
+### 모바일용 흐름 요약
+
+1. 개발자 앱
+2. OpenRouter/API 라우터
+3. 모델 A
+4. 모델 B
+5. 모델 C
+6. 응답/비용/속도 비교
 
 ## 출처 (Sources)
 

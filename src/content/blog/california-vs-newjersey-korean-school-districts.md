@@ -32,22 +32,9 @@ LA카운티 남부의 **세리토스(Cerritos)**도 빼놓을 수 없습니다. 
 
 학군 자체로 보면 **테너플라이(Tenafly)**와 **릿지우드(Ridgewood)**가 강력합니다. 두 학군 모두 뉴저지 상위권에 꾸준히 자리하며, Tenafly High School은 SAT 평균과 AP 응시율 모두 주 내 최상위권입니다. **포트리(Fort Lee)** 역시 아시아계 비율이 42% 이상으로 한인 인프라가 풍부하면서도, 맨해튼 통근이 차로 10~15분 거리라는 점에서 학부모들에게 인기가 높습니다. 인근의 **크레스킬(Cresskill)**, **릿지필드(Ridgefield)**도 한국계 가정이 꾸준히 유입되는 지역입니다.
 
-```mermaid
-mindmap
-  root((한국계 가정<br/>학군 선택))
-    캘리포니아
-      Irvine USD
-      Cerritos ABC
-      La Crescenta GUSD
-      날씨 좋음
-      집값 매우 높음
-    뉴저지
-      Palisades Park
-      Fort Lee
-      Tenafly
-      NYC 통근 가능
-      집값 비교적 낮음
-```
+### 모바일용 흐름 요약
+
+1. (한국계 가정 / 학군 선택
 
 ## 3. 부동산 가격 + 생활비 비교
 

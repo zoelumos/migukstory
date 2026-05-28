@@ -38,20 +38,17 @@ DOL이 제안한 새 기준과 현행 기준은 다음과 같습니다(연방관
 
 H-1B 캡 추첨이 2026년 2월 27일부로 [연봉 가중 방식](/blog/h1b-wage-selection-2026/)으로 전환된 가운데 이번 임금 인상안이 더해지면 영향이 중첩됩니다.
 
-```mermaid
-flowchart LR
-    A[DOL Prevailing Wage<br/>4단계 산정] --> B[고용주 LCA 임금 결정]
-    B --> C[USCIS H-1B 등록]
-    C --> D{Wage Level별<br/>가중 등록}
-    D -->|Level IV| E[풀에 4회 등록]
-    D -->|Level III| F[풀에 3회 등록]
-    D -->|Level II| G[풀에 2회 등록]
-    D -->|Level I| H[풀에 1회 등록]
-    E --> I[가중 추첨]
-    F --> I
-    G --> I
-    H --> I
-```
+### 모바일용 흐름 요약
+
+1. DOL Prevailing Wage / 4단계 산정
+2. 고용주 LCA 임금 결정
+3. USCIS H-1B 등록
+4. Wage Level별 / 가중 등록
+5. 풀에 4회 등록
+6. 풀에 3회 등록
+7. 풀에 2회 등록
+8. 풀에 1회 등록
+9. 가중 추첨
 
 이 구조에서 prevailing wage 자체가 위로 끌어올려지면:
 

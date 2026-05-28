@@ -40,21 +40,9 @@ SSN 또는 ITIN을 받으신 직후, 가장 확실한 출발점은 **Secured Cre
 
 처음 카드를 받으시면 무리하게 사용하지 마시고, 한 달에 한두 번 작은 금액(예: 넷플릭스, 휴대폰 요금)만 자동 결제로 걸어 두십시오. 그리고 매달 **명세서가 나오기 전에 잔액을 전액 상환**하시는 것이 가장 안전합니다.
 
-```mermaid
-gantt
-    title 18개월 신용 형성 로드맵
-    dateFormat YYYY-MM
-    section Phase 1
-    Secured 카드 신청 :2026-01, 1M
-    첫 결제 + 정시 납부 :2026-02, 3M
-    section Phase 2
-    Unsecured 카드 업그레이드 :2026-05, 2M
-    두 번째 카드 추가 :2026-07, 1M
-    section Phase 3
-    자동차 할부 또는 personal loan :2026-10, 3M
-    section 결과
-    신용점수 700+ 목표 :2027-06, 1M
-```
+### 모바일용 흐름 요약
+
+1. gantt / title 18개월 신용 형성 로드맵 / dateFormat YYYY-MM / section Phase 1 / Secured 카드 신청 :2026-01, 1M / 첫 결제 + 정시 납부 :2026-02, 3M
 
 ## 3. 7-12개월 — Unsecured 카드와 second card
 
