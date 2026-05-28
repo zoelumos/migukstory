@@ -19,6 +19,7 @@ const posts = (await getCollection('blog'))
 const viralKeywords = [
 	'영주권', 'USCIS', '이민', '비자', 'I-485', '신분조정', '가족초청', '추방', 'ICE', '망명',
 	'전쟁', '분쟁', '공습', '휴전', '우크라이나', '가자', '이스라엘', '중국', '북한', '대만',
+	'Newark', 'EWR', '뉴어크', '공항', '항공', '지연', '결항', '활주로', '여행경보',
 	'리콜', '경보', '살모넬라', '대법원', '트럼프', '세금폭탄',
 ];
 const newestPubDay = Math.max(...posts.map((p) => Date.UTC(
@@ -38,6 +39,7 @@ const headlineScore = (post: (typeof posts)[number]) => {
 	if (ageDays === 0) score += 30_000; // today's batch must own the hero/slides when available
 	if (post.data.category === 'immigration') score += 10_000;
 	if (/전쟁|분쟁|공습|휴전|우크라이나|가자|이스라엘|중국|북한|대만/i.test(text)) score += 8_000;
+	if (/Newark|EWR|뉴어크|공항|항공|지연|결항|활주로|여행경보/i.test(text)) score += 12_000;
 	if (/리콜|경보|살모넬라|대법원|트럼프|세금폭탄/i.test(text)) score += 3_000;
 	viralKeywords.forEach((kw) => { if (text.includes(kw)) score += 250; });
 	// Keep weak evergreen/generic economy explainers from taking the hero slot.
