@@ -5,7 +5,7 @@ pubDate: '2026-05-28'
 tags: ['살모넬라', '모링가', '식품안전', 'CDC', '건강경보']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'CDC Newsroom'
 sourceUrl: 'https://tools.cdc.gov/api/embed/downloader/download.asp?c=765643&m=132608'
 ---

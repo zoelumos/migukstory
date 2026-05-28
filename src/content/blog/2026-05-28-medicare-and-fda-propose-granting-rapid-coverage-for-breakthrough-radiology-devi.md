@@ -5,7 +5,7 @@ pubDate: '2026-05-28'
 tags: ['메디케어', 'FDA', '의료정책', '한인의료', 'TCET']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Policy / Recall Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMi7AFBVV95cUxPREF0eGUzcXJVTWlNeHA5Qk1qSE1XcEszWEdfSWlSY1ZhWG1XcHBBYXlwdWxqU1lseWQwTHluOTlDN182enhPamp1U2RMVFJTTlFPdFVTU1RPdlZTd1VJT1h5WVNleW53MGE2RGJEU1ktU04zaWdGQXVpSWp4LVpnbkh5RGxMUTM2QjUzb2pBVnV3MDJTU29xRG95dkNCZU00Um55YVc0YjYzR2NuUzREQkFTZDVLd2pvcnFvUnl5SjMtYmVGZVNrd2ZsT3RBdVVVMkZtTmJDWlpXRThqOXd0dGItcE05U2RnYlJpaw?oc=5'
 ---

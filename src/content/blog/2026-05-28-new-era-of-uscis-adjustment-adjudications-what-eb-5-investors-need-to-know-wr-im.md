@@ -5,7 +5,7 @@ pubDate: '2026-05-28'
 tags: ['EB-5', '영주권', 'USCIS', '신분조정', '투자이민']
 category: 'immigration'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — USCIS / Green Card Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMingFBVV95cUxOVnB6R1Z3aFlDQ050N3ZwOUdkZ3JiM2lnWDFLLUl6R3VlRVdkN3JHbURQSHcxVDFsNElWOVRXdnRsbFA4QUZ1TkwzbnRicXY1U2s0N2lXem8wbUViTTA1cnVnbU5DSlRUa0hYUzFtM3VUeHBNTE50eE0yQlV2NExFN3FPa3pHV1U1QW5DRml0UHQzQVdvZndfbzFyYmgxZw?oc=5'
 ---
