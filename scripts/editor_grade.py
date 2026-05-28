@@ -178,9 +178,6 @@ def _editor_user_prompt(slug: str, content: str, threshold: int) -> str:
 
 
 VISUAL_PATTERNS = (
-    "```mermaid",
-    "flowchart",
-    "sequenceDiagram",
     "timeline",
     "## 한눈에 보는",
     "## 타임라인",
@@ -189,8 +186,20 @@ VISUAL_PATTERNS = (
     "| 비교 |",
 )
 
+FORBIDDEN_VISUAL_PATTERNS = (
+    "```mermaid",
+    "flowchart TD",
+    "sequenceDiagram",
+)
+
+
+def _has_forbidden_visual(content: str) -> bool:
+    return any(pattern in content for pattern in FORBIDDEN_VISUAL_PATTERNS)
+
 
 def _has_visual_explanation(content: str) -> bool:
+    if _has_forbidden_visual(content):
+        return False
     if any(pattern in content for pattern in VISUAL_PATTERNS):
         return True
     # Markdown table heuristic: header row + separator row.
@@ -319,11 +328,16 @@ def grade_one(path: Path, model: str, dry_run: bool, threshold: int,
             action="review",
         )
 
-    if not _has_visual_explanation(content):
+    if _has_forbidden_visual(content):
+        total = min(total, threshold - 1)
+        parsed.setdefault("scores", {})["structure"] = min(int(parsed.get("scores", {}).get("structure", 0) or 0), 8)
+        parsed["total"] = total
+        parsed["reasoning"] = (parsed.get("reasoning", "").rstrip() + " Mermaid/flowchart 코드형 다이어그램은 발행 전 검토 실패 위험이 있어 자동 승격하지 않습니다.").strip()
+    elif not _has_visual_explanation(content):
         total = min(total, threshold - 1)
         parsed.setdefault("scores", {})["structure"] = min(int(parsed.get("scores", {}).get("structure", 0) or 0), 10)
         parsed["total"] = total
-        parsed["reasoning"] = (parsed.get("reasoning", "").rstrip() + " 시각화(flowchart/timeline/비교표)가 없어 자동 승격하지 않습니다.").strip()
+        parsed["reasoning"] = (parsed.get("reasoning", "").rstrip() + " 시각화(타임라인/비교표/체크리스트)가 없어 자동 승격하지 않습니다.").strip()
 
     if total >= threshold:
         action = "promote"

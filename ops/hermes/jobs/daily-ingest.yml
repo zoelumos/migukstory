@@ -116,7 +116,8 @@ command: |
           re.search(r'^sourceUrl:\s*https?://', md, re.M),
           '## 핵심 요약' in md,
           '## 출처 (Sources)' in md,
-          '## 한눈에 보는' in md and ('```mermaid' in md or re.search(r'^\|.+\|\s*$', md, re.M)),
+          not any(x in md for x in ('```mermaid', 'flowchart TD', 'sequenceDiagram')),
+        '## 한눈에 보는' in md and re.search(r'^\|.+\|\s*$', md, re.M),
           len(re.findall(r'[가-힣A-Za-z0-9]+', md)) >= 350,
       ])
   queue.mkdir(exist_ok=True)
