@@ -81,7 +81,11 @@ faq:
 
 ### 모바일용 흐름 요약
 
-1. (한국 IT 인재 / 해외 옵션
+1. 미국 체류 중이면 OPT/STEM OPT와 H-1B 신분변경 일정을 먼저 점검
+2. 미국 신규 입국 H-1B가 부담되면 캐나다 Express Entry 검토
+3. 호주 Skilled Migration은 IT 직군 점수와 영어 점수 전략 확인
+4. 독일·네덜란드 등 EU Blue Card는 연봉 기준과 직무 요건 확인
+5. 싱가포르 Employment Pass 또는 글로벌 원격근무도 보조 옵션으로 검토
 
 - **캐나다 Express Entry** — 영주권 직행, 연봉 무관
 - **호주 Skilled Migration** — IT 직군 점수 가산

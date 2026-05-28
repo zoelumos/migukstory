@@ -23,8 +23,10 @@ BLOG = REPO / "src" / "content" / "blog"
 
 FORBIDDEN_VISUAL_PATTERNS = (
     "```mermaid",
-    "flowchart TD",
+    "flowchart ",
+    "graph ",
     "sequenceDiagram",
+    "gantt",
 )
 
 REVIEW_MARKERS = (

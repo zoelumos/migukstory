@@ -380,7 +380,7 @@ sourceUrl: '{canonical_url}'
 - 절차/자격/신청 흐름이면 번호 매긴 단계별 체크리스트 또는 Markdown 표
 - 날짜/단계 변화면 짧은 타임라인 또는 단계별 카드 목록
 - 기존/변경/선택지 비교면 Markdown 비교표
-금지: Mermaid, flowchart TD, sequenceDiagram 등 코드형 다이어그램. 사이트에서 깨질 수 있으므로 발행용 초안에는 절대 넣지 마세요.
+금지: Mermaid, flowchart/graph, sequenceDiagram, gantt 등 코드형 다이어그램. 사이트에서 깨질 수 있으므로 발행용 초안에는 절대 넣지 마세요.
 시각화는 원문 사실에 근거해야 하며, 모바일에서 읽히도록 짧은 한국어 라벨을 사용하세요.]
 
 ## 출처 (Sources)

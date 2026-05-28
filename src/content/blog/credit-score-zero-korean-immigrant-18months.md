@@ -42,7 +42,11 @@ SSN 또는 ITIN을 받으신 직후, 가장 확실한 출발점은 **Secured Cre
 
 ### 모바일용 흐름 요약
 
-1. gantt / title 18개월 신용 형성 로드맵 / dateFormat YYYY-MM / section Phase 1 / Secured 카드 신청 :2026-01, 1M / 첫 결제 + 정시 납부 :2026-02, 3M
+1. 0~1개월: SSN 또는 ITIN 확보 후 Secured 카드 신청
+2. 2~6개월: 작은 자동결제만 걸고 매달 전액 정시 납부
+3. 7~12개월: Unsecured 전환 여부 확인, 두 번째 카드 검토
+4. 13~18개월: 필요 시 credit-builder loan 등 installment 기록 추가
+5. 전 기간: 사용률 10% 이하, 연체 0회 유지
 
 ## 3. 7-12개월 — Unsecured 카드와 second card
 

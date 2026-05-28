@@ -101,7 +101,7 @@ USER_PROMPT_TEMPLATE = """다음은 사람 검토 전 AI가 작성한 한국어 
 편집장으로서 5개 축에 대해 각 0–20점으로 평가하고, 총점(0–100)과 짧은
 판단 근거를 한국어로 작성하세요. 결과는 JSON 한 개로만 출력하세요.
 
-중요: Migukstory의 차별점은 시각화입니다. 글에 주제에 맞는 flowchart/timeline/비교표가 없으면 자동 승격 대상이 아닙니다.
+중요: Migukstory의 차별점은 읽기 쉬운 시각적 구조입니다. Mermaid/flowchart/sequenceDiagram/gantt 코드블록은 사이트에서 깨져 보이므로 금지입니다. 글에는 주제에 맞는 Markdown 표, 번호 단계 목록, 체크리스트, 또는 짧은 타임라인이 있어야 자동 승격 대상입니다.
 
 ## 평가 축 (각 0–20점)
 
@@ -130,7 +130,7 @@ USER_PROMPT_TEMPLATE = """다음은 사람 검토 전 AI가 작성한 한국어 
    pubDate, tags, category, ageGroup)? 본문이 3문단 이상이고 「## 핵심 요약」
    불릿 리스트와 「## 출처 (Sources)」 섹션이 있는가? 깨진 마크다운이 없는가?
    또한 주제에 맞는 시각화가 있는가? 절차/자격/신청/이민/혜택/정책 변경 글은
-   Mermaid flowchart, 타임라인/단계 목록, 또는 Markdown 비교표 중 하나가 있어야
+   Markdown 비교표, 번호 단계 목록, 체크리스트, 또는 짧은 타임라인 중 하나가 있어야
    합니다. 시각화가 없거나 장식용이면 structure는 최대 10점, 총점은 자동승격
    기준 미만으로 평가하세요.
 
@@ -188,8 +188,10 @@ VISUAL_PATTERNS = (
 
 FORBIDDEN_VISUAL_PATTERNS = (
     "```mermaid",
-    "flowchart TD",
+    "flowchart ",
+    "graph ",
     "sequenceDiagram",
+    "gantt",
 )
 
 
