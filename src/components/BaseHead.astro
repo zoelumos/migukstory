@@ -40,6 +40,10 @@ const ogImage = blogMatch
 	? new URL(`/og/${blogMatch[1]}.png`, Astro.site).toString()
 	: new URL(image.src, Astro.url).toString();
 
+const articleImage = blogMatch
+	? { url: ogImage, width: 1200, height: 630 }
+	: { url: new URL(image.src, Astro.url).toString(), width: image.width, height: image.height };
+
 // JSON-LD schema for rich results
 const orgSchema = {
 	"@context": "https://schema.org",
@@ -130,9 +134,9 @@ const articleSchema = article ? {
 	"mainEntityOfPage": { "@type": "WebPage", "@id": canonicalURL.toString() },
 	"image": {
 		"@type": "ImageObject",
-		"url": new URL(image.src, Astro.url).toString(),
-		"width": image.width,
-		"height": image.height,
+		"url": articleImage.url,
+		"width": articleImage.width,
+		"height": articleImage.height,
 	},
 	"keywords": article.tags?.join(", "),
 	"inLanguage": "ko",
@@ -191,15 +195,7 @@ const howToSchema = howTo ? {
 	<>
 		<!-- Google Analytics 4 -->
 		<script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
-		<script
-			is:inline
-			define:vars={{ gaMeasurementId }}
-		>
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			gtag('config', gaMeasurementId, { anonymize_ip: true });
-		</script>
+		<script defer src="/js/ga4.js" data-measurement-id={gaMeasurementId}></script>
 	</>
 )}
 
@@ -286,7 +282,7 @@ const howToSchema = howTo ? {
 <meta name="description" content={description} />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
+<meta property="og:type" content={article ? 'article' : 'website'} />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />

@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
+import stripLeadingBlogH1 from './plugins/remark-strip-leading-h1.js';
 
 // Architecture: 100% static Astro build → Cloudflare Pages.
 // Auth endpoints live in /functions/ (Cloudflare Pages Functions) and auto-deploy
@@ -48,6 +49,7 @@ export default defineConfig({
 					path === '/admin/' ||
 					path.startsWith('/auth/') ||
 					path === '/login/' ||
+					path === '/search/' ||
 					path === '/subscribed/' ||
 					path === '/404/'
 				);
@@ -64,5 +66,6 @@ export default defineConfig({
 	],
 	markdown: {
 		shikiConfig: { theme: 'github-light', wrap: true },
+		remarkPlugins: [stripLeadingBlogH1],
 	},
 });

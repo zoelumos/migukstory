@@ -124,6 +124,8 @@ jobs:
 
       - name: Build site for immediate deploy
         if: steps.publish.outputs.published == 'true'
+        env:
+          PUBLIC_GA_MEASUREMENT_ID: ${{ vars.PUBLIC_GA_MEASUREMENT_ID }}
         run: |
           npm ci
           npm run build
