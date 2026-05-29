@@ -18,6 +18,8 @@ const posts = (await getCollection('blog'))
 // above the fold with the hero.
 const viralKeywords = [
 	'영주권', 'USCIS', '이민', '비자', 'I-485', '신분조정', '가족초청', '추방', 'ICE', '망명',
+	'IRS', '세금', 'FBAR', '환급', '공제', '크레딧', '마감', 'Form 8938', 'ITIN',
+	'메디케어', 'Social Security', '연금', '모기지', '주택보험', '건강보험', 'ACA',
 	'전쟁', '분쟁', '공습', '휴전', '우크라이나', '가자', '이스라엘', '중국', '북한', '대만',
 	'Newark', 'EWR', '뉴어크', '공항', '항공', '지연', '결항', '활주로', '여행경보',
 	'리콜', '경보', '살모넬라', '대법원', '트럼프', '세금폭탄',
@@ -37,7 +39,14 @@ const headlineScore = (post: (typeof posts)[number]) => {
 	const ageDays = Math.max(0, Math.round((newestPubDay - postDay) / 86_400_000));
 	let score = 50_000 - ageDays * 6_000;
 	if (ageDays === 0) score += 30_000; // today's batch must own the hero/slides when available
-	if (post.data.category === 'immigration') score += 10_000;
+	if (post.data.category === 'immigration') score += 12_000;
+	if (post.data.category === 'tax') score += 8_000;
+	if (post.data.category === 'retirement') score += 4_000;
+	if (post.data.category === 'real-estate') score += 4_000;
+	if (post.data.category === 'health') score += 3_500;
+	if (post.data.category === 'community') score += 3_000;
+	if (/정책\s*메모|adjustment of status|신분조정|I-485|규정\s*변경|USCIS|green card|영주권/i.test(text)) score += 5_000;
+	if (/IRS|FBAR|Form 8938|세금|환급|공제|크레딧|ITIN|tax deadline/i.test(text)) score += 4_500;
 	if (/전쟁|분쟁|공습|휴전|우크라이나|가자|이스라엘|중국|북한|대만/i.test(text)) score += 8_000;
 	if (/Newark|EWR|뉴어크|공항|항공|지연|결항|활주로|여행경보/i.test(text)) score += 12_000;
 	if (/리콜|경보|살모넬라|대법원|트럼프|세금폭탄/i.test(text)) score += 3_000;
@@ -63,6 +72,20 @@ const byCategory = (Object.keys(CATEGORIES) as CategoryKey[])
 
 const koDate = (d: Date) =>
 	`${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}.`;
+const buildUpdatedAt = new Intl.DateTimeFormat('ko-KR', {
+	timeZone: 'America/New_York',
+	month: '2-digit',
+	day: '2-digit',
+	hour: '2-digit',
+	minute: '2-digit',
+	hour12: false,
+}).format(new Date());
+const ageLabel = (age: string) => ({
+	'all': '전체 독자',
+	'20-35': '20–35세',
+	'35-55': '35–55세',
+	'55+': '55세+',
+}[age] || age);
 ---
 
 <!doctype html>
@@ -116,22 +139,40 @@ const koDate = (d: Date) =>
 
 			<div class="container divider-mark"></div>
 
-			<!-- ABOVE-FOLD headline slides (2-column) -->
+			<!-- ABOVE-FOLD must-read cards: mobile-first, not fake slides -->
 			{aboveFold.length > 0 && (
-				<section class="above-fold" aria-label="오늘의 주요 헤드라인 슬라이드">
+				<section class="above-fold" aria-label="오늘의 머스트리드">
+					<div class="container must-read-head">
+						<p class="eyebrow">TODAY'S MUST-READ · 헤드라인 02–03</p>
+						<h3>오늘 꼭 읽어야 할 뉴스</h3>
+						<p>한인 가정과 자영업 결정에 영향이 큰 순서로 골랐습니다. <span>업데이트 {buildUpdatedAt} ET</span></p>
+					</div>
 					<div class="container two-col">
-						{aboveFold.map((post, i) => (
-							<article class="story">
-								<p class="eyebrow">{i === 0 ? '헤드라인 슬라이드 1' : '헤드라인 슬라이드 2'}</p>
-								<h2><a href={`/blog/${post.id}/`}>{post.data.title}</a></h2>
-								<p class="story-desc">{post.data.description}</p>
-								<div class="story-meta">
-									<FormattedDate date={post.data.pubDate} />
-									<span class="dot-sep">·</span>
-									<span class="age-pill">{post.data.ageGroup}</span>
-								</div>
-							</article>
-						))}
+						{aboveFold.map((post, i) => {
+							const cat = (CATEGORIES as any)[post.data.category];
+							return (
+								<article class="story">
+									<div class="story-topline">
+										<span class="story-rank">{String(i + 2).padStart(2, '0')}</span>
+										{cat && (
+											<a class="cat-badge" href={`/category/${cat.slug}`} style={`background: ${cat.color}`}>
+												{cat.label}
+											</a>
+										)}
+									</div>
+									<h2><a href={`/blog/${post.id}/`}>{post.data.title}</a></h2>
+									<p class="story-desc">{post.data.description}</p>
+									<div class="story-meta">
+										<FormattedDate date={post.data.pubDate} />
+										<span class="dot-sep">·</span>
+										<span class="age-pill">{ageLabel(post.data.ageGroup)}</span>
+										<span class="dot-sep">·</span>
+										<span class="visual-pill">표·체크리스트 중심</span>
+									</div>
+									<a class="story-cta" href={`/blog/${post.id}/`}>핵심 보기 →</a>
+								</article>
+							);
+						})}
 					</div>
 				</section>
 			)}
@@ -150,7 +191,7 @@ const koDate = (d: Date) =>
 									<div class="cont-body">
 										<a href={`/blog/${post.id}/`}><h4>{post.data.title}</h4></a>
 										<p class="cont-meta">
-											<span class="age-pill mini">{post.data.ageGroup}</span>
+											<span class="age-pill mini">{ageLabel(post.data.ageGroup)}</span>
 											{koDate(post.data.pubDate)}
 										</p>
 									</div>
@@ -326,39 +367,84 @@ const koDate = (d: Date) =>
 			}
 			.dot-sep { color: var(--ink-faint); }
 
-			/* ── Above-fold 2-column ─────────────────────────────── */
+			/* ── Above-fold must-read cards ──────────────────────── */
 			.above-fold { padding: var(--s-4) 0; }
+			.must-read-head {
+				margin-bottom: var(--s-3);
+			}
+			.must-read-head .eyebrow { margin: 0 0 var(--s-1); }
+			.must-read-head h3 {
+				font-family: var(--font-display);
+				font-size: clamp(1.55rem, 3vw, 2.15rem);
+				line-height: 1.18;
+				letter-spacing: -0.03em;
+				margin: 0 0 0.35rem;
+				color: var(--ink);
+			}
+			.must-read-head p:last-child {
+				margin: 0;
+				font-size: 0.94rem;
+				color: var(--ink-medium);
+				line-height: 1.55;
+			}
+			.must-read-head span {
+				color: var(--ink-light);
+				white-space: nowrap;
+			}
 			.two-col {
 				display: grid;
-				grid-template-columns: 1fr 1px 1fr;
-				gap: var(--s-5);
-				align-items: start;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: var(--s-3);
+				align-items: stretch;
 			}
-			.two-col::after {
-				content: "";
-				grid-row: 1;
-				grid-column: 2;
-				background: var(--rule);
-				height: 100%;
-				min-height: 250px;
+			.story {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				min-height: 100%;
+				padding: var(--s-3);
+				background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+				border: 1px solid var(--rule);
+				border-radius: 14px;
+				box-shadow: 0 10px 28px rgba(0, 0, 0, 0.045);
+				transition: transform var(--duration) var(--ease-out), box-shadow var(--duration) var(--ease-out), border-color var(--duration) var(--ease-out);
 			}
-			.story .eyebrow { margin: 0 0 var(--s-2); }
+			.story:hover {
+				transform: translateY(-3px);
+				border-color: rgba(185, 28, 28, 0.32);
+				box-shadow: 0 16px 34px rgba(0, 0, 0, 0.08);
+			}
+			.story-topline {
+				display: flex;
+				align-items: center;
+				gap: 0.65rem;
+				margin: 0 0 var(--s-2);
+			}
+			.story-rank {
+				font-family: var(--font-display);
+				font-size: 1.8rem;
+				font-weight: 800;
+				line-height: 1;
+				color: var(--brick);
+				font-feature-settings: "tnum";
+			}
 			.story h2 {
 				font-family: var(--font-display);
-				font-size: clamp(1.5rem, 2.6vw, 2.1rem);
-				line-height: 1.2;
+				font-size: clamp(1.45rem, 2.6vw, 2.05rem);
+				line-height: 1.22;
 				margin: 0 0 var(--s-2);
-				letter-spacing: -0.02em;
+				letter-spacing: -0.025em;
+				word-break: keep-all;
 			}
 			.story h2 a { color: var(--ink); text-decoration: none; }
 			.story h2 a:hover { color: var(--brick); }
 			.story-desc {
-				font-size: 0.95rem;
+				font-size: 0.98rem;
 				color: var(--ink-medium);
 				margin: 0 0 var(--s-2);
-				line-height: 1.7;
+				line-height: 1.68;
 				display: -webkit-box;
-				-webkit-line-clamp: 3;
+				-webkit-line-clamp: 2;
 				-webkit-box-orient: vertical;
 				overflow: hidden;
 			}
@@ -369,7 +455,29 @@ const koDate = (d: Date) =>
 				gap: var(--s-1);
 				align-items: center;
 				flex-wrap: wrap;
+				margin-top: auto;
 			}
+			.visual-pill {
+				display: inline-block;
+				padding: 0.12em 0.55em;
+				border: 1px solid var(--rule);
+				border-radius: 999px;
+				background: var(--paper);
+				color: var(--ink-medium);
+				font-size: 0.76rem;
+				font-weight: 600;
+			}
+			.story-cta {
+				display: inline-flex;
+				align-self: flex-start;
+				margin-top: var(--s-2);
+				font-size: 0.88rem;
+				font-weight: 700;
+				color: var(--brick);
+				text-decoration: none;
+				border-bottom: 2px solid currentColor;
+			}
+			.story-cta:hover { color: var(--brick-deep); }
 
 			/* ── Section titles ──────────────────────────────────── */
 			.section-title {
@@ -584,13 +692,29 @@ const koDate = (d: Date) =>
 
 			/* ── Responsive ──────────────────────────────────────── */
 			@media (max-width: 900px) {
-				.two-col { grid-template-columns: 1fr; gap: var(--s-4); }
-				.two-col::after { display: none; }
+				.two-col {
+					display: grid;
+					grid-auto-flow: column;
+					grid-auto-columns: minmax(82%, 1fr);
+					grid-template-columns: none;
+					gap: var(--s-3);
+					overflow-x: auto;
+					scroll-snap-type: x mandatory;
+					-webkit-overflow-scrolling: touch;
+					padding: 0 var(--s-2) var(--s-2);
+					scrollbar-width: thin;
+				}
+				.story { scroll-snap-align: start; }
 				.cat-grid { grid-template-columns: repeat(2, 1fr); }
 				.section-title::before, .section-title::after { display: none; }
 			}
 			@media (max-width: 540px) {
 				.lead { padding: var(--s-4) 0 var(--s-3); }
+				.lead-title { font-size: clamp(2.05rem, 12vw, 3rem); }
+				.must-read-head { padding-inline: var(--s-2); }
+				.two-col { grid-auto-columns: 88%; }
+				.story { padding: var(--s-3) var(--s-2); }
+				.story-rank { font-size: 1.55rem; }
 				.cat-grid { grid-template-columns: 1fr; }
 				.cont-list li { grid-template-columns: 40px 1fr; gap: var(--s-2); }
 				.cont-num { font-size: 1.5rem; }
