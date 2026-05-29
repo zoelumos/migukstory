@@ -104,11 +104,49 @@
 		const tbody = document.querySelector('[data-sub-body]');
 		if (!tbody) return;
 		if (!subscribers || subscribers.length === 0) {
-			tbody.innerHTML = '<tr><td colspan="3">아직 구독자가 없습니다.</td></tr>';
+			tbody.innerHTML = '<tr><td colspan="4">아직 구독자가 없습니다.</td></tr>';
 			return;
 		}
-		tbody.innerHTML = subscribers.map((s) => `
-			<tr><td>${escapeHtml(s.email)}</td><td>${escapeHtml(s.source || '')}</td><td>${formatDate(s.created_at)}</td></tr>
+		tbody.innerHTML = subscribers.map((s) => {
+			const status = s.unsubscribed_at ? '해지' : (s.confirmed_at ? '확인됨' : '구독중');
+			return `
+				<tr><td>${escapeHtml(s.email)}</td><td>${escapeHtml(s.source || '')}</td><td>${escapeHtml(status)}</td><td>${formatDate(s.created_at)}</td></tr>
+			`;
+		}).join('');
+	};
+
+	const renderUsers = (users) => {
+		const tbody = document.querySelector('[data-user-body]');
+		if (!tbody) return;
+		if (!users || users.length === 0) {
+			tbody.innerHTML = '<tr><td colspan="5">아직 사용자가 없습니다.</td></tr>';
+			return;
+		}
+		tbody.innerHTML = users.map((u) => `
+			<tr>
+				<td>${escapeHtml(u.display_name || u.email || u.id)}</td>
+				<td>${escapeHtml(u.email || '')}</td>
+				<td>${escapeHtml(u.provider || '')}</td>
+				<td>${u.is_admin ? '관리자' : '회원'}</td>
+				<td>${formatDate(u.created_at)}</td>
+			</tr>
+		`).join('');
+	};
+
+	const renderNewsletterSends = (sends) => {
+		const tbody = document.querySelector('[data-send-body]');
+		if (!tbody) return;
+		if (!sends || sends.length === 0) {
+			tbody.innerHTML = '<tr><td colspan="4">아직 이메일 발송 기록이 없습니다.</td></tr>';
+			return;
+		}
+		tbody.innerHTML = sends.map((s) => `
+			<tr>
+				<td>${escapeHtml(s.email)}</td>
+				<td>${escapeHtml(s.post_title || s.post_slug || '')}</td>
+				<td>${escapeHtml(s.status || '')}</td>
+				<td>${formatDate(s.sent_at)}</td>
+			</tr>
 		`).join('');
 	};
 
@@ -120,7 +158,9 @@
 			if (dashboard) dashboard.hidden = false;
 			renderStats(data.stats || {});
 			renderComments(data.comments || []);
+			renderUsers(data.users || []);
 			renderSubscribers(data.subscribers || []);
+			renderNewsletterSends(data.newsletterSends || []);
 		} catch (error) {
 			if (error?.status === 401 || error?.message === 'unauthorized') {
 				showLocked('로그인이 필요합니다.', '/login?next=/admin');

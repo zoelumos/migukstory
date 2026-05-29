@@ -27,7 +27,7 @@ export const onRequestGet: PagesFunction<Env> = async ({ request, env }) => {
 	if (!auth.ok) return auth.response;
 	const { supabase, cookies, user, profile } = auth;
 
-	const [users, subs, allComments, hiddenComments, comments, subscribers] = await Promise.all([
+	const [users, subs, allComments, hiddenComments, comments, subscribers, userRows, sendRows] = await Promise.all([
 		supabase.from('profiles').select('id', { count: 'exact', head: true }),
 		supabase.from('subscribers').select('id', { count: 'exact', head: true }),
 		supabase.from('comments').select('id', { count: 'exact', head: true }),
@@ -39,8 +39,18 @@ export const onRequestGet: PagesFunction<Env> = async ({ request, env }) => {
 			.limit(30),
 		supabase
 			.from('subscribers')
-			.select('email, source, created_at')
+			.select('email, source, created_at, confirmed_at, unsubscribed_at')
 			.order('created_at', { ascending: false })
+			.limit(20),
+		supabase
+			.from('profiles')
+			.select('id, email, display_name, provider, is_admin, created_at')
+			.order('created_at', { ascending: false })
+			.limit(100),
+		supabase
+			.from('newsletter_sends')
+			.select('email, post_slug, post_title, status, sent_at')
+			.order('sent_at', { ascending: false })
 			.limit(20),
 	]);
 
@@ -66,7 +76,11 @@ export const onRequestGet: PagesFunction<Env> = async ({ request, env }) => {
 			},
 			comments: comments.data || [],
 			subscribers: subscribers.error ? [] : (subscribers.data || []),
+			users: userRows.error ? [] : (userRows.data || []),
+			newsletterSends: sendRows.error ? [] : (sendRows.data || []),
 			subscriberAccess: subscribers.error ? 'migration_required' : 'ok',
+			userAccess: userRows.error ? 'unavailable' : 'ok',
+			newsletterSendAccess: sendRows.error ? 'migration_required' : 'ok',
 		},
 		{},
 		setCookieHeaders

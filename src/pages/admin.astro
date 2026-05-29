@@ -63,14 +63,40 @@ import { SITE_TITLE } from '../consts';
 						</ol>
 					</section>
 
+					<section class="recent-users">
+						<h2>전체 사용자 (최근 100명)</h2>
+						<p class="section-note">로그인 회원의 이메일·표시 이름·가입 경로를 관리자에게만 보여줍니다.</p>
+						<table class="sub-table" data-user-table>
+							<thead>
+								<tr><th>사용자</th><th>이메일</th><th>가입 경로</th><th>권한</th><th>가입일</th></tr>
+							</thead>
+							<tbody data-user-body>
+								<tr><td colspan="5" class="loading">불러오는 중…</td></tr>
+							</tbody>
+						</table>
+					</section>
+
 					<section class="recent-subs">
 						<h2>최근 구독자 (20)</h2>
 						<table class="sub-table" data-sub-table>
 							<thead>
-								<tr><th>이메일</th><th>출처</th><th>가입일</th></tr>
+								<tr><th>이메일</th><th>출처</th><th>상태</th><th>가입일</th></tr>
 							</thead>
 							<tbody data-sub-body>
-								<tr><td colspan="3" class="loading">불러오는 중…</td></tr>
+								<tr><td colspan="4" class="loading">불러오는 중…</td></tr>
+							</tbody>
+						</table>
+					</section>
+
+					<section class="recent-sends">
+						<h2>최근 이메일 발송 기록 (20)</h2>
+						<p class="section-note">새 글 배포 후 구독자에게 발송된 newsletter_sends ledger입니다.</p>
+						<table class="sub-table" data-send-table>
+							<thead>
+								<tr><th>수신자</th><th>글</th><th>상태</th><th>발송일</th></tr>
+							</thead>
+							<tbody data-send-body>
+								<tr><td colspan="4" class="loading">불러오는 중…</td></tr>
 							</tbody>
 						</table>
 					</section>
@@ -135,7 +161,8 @@ import { SITE_TITLE } from '../consts';
 			.stat-value { font-family: var(--font-display); font-size: 2rem; color: var(--ink); margin: 0; font-feature-settings: "tnum"; }
 
 			h2 { font-family: var(--font-display); font-size: 1.4rem; margin: 0 0 var(--s-2); color: var(--ink); letter-spacing: -0.01em; }
-			.recent-comments, .recent-subs { margin-bottom: var(--s-5); }
+			.recent-comments, .recent-users, .recent-subs, .recent-sends { margin-bottom: var(--s-5); }
+			.section-note { margin: calc(-1 * var(--s-1)) 0 var(--s-2); color: var(--ink-light); font-size: 0.82rem; }
 
 			.comment-mod-list { list-style: none; padding: 0; margin: 0; }
 			.mod-row {
