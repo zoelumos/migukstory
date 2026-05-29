@@ -29,6 +29,7 @@ const { title, description, image = FallbackImage, article, breadcrumbs, faq, ho
 const robotsContent = noindex
 	? 'noindex, nofollow'
 	: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID?.trim();
 
 // Open Graph image — blog posts get an auto-generated branded card at
 // /og/<slug>.png (see src/pages/og/[...slug].png.ts). Everything else uses
@@ -185,6 +186,22 @@ const howToSchema = howTo ? {
 
 <!-- Google Search Console — service-account ownership (migukstory-indexing@) for the Indexing API -->
 <meta name="google-site-verification" content="dnvnDPQvgxPwi_fmRFS3BkNbFuEwJcIPE90XZYQ45m8" />
+
+{gaMeasurementId && (
+	<>
+		<!-- Google Analytics 4 -->
+		<script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+		<script
+			is:inline
+			define:vars={{ gaMeasurementId }}
+		>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', gaMeasurementId, { anonymize_ip: true });
+		</script>
+	</>
+)}
 
 <!--
   Font loading strategy (perf-tuned):
