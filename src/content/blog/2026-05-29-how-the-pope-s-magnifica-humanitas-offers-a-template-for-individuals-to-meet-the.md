@@ -5,7 +5,7 @@ pubDate: '2026-05-29'
 tags: ['교황', 'AI윤리', '가톨릭', '미주한인', '기술과사회']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'MIT Technology Review — AI'
 sourceUrl: 'https://technologyreview.com/2026/05/29/1138107/how-the-popes-magnifica-humanitas-offers-a-template-for-individuals-to-meet-the-ai-moment'
 ---

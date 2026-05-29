@@ -5,7 +5,7 @@ pubDate: '2026-05-29'
 tags: ['여행경보', '볼리비아', '국무부']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'State Department Travel Advisories'
 sourceUrl: 'https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/bolivia-travel-advisory.html'
 ---

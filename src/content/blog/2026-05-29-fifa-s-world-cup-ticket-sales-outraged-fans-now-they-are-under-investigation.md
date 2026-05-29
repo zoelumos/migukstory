@@ -5,7 +5,7 @@ pubDate: '2026-05-29'
 tags: ['월드컵', 'FIFA', '티켓가격', '미주한인', '소비자보호']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/05/28/nx-s1-5836514/2026-world-cup-fifa-ticket-prices'
 ---

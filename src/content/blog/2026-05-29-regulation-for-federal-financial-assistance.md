@@ -5,7 +5,7 @@ pubDate: '2026-05-29'
 tags: ['OMB', '연방보조금', '차별금지', '비영리', '한인커뮤니티']
 category: 'retirement'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Federal Register — Social Security Rules'
 sourceUrl: 'https://federalregister.gov/documents/2026/05/29/2026-10817/regulation-for-federal-financial-assistance'
 ---

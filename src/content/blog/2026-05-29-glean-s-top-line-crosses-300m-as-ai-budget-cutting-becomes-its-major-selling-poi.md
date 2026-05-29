@@ -5,7 +5,7 @@ pubDate: '2026-05-29'
 tags: ['Glean', '엔터프라이즈AI', 'AI비용절감']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'TechCrunch AI'
 sourceUrl: 'https://techcrunch.com/2026/05/28/gleans-top-line-crosses-300m-as-ai-budget-cutting-becomes-its-major-selling-point'
 ---

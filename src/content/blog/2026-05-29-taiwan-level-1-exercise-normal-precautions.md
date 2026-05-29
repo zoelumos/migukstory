@@ -5,7 +5,7 @@ pubDate: '2026-05-29'
 tags: ['여행경보', '대만', '국무부', '미주한인']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'State Department Travel Advisories'
 sourceUrl: 'https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/taiwan-travel-advisory.html'
 ---
