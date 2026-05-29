@@ -39,16 +39,17 @@ const headlineScore = (post: (typeof posts)[number]) => {
 	const ageDays = Math.max(0, Math.round((newestPubDay - postDay) / 86_400_000));
 	let score = 50_000 - ageDays * 6_000;
 	if (ageDays === 0) score += 30_000; // today's batch must own the hero/slides when available
-	if (post.data.category === 'immigration') score += 12_000;
-	if (post.data.category === 'tax') score += 8_000;
+	if (post.data.category === 'immigration') score += 28_000;
+	if (post.data.category === 'tax') score += 18_000;
 	if (post.data.category === 'retirement') score += 4_000;
 	if (post.data.category === 'real-estate') score += 4_000;
 	if (post.data.category === 'health') score += 3_500;
 	if (post.data.category === 'community') score += 3_000;
 	if (/정책\s*메모|adjustment of status|신분조정|I-485|규정\s*변경|USCIS|green card|영주권/i.test(text)) score += 5_000;
 	if (/IRS|FBAR|Form 8938|세금|환급|공제|크레딧|ITIN|tax deadline/i.test(text)) score += 4_500;
-	if (/전쟁|분쟁|공습|휴전|우크라이나|가자|이스라엘|중국|북한|대만/i.test(text)) score += 8_000;
-	if (/Newark|EWR|뉴어크|공항|항공|지연|결항|활주로|여행경보/i.test(text)) score += 12_000;
+	if (/전쟁|분쟁|공습|휴전|우크라이나|가자|이스라엘|중국|북한|대만/i.test(text)) score += 5_000;
+	if (/여행경보|Level\s+[12]|Exercise Normal Precautions|Exercise Increased Caution/i.test(text)) score -= 18_000;
+	if (/Newark|EWR|뉴어크|공항|항공/i.test(text)) score += 4_000;
 	if (/리콜|경보|살모넬라|대법원|트럼프|세금폭탄/i.test(text)) score += 3_000;
 	viralKeywords.forEach((kw) => { if (text.includes(kw)) score += 250; });
 	// Keep weak evergreen/generic economy explainers from taking the hero slot.
