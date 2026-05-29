@@ -27,14 +27,20 @@
 	};
 
 	const fetchAdmin = async () => {
-		const res = await fetch('/api/admin', { credentials: 'same-origin' });
-		const data = await res.json().catch(() => ({}));
-		if (!res.ok) {
-			const err = new Error(data.error || res.statusText || 'request_failed');
-			err.status = res.status;
-			throw err;
+		const controller = new AbortController();
+		const timer = setTimeout(() => controller.abort(), 15000);
+		try {
+			const res = await fetch('/api/admin', { credentials: 'same-origin', signal: controller.signal });
+			const data = await res.json().catch(() => ({}));
+			if (!res.ok) {
+				const err = new Error(data.error || res.statusText || 'request_failed');
+				err.status = res.status;
+				throw err;
+			}
+			return data;
+		} finally {
+			clearTimeout(timer);
 		}
-		return data;
 	};
 
 	const renderStats = (stats) => {
@@ -150,6 +156,30 @@
 		`).join('');
 	};
 
+	const renderIssues = (issues) => {
+		const box = document.querySelector('[data-admin-issues]');
+		const list = document.querySelector('[data-admin-issue-list]');
+		if (!box || !list) return;
+		if (!issues || issues.length === 0) {
+			box.hidden = true;
+			list.innerHTML = '';
+			return;
+		}
+		box.hidden = false;
+		list.innerHTML = issues.map((issue) => `
+			<li><strong>${escapeHtml(issue.name || 'db')}</strong>: ${escapeHtml(issue.message || 'unknown_error')}${issue.code ? ` <code>${escapeHtml(issue.code)}</code>` : ''}</li>
+		`).join('');
+	};
+
+	const renderFatalError = (message) => {
+		['[data-mod-list]', '[data-user-body]', '[data-sub-body]', '[data-send-body]'].forEach((sel) => {
+			const el = document.querySelector(sel);
+			if (!el) return;
+			if (sel === '[data-mod-list]') el.innerHTML = `<li class="loading">${escapeHtml(message)}</li>`;
+			else el.innerHTML = `<tr><td colspan="5" class="loading">${escapeHtml(message)}</td></tr>`;
+		});
+	};
+
 	async function loadDashboard() {
 		try {
 			const data = await fetchAdmin();
@@ -161,11 +191,21 @@
 			renderUsers(data.users || []);
 			renderSubscribers(data.subscribers || []);
 			renderNewsletterSends(data.newsletterSends || []);
+			renderIssues(data.issues || []);
 		} catch (error) {
+			const message = error?.name === 'AbortError'
+				? 'DB/API 응답이 15초 안에 오지 않았습니다. Supabase 연결을 확인하세요.'
+				: `DB/API 로딩 실패: ${error?.message || 'network_error'}`;
+			renderFatalError(message);
 			if (error?.status === 401 || error?.message === 'unauthorized') {
 				showLocked('로그인이 필요합니다.', '/login?next=/admin');
-			} else {
+			} else if (error?.status === 403 || error?.message === 'forbidden') {
 				showLocked('관리자 권한이 필요합니다.');
+			} else {
+				if (statusEl) statusEl.textContent = message;
+				if (locked) locked.hidden = true;
+				if (dashboard) dashboard.hidden = false;
+				renderIssues([{ name: 'admin_api', message }]);
 			}
 		}
 	}

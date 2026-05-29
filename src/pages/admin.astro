@@ -56,6 +56,13 @@ import { SITE_TITLE } from '../consts';
 						</div>
 					</div>
 
+					<section class="admin-issues" hidden data-admin-issues>
+						<h2>DB/API 상태</h2>
+						<ul data-admin-issue-list>
+							<li class="loading">확인 중…</li>
+						</ul>
+					</section>
+
 					<section class="recent-comments">
 						<h2>최근 댓글 (30)</h2>
 						<ol class="comment-mod-list" data-mod-list>
@@ -163,8 +170,11 @@ import { SITE_TITLE } from '../consts';
 			.stat-value { font-family: var(--font-display); font-size: 2rem; color: var(--ink); margin: 0; font-feature-settings: "tnum"; }
 
 			h2 { font-family: var(--font-display); font-size: 1.4rem; margin: 0 0 var(--s-2); color: var(--ink); letter-spacing: -0.01em; }
-			.recent-comments, .recent-users, .recent-subs, .recent-sends { margin-bottom: var(--s-5); }
+			.recent-comments, .recent-users, .recent-subs, .recent-sends, .admin-issues { margin-bottom: var(--s-5); }
 			.section-note { margin: calc(-1 * var(--s-1)) 0 var(--s-2); color: var(--ink-light); font-size: 0.82rem; }
+			.admin-issues { border: 1px solid #e6c7bd; background: #fff8f5; padding: var(--s-3); }
+			.admin-issues h2 { color: var(--brick); }
+			.admin-issues ul { margin: 0; padding-left: 1.2em; color: var(--ink-medium); font-size: 0.86rem; }
 
 			.comment-mod-list { list-style: none; padding: 0; margin: 0; }
 			.mod-row {
