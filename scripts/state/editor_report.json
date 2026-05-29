@@ -1,98 +1,126 @@
 {
-  "generated_at": "2026-05-28T23:10:45.204608+00:00",
+  "generated_at": "2026-05-29T11:10:21.405431+00:00",
   "threshold_promote": 70,
   "threshold_review": 50,
   "counts": {
-    "total": 6,
+    "total": 8,
     "promoted": 6,
-    "review": 0,
+    "review": 2,
     "discard_flag": 0,
     "deferred": 0
   },
   "grades": [
     {
-      "slug": "2026-05-28-alert-update-growing-number-of-salmonella-illnesses-and-outbreaks-linked-to-mori",
+      "slug": "2026-05-29-bolivia-level-2-exercise-increased-caution",
+      "score": 77,
+      "scores": {
+        "factuality": 17,
+        "source_diversity": 15,
+        "ka_angle": 15,
+        "originality": 13,
+        "structure": 17
+      },
+      "reasoning": "국무부 공식 페이지를 1차 출처로 정확히 인용했고, 4단계 여행경보 체계를 비교표로 시각화해 볼리비아의 현재 위치를 명확히 보여줍니다. 한인 가정·자영업자·유학생별 실용적 점검 사항과 번호 단계 목록이 잘 정리돼 있으나, 2단계 발령의 구체적 위험 요소(범죄·시위 등)에 대한 분석이 빠져 있어 독창성은 다소 부족합니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-05-29-bolivia-level-2-exercise-increased-caution.md"
+    },
+    {
+      "slug": "2026-05-29-fifa-s-world-cup-ticket-sales-outraged-fans-now-they-are-under-investigation",
+      "score": 78,
+      "scores": {
+        "factuality": 15,
+        "source_diversity": 15,
+        "ka_angle": 17,
+        "originality": 14,
+        "structure": 17
+      },
+      "reasoning": "NPR 단일 출처이지만 신뢰도 높은 주요 언론사 링크가 정확히 인용돼 추적 가능하며, 미주 한인 가정·유학생·자영업자별로 구체적 영향을 분석한 한인 관점이 살아 있습니다. 비교표와 번호 단계 목록 형태의 시각화가 주제에 맞게 포함됐고 frontmatter·핵심요약·출처 섹션 구조도 완전합니다. 다만 원문이 가격 급등 수치와 조사 주체를 밝히지 않은 한계가 본문에 그대로 반영돼 구체성·독창성에서 추가 분석 여지가 있습니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-05-29-fifa-s-world-cup-ticket-sales-outraged-fans-now-they-are-under-investigation.md"
+    },
+    {
+      "slug": "2026-05-29-glean-s-top-line-crosses-300m-as-ai-budget-cutting-becomes-its-major-selling-poi",
       "score": 85,
       "scores": {
-        "factuality": 16,
+        "factuality": 17,
         "source_diversity": 15,
         "ka_angle": 18,
         "originality": 17,
-        "structure": 19
+        "structure": 18
       },
-      "reasoning": "CDC·FDA 공식 출처를 정확히 링크하고 본문 주장과 일치시켜 사실성과 출처 신뢰도가 안정적이며, 한인 가정의 이유식·보양식 사용 패턴과 자영업자 책임 문제까지 구체적으로 풀어낸 한인 관점 분석이 돋보입니다. 비교표와 6단계 체크리스트로 시각화 요건을 충족했고 frontmatter·요약·출처 구조도 완전합니다. 다만 출처가 CDC/FDA 두 도메인에 한정돼 다주 발병 통계의 교차 검증이 약한 점은 감점 요소입니다.",
+      "reasoning": "TechCrunch 원문에 명시된 Glean 매출 3억 달러·3배 성장·빅테크 진입 등 핵심 사실이 출처 링크로 추적 가능하고, 한인 사무직·자영업자·학부모 3그룹별 시사점을 구체적으로 풀어낸 점이 강점입니다. 비교표와 번호 체크리스트로 시각화 요건도 충족했습니다. 다만 출처가 TechCrunch 단일 매체에 의존해 교차검증이 부족하고, 감원 규모·가격 정책 등 세부 수치는 원문에 없어 분석의 정량적 근거가 다소 제한적입니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-05-28-alert-update-growing-number-of-salmonella-illnesses-and-outbreaks-linked-to-mori.md"
+      "promoted_to": "queue/2026-05-29-glean-s-top-line-crosses-300m-as-ai-budget-cutting-becomes-its-major-selling-poi.md"
     },
     {
-      "slug": "2026-05-28-medicare-and-fda-propose-granting-rapid-coverage-for-breakthrough-radiology-devi",
-      "score": 88,
+      "slug": "2026-05-29-hhs-releases-strategy-positioning-artificial-intelligence-as-the-core-of-health",
+      "score": 65,
       "scores": {
-        "factuality": 17,
+        "factuality": 12,
+        "source_diversity": 10,
+        "ka_angle": 15,
+        "originality": 12,
+        "structure": 16
+      },
+      "reasoning": "비교표와 핵심 요약, 출처 섹션을 모두 갖춘 구조와 한인 의료 종사자·환자·클리닉 운영자 관점이 비교적 구체적으로 담긴 점은 강점입니다. 다만 출처가 Google News 리다이렉트 링크 1건뿐이고 HHS 원문이나 Holland & Knight 인사이트 원문이 직접 인용되지 않아 추적 가능성이 약하며, 본문의 '혁신의 핵심' 같은 핵심 인용도 1차 자료로 확인되지 않아 사실성과 출처 신뢰도가 떨어집니다. 전략 문서명·발표일·구체 조치 같은 검증 가능한 사실이 부족해 자동 승격 기준에는 미달합니다.",
+      "action": "review",
+      "promoted_to": null
+    },
+    {
+      "slug": "2026-05-29-how-the-pope-s-magnifica-humanitas-offers-a-template-for-individuals-to-meet-the",
+      "score": 85,
+      "scores": {
+        "factuality": 14,
         "source_diversity": 17,
         "ka_angle": 18,
         "originality": 17,
         "structure": 19
       },
-      "reasoning": "CMS TCET·FDA Breakthrough Devices 등 핵심 사실이 공식 1차 출처(CMS, FDA) 링크로 추적 가능하며, 확정되지 않은 세부사항을 명확히 구분해 신중하게 서술한 점이 강점입니다. 한인 메디케어 이용자·영상의학 의료진·의료기기 종사자라는 구체적 그룹별 영향 분석과 비교표·번호 체크리스트 등 시각화 구조가 잘 갖춰져 있어 차별성이 높습니다. 다만 1차 보도 원문이 Google News 리디렉션 링크 한 건뿐이라 교차 검증 측면에서는 만점은 아니며, 일부 변화 전망은 추정적 표현임을 더 명시하면 좋겠습니다.",
+      "reasoning": "MIT Technology Review 원문에 더해 바티칸 교리신앙부 Antiqua et Nova 문서와 프란치스코 교황 G7 연설 등 1차 출처를 정확한 링크와 함께 교차 인용해 출처 신뢰도가 높고, 부모·자영업자·IT 종사자·시니어 등 한인 그룹별로 회칙을 구체적으로 풀어낸 분석과 비교표·체크리스트·실천 목록 등 시각화도 충실합니다. 다만 회칙의 정확한 라틴어 제목과 발표 시점, USCCB의 'AI 리터러시' 강조 시점(2023년) 등 일부 세부 사실은 원문 링크만으로는 완전히 추적되지 않아 사실성에서 약간의 위험이 남아 있습니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-05-28-medicare-and-fda-propose-granting-rapid-coverage-for-breakthrough-radiology-devi.md"
+      "promoted_to": "queue/2026-05-29-how-the-pope-s-magnifica-humanitas-offers-a-template-for-individuals-to-meet-the.md"
     },
     {
-      "slug": "2026-05-28-new-alert-growing-number-of-salmonella-illnesses-and-outbreaks-linked-to-moringa",
-      "score": 88,
+      "slug": "2026-05-29-regulation-for-federal-financial-assistance",
+      "score": 80,
       "scores": {
-        "factuality": 17,
-        "source_diversity": 16,
-        "ka_angle": 19,
-        "originality": 17,
-        "structure": 19
-      },
-      "reasoning": "CDC·FDA 등 1차 출처를 정확히 인용하고 살모넬라 통계·증상·고위험군 정보가 출처로 추적 가능하며, 한인 마트·카페·고령 부모 가정 등 구체적 한인 그룹별 권장 조치를 표로 정리한 점이 강점입니다. 비교표와 번호 단계 체크리스트로 시각화 요건도 충족했고 frontmatter·핵심 요약·출처 섹션 구조가 완전합니다. 다만 CDC 경보 링크가 다운로더 형태라 일반 독자가 직접 열기 어렵고, 브랜드·로트 구체 정보가 아직 없는 단계라는 한계가 있어 후속 업데이트 여지가 남습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-05-28-new-alert-growing-number-of-salmonella-illnesses-and-outbreaks-linked-to-moringa.md"
-    },
-    {
-      "slug": "2026-05-28-new-era-of-uscis-adjustment-adjudications-what-eb-5-investors-need-to-know-wr-im",
-      "score": 70,
-      "scores": {
-        "factuality": 12,
-        "source_diversity": 9,
+        "factuality": 15,
+        "source_diversity": 15,
         "ka_angle": 17,
-        "originality": 14,
+        "originality": 15,
         "structure": 18
       },
-      "reasoning": "비교표와 번호 체크리스트로 시각화 요건을 충족했고 한인 가정·투자자 관점의 실무 분석이 구체적입니다. 다만 출처가 Google News 리다이렉트 링크 한 건뿐이고 WR Immigration 원문 링크가 직접 인용되지 않아 사실성·출처 신뢰도가 약하며, '새 시대'라는 표현 외에 검증 가능한 정책 수치가 부족합니다.",
+      "reasoning": "Federal Register 1차 출처가 정확한 링크와 함께 인용되었고, 한인 비영리·시니어센터·이민자 지원 단체에 미치는 영향을 구체적으로 풀어쓴 한인 관점 분석이 살아있습니다. 「한눈에 보는 변화」 비교표와 점검 우선순위 번호 목록 등 시각화 요건도 충족했으나, 출처가 단일하고 본문 일부 영어 용어(transparency, accountability 등)가 번역 없이 노출돼 독창성·정밀도에서 감점됩니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-05-28-new-era-of-uscis-adjustment-adjudications-what-eb-5-investors-need-to-know-wr-im.md"
+      "promoted_to": "queue/2026-05-29-regulation-for-federal-financial-assistance.md"
     },
     {
-      "slug": "2026-05-28-new-uscis-memo-may-force-most-green-card-applicants-to-apply-from-abroad-causing",
-      "score": 71,
+      "slug": "2026-05-29-taiwan-level-1-exercise-normal-precautions",
+      "score": 76,
       "scores": {
-        "factuality": 13,
-        "source_diversity": 10,
-        "ka_angle": 17,
-        "originality": 14,
+        "factuality": 16,
+        "source_diversity": 15,
+        "ka_angle": 15,
+        "originality": 13,
         "structure": 17
       },
-      "reasoning": "AIC 보도를 기반으로 한인 직장인·유학생·가족 초청·투자 이민 전반에 미치는 영향을 구체적으로 풀어내고, 비교표와 행동 체크리스트로 시각적 구조를 잘 갖췄습니다. 다만 출처가 Google News 리다이렉트 링크 단 1개로 AIC 원문이나 USCIS 메모 원본 링크가 빠져 있어 사실성·출처 신뢰도가 약하고, 메모의 발표 시점·문서번호 등 구체적 식별 정보가 부족합니다.",
+      "reasoning": "국무부 공식 출처를 정확히 인용하고 4단계 체계 비교표와 6단계 체크리스트로 시각화 요건을 충족했으며, 영주권·비이민비자 한인 관점의 재입국·STEP 등록 실무를 명시적으로 풀어쓴 점이 강점입니다. 다만 출처가 1곳뿐이라 교차검증이 약하고, 단순 등급 유지 발표라는 특성상 편집자 차원의 독창적 분석(예: 과거 등급 변동 이력, 한인 커뮤니티 통계)이 다소 얕은 점은 약점입니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-05-28-new-uscis-memo-may-force-most-green-card-applicants-to-apply-from-abroad-causing.md"
+      "promoted_to": "queue/2026-05-29-taiwan-level-1-exercise-normal-precautions.md"
     },
     {
-      "slug": "2026-05-28-the-green-card-rules-just-changed-what-employers-and-foreign-nationals-need-to-k",
-      "score": 88,
+      "slug": "2026-05-29-uscis-issues-new-policy-memo-on-adjustment-of-status-what-family-based-applicant",
+      "score": 63,
       "scores": {
-        "factuality": 17,
-        "source_diversity": 18,
-        "ka_angle": 18,
-        "originality": 17,
-        "structure": 18
+        "factuality": 11,
+        "source_diversity": 9,
+        "ka_angle": 15,
+        "originality": 12,
+        "structure": 16
       },
-      "reasoning": "JD Supra 원문이 단정하지 않는 부분을 명확히 구분하고 USCIS·DOL·DHS 공식 출처로 수치와 절차를 뒷받침해 사실성과 출처 신뢰도가 높습니다. 한인 자영업 스폰서·H-1B 직장인·I-485 신청자·가족 초청 가정별 분석과 비교표·5단계 체크리스트 시각화가 살아있어 한인 관점과 구조 모두 자동승격 기준을 충족합니다. 다만 원문이 구체 시행일을 제시하지 않아 '변화의 방향성' 수준에 머무는 한계가 있습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-05-28-the-green-card-rules-just-changed-what-employers-and-foreign-nationals-need-to-k.md"
+      "reasoning": "구조 면에서는 YAML frontmatter, 핵심 요약, 비교표, 번호 단계 목록, 출처 섹션을 모두 갖춰 시각화 요건은 충족합니다. 그러나 출처가 Google News 리다이렉트 링크 1개뿐이고 Boundless Immigration 원문이나 USCIS 공식 메모로 직접 연결되지 않아 사실성과 출처 신뢰도가 약하며, 본문도 메모의 구체적 변경 내용을 적시하지 못하고 '~로 보인다' 수준의 일반론에 머물러 독창성도 제한적입니다. 한인 가족 시나리오(부모 초청, 미국 내 출생 자녀를 통한 전환 등)는 구체적으로 짚어 한인 관점은 살아 있습니다.",
+      "action": "review",
+      "promoted_to": null
     }
   ]
 }
