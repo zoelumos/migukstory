@@ -95,6 +95,21 @@ sources:
     enabled: false  # disabled: this is an HTML feed listing page, not RSS; caused <a href> slugs
     max_items: 2
 
+  # GSC-backed focus expansion (2026-05-29): keep these as primary service
+  # lanes alongside immigration/tax/retirement. They feed insurance + housing
+  # explainers for Korean-American families without dropping economy/AI/robotics.
+  - name: Google News — Health Insurance / Medicare Watch
+    url: https://news.google.com/rss/search?q=health%20insurance%20OR%20Medicare%20premium%20OR%20ACA%20subsidy&hl=en-US&gl=US&ceid=US:en
+    category: health
+    enabled: true
+    max_items: 3
+
+  - name: Google News — Housing / Mortgage Watch
+    url: https://news.google.com/rss/search?q=mortgage%20rates%20OR%20home%20insurance%20OR%20housing%20affordability&hl=en-US&gl=US&ceid=US:en
+    category: real-estate
+    enabled: true
+    max_items: 3
+
   - name: Federal Reserve — Monetary Policy
     url: https://www.federalreserve.gov/feeds/press_monetary.xml
     category: economy

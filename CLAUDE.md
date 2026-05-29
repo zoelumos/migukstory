@@ -46,6 +46,19 @@ A run is not complete just because content was generated or a PR merged. It is c
    - Claude should audit article quality, visual explanations, SEO, and technical publish risk.
    - But Claude review must not become a manual bottleneck; bounded automated Claude checks are preferred.
 
+## Non-negotiable editorial focus: GSC-backed service journalism
+
+Search Console data checked on 2026-05-29 showed that USCIS/immigration articles are already producing real Google impressions and clicks. Tomorrow's and ongoing Claude/Hermes drafting must therefore prioritize high-intent Korean-American service topics:
+
+1. Immigration/USCIS/visa/green-card updates and practical explainers.
+2. Tax/IRS/FBAR/credits/deadlines for Korean-American households and small businesses.
+3. Retirement/Social Security/Medicare and pension/401(k)/IRA decision guides.
+4. Housing, mortgage, rent, home insurance, and real-estate affordability.
+5. Health insurance, ACA/Medicare/Medicaid, and insurance claim/coverage explainers.
+6. Practical Korean-American life guides: first 90 days, documents, banking, school, DMV, healthcare, consular tasks.
+
+**Do not drop the other lanes.** Economy and AI/robotics must continue every day/week as maintained categories, especially when they affect jobs, small business, markets, retirement accounts, automation risk, immigration workers, or children's education/careers. The rule is priority, not exclusion: service journalism first; economy and AI/robotics still active.
+
 ## Non-negotiable editorial rule: visualization first
 
 Migukstory articles must not be plain text news rewrites. The core product difference is **visual explanation**.

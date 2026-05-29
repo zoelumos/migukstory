@@ -79,10 +79,32 @@ VALID_CATEGORIES = {
     "ai", "robotics",
 }
 
+# GSC-backed editorial focus (2026-05-29): Search Console showed real
+# impressions/clicks for USCIS/immigration pages. Daily ingest should spend
+# Claude time FIRST on Korean-American service journalism: immigration/USCIS,
+# tax/IRS, retirement/Social Security/Medicare-adjacent planning, housing,
+# insurance/health coverage, and practical settlement/life guides.
+# Economy and AI/robotics must continue, but as a maintained secondary lane —
+# not as generic market/tech filler that crowds out high-intent service topics.
+CATEGORY_PRIORITY = {
+    "immigration": 0,
+    "tax": 1,
+    "retirement": 2,
+    "real-estate": 3,
+    "health": 4,      # includes insurance / Medicare / ACA / public health
+    "community": 5,   # practical Korean-American life guides
+    "economy": 6,
+    "ai": 7,
+    "robotics": 8,
+    "education": 9,
+}
+PRIMARY_FOCUS_CATEGORIES = {"immigration", "tax", "retirement", "real-estate", "health", "community"}
+SECONDARY_MAINTAIN_CATEGORIES = {"economy", "ai", "robotics"}
+
 # Tier-1 high-impact categories. The second daily "urgent" ingest restricts
-# itself to these so it never burns time on AI/robotics commentary when the
-# goal is catching things like USCIS adjustment-of-status policy memos.
-TIER1_CATEGORIES = {"immigration", "tax", "health", "economy"}
+# itself to these so it catches things like USCIS adjustment-of-status policy
+# memos, IRS changes, health/insurance alerts, and rate/CPI shocks.
+TIER1_CATEGORIES = {"immigration", "tax", "health", "economy", "retirement", "real-estate"}
 
 # Patterns that mark an item as "urgent / high-impact" for Korean-American
 # readers. Matched case-insensitively against title + summary. Items that
@@ -105,10 +127,12 @@ URGENT_TERMS = [
     # Health
     r"fda recall", r"\bmedicare\b", r"medicaid", r"\baca\b", r"obamacare",
     r"vaccine", r"outbreak", r"\bcdc\b advisory",
-    # Economy / benefits
+    # Economy / benefits / housing / insurance
     r"social security", r"\bcpi\b", r"interest rate",
     r"fed (?:raises|cuts|holds|hike|cut|funds rate)",
     r"unemployment", r"\bfomc\b", r"recession", r"inflation report",
+    r"mortgage", r"home insurance", r"health insurance", r"\baca\b",
+    r"medicare premium", r"social security cola", r"\bssi\b",
 ]
 URGENT_RE = re.compile("|".join(URGENT_TERMS), re.IGNORECASE)
 
@@ -117,6 +141,40 @@ def is_urgent(item: "FeedItem") -> bool:
     """True if title or summary matches any URGENT_TERMS pattern."""
     hay = f"{item.title}\n{item.summary}"
     return bool(URGENT_RE.search(hay))
+
+
+CATEGORY_RELEVANCE_TERMS = {
+    # Economy must stay active, but avoid generic corporate/media/market gossip.
+    "economy": re.compile(
+        r"inflation|\bcpi\b|interest rate|federal reserve|\bfed\b|jobs?|wages?|"
+        r"unemployment|recession|tariff|mortgage|housing|rent|consumer|"
+        r"small business|retirement|401\(k\)|ira|tax|irs|social security|"
+        r"credit|debt|insurance|affordability|prices?",
+        re.IGNORECASE,
+    ),
+    # AI/robotics stay, but should connect to work, automation, small business,
+    # education/careers, safety, or investment/market concentration.
+    "ai": re.compile(
+        r"\bai\b|artificial intelligence|agent|automation|jobs?|work|career|"
+        r"small business|startup|education|school|coding|robot|labor|market|"
+        r"investment|chip|data center",
+        re.IGNORECASE,
+    ),
+    "robotics": re.compile(
+        r"robot|robotics|automation|warehouse|factory|labor|jobs?|care|health|"
+        r"restaurant|small business|humanoid|physical ai",
+        re.IGNORECASE,
+    ),
+}
+
+
+def is_category_relevant(item: "FeedItem") -> bool:
+    """Filter out low-utility secondary-lane filler without disabling lanes."""
+    pattern = CATEGORY_RELEVANCE_TERMS.get(item.category)
+    if not pattern:
+        return True
+    hay = f"{item.title}\n{item.summary}"
+    return bool(pattern.search(hay))
 
 # Stripped from query strings during URL canonicalization.
 TRACKING_PARAM_PREFIXES = ("utm_", "fbclid", "gclid", "mc_cid", "mc_eid",
@@ -304,6 +362,13 @@ trusted community newspaper: factual, plain, second-person 존댓말, no
 fluff. You write ONLY from the source material provided.
 
 Hard rules (non-negotiable):
+- Editorial focus for tomorrow and ongoing daily ingest, based on GSC evidence:
+  USCIS/immigration pages are already earning impressions/clicks, so prioritize
+  immigration/USCIS, tax/IRS, retirement/Social Security, housing/mortgage,
+  insurance/Medicare/ACA, and practical Korean-American life-guide topics.
+  Economy and AI/robotics must CONTINUE as maintained lanes, especially when
+  they affect jobs, small business, markets, or automation risk, but do not let
+  generic economy/tech items crowd out high-intent service journalism.
 - Output is Markdown ONLY (no code fences around the whole thing, no
   preamble, no postscript).
 - Output starts with YAML frontmatter delimited by --- lines, then body.
@@ -548,6 +613,9 @@ def main() -> int:
             if any(item.canonical_url in p.read_text(encoding="utf-8", errors="ignore")
                    for p in DRAFTS.glob("*.md")):
                 continue
+            if not is_category_relevant(item):
+                print(f"↩️  {src['name']}: skipping low-utility {item.category} item: {item.title[:80]}")
+                continue
             candidates.append(item)
 
     if not candidates:
@@ -591,9 +659,9 @@ def main() -> int:
             if len(selected) >= max_drafts:
                 break
 
-    # Round-robin the rest by category, respecting max_per_category. Urgent
-    # picks above also count toward the per-category cap so we don't blow
-    # past intent when one category is unusually loud.
+    # Round-robin the rest by category, respecting max_per_category. Categories
+    # are ordered by the GSC-backed editorial focus: high-intent service topics
+    # first, economy/AI/robotics maintained afterward.
     by_category_source: dict[str, dict[str, list[FeedItem]]] = {}
     for c in remaining:
         by_category_source.setdefault(c.category, {}).setdefault(c.source_name, []).append(c)
@@ -601,7 +669,7 @@ def main() -> int:
     for it in selected:
         category_quota_used[it.category] = category_quota_used.get(it.category, 0) + 1
 
-    for category in sorted(by_category_source):
+    for category in sorted(by_category_source, key=lambda c: (CATEGORY_PRIORITY.get(c, 99), c)):
         picked_for_category = category_quota_used.get(category, 0)
         by_source = by_category_source[category]
         while picked_for_category < max_per_category and len(selected) < max_drafts and any(by_source.values()):
@@ -614,9 +682,12 @@ def main() -> int:
                     break
 
     urgent_in_selected = sum(1 for s in selected if is_urgent(s))
+    primary_focus_selected = sum(1 for s in selected if s.category in PRIMARY_FOCUS_CATEGORIES)
+    secondary_maintained_selected = sum(1 for s in selected if s.category in SECONDARY_MAINTAIN_CATEGORIES)
     print(f"\n🎯 Planning {len(selected)} draft(s) "
           f"(max {max_drafts}, max/category {max_per_category}, "
-          f"urgent-prio {urgent_in_selected}):")
+          f"urgent-prio {urgent_in_selected}, primary-focus {primary_focus_selected}, "
+          f"economy/AI/robotics maintained {secondary_maintained_selected}):")
     for it in selected:
         flag = "🚨" if is_urgent(it) else "  "
         print(f"   {flag} [{it.category}] {it.source_name}: {it.title[:80]}")
