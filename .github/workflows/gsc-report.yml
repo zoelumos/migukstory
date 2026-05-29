@@ -1,0 +1,25 @@
+name: GSC Report
+
+on:
+  workflow_dispatch:
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        run: |
+          git init .
+          git remote add origin https://github.com/zoelumos/migukstory.git
+          git fetch --depth=2 origin "$GITHUB_SHA"
+          git checkout --force FETCH_HEAD
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Run GSC report
+        env:
+          SITE_URL: https://migukstory.com/
+          GSC_SERVICE_ACCOUNT: ${{ secrets.GSC_SERVICE_ACCOUNT }}
+        run: node scripts/gsc_report.mjs
