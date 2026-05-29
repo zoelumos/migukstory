@@ -19,7 +19,7 @@ const { slug, info } = Astro.props;
 // Posts by this author (most recent first)
 const all = await getCollection('blog');
 const authoredPosts = all
-	.filter(p => (p.data as any).author === slug)
+	.filter(p => !p.data.draft && (p.data as any).author === slug)
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const expertiseLabels = info.expertise

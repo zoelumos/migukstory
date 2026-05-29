@@ -5,7 +5,7 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_TITLE } from '../consts';
 
-const all = await getCollection('blog');
+const all = (await getCollection('blog')).filter((p) => !p.data.draft);
 
 // Find related posts for each pillar section by tag/title match
 const findPost = (predicate: (p: any) => boolean) => all.find(predicate);

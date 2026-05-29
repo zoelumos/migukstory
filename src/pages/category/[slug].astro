@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 			catKey: key,
 			catMeta: meta,
 			posts: all
-				.filter(p => p.data.category === key)
+				.filter(p => !p.data.draft && p.data.category === key)
 				.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
 		},
 	}));

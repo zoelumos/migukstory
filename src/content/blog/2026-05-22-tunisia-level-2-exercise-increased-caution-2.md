@@ -5,7 +5,7 @@ pubDate: '2026-05-23'
 tags: ['튀니지 여행경보', '국무부', '해외 안전']
 category: 'community'
 ageGroup: 'all'
-draft: false
+draft: true
 source: 'State Department Travel Advisories'
 sourceUrl: 'https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/tunisia-travel-advisory.html'
 ---

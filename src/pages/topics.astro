@@ -8,7 +8,9 @@ import { SITE_TITLE } from '../consts';
 import { CATEGORIES } from '../content.config';
 
 const all = await getCollection('blog');
-const posts = all.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = all
+	.filter((p) => !p.data.draft)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const byCategory = (Object.keys(CATEGORIES) as Array<keyof typeof CATEGORIES>).map((key) => {
 	const meta = CATEGORIES[key];

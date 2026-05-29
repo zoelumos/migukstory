@@ -28,10 +28,12 @@ const fontGowun = readFileSync(join(process.cwd(), 'src/assets/og/gowun-og.woff'
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.id.replace(/\.(md|mdx)$/, '') },
-		props: { post },
-	}));
+	return posts
+		.filter((post) => !post.data.draft)
+		.map((post) => ({
+			params: { slug: post.id.replace(/\.(md|mdx)$/, '') },
+			props: { post },
+		}));
 };
 
 export const GET: APIRoute = async ({ props }) => {

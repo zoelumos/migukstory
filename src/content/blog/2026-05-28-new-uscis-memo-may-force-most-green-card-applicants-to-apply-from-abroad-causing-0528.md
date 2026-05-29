@@ -5,7 +5,7 @@ pubDate: '2026-05-28'
 tags: ['영주권', 'USCIS', '이민정책', '신분조정', '영사처리']
 category: 'immigration'
 ageGroup: 'all'
-draft: false
+draft: true
 source: 'Google News — USCIS / Green Card Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMigAFBVV95cUxPMjFwZHIyTFh0M01CZF9uLW5maUwzWjFpemxjR0VGd2J1YlllZXFCcE40N1hXZ3p6Ym9NVi1ydElrX0dWRjhhaWRCaGVPQks0RXJFU29oLUlIMmVSV0RBUXRtQ1dyZHEzQ0thZUFBR292M09BYWVFdU5jSmctakp1UQ?oc=5'
 ---

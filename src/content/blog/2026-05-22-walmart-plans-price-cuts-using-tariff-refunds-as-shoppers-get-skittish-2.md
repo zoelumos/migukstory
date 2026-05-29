@@ -5,7 +5,7 @@ pubDate: '2026-05-23'
 tags: ['월마트', '관세', '물가']
 category: 'economy'
 ageGroup: 'all'
-draft: false
+draft: true
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/05/21/nx-s1-5829712/walmart-price-cuts-gas-tariff-refunds'
 ---
