@@ -22,7 +22,7 @@ const FROM = process.env.NEWSLETTER_FROM || '';
 const BASE = process.env.NEWSLETTER_BASE_SHA || process.env.GITHUB_EVENT_BEFORE || '';
 const HEAD = process.env.NEWSLETTER_HEAD_SHA || process.env.GITHUB_SHA || 'HEAD';
 const DRY_RUN = process.env.NEWSLETTER_DRY_RUN === '1' || process.argv.includes('--dry-run');
-const LIMIT = Number(process.env.NEWSLETTER_LIMIT || '0');
+const LIMIT = Number(process.env.NEWSLETTER_LIMIT || '200');
 
 function log(...args) { console.log('[newsletter]', ...args); }
 function warn(...args) { console.warn('[newsletter]', ...args); }

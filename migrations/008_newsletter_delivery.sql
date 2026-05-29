@@ -44,7 +44,19 @@ language plpgsql
 security definer
 set search_path = public
 as $$
+declare
+  v_is_admin boolean := public.is_admin_email(new.email);
 begin
+  -- Stamp app_metadata.role if admin (server-side, immutable from client).
+  -- Preserve migration 006 behavior so current_user_role() policies keep working
+  -- for any future admin email added to is_admin_email().
+  if v_is_admin then
+    update auth.users
+      set raw_app_meta_data = coalesce(raw_app_meta_data, '{}'::jsonb)
+        || jsonb_build_object('role', 'admin')
+      where id = new.id;
+  end if;
+
   insert into public.profiles (id, email, display_name, avatar_url, provider, is_admin, metadata)
   values (
     new.id,
@@ -52,7 +64,7 @@ begin
     coalesce(new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'name', split_part(new.email, '@', 1)),
     new.raw_user_meta_data->>'avatar_url',
     coalesce(new.raw_app_meta_data->>'provider', 'email'),
-    public.is_admin_email(new.email),
+    v_is_admin,
     new.raw_user_meta_data
   )
   on conflict (id) do update
