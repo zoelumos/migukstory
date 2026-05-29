@@ -5,7 +5,7 @@ pubDate: '2026-05-29'
 tags: ['ACA', '오바마케어', '건강보험', 'KFF', '마켓플레이스', '2026 등록', '한인 자영업']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiwAFBVV95cUxQVENtaVNrNWhNOXBUcnp1ZW5GdFFTSDc2VlJRZ2NBMGhSdHQwQWVmTm93WEpacVZTMlNQeU1wSGEwVWtIdHpuVDZFQTlqTTNBc0QtWEtlX3NPVGIzdVZTNlZHbjZIbk45SGZJM2phNXptZVo2RnRJV2VhdTlNVTBUMmQzLTJwN1JPSVZDWVJvS21SSmxuQTVEUnpLTFdYOEMxbS1lRmFDMjAyVkNhQU9QS0tiaTNQaWhQU2tRbDkzVDk?oc=5'
 ---

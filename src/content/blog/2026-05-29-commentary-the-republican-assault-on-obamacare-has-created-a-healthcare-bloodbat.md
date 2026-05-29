@@ -5,7 +5,7 @@ pubDate: '2026-05-29'
 tags: ['오바마케어', 'ACA', '건강보험', '한인커뮤니티', '의료정책', '메디케이드', '메디케어', '오픈인롤먼트']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMitAFBVV95cUxPMkc0cnROTjgxY3pOcjJueVA2b2ZWb0NHUll6YWFENDFHMzBpUnZGV3BxYTNwNXY4R1RBWXN5eHcxSWdacFJWNzlKazZlUXQ5enNCOUFzQXpDWFFlT2x1dVRuN2VYYjMtcTdJRTFDNWFsdnFSX1pEUHRkeXFkSHc0d2F4QXh4WkNGOHA5a2RBRFlJRjJ5ZnB3WDBERkcxOTQ5SG5EUWFvTW1yOVo1RDJNaGIyMjU?oc=5'
 ---

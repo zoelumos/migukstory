@@ -5,7 +5,7 @@ pubDate: '2026-05-29'
 tags: ['재산세', '모기지', '주택구매', '주거비', '미주한인']
 category: 'real-estate'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Housing / Mortgage Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiyAFBVV95cUxQNTZTeHZCczRqWTB2a2hzelBvWU1UYUUwNGZzM0drRE4zb0k4YVdjXzRUQmtrMFdSdGJPWVhQMW9YSmRvQlBQ-just-source'
 ---
