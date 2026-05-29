@@ -22,6 +22,63 @@ export async function getStaticPaths() {
 }
 
 const { catMeta, posts } = Astro.props;
+
+const HUB_COPY = {
+	'immigration': {
+		intent: 'USCIS, 비자, 영주권, 시민권, I-485·I-130처럼 한인 독자가 실제로 검색하는 이민 절차를 공식 발표와 함께 정리합니다.',
+		queries: ['USCIS 영주권 문호', 'I-485 신분조정', '가족초청 이민', '시민권 신청', '비자 인터뷰'],
+	},
+	'tax': {
+		intent: 'IRS 세금보고, FBAR, 해외계좌, 환급, 공제·크레딧처럼 미국 한인 가정과 자영업자가 놓치면 손해 보는 세금 이슈를 모았습니다.',
+		queries: ['FBAR 한국계좌 신고', 'IRS 세금 환급', '해외금융계좌', '세금보고 마감', '한인 자영업 세금'],
+	},
+	'health': {
+		intent: '건강보험, ACA, Medicare, Medicaid, 병원비와 약값처럼 미국 생활비에 직접 연결되는 의료·보험 정보를 정리합니다.',
+		queries: ['ACA 보험료', 'Medicare 가입', 'Medicaid 자격', '건강보험 보조금'],
+	},
+	'real-estate': {
+		intent: '모기지 금리, 렌트, 재산세, 주택보험처럼 미국 거주비를 바꾸는 부동산·주거 정보를 한인 관점으로 설명합니다.',
+		queries: ['모기지 금리', '미국 렌트비', '재산세', '주택보험', '첫 주택 구입'],
+	},
+	'retirement': {
+		intent: 'Social Security, Medicare, 401(k), IRA처럼 은퇴 준비와 노후 현금흐름에 필요한 핵심 정보를 모았습니다.',
+		queries: ['Social Security 연금', '401k IRA', 'Medicare 은퇴', '은퇴계좌 인출'],
+	},
+	'economy': {
+		intent: '물가, 금리, 고용, 소비, 경기 흐름이 한인 가정·자영업·은퇴계좌에 어떤 영향을 주는지 설명합니다.',
+		queries: ['미국 금리', 'CPI 물가', '고용지표', '자영업 경기', '소비 둔화'],
+	},
+	'ai': {
+		intent: 'AI 자동화가 한인 직장인, 자영업, 자녀 진로, 소상공인 마케팅에 주는 영향을 실용적으로 정리합니다.',
+		queries: ['AI 일자리', 'AI 자동화', '소상공인 AI', '자녀 진로 AI'],
+	},
+	'robotics': {
+		intent: '로봇·자동화 기술이 물류, 식당, 제조, 돌봄, 미래 직업에 어떤 변화를 만드는지 추적합니다.',
+		queries: ['로봇 자동화', '물류 로봇', '휴머노이드', '미래직업'],
+	},
+	'community': {
+		intent: '미국 한인 생활에 필요한 지역 뉴스, 정착 정보, 영사 업무, 생활 가이드를 모았습니다.',
+		queries: ['한인 생활', '미국 정착', '영사 업무', 'DMV', '은행 계좌'],
+	},
+	'education': {
+		intent: '미국 학교, 대학, 장학금, 자녀 교육과 진로 선택에 필요한 정보를 한인 학부모 관점으로 정리합니다.',
+		queries: ['미국 학교', '대학 장학금', '자녀 교육', '입시'],
+	},
+};
+
+const hub = HUB_COPY[catMeta.slug as keyof typeof HUB_COPY];
+const topPosts = posts.slice(0, 5);
+const itemListSchema = posts.length > 0 ? {
+	"@context": "https://schema.org",
+	"@type": "ItemList",
+	"name": `${catMeta.label} 기사 목록`,
+	"itemListElement": topPosts.map((post, index) => ({
+		"@type": "ListItem",
+		"position": index + 1,
+		"url": `https://migukstory.com/blog/${post.id}/`,
+		"name": post.data.title,
+	})),
+} : null;
 ---
 
 <!doctype html>
@@ -29,12 +86,13 @@ const { catMeta, posts } = Astro.props;
 	<head>
 		<BaseHead
 			title={`${catMeta.label} — ${SITE_TITLE}`}
-			description={`미국 스토리의 ${catMeta.label} 관련 기사 모음. 정부와 주요 언론의 1차 출처를 바탕으로 정리합니다.`}
+			description={hub?.intent || `미국 스토리의 ${catMeta.label} 관련 기사 모음. 정부와 주요 언론의 1차 출처를 바탕으로 정리합니다.`}
 			breadcrumbs={[
 				{ name: '홈', url: '/' },
 				{ name: catMeta.label, url: `/category/${catMeta.slug}` },
 			]}
 		/>
+		{itemListSchema && <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />}
 	</head>
 	<body>
 		<Header />
@@ -43,7 +101,14 @@ const { catMeta, posts } = Astro.props;
 				<header class="cat-head" style={`--cat: ${catMeta.color}`}>
 					<p class="eyebrow">CATEGORY · 카테고리</p>
 					<h1>{catMeta.label}</h1>
-					<p class="cat-sub">관련 기사 {posts.length}편</p>
+					<p class="cat-sub">{hub?.intent || `관련 기사 ${posts.length}편`}</p>
+					{hub && (
+						<div class="query-cloud" aria-label="자주 찾는 검색어">
+							<span class="query-label">자주 찾는 검색어</span>
+							{hub.queries.map((q) => <span class="query-pill">{q}</span>)}
+						</div>
+					)}
+					<p class="cat-count">관련 기사 {posts.length}편 · 최신순 업데이트</p>
 				</header>
 
 				{posts.length === 0 ? (
@@ -110,7 +175,39 @@ const { catMeta, posts } = Astro.props;
 				margin: 0 0 var(--s-1);
 				letter-spacing: -0.03em;
 			}
-			.cat-sub { color: var(--ink-light); font-size: var(--text-base); margin: 0; }
+			.cat-sub {
+				color: var(--ink-medium);
+				font-size: var(--text-base);
+				line-height: 1.75;
+				max-width: 48rem;
+				margin: 0 auto var(--s-3);
+			}
+			.cat-count { color: var(--ink-light); font-size: 0.88rem; margin: var(--s-2) 0 0; }
+			.query-cloud {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 0.55rem;
+				flex-wrap: wrap;
+				margin: 0 auto;
+				max-width: 48rem;
+			}
+			.query-cloud .query-label {
+				font-size: 0.75rem;
+				font-weight: 700;
+				letter-spacing: 0.08em;
+				color: var(--ink-light);
+			}
+			.query-pill {
+				display: inline-flex;
+				border: 1px solid color-mix(in srgb, var(--cat, var(--brick)) 45%, var(--rule));
+				background: color-mix(in srgb, var(--cat, var(--brick)) 8%, var(--paper));
+				color: var(--ink);
+				text-decoration: none;
+				border-radius: 999px;
+				padding: 0.35em 0.75em;
+				font-size: 0.82rem;
+			}
 			.empty, .empty-filter { text-align: center; color: var(--ink-medium); padding: var(--s-4) 0; }
 			.cat-filters {
 				max-width: 760px;
