@@ -38,6 +38,20 @@ sourceUrl: 'https://news.google.com/rss/articles/CBMipgFBVV95cUxPeTgyaXBKb0t5bmJ
 | 이미 보유한 부모 세대 | 모기지·재산세 부담 | 재융자·HELOC·증여 전략 장기 점검 |
 | 은퇴 임박 세대 | 다운사이징 고민 | 시장 회복 기다리기보다 생활비 중심 결정 |
 
+## 7년 시간표로 보는 한인 가정 단계별 전략
+
+"7년"이라는 수치는 한 보고서 전망이며 지역·개인 상황에 따라 다르지만, 의사결정 시간표를 단계로 나눠 두면 단기 충동을 줄일 수 있습니다.
+
+| 단계 | 시기(대략) | 한인 가정 핵심 행동 |
+| --- | --- | --- |
+| 1단계 — 현금흐름 방어 | 지금 ~ 12개월 | 비상자금 6개월치 확보, 무리한 모기지 결정 보류, 렌트 갱신 협상 |
+| 2단계 — 신용·소득 누적 | 1 ~ 3년 | 신용점수 관리, 한미 소득·세금 자료 일관성 유지, 다운페이먼트 저축 자동화 |
+| 3단계 — 지역·학군 정찰 | 2 ~ 5년 | 한인 밀집 카운티의 재고·임대료·학군 추이 분기별 기록, HOA·재산세도 함께 비교 |
+| 4단계 — 매입 또는 재융자 검토 | 4 ~ 7년 | 금리 사이클·재고 수준 보고 결정, 부모 세대는 HELOC·증여 동시 검토 |
+| 5단계 — 장기 보유 결정 | 5 ~ 7년+ | 자녀 진학·은퇴·증여 시점에 맞춰 보유·다운사이징·임대 전환 결정 |
+
+위 시간표는 가이드 용도이며, 본인 지역(카운티) 데이터와 모기지·세무 전문가 상담을 바탕으로 반드시 개인화해야 합니다.
+
 ## 출처 (Sources)
 
 - [Google News — Housing / Mortgage Watch](https://news.google.com/rss/articles/CBMipgFBVV95cUxPeTgyaXBKb0t5bmJPMEs4OHZaMWh0STNLOVJaV1QyTzR4X255UEpaWnBBbm5WSTY3NnEzczRxTVJoYWRUdzJ1dmRDXzRxRXdJYVo4MFhMTlpUSEktOGJpZ3l4X3o1V2RuUTBRcE1kOVlPbFNtdFZIb1dNZ3JJQUs2QklpbGh4dS15aDNQQi03LXdyendLVzlKT1o4ZnhNdnNsa29ERUd3?oc=5)

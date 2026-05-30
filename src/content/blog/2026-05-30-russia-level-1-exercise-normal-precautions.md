@@ -44,6 +44,26 @@ sourceUrl: 'https://travel.state.gov/content/tsg_aem/us/en/home/international-tr
 3. Level 3 — Reconsider Travel (여행 재고)
 4. Level 4 — Do Not Travel (여행 금지)
 
+## 한인 신분별 출국 전 체크 매트릭스
+
+권고 자체는 1단계이지만, 한인 독자의 미국 내 신분에 따라 출국 전 점검 항목이 다릅니다. 본인이 어디에 속하는지 먼저 확인하시기 바랍니다.
+
+| 본인 신분 | 출국 전 핵심 점검 | 우선 연락처 |
+| --- | --- | --- |
+| 미국 시민권자 | 여권 유효기간(최소 6개월), 현지 영사 등록(STEP) | 가장 가까운 미국 대사관·총영사관 |
+| 영주권자(그린카드) | 1년 이상 체류 가능성 → 재입국 허가(re-entry permit) 검토, I-551 유효기간 | 이민변호사·USCIS |
+| H-1B·L 등 취업비자 | 비자 유효기간, 재입국 행정처리(221(g)) 가능성, 고용주 사전 통지 | 회사 HR·이민변호사 |
+| F-1·J-1 유학생 | 학교 DSO·서명된 I-20/DS-2019, 비자 유효기간, 학기 일정 | 학교 국제학생처(DSO) |
+| 단기 방문(B-1/B-2) | 체류 만료일, 재입국 횟수, 결제수단 차단 가능성 | 본인 항공권 발행사·카드사 |
+
+### 출국 전 24시간 최종 점검 카드
+
+- 국무부 공식 페이지에서 권고 단계 다시 확인 (단계가 바뀌었을 수 있음)
+- 여권·비자·재입국 서류 사진 백업(클라우드 + 가족 공유)
+- 본인 항공편의 환승 국가와 그 국가의 여행경보 단계도 함께 확인
+- 신용카드·체크카드 해외 사용 가능 여부와 비상연락처 메모
+- 미국 내 가족에게 일정·체류 주소·현지 연락처 공유
+
 ## 출처 (Sources)
 
 - [State Department Travel Advisories](https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.rus.html)

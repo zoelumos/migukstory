@@ -45,6 +45,28 @@ ACA(오바마케어) 보험료가 오르면서 미국인들이 보장이 얇은 
 5. ACA 마켓플레이스 안의 플랜인지, 보호 밖의 단기 상품인지 구분합니다.
 6. 결정 전 보험 브로커·세무 전문가와 상담합니다. 전문가 상담을 권장합니다.
 
+## 한인 가정 위험도 자가 점검
+
+본인이나 가족이 아래 항목에 해당할수록 "저가 플랜"으로 갈아탔을 때의 재정 충격이 커질 수 있습니다.
+
+| 점검 항목 | 해당하면 위험도 |
+| --- | --- |
+| 가족 중 만성질환(고혈압·당뇨·심질환) 관리 중 | 높음 |
+| 임신·출산·계획된 수술 가능성 | 높음 |
+| 단골 한인 의사·한방·치과 네트워크 의존 | 중간~높음 |
+| 처방약 매월 정기 복용 | 중간~높음 |
+| 비상자금 6개월치 미만 | 중간 |
+| 부모님 부양·소득 변동 가능성 | 중간 |
+
+### "갈아타기 전 멈춤" 경고 신호
+
+- 광고 문구에 "ACA" 표시가 없고 "short-term", "limited" 같은 단어만 있는 경우
+- 디덕터블·본인 부담 한도가 "TBD" 또는 비정상적으로 큰 경우
+- 출산·정신과·처방약 등 특정 항목이 통째로 빠져 있는 경우
+- 가입 권유자가 "지금 결정"만 강조하고 비교 자료를 주지 않는 경우
+
+위 신호 중 하나라도 보이면 결정을 멈추고 ACA 마켓플레이스 공식 상담(healthcare.gov) 또는 공인 보험 브로커를 통해 다시 확인하시기 바랍니다.
+
 ## 출처 (Sources)
 
 - [Google News — Health Insurance / Medicare Watch](https://news.google.com/rss/articles/CBMixAFBVV95cUxQUGFndlpwcm9DN2ZRYXBWNlpuWUF2NEJnSGtJMm9aTzJGdWF4eHpUMkZEd2wzeFNrQTI4eXNuU2I1UFJPcTFES0xzc1pINjh6eVljOERWdVI2dUFzblNLcFhBQjBIZHJJdEJiTmUxcHcwZnh2MWxrSTIxcW9iWV9CR3lsUUJON3RPU2dGNmwxcDlzRUVWbTFiVG83OG15VWhQX0pfN0k5eHhyYjR1MGJTTUtqbU5Vd28tVHZFdWhzM2hJQUNn?oc=5)
