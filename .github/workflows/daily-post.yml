@@ -44,6 +44,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Validate queue markdown before publish
+        run: python scripts/validate_markdown_frontmatter.py queue --strict-publish
+
       - name: Determine batch size
         id: batch
         # On push (queue/** changed via merged PR): drain the queue up to the
@@ -67,6 +70,21 @@ jobs:
         env:
           POSTS_PER_RUN: ${{ steps.batch.outputs.count }}
         run: python scripts/publish_from_queue.py
+
+      - name: Validate generated blog markdown
+        run: python scripts/validate_markdown_frontmatter.py src/content/blog
+
+      - name: Setup Node for pre-push build check
+        if: steps.batch.outputs.count != '0'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Build before pushing publish commit
+        run: |
+          npm ci
+          npm run build
 
       - name: Commit and push
         id: publish

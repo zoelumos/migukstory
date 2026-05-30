@@ -7,7 +7,7 @@ category: 'immigration'
 ageGroup: 'all'
 draft: true
 source: 'Google News — USCIS / Green Card Watch'
-sourceUrl: 'https://news.google.com/rss/articles/CBMingFBVV95cUxOdGJHeDM1X2NJd0RCTWVwdGxGQ2ttaU1vczFTdXFRUXo3X1kyczNKRGlVXzRwdzRPSXJVRlRjSmlZV2RuQkxCR2xSTXI3SDEzeTVzTG9uV2NmQXd6U1RqYkhhdEcyWG4xdEhiODFGUWNNRXd1ZTR3dmZmdEdZOVJhbDk1VGVucDVkQnR3YmE1UnpSQXdnTW1FejRUWXBfdw?oc=5)
+sourceUrl: 'https://news.google.com/rss/articles/CBMingFBVV95cUxOdGJHeDM1X2NJd0RCTWVwdGxGQ2ttaU1vczFTdXFRUXo3X1kyczNKRGlVXzRwdzRPSXJVRlRjSmlZV2RuQkxCR2xSTXI3SDEzeTVzTG9uV2NmQXd6U1RqYkhhdEcyWG4xdEhiODFGUWNNRXd1ZTR3dmZmdEdZOVJhbDk1VGVucDVkQnR3YmE1UnpSQXdnTW1FejRUWXBfdw?oc=5'
 ---
 
 # 신분조정(AOS)으로 영주권 받기, 아직 현실적인 길인가

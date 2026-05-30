@@ -1,0 +1,36 @@
+---
+export interface Props {
+	title?: string;
+	items?: string[];
+}
+
+const { title = '핵심 요약', items = [] } = Astro.props;
+---
+
+<aside class="tldr-box" aria-label={title}>
+	<p class="tldr-label">TL;DR · {title}</p>
+	{items.length > 0 ? (
+		<ul>{items.map((item) => <li>{item}</li>)}</ul>
+	) : (
+		<div class="tldr-slot"><slot /></div>
+	)}
+</aside>
+
+<style>
+	.tldr-box {
+		border: 2px solid var(--brick);
+		background: color-mix(in srgb, var(--brick) 7%, var(--paper));
+		padding: var(--s-3);
+		margin: var(--s-3) 0;
+	}
+	.tldr-label {
+		margin: 0 0 var(--s-1);
+		font-size: .78rem;
+		font-weight: 800;
+		letter-spacing: .12em;
+		color: var(--brick);
+		text-transform: uppercase;
+	}
+	.tldr-box ul { margin: 0; padding-left: 1.2rem; }
+	.tldr-box li, .tldr-slot :global(p) { line-height: 1.7; margin: .35rem 0; font-weight: 600; }
+</style>

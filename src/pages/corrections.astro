@@ -1,0 +1,30 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead
+			title={`정정·업데이트 정책 — ${SITE_TITLE}`}
+			description="미국 스토리의 기사 정정, 업데이트, 제보 접수 정책."
+			breadcrumbs={[{ name: '홈', url: '/' }, { name: '정정·업데이트 정책', url: '/corrections' }]}
+		/>
+	</head>
+	<body>
+		<Header />
+		<main><div class="container page">
+			<p class="eyebrow">CORRECTIONS</p>
+			<h1>정정·업데이트 정책</h1>
+			<p class="lede">미국 생활 정보는 법·기관 안내·마감일이 바뀌면 바로 위험해집니다. 미국 스토리는 오류 제보와 공식 업데이트를 확인해 필요한 경우 기사에 정정 또는 업데이트 표시를 남깁니다.</p>
+			<section><h2>정정 기준</h2><ul><li>날짜, 금액, 자격조건, 기관명, 링크, 인용이 틀린 경우 정정합니다.</li><li>정책 변경으로 기존 설명이 오해를 줄 수 있으면 업데이트합니다.</li><li>의견·해석 변경은 본문에 맥락을 덧붙여 독자가 구분할 수 있게 합니다.</li></ul></section>
+			<section><h2>제보 방법</h2><p>오류나 업데이트가 필요한 글은 <a href="mailto:editor@migukstory.com">editor@migukstory.com</a> 으로 기사 URL, 문제 문장, 확인 가능한 출처를 보내주세요.</p></section>
+			<section><h2>표시 방식</h2><p>중요 정정은 기사 상단 또는 하단에 날짜와 함께 표시합니다. 단순 오탈자나 깨진 링크 수정은 별도 고지 없이 반영할 수 있습니다.</p></section>
+		</div></main>
+		<Footer />
+		<style>.page{max-width:760px;padding:var(--s-6) var(--s-3)}.eyebrow{color:var(--brick);font-weight:800;letter-spacing:.16em}h1{font-family:var(--font-display);font-size:clamp(2.3rem,6vw,4rem)}.lede{font-size:var(--text-lg);color:var(--ink-medium);line-height:1.8}li,p{line-height:1.75}a{color:var(--brick)}</style>
+	</body>
+</html>

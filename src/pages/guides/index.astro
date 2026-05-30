@@ -1,0 +1,53 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+import { GUIDE_HUBS } from '../../data/guideHubs';
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead
+			title={`가이드 허브 — ${SITE_TITLE}`}
+			description="이민, 세금, 은퇴, 부동산, 건강보험, 교육, 한미 크로스보더, 미국 정착 첫 90일 가이드 허브."
+			breadcrumbs={[{ name: '홈', url: '/' }, { name: '가이드 허브', url: '/guides' }]}
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="container">
+				<header class="hub-head">
+					<p class="eyebrow">GUIDE HUBS</p>
+					<h1>한인 미국생활<br /><span>문제해결 가이드</span></h1>
+					<p>뉴스보다 오래 검색되는 실전 주제만 모았습니다. 각 허브는 체크리스트, 공식 출처, 관련 글로 계속 확장됩니다.</p>
+				</header>
+				<section class="grid">
+					{GUIDE_HUBS.map((hub) => (
+						<a class="card" href={`/guides/${hub.slug}/`}>
+							<h2>{hub.title}</h2>
+							<p>{hub.deck}</p>
+							<span>허브 열기 →</span>
+						</a>
+					))}
+				</section>
+			</div>
+		</main>
+		<Footer />
+		<style>
+			.hub-head { text-align: center; padding: var(--s-6) 0 var(--s-4); }
+			.eyebrow { color: var(--brick); font-weight: 800; letter-spacing: .16em; font-size: .72rem; }
+			h1 { font-family: var(--font-display); font-size: clamp(2.4rem, 6vw, 4.4rem); line-height: 1.12; margin: 0 0 var(--s-2); }
+			h1 span { color: var(--brick); }
+			.hub-head p { max-width: 44rem; margin: 0 auto; color: var(--ink-medium); line-height: 1.7; }
+			.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--s-3); margin-bottom: var(--s-6); }
+			.card { display: grid; gap: .6rem; border: 1px solid var(--rule); border-top: 4px solid var(--brick); padding: var(--s-3); color: var(--ink); text-decoration: none; background: var(--paper); }
+			.card:hover { transform: translateY(-2px); box-shadow: var(--shadow-soft); }
+			.card h2 { font-family: var(--font-display); margin: 0; }
+			.card p { margin: 0; color: var(--ink-medium); line-height: 1.65; }
+			.card span { color: var(--brick); font-weight: 800; }
+		</style>
+	</body>
+</html>

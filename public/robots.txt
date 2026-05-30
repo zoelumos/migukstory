@@ -43,6 +43,16 @@ Allow: /
 User-agent: Amazonbot
 Allow: /
 
+# Korean search portals
+User-agent: Yeti
+Allow: /
+
+User-agent: Daum
+Allow: /
+
+User-agent: Daumoa
+Allow: /
+
 # Default
 User-agent: *
 Allow: /
@@ -50,3 +60,4 @@ Disallow: /admin
 Disallow: /auth
 
 Sitemap: https://migukstory.com/sitemap-index.xml
+Sitemap: https://migukstory.com/sitemap-news.xml

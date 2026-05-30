@@ -7,7 +7,7 @@ category: 'immigration'
 ageGroup: 'all'
 draft: true
 source: 'Google News — USCIS / Green Card Watch'
-sourceUrl: 'https://news.google.com/rss/articles/CBMipwFBVV95cUxQX2Vrc0twamNnTVAza01HMTJLT0lDN25qMEl0cmNxWERtUG9iRDRQQnk2dUF0cTFXbkVPaHpqRHhZWVg0UDZFOHFVbkVxc25icVhSM2ZBY1hWUktpM1dhdVpNRkJUeUZzWVBuSVo5eUlQbnExc0ZuSGxmaERXajRRNVgzWE9RUG82bFREVWNqTjVoeUt1MTBjTFJLT1NGZ0tPVThQbmJVUQ?oc=5)
+sourceUrl: 'https://news.google.com/rss/articles/CBMipwFBVV95cUxQX2Vrc0twamNnTVAza01HMTJLT0lDN25qMEl0cmNxWERtUG9iRDRQQnk2dUF0cTFXbkVPaHpqRHhZWVg0UDZFOHFVbkVxc25icVhSM2ZBY1hWUktpM1dhdVpNRkJUeUZzWVBuSVo5eUlQbnExc0ZuSGxmaERXajRRNVgzWE9RUG82bFREVWNqTjVoeUt1MTBjTFJLT1NGZ0tPVThQbmJVUQ?oc=5'
 ---
 
 # USCIS, 신분조정(AOS) 심사 강화 메모 발표… 영주권 신청자 영향

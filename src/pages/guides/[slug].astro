@@ -1,0 +1,133 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE, SITE_URL } from '../../consts';
+import { GUIDE_HUBS } from '../../data/guideHubs';
+
+export async function getStaticPaths() {
+	return GUIDE_HUBS.map((hub) => ({ params: { slug: hub.slug }, props: { hub } }));
+}
+
+const { hub } = Astro.props;
+const all = await getCollection('blog', ({ data }) => !data.draft);
+const related = all
+	.filter((post) => !hub.category || post.data.category === hub.category || (post.data.tags || []).some((tag) => hub.queries.some((q) => q.toLowerCase().includes(String(tag).toLowerCase()))))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 12);
+
+const itemListSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'ItemList',
+	name: hub.title,
+	itemListElement: related.map((post, index) => ({
+		'@type': 'ListItem',
+		position: index + 1,
+		url: `${SITE_URL}/blog/${post.id}/`,
+		name: post.data.title,
+	})),
+};
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead
+			title={`${hub.title} — ${SITE_TITLE}`}
+			description={hub.deck}
+			breadcrumbs={[
+				{ name: '홈', url: '/' },
+				{ name: '가이드 허브', url: '/guides/immigration' },
+				{ name: hub.title, url: `/guides/${hub.slug}` },
+			]}
+		/>
+		<script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="container">
+				<header class="guide-head">
+					<p class="eyebrow">SEO GUIDE HUB · 한인 생활 문제해결</p>
+					<h1>{hub.title}</h1>
+					<p class="deck">{hub.deck}</p>
+					<div class="answer-box">
+						<strong>한 줄 답변</strong>
+						<p>{hub.oneSentence}</p>
+					</div>
+				</header>
+
+				<section class="hub-grid" aria-label="가이드 핵심 정보">
+					<article class="panel">
+						<h2>누가 읽어야 하나요?</h2>
+						<ul>{hub.who.map((item) => <li>{item}</li>)}</ul>
+					</article>
+					<article class="panel">
+						<h2>먼저 확인할 체크리스트</h2>
+						<ol>{hub.checklist.map((item) => <li>{item}</li>)}</ol>
+					</article>
+					<article class="panel query-panel">
+						<h2>공략 검색어</h2>
+						<div class="query-cloud">{hub.queries.map((q) => <span>{q}</span>)}</div>
+					</article>
+				</section>
+
+				<section class="rank-shape">
+					<h2>미국 스토리 랭킹 글 작성 기준</h2>
+					<p>이 허브에 연결되는 실전 가이드는 아래 구조를 우선합니다.</p>
+					<ol>
+						<li>상단 한 문장 답변</li>
+						<li>적용 대상</li>
+						<li>단계별 체크리스트</li>
+						<li>필요 서류·날짜·금액·공식 양식</li>
+						<li>한인 독자가 자주 놓치는 예외</li>
+						<li>정부/기관 1차 출처 링크</li>
+						<li>관련 허브와 관련 글 내부링크</li>
+						<li>FAQ와 법률·세무·의료 고지</li>
+					</ol>
+					{hub.disclaimer && <p class="disclaimer">{hub.disclaimer}</p>}
+				</section>
+
+				<section class="related-guides">
+					<h2>관련 최신 글</h2>
+					{related.length === 0 ? (
+						<p>관련 글을 준비 중입니다.</p>
+					) : (
+						<ol class="article-list">
+							{related.map((post) => (
+								<li>
+									<a href={`/blog/${post.id}/`}>
+										<strong>{post.data.title}</strong>
+										<span><FormattedDate date={post.data.pubDate} /> · {post.data.description}</span>
+									</a>
+								</li>
+							))}
+						</ol>
+					)}
+				</section>
+			</div>
+		</main>
+		<Footer />
+		<style>
+			.guide-head { padding: var(--s-6) 0 var(--s-4); text-align: center; border-bottom: 1px solid var(--rule); }
+			.eyebrow { margin: 0 0 var(--s-2); color: var(--brick); font-size: .72rem; font-weight: 800; letter-spacing: .16em; }
+			.guide-head h1 { font-family: var(--font-display); font-size: clamp(2.4rem, 6vw, 4.4rem); line-height: 1.12; margin: 0 0 var(--s-2); }
+			.deck { max-width: 48rem; margin: 0 auto var(--s-3); color: var(--ink-medium); font-size: var(--text-lg); line-height: 1.75; }
+			.answer-box { max-width: 46rem; margin: 0 auto; padding: var(--s-3); border: 2px solid var(--brick); background: color-mix(in srgb, var(--brick) 7%, var(--paper)); text-align: left; }
+			.answer-box strong { color: var(--brick); }
+			.answer-box p { margin: .35rem 0 0; font-size: var(--text-lg); font-weight: 700; }
+			.hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--s-3); margin: var(--s-5) 0; }
+			.panel, .rank-shape, .related-guides { border: 1px solid var(--rule); background: var(--paper); padding: var(--s-3); }
+			.panel h2, .rank-shape h2, .related-guides h2 { font-family: var(--font-display); margin-top: 0; }
+			.panel li, .rank-shape li { margin: .55em 0; line-height: 1.65; }
+			.query-cloud { display: flex; flex-wrap: wrap; gap: .55rem; }
+			.query-cloud span { border: 1px solid var(--rule); border-radius: 999px; padding: .35em .7em; background: var(--paper-soft); font-size: .9rem; }
+			.disclaimer { border-top: 1px solid var(--rule); margin-top: var(--s-3); padding-top: var(--s-2); color: var(--ink-medium); }
+			.article-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--s-2); }
+			.article-list a { display: grid; gap: .35rem; text-decoration: none; color: var(--ink); border-bottom: 1px solid var(--rule); padding-bottom: var(--s-2); }
+			.article-list span { color: var(--ink-medium); line-height: 1.55; }
+		</style>
+	</body>
+</html>

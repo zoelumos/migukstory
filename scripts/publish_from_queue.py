@@ -17,6 +17,8 @@ import re
 from datetime import datetime, timezone
 from pathlib import Path
 
+from validate_markdown_frontmatter import validate_file as validate_frontmatter_file
+
 REPO = Path(__file__).resolve().parent.parent
 QUEUE = REPO / "queue"
 BLOG = REPO / "src" / "content" / "blog"
@@ -107,6 +109,9 @@ def publish_one() -> Path | None:
 
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     content = src.read_text(encoding="utf-8")
+    frontmatter_failures = validate_frontmatter_file(src, strict_publish=True)
+    if frontmatter_failures:
+        raise ValueError("markdown/frontmatter validation failed before publish:\n" + "\n".join(frontmatter_failures))
     validate_publishable(content, src)
     content = update_pub_date(content, today)
     content = mark_published(content)
