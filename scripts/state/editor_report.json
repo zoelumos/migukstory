@@ -1,70 +1,126 @@
 {
-  "generated_at": "2026-05-29T17:11:54.547538+00:00",
+  "generated_at": "2026-05-30T11:11:22.751471+00:00",
   "threshold_promote": 70,
   "threshold_review": 50,
   "counts": {
-    "total": 4,
-    "promoted": 4,
-    "review": 0,
+    "total": 8,
+    "promoted": 7,
+    "review": 1,
     "discard_flag": 0,
     "deferred": 0
   },
   "grades": [
     {
-      "slug": "2026-05-29-commentary-the-republican-assault-on-obamacare-has-created-a-healthcare-bloodbat",
-      "score": 90,
+      "slug": "2026-05-30-clock-s-ticking-tax-deadline-for-american-students-and-workers-abroad-bergen-rec",
+      "score": 62,
       "scores": {
-        "factuality": 17,
-        "source_diversity": 17,
-        "ka_angle": 19,
-        "originality": 18,
-        "structure": 19
+        "factuality": 11,
+        "source_diversity": 9,
+        "ka_angle": 15,
+        "originality": 11,
+        "structure": 16
       },
-      "reasoning": "LA타임스 칼럼을 단순 번역하지 않고 KFF·CBO 분석과 연결해 강화 보조금 만료 시나리오로 맥락을 확장했으며, 자영업자·OPT 청년·60대 부모 세대 등 한인 가구 유형별 위험과 점검표를 구체적으로 풀어낸 점이 강점입니다. 비교표·번호 단계 체크리스트로 시각화 요건도 충족했으나, 칼럼 원문이 Google News 경유 링크라 1차 LA타임스 URL 추적성이 다소 약한 점은 아쉽습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-05-29-commentary-the-republican-assault-on-obamacare-has-created-a-healthcare-bloodbat.md"
+      "reasoning": "한국 체류 유학생·주재원·영주권자에게 해외 거주자 신고 의무가 어떻게 적용되는지 구체적으로 풀어쓴 한인 관점 분석과, 독자 유형별 점검 포인트 비교표가 강점입니다. 다만 출처가 Google News 리다이렉트 링크 하나뿐이고 IRS 공식 페이지나 구체적 마감일·수치가 본문에 명시되지 않아 사실성·출처 신뢰도가 약하며, 마감일이 임박했다는 점만 반복할 뿐 실제 기한과 Form 2555/FBAR 같은 핵심 실무 정보가 빠져 자동 승격에는 미달합니다.",
+      "action": "review",
+      "promoted_to": null
     },
     {
-      "slug": "2026-05-29-property-taxes-rise-across-every-major-metro-adding-to-borrower-affordability-pr",
-      "score": 85,
-      "scores": {
-        "factuality": 15,
-        "source_diversity": 16,
-        "ka_angle": 19,
-        "originality": 17,
-        "structure": 18
-      },
-      "reasoning": "재산세 상승이라는 핵심 주장을 PITI 구조·금리·보험료와 연결해 한인 가정·자영업자·H-1B·은퇴자·유학생 그룹별로 구체적 시사점을 풀어낸 점이 강점이며, 비교표와 6단계 체크리스트로 시각적 구조도 충족합니다. 다만 원문 출처가 Google News 리다이렉트 URL이라 1차 publisher 추적이 약하고, '9개월 만의 최고' 같은 수치가 본문 인용 링크로 직접 묶이지 않은 점은 보완이 필요합니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-05-29-property-taxes-rise-across-every-major-metro-adding-to-borrower-affordability-pr.md"
-    },
-    {
-      "slug": "2026-05-29-us-mortgage-rate-rises-to-nine-month-high-worsening-affordability-again-reuters",
-      "score": 85,
+      "slug": "2026-05-30-fda-issues-draft-guidance-to-cut-unnecessary-animal-testing-for-cancer-drugs",
+      "score": 78,
       "scores": {
         "factuality": 16,
-        "source_diversity": 17,
-        "ka_angle": 18,
-        "originality": 16,
-        "structure": 18
+        "source_diversity": 15,
+        "ka_angle": 16,
+        "originality": 14,
+        "structure": 17
       },
-      "reasoning": "로이터 원문의 '9개월 최고치'와 '구입 여력 재악화'라는 핵심 사실을 정확히 전달하면서, Freddie Mac PMMS와 NAR 구입여력지수 등 신뢰도 높은 공식 통계 출처를 명확한 링크와 함께 인용해 추적 가능성이 우수합니다. 첫 주택 구매자·한인 자영업자·은퇴 다운사이징·렌트 vs 매매 가구로 그룹별 한인 관점을 구체화하고, Markdown 비교표와 4개 그룹별 번호 체크리스트라는 두 가지 시각화 요소를 갖춰 구조와 실용성이 모두 강합니다. 다만 원문에 구체 수치가 부재해 실제 금리 수준이나 월 페이먼트 변동 폭 등 정량 데이터가 약한 점은 한계입니다.",
+      "reasoning": "FDA 공식 발표를 1차 출처로 인용하고 본문 수치·날짜·기관명이 추적 가능하며, 한인 암 환자 가족과 바이오 업계 종사자 관점을 구체적으로 풀어쓴 점이 강점입니다. 비교표를 통해 기존 방식과 초안 방향을 시각적으로 정리해 구조 요건도 충족했습니다. 다만 단일 출처에 의존해 교차 검증이 부족하고, 초안의 구체적 적용 시점이나 의견 수렴 마감 등 실무 정보가 더 보강되면 좋겠습니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-05-29-us-mortgage-rate-rises-to-nine-month-high-worsening-affordability-again-reuters.md"
+      "promoted_to": "queue/2026-05-30-fda-issues-draft-guidance-to-cut-unnecessary-animal-testing-for-cancer-drugs.md"
     },
     {
-      "slug": "2026-05-29-what-we-know-so-far-about-2026-aca-marketplace-enrollment-premiums-and-deductibl",
-      "score": 86,
+      "slug": "2026-05-30-here-s-how-we-re-coping-with-high-gas-prices-according-to-costco-and-walmart",
+      "score": 77,
+      "scores": {
+        "factuality": 15,
+        "source_diversity": 14,
+        "ka_angle": 17,
+        "originality": 14,
+        "structure": 17
+      },
+      "reasoning": "NPR 비즈니스 단일 출처지만 신뢰도 있는 1차급 매체이며 본문 주장(코스트코·월마트 관찰, 정유사 경영진 경고)이 출처와 일치합니다. 한인 자영업자·통근자·은퇴자 가정에 미치는 영향을 구체 지역과 업종까지 짚었고, 비교표와 번호 체크리스트 시각화가 주제에 맞게 들어가 구조 요건도 충족합니다. 다만 구체 가격 수치나 지역별 갤런당 가격 비교 같은 정량 데이터가 부족해 독창성·사실성이 만점에는 못 미칩니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-05-30-here-s-how-we-re-coping-with-high-gas-prices-according-to-costco-and-walmart.md"
+    },
+    {
+      "slug": "2026-05-30-housing-market-won-t-be-affordable-for-at-least-7-years-report-realestatenews-co",
+      "score": 70,
+      "scores": {
+        "factuality": 12,
+        "source_diversity": 10,
+        "ka_angle": 17,
+        "originality": 14,
+        "structure": 17
+      },
+      "reasoning": "한인 가정 그룹별 시나리오와 비교표가 잘 살아 있고 주택/모기지라는 고관심 서비스 저널리즘 주제를 한인 실무 관점으로 잘 풀었습니다. 다만 원문 자체가 Google News 헤드라인 한 줄에 가까워 '7년'이라는 핵심 수치의 보고서 발행 기관·근거·방법론이 본문에 명시되지 않아 사실성과 출처 추적성이 약하고, 출처 섹션도 Google News 리다이렉트 링크 한 건뿐이라 신뢰도 점수를 더 올리기 어려웠습니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-05-30-housing-market-won-t-be-affordable-for-at-least-7-years-report-realestatenews-co.md"
+    },
+    {
+      "slug": "2026-05-30-income-of-foreign-governments-and-of-international-organizations",
+      "score": 85,
       "scores": {
         "factuality": 17,
         "source_diversity": 16,
-        "ka_angle": 18,
+        "ka_angle": 17,
         "originality": 17,
         "structure": 18
       },
-      "reasoning": "KFF·HealthCare.gov 등 신뢰도 높은 1차/반-1차 출처가 정확한 링크와 함께 인용돼 있고, 향상 보조금 일몰 가능성을 자영업·프리랜서·청년 한인 가구의 현금 흐름·추정 소득·디덕터블 리스크로 구체적으로 풀어낸 한인 관점 분석이 강점입니다. 비교표와 6단계 체크리스트 형식의 시각화도 주제에 잘 맞습니다. 다만 원 출처가 Google News 리다이렉트 링크라 추적성이 다소 떨어지고, 보험료 인상폭의 구체 수치 없이 정성적 서술에 머문 점이 약점입니다.",
+      "reasoning": "연방관보·Cornell LII·IRS 공식 페이지 등 신뢰도 높은 1차/반-1차 출처가 정확히 인용돼 있고, §892 적용일 정비라는 다소 기술적인 주제를 한인 은퇴자·자영업자·국제기구 종사자·유학생 가정으로 세분화해 실무 의미를 풀어낸 점이 강점입니다. 비교표와 번호형 체크리스트 등 시각적 구조도 잘 갖춰져 있으며 면책 문구도 명시돼 있어 자동 승격 기준에 부합합니다. 다만 한인 일반 가정에 미치는 직접 효과가 작은 사안임을 더 분명히 했으면 더 좋았을 것입니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-05-29-what-we-know-so-far-about-2026-aca-marketplace-enrollment-premiums-and-deductibl.md"
+      "promoted_to": "queue/2026-05-30-income-of-foreign-governments-and-of-international-organizations.md"
+    },
+    {
+      "slug": "2026-05-30-russia-level-1-exercise-normal-precautions",
+      "score": 78,
+      "scores": {
+        "factuality": 17,
+        "source_diversity": 15,
+        "ka_angle": 16,
+        "originality": 13,
+        "structure": 17
+      },
+      "reasoning": "국무부 공식 페이지를 1차 출처로 정확히 인용했고, 게시된 사실관계(1단계, 게시일)만 보수적으로 전달해 사실성이 안정적입니다. 영주권자 재입국 허가, 유학생 DSO·H-1B 일정 등 한인 신분별 실무 포인트를 분명히 짚었고, 비교표와 4단계 체계 번호 목록 같은 시각화도 주제에 맞게 들어가 있습니다. 다만 원문에 상세 요약이 없어 독창적 분석의 깊이는 제한적이고, 출처가 단일 정부 페이지뿐이라 교차 검증 측면에서 만점은 어렵습니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-05-30-russia-level-1-exercise-normal-precautions.md"
+    },
+    {
+      "slug": "2026-05-30-the-ai-hype-index-ai-gets-booed-in-graduation-season",
+      "score": 75,
+      "scores": {
+        "factuality": 14,
+        "source_diversity": 15,
+        "ka_angle": 16,
+        "originality": 14,
+        "structure": 16
+      },
+      "reasoning": "MIT Technology Review의 AI Hype Index를 1차 출처로 정확히 링크하고, 에릭 슈미트 야유 사건을 한인 유학생·OPT/H-1B·자영업자 관점으로 명시적으로 연결한 점이 강점입니다. 비교표 형태의 시각화가 주제(이전 가정 vs 현실)에 맞게 잘 들어갔고 frontmatter·핵심 요약·출처 섹션 구조도 완전합니다. 다만 출처가 단일 기사이고 야유 사건의 구체적 맥락(현장 영상·다른 매체 교차 보도)이 추가되지 않아 사실성·독창성에서 만점은 어렵습니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-05-30-the-ai-hype-index-ai-gets-booed-in-graduation-season.md"
+    },
+    {
+      "slug": "2026-05-30-this-is-gambling-rising-aca-premiums-push-americans-to-riskier-no-frills-health",
+      "score": 73,
+      "scores": {
+        "factuality": 13,
+        "source_diversity": 12,
+        "ka_angle": 17,
+        "originality": 14,
+        "structure": 17
+      },
+      "reasoning": "ACA 보험료 상승과 저가 플랜 이동이라는 핵심 주제를 한인 자영업자·프리랜서·부양 가정 관점으로 구체화했고, 비교표와 6단계 체크리스트로 시각적 구조도 갖췄습니다. 다만 출처가 Google News 리다이렉트 링크 1건뿐이라 원문 발행사 추적이 어렵고, 본문에서 인용한 'Local News Matters' 매체에 대한 직접 링크가 없어 사실성과 출처 신뢰도가 다소 약합니다. 한인 건강보험 의사결정에 실무적으로 유용한 점을 인정해 자동 승격 기준을 통과시킵니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-05-30-this-is-gambling-rising-aca-premiums-push-americans-to-riskier-no-frills-health.md"
     }
   ]
 }
