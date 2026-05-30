@@ -5,7 +5,7 @@ pubDate: '2026-05-30'
 tags: ['주택시장', '모기지', '내집마련', '한인가정', '부동산']
 category: 'real-estate'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Housing / Mortgage Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMipgFBVV95cUxPeTgyaXBKb0t5bmJPMEs4OHZaMWh0STNLOVJaV1QyTzR4X255UEpaWnBBbm5WSTY3NnEzczRxTVJoYWRUdzJ1dmRDXzRxRXdJYVo4MFhMTlpUSEktOGJpZ3l4X3o1V2RuUTBRcE1kOVlPbFNtdFZIb1dNZ3JJQUs2QklpbGh4dS15aDNQQi03LXdyendLVzlKT1o4ZnhNdnNsa29ERUd3?oc=5'
 ---

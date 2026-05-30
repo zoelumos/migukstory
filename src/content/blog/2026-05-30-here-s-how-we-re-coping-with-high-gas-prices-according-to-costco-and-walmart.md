@@ -5,7 +5,7 @@ pubDate: '2026-05-30'
 tags: ['기름값', '생활비', '소비자', '경제', '한인생활']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/05/29/nx-s1-5838740/how-stressed-are-americans-about-high-gas-prices-fueling'
 ---

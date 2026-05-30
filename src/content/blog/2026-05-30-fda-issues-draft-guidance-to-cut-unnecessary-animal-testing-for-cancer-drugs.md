@@ -5,7 +5,7 @@ pubDate: '2026-05-30'
 tags: ['FDA', '항암제', '동물실험', '건강']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'FDA Press Announcements'
 sourceUrl: 'https://fda.gov/news-events/press-announcements/fda-issues-draft-guidance-cut-unnecessary-animal-testing-cancer-drugs'
 ---

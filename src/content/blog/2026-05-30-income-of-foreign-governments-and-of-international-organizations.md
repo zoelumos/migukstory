@@ -5,7 +5,7 @@ pubDate: '2026-05-30'
 tags: ['IRS', '연방세', '외국정부과세', '국제조세', '한미세제', 'Section892']
 category: 'tax'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Federal Register — Tax Rules (IRS)'
 sourceUrl: 'https://federalregister.gov/documents/2026/06/01/2026-10841/income-of-foreign-governments-and-of-international-organizations'
 ---

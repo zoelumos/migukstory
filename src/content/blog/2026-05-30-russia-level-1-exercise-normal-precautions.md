@@ -5,7 +5,7 @@ pubDate: '2026-05-30'
 tags: ['여행경보', '러시아', '국무부', '해외여행', '한인커뮤니티']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'State Department Travel Advisories'
 sourceUrl: 'https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.rus.html'
 ---

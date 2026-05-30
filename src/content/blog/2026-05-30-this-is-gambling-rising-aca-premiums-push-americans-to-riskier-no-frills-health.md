@@ -5,7 +5,7 @@ pubDate: '2026-05-30'
 tags: ['ACA', '건강보험', '오바마케어', '미주한인', '의료비']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMixAFBVV95cUxQUGFndlpwcm9DN2ZRYXBWNlpuWUF2NEJnSGtJMm9aTzJGdWF4eHpUMkZEd2wzeFNrQTI4eXNuU2I1UFJPcTFES0xzc1pINjh6eVljOERWdVI2dUFzblNLcFhBQjBIZHJJdEJiTmUxcHcwZnh2MWxrSTIxcW9iWV9CR3lsUUJON3RPU2dGNmwxcDlzRUVWbTFiVG83OG15VWhQX0pfN0k5eHhyYjR1MGJTTUtqbU5Vd28tVHZFdWhzM2hJQUNn?oc=5)
 ---

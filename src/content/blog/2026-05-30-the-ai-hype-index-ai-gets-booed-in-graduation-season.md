@@ -5,7 +5,7 @@ pubDate: '2026-05-30'
 tags: ['AI', '졸업식', '에릭슈미트', '취업', '한인유학생']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'MIT Technology Review — AI'
 sourceUrl: 'https://technologyreview.com/2026/05/28/1138053/the-ai-hype-index-ai-gets-booed-in-graduation-season'
 ---
