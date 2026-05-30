@@ -7,7 +7,7 @@ category: 'health'
 ageGroup: 'all'
 draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
-sourceUrl: 'https://news.google.com/rss/articles/CBMixAFBVV95cUxQUGFndlpwcm9DN2ZRYXBWNlpuWUF2NEJnSGtJMm9aTzJGdWF4eHpUMkZEd2wzeFNrQTI4eXNuU2I1UFJPcTFES0xzc1pINjh6eVljOERWdVI2dUFzblNLcFhBQjBIZHJJdEJiTmUxcHcwZnh2MWxrSTIxcW9iWV9CR3lsUUJON3RPU2dGNmwxcDlzRUVWbTFiVG83OG15VWhQX0pfN0k5eHhyYjR1MGJTTUtqbU5Vd28tVHZFdWhzM2hJQUNn?oc=5)
+sourceUrl: 'https://news.google.com/rss/articles/CBMixAFBVV95cUxQUGFndlpwcm9DN2ZRYXBWNlpuWUF2NEJnSGtJMm9aTzJGdWF4eHpUMkZEd2wzeFNrQTI4eXNuU2I1UFJPcTFES0xzc1pINjh6eVljOERWdVI2dUFzblNLcFhBQjBIZHJJdEJiTmUxcHcwZnh2MWxrSTIxcW9iWV9CR3lsUUJON3RPU2dGNmwxcDlzRUVWbTFiVG83OG15VWhQX0pfN0k5eHhyYjR1MGJTTUtqbU5Vd28tVHZFdWhzM2hJQUNn?oc=5'
 ---
 
 # ACA 보험료 급등에 미국인들 "도박 같은" 저가 플랜으로
