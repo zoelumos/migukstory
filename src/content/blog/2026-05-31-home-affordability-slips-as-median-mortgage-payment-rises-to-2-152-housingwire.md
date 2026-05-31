@@ -5,7 +5,7 @@ pubDate: '2026-05-31'
 tags: ['주택구입', '모기지', '한인가정', '주택여력', '부동산']
 category: 'real-estate'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Housing / Mortgage Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMigAFBVV95cUxNakVwSXFzWURiR0JiSzJpQnB2TkZNdWlMcDE4SVlFOVJ1S3AtbGxscGtWUDBSRXpMNHItU0thSjhfNUt0dTBwLWhPbE05MWxjM09NYW1iNFphcWpEb1BFcW5neV9zN1AzSXR3a2RSYUtGRzNHUDV6MFVKSlZYTk83Xw?oc=5'
 ---
