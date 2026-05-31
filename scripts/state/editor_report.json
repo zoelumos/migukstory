@@ -1,126 +1,112 @@
 {
-  "generated_at": "2026-05-30T11:11:22.751471+00:00",
+  "generated_at": "2026-05-31T11:10:46.962064+00:00",
   "threshold_promote": 70,
   "threshold_review": 50,
   "counts": {
-    "total": 8,
-    "promoted": 7,
-    "review": 1,
+    "total": 7,
+    "promoted": 5,
+    "review": 2,
     "discard_flag": 0,
     "deferred": 0
   },
   "grades": [
     {
-      "slug": "2026-05-30-clock-s-ticking-tax-deadline-for-american-students-and-workers-abroad-bergen-rec",
+      "slug": "2026-05-31-beyond-penalties-and-interest-how-kwong-may-affect-missed-tax-refunds-part-iv-ta",
       "score": 62,
       "scores": {
         "factuality": 11,
-        "source_diversity": 9,
-        "ka_angle": 15,
-        "originality": 11,
+        "source_diversity": 7,
+        "ka_angle": 16,
+        "originality": 12,
         "structure": 16
       },
-      "reasoning": "한국 체류 유학생·주재원·영주권자에게 해외 거주자 신고 의무가 어떻게 적용되는지 구체적으로 풀어쓴 한인 관점 분석과, 독자 유형별 점검 포인트 비교표가 강점입니다. 다만 출처가 Google News 리다이렉트 링크 하나뿐이고 IRS 공식 페이지나 구체적 마감일·수치가 본문에 명시되지 않아 사실성·출처 신뢰도가 약하며, 마감일이 임박했다는 점만 반복할 뿐 실제 기한과 Form 2555/FBAR 같은 핵심 실무 정보가 빠져 자동 승격에는 미달합니다.",
+      "reasoning": "한인 자영업자·늦은 신고자·이민 신분 갱신 맥락을 구체적으로 연결한 한인 관점이 강점이고, 비교표와 체크리스트 등 시각화 구조도 갖췄습니다. 다만 출처가 Google News 리다이렉트 링크 1건뿐이고 원 TAS 블로그·IRS 1차 자료가 직접 인용되지 않아 사실성과 출처 신뢰도가 낮으며, 본문도 '추론하지 않는다'고 명시할 만큼 판결의 구체 내용이 부족해 독창적 분석 깊이가 제한적입니다.",
       "action": "review",
       "promoted_to": null
     },
     {
-      "slug": "2026-05-30-fda-issues-draft-guidance-to-cut-unnecessary-animal-testing-for-cancer-drugs",
-      "score": 78,
-      "scores": {
-        "factuality": 16,
-        "source_diversity": 15,
-        "ka_angle": 16,
-        "originality": 14,
-        "structure": 17
-      },
-      "reasoning": "FDA 공식 발표를 1차 출처로 인용하고 본문 수치·날짜·기관명이 추적 가능하며, 한인 암 환자 가족과 바이오 업계 종사자 관점을 구체적으로 풀어쓴 점이 강점입니다. 비교표를 통해 기존 방식과 초안 방향을 시각적으로 정리해 구조 요건도 충족했습니다. 다만 단일 출처에 의존해 교차 검증이 부족하고, 초안의 구체적 적용 시점이나 의견 수렴 마감 등 실무 정보가 더 보강되면 좋겠습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-05-30-fda-issues-draft-guidance-to-cut-unnecessary-animal-testing-for-cancer-drugs.md"
-    },
-    {
-      "slug": "2026-05-30-here-s-how-we-re-coping-with-high-gas-prices-according-to-costco-and-walmart",
-      "score": 77,
-      "scores": {
-        "factuality": 15,
-        "source_diversity": 14,
-        "ka_angle": 17,
-        "originality": 14,
-        "structure": 17
-      },
-      "reasoning": "NPR 비즈니스 단일 출처지만 신뢰도 있는 1차급 매체이며 본문 주장(코스트코·월마트 관찰, 정유사 경영진 경고)이 출처와 일치합니다. 한인 자영업자·통근자·은퇴자 가정에 미치는 영향을 구체 지역과 업종까지 짚었고, 비교표와 번호 체크리스트 시각화가 주제에 맞게 들어가 구조 요건도 충족합니다. 다만 구체 가격 수치나 지역별 갤런당 가격 비교 같은 정량 데이터가 부족해 독창성·사실성이 만점에는 못 미칩니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-05-30-here-s-how-we-re-coping-with-high-gas-prices-according-to-costco-and-walmart.md"
-    },
-    {
-      "slug": "2026-05-30-housing-market-won-t-be-affordable-for-at-least-7-years-report-realestatenews-co",
-      "score": 70,
-      "scores": {
-        "factuality": 12,
-        "source_diversity": 10,
-        "ka_angle": 17,
-        "originality": 14,
-        "structure": 17
-      },
-      "reasoning": "한인 가정 그룹별 시나리오와 비교표가 잘 살아 있고 주택/모기지라는 고관심 서비스 저널리즘 주제를 한인 실무 관점으로 잘 풀었습니다. 다만 원문 자체가 Google News 헤드라인 한 줄에 가까워 '7년'이라는 핵심 수치의 보고서 발행 기관·근거·방법론이 본문에 명시되지 않아 사실성과 출처 추적성이 약하고, 출처 섹션도 Google News 리다이렉트 링크 한 건뿐이라 신뢰도 점수를 더 올리기 어려웠습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-05-30-housing-market-won-t-be-affordable-for-at-least-7-years-report-realestatenews-co.md"
-    },
-    {
-      "slug": "2026-05-30-income-of-foreign-governments-and-of-international-organizations",
-      "score": 85,
-      "scores": {
-        "factuality": 17,
-        "source_diversity": 16,
-        "ka_angle": 17,
-        "originality": 17,
-        "structure": 18
-      },
-      "reasoning": "연방관보·Cornell LII·IRS 공식 페이지 등 신뢰도 높은 1차/반-1차 출처가 정확히 인용돼 있고, §892 적용일 정비라는 다소 기술적인 주제를 한인 은퇴자·자영업자·국제기구 종사자·유학생 가정으로 세분화해 실무 의미를 풀어낸 점이 강점입니다. 비교표와 번호형 체크리스트 등 시각적 구조도 잘 갖춰져 있으며 면책 문구도 명시돼 있어 자동 승격 기준에 부합합니다. 다만 한인 일반 가정에 미치는 직접 효과가 작은 사안임을 더 분명히 했으면 더 좋았을 것입니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-05-30-income-of-foreign-governments-and-of-international-organizations.md"
-    },
-    {
-      "slug": "2026-05-30-russia-level-1-exercise-normal-precautions",
-      "score": 78,
-      "scores": {
-        "factuality": 17,
-        "source_diversity": 15,
-        "ka_angle": 16,
-        "originality": 13,
-        "structure": 17
-      },
-      "reasoning": "국무부 공식 페이지를 1차 출처로 정확히 인용했고, 게시된 사실관계(1단계, 게시일)만 보수적으로 전달해 사실성이 안정적입니다. 영주권자 재입국 허가, 유학생 DSO·H-1B 일정 등 한인 신분별 실무 포인트를 분명히 짚었고, 비교표와 4단계 체계 번호 목록 같은 시각화도 주제에 맞게 들어가 있습니다. 다만 원문에 상세 요약이 없어 독창적 분석의 깊이는 제한적이고, 출처가 단일 정부 페이지뿐이라 교차 검증 측면에서 만점은 어렵습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-05-30-russia-level-1-exercise-normal-precautions.md"
-    },
-    {
-      "slug": "2026-05-30-the-ai-hype-index-ai-gets-booed-in-graduation-season",
+      "slug": "2026-05-31-health-insurers-are-exiting-the-marketplace-again-should-consumers-be-worried-he",
       "score": 75,
       "scores": {
         "factuality": 14,
-        "source_diversity": 15,
-        "ka_angle": 16,
-        "originality": 14,
-        "structure": 16
-      },
-      "reasoning": "MIT Technology Review의 AI Hype Index를 1차 출처로 정확히 링크하고, 에릭 슈미트 야유 사건을 한인 유학생·OPT/H-1B·자영업자 관점으로 명시적으로 연결한 점이 강점입니다. 비교표 형태의 시각화가 주제(이전 가정 vs 현실)에 맞게 잘 들어갔고 frontmatter·핵심 요약·출처 섹션 구조도 완전합니다. 다만 출처가 단일 기사이고 야유 사건의 구체적 맥락(현장 영상·다른 매체 교차 보도)이 추가되지 않아 사실성·독창성에서 만점은 어렵습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-05-30-the-ai-hype-index-ai-gets-booed-in-graduation-season.md"
-    },
-    {
-      "slug": "2026-05-30-this-is-gambling-rising-aca-premiums-push-americans-to-riskier-no-frills-health",
-      "score": 73,
-      "scores": {
-        "factuality": 13,
-        "source_diversity": 12,
+        "source_diversity": 13,
         "ka_angle": 17,
         "originality": 14,
         "structure": 17
       },
-      "reasoning": "ACA 보험료 상승과 저가 플랜 이동이라는 핵심 주제를 한인 자영업자·프리랜서·부양 가정 관점으로 구체화했고, 비교표와 6단계 체크리스트로 시각적 구조도 갖췄습니다. 다만 출처가 Google News 리다이렉트 링크 1건뿐이라 원문 발행사 추적이 어렵고, 본문에서 인용한 'Local News Matters' 매체에 대한 직접 링크가 없어 사실성과 출처 신뢰도가 다소 약합니다. 한인 건강보험 의사결정에 실무적으로 유용한 점을 인정해 자동 승격 기준을 통과시킵니다.",
+      "reasoning": "Healthinsurance.org 보도를 기반으로 한인 자영업자·프리랜서·유학생 관점에서 네트워크·처방약·보조금 점검 포인트를 구체적으로 풀어낸 점이 강점이며, 비교표 형식 시각화도 주제에 잘 맞습니다. 다만 출처 링크가 Google News 리디렉션 URL 하나뿐이라 원문 직접 추적이 어렵고, 어떤 보험사가 어느 주에서 철수하는지 구체적 사실 인용이 부족해 사실성과 출처 신뢰도에서 점수가 제한됩니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-05-30-this-is-gambling-rising-aca-premiums-push-americans-to-riskier-no-frills-health.md"
+      "promoted_to": "queue/2026-05-31-health-insurers-are-exiting-the-marketplace-again-should-consumers-be-worried-he.md"
+    },
+    {
+      "slug": "2026-05-31-mexico-travel-advisory-level-2-exercise-increased-caution",
+      "score": 82,
+      "scores": {
+        "factuality": 17,
+        "source_diversity": 15,
+        "ka_angle": 17,
+        "originality": 15,
+        "structure": 18
+      },
+      "reasoning": "국무부 공식 페이지를 1차 출처로 인용하고 본문의 위험 유형·검문소 대응·지역 편차 등 핵심 사실이 출처와 일치해 추적 가능합니다. 월드컵 관람객, 국경 인접 한인 자영업자, 영주권자 영사 지원 제한 등 한인 실무 관점이 구체적이며, 두 개의 비교표와 체크리스트 형식의 시각화가 주제(여행 안전 절차)에 잘 맞습니다. 다만 단일 출처라 교차 검증이 부족하고 분석이 원문 요약에 가까운 부분이 있어 독창성은 평균 수준입니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-05-31-mexico-travel-advisory-level-2-exercise-increased-caution.md"
+    },
+    {
+      "slug": "2026-05-31-softbank-says-it-will-invest-up-to-75-billion-to-build-french-data-centers",
+      "score": 84,
+      "scores": {
+        "factuality": 17,
+        "source_diversity": 15,
+        "ka_angle": 18,
+        "originality": 16,
+        "structure": 18
+      },
+      "reasoning": "TechCrunch AI 원문 링크가 출처 섹션에 정확히 제시되어 있고, 본문의 750억 유로·5GW 수치와 미공개 항목 구분이 명확합니다. 한인 자녀 진로·401(k)/IRA 투자·자영업 자동화 비용이라는 세 갈래 한인 관점이 구체적으로 풀이되었고, '공개/미공개' 비교표와 4단계 점검 순서로 시각화 요건도 충족합니다. 단일 출처라 교차 검증은 약하지만 1차 보도 매체 인용으로 추적 가능성은 확보되어 자동 승격 기준에 부합합니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-05-31-softbank-says-it-will-invest-up-to-75-billion-to-build-french-data-centers.md"
+    },
+    {
+      "slug": "2026-05-31-the-impact-of-today-s-changing-interest-rates-on-the-housing-market-u-s-bank",
+      "score": 82,
+      "scores": {
+        "factuality": 15,
+        "source_diversity": 15,
+        "ka_angle": 18,
+        "originality": 16,
+        "structure": 18
+      },
+      "reasoning": "U.S. Bank 원문이 구체적 수치를 제시하지 않은 한계를 솔직히 인정하면서 Freddie Mac, FOMC, NAR 등 신뢰도 높은 1차/반-1차 출처를 정확한 링크로 보강했고, 취업비자·자영업자·은퇴자 등 한인 그룹별 영향을 구체적으로 풀어 편집 가치가 높습니다. 6행 비교표와 6단계 체크리스트로 시각화 요건도 충족했으나, 원문 자체가 짧은 해설이어서 본문에 인용 가능한 구체 수치가 부족한 점이 factuality·source_diversity의 상한을 제약합니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-05-31-the-impact-of-today-s-changing-interest-rates-on-the-housing-market-u-s-bank.md"
+    },
+    {
+      "slug": "2026-05-31-uscis-policy-update-new-adjustment-of-status-guidance-impacting-employers-and-in",
+      "score": 68,
+      "scores": {
+        "factuality": 12,
+        "source_diversity": 9,
+        "ka_angle": 17,
+        "originality": 13,
+        "structure": 17
+      },
+      "reasoning": "한인 신분조정(AOS) 신청자·고용주 관점에서 점검 카드 표와 체크리스트로 시각적 구조를 잘 갖췄고, 단계별 한인 그룹 영향을 구체적으로 풀어쓴 점이 강점입니다. 다만 출처가 Google News 리디렉션 링크 1건뿐이고 USCIS 공식 Policy Manual이나 Hinshaw & Culbertson 원문으로 직접 연결되지 않아 사실 추적성이 약하며, 변경 지침의 구체 항목·발효일·정책번호가 명시되지 않아 '확인 필요' 수준의 일반 안내에 머무릅니다.",
+      "action": "review",
+      "promoted_to": null
+    },
+    {
+      "slug": "2026-05-31-video-friday-extreme-omnidirectional-robot",
+      "score": 82,
+      "scores": {
+        "factuality": 17,
+        "source_diversity": 15,
+        "ka_angle": 17,
+        "originality": 15,
+        "structure": 18
+      },
+      "reasoning": "IEEE Spectrum 단일 출처지만 신뢰도 높은 1차 매체이고 본문의 Argus·라보나·Eco-Score·학회 일정이 모두 추적 가능하며, 한인 자영업·자녀 진로·은퇴투자 관점이 구체적으로 연결되어 있습니다. 비교표와 번호 단계 일정 목록 등 시각화 요건도 충족하며 frontmatter와 핵심 요약·출처 섹션이 모두 갖춰져 있어 자동 승격 기준을 통과합니다. 다만 출처가 1곳에 그치고 분석이 시연 소식 수준의 일반론에 머문 부분은 아쉽습니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-05-31-video-friday-extreme-omnidirectional-robot.md"
     }
   ]
 }
