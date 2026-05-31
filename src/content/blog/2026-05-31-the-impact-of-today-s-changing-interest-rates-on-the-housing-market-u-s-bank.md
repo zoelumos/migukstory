@@ -5,7 +5,7 @@ pubDate: '2026-05-31'
 tags: ['금리', '모기지', '주택시장', '한인가정', '부동산', '재융자']
 category: 'real-estate'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Housing / Mortgage Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiuwFBVV95cUxQRHJsYk1sZ2NhUHljVHBWa05DTWFaMERXcGR2UjY1MHFvM3dUTHduSjRCQnlSalJnd21HbTU0cF9taXNQN1prQVVDOGItWXpxdFg0T3NfeDlmeGliS1hjR2RFNUxuY0M3ZEFZQzlSazlPTHloZ0VRb3JYZmVEUTN3UFNvWHRSSk1Ea3hCU24yS3hhYlhmX1hobVk2NExNOW9hMzFNeWlYTkFYUlBfZXdaWlJfWDJpMzh0dGxF?oc=5'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-05-31'
 tags: ['소프트뱅크', '데이터센터', 'AI 인프라', '프랑스', '한인 투자']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'TechCrunch AI'
 sourceUrl: 'https://techcrunch.com/2026/05/30/softbank-says-it-will-invest-up-to-e75-billion-to-build-french-data-centers'
 ---

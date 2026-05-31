@@ -5,7 +5,7 @@ pubDate: '2026-05-31'
 tags: ['로봇', '자동화', '휴머노이드', '한인경제', 'AI']
 category: 'robotics'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'IEEE Spectrum — Robotics'
 sourceUrl: 'https://spectrum.ieee.org/video-friday-rabona-soccer'
 ---

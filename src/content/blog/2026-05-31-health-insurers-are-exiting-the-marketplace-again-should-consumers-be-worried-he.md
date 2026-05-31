@@ -5,7 +5,7 @@ pubDate: '2026-05-31'
 tags: ['건강보험', 'ACA', '마켓플레이스', '한인생활']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMitgFBVV95cUxOYTVEWE1EaGk2dklUOE5ocjRJMVdkdU5pa2FxQl9DMVlHSjRyLXNYZkVNQVhQNmxHRnpzenRjdFB6cUU0MG1XLUhRTWdHWVJvenBjc01IRWQ4ZzZCWTkwRmxRdWdCOG9yRlBzaG1YV05SaldoTUNVcFhLQWFqdFJCaFZEalJKUzRCNndXcU9zcVc3RU5HSnpSYkVDNGJhVjQ2NzgxSzZNS0M5VmZxdGNqS3ExcGVsQQ?oc=5'
 ---

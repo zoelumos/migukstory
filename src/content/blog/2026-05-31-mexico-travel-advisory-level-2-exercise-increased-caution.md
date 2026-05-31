@@ -5,7 +5,7 @@ pubDate: '2026-05-31'
 tags: ['멕시코여행', '여행경보', '국무부', '월드컵2026', '한인커뮤니티']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'State Department Travel Advisories'
 sourceUrl: 'https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mex.html'
 ---
