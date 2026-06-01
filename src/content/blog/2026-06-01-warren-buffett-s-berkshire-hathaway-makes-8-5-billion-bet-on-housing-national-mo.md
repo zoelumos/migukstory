@@ -5,7 +5,7 @@ pubDate: '2026-06-01'
 tags: ['버크셔해서웨이', '주택시장', '모기지', '워런버핏', '부동산투자', '한인부동산']
 category: 'real-estate'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Housing / Mortgage Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMirgFBVV95cUxQSWVneXlWNFJjUFNkOW1oSXQycVR2bW8tTkhBVzZWQXM5eE5GdGswZmNZUGc0TjJIeXdvVndCYzMwRFh2OEJFb29tSWg4allmb0N2VDJESXQ2UE5jYUxHMjZOWUVyN0k2cjEtakE2NEh0b2x0UzBGQ3Rub2x0WDlrS1QwNE1Na1p3TGJpbnhURzhOc3dZNzh0aVdCNE9VUjRMMFZ6cS1XenRLb3ZQVWc?oc=5'
 ---
