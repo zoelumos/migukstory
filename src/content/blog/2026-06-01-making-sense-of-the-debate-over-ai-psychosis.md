@@ -5,7 +5,7 @@ pubDate: '2026-06-01'
 tags: ['AI', '테크CEO', 'AI사이코시스', '한인커뮤니티']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'TechCrunch AI'
 sourceUrl: 'https://techcrunch.com/2026/05/31/making-sense-of-the-debate-over-ai-psychosis'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-06-01'
 tags: ['로봇', '휴머노이드', '이족보행', 'DIY', '공압근육']
 category: 'robotics'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'IEEE Spectrum — Robotics'
 sourceUrl: 'https://spectrum.ieee.org/shadow-walker-biped-humanoid-robot'
 ---

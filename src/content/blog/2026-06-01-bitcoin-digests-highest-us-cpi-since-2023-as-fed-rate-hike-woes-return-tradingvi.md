@@ -5,7 +5,7 @@ pubDate: '2026-06-01'
 tags: ['비트코인', 'CPI', '연준금리', '인플레이션', '미주한인', '모기지', '자영업']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — CPI / Interest Rate Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMizwFBVV95cUxObVFwOHVfVlU0UDBTbDM1TjZQX3Q2d0JaQjNiZEZDRGJqZXBORElueExSZWlINGs1bVRiU2VpbmFjei1GU253Q0lYTzYycDhaWFRxb1NhR2xtaXc2RTdTZnAtSEZlQ1lzdnZ0b0hnTkRqZGZjeVdkSG5BR0NvZVBEZTZYZk8tWlVHRGJOWFdnWGhKZThoTE1MUEhVczRKVFBkdTluUEZZMUhuazBHZGQ5dW5XRFNDQVRVU2JJdTl1dE4zbVVvcmJ4OUp5WHhaZ0E?oc=5'
 ---

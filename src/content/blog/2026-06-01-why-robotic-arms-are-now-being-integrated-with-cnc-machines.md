@@ -5,7 +5,7 @@ pubDate: '2026-06-01'
 tags: ['로봇', 'CNC', '제조업자동화', '미주한인비즈니스', '일자리']
 category: 'robotics'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'The Robot Report'
 sourceUrl: 'https://therobotreport.com/why-robotic-arms-are-now-being-integrated-cnc-machines'
 ---

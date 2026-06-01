@@ -5,7 +5,7 @@ pubDate: '2026-06-01'
 tags: ['데이터센터', '환경', '에린브로코비치', 'AI인프라', '커뮤니티']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'TechCrunch AI'
 sourceUrl: 'https://techcrunch.com/2026/05/31/erin-brockovich-takes-aim-at-data-center-secrecy'
 ---
