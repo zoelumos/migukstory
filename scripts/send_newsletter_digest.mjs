@@ -96,8 +96,20 @@ async function supabaseFetch(endpoint, init = {}) {
   const text = await res.text();
   let body = null;
   try { body = text ? JSON.parse(text) : null; } catch { body = text; }
-  if (!res.ok) throw new Error(`Supabase ${res.status}: ${typeof body === 'string' ? body : JSON.stringify(body)}`);
+  if (!res.ok) {
+    const message = `Supabase ${res.status}: ${typeof body === 'string' ? body : JSON.stringify(body)}`;
+    const error = new Error(message);
+    error.status = res.status;
+    error.body = body;
+    error.code = body?.code || null;
+    throw error;
+  }
   return body;
+}
+
+function isMissingTableError(error, table) {
+  const haystack = `${error?.code || ''} ${error?.message || ''} ${JSON.stringify(error?.body || {})}`;
+  return haystack.includes('PGRST205') && haystack.includes(table);
 }
 
 async function getSubscribers() {
@@ -106,8 +118,16 @@ async function getSubscribers() {
 
 async function alreadySent(email, slug) {
   const q = `newsletter_sends?select=id&email=eq.${encodeURIComponent(email)}&post_slug=eq.${encodeURIComponent(slug)}&limit=1`;
-  const rows = await supabaseFetch(q);
-  return Array.isArray(rows) && rows.length > 0;
+  try {
+    const rows = await supabaseFetch(q);
+    return Array.isArray(rows) && rows.length > 0;
+  } catch (error) {
+    if (isMissingTableError(error, 'newsletter_sends')) {
+      warn('newsletter_sends table missing; skipping duplicate-send ledger check until migration 008 is applied');
+      return false;
+    }
+    throw error;
+  }
 }
 
 async function recordSend(subscriber, post, status, providerId = null, error = null) {
