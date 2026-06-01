@@ -107,3 +107,8 @@ drop trigger if exists on_auth_user_created on auth.users;
 create trigger on_auth_user_created
   after insert on auth.users
   for each row execute function public.handle_new_user();
+
+-- Ensure PostgREST sees the new relation immediately after running through the
+-- Supabase Management API. Without this, admin can show PGRST205 schema-cache
+-- errors for newsletter_sends until the cache refreshes.
+notify pgrst, 'reload schema';
