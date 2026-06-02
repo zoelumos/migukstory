@@ -1,0 +1,52 @@
+name: Supabase comments debug once
+
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Optional post slug, e.g. /blog/foo/'
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+jobs:
+  comments:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Query recent comments
+        env:
+          PUBLIC_SUPABASE_URL: ${{ secrets.PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SLUG: ${{ inputs.slug }}
+        run: |
+          node <<'NODE'
+          const url = (process.env.PUBLIC_SUPABASE_URL || '').replace(/\/$/, '');
+          const key = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+          const slug = (process.env.SLUG || '').trim();
+          if (!url || !key) {
+            console.log('missing PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY');
+            process.exit(1);
+          }
+          const headers = { apikey: key, Authorization: `Bearer ${key}` };
+          const endpoint = slug
+            ? `comments?select=id,post_slug,body,created_at,is_hidden,is_pinned,author_id,profiles!comments_author_id_fkey(display_name)&post_slug=in.(${encodeURIComponent(slug)},${encodeURIComponent(slug.replace(/\/$/, ''))})&order=created_at.desc&limit=20`
+            : 'comments?select=id,post_slug,body,created_at,is_hidden,is_pinned,author_id,profiles!comments_author_id_fkey(display_name)&order=created_at.desc&limit=20';
+          const res = await fetch(`${url}/rest/v1/${endpoint}`, { headers });
+          const text = await res.text();
+          let rows;
+          try { rows = JSON.parse(text); } catch { rows = text; }
+          console.log('HTTP', res.status);
+          if (!res.ok) {
+            console.log(typeof rows === 'string' ? rows : JSON.stringify(rows, null, 2));
+            process.exit(1);
+          }
+          console.log('count', Array.isArray(rows) ? rows.length : 'n/a');
+          for (const r of rows || []) {
+            const body = String(r.body || '').replace(/\s+/g, ' ').slice(0, 120);
+            const author = String(r.author_id || '').slice(0, 8);
+            const name = r.profiles?.display_name || 'NO_PROFILE';
+            console.log(JSON.stringify({ id: r.id, slug: r.post_slug, hidden: r.is_hidden, pinned: r.is_pinned, created_at: r.created_at, author, name, body }));
+          }
+          NODE
