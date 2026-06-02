@@ -1,112 +1,70 @@
 {
-  "generated_at": "2026-06-02T11:10:34.368297+00:00",
+  "generated_at": "2026-06-02T23:08:40.403400+00:00",
   "threshold_promote": 70,
   "threshold_review": 50,
   "counts": {
-    "total": 7,
-    "promoted": 6,
-    "review": 1,
+    "total": 4,
+    "promoted": 4,
+    "review": 0,
     "discard_flag": 0,
     "deferred": 0
   },
   "grades": [
     {
-      "slug": "2026-06-02-cyprus-level-1-exercise-normal-precautions",
-      "score": 80,
+      "slug": "2026-06-02-conservative-group-alleges-6-million-were-fraudulently-enrolled-in-aca-the-washi",
+      "score": 82,
       "scores": {
-        "factuality": 16,
-        "source_diversity": 15,
-        "ka_angle": 17,
-        "originality": 15,
-        "structure": 17
-      },
-      "reasoning": "국무부 여행경보 페이지를 1차 출처로 정확히 인용했고, 미-이란 충돌·드론 피격 등 주요 날짜와 사실이 본문과 출처에서 추적 가능합니다. 한인 여행자·영주권 신청자·STEP 등록 등 구체적 한인 실무 관점이 살아있고, 등급별 비교표가 시각화 요건을 충족합니다. 다만 출처가 단일 1차 출처에 그쳐 교차 검증은 부족하고, 분석 깊이는 정보 정리 수준에 가까워 독창성에서 만점은 어렵습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-02-cyprus-level-1-exercise-normal-precautions.md"
-    },
-    {
-      "slug": "2026-06-02-dhs-says-most-immigrants-won-t-need-to-leave-us-to-obtain-green-card-abc-news-br",
-      "score": 74,
-      "scores": {
-        "factuality": 13,
-        "source_diversity": 11,
-        "ka_angle": 17,
-        "originality": 15,
-        "structure": 18
-      },
-      "reasoning": "DHS 발표의 핵심을 신분조정 vs 영사 절차로 명확히 비교하고, H-1B·F-1·가족초청·노부모 초청 등 한인 실무 케이스에 구체적으로 연결한 점이 강점이며, 비교표와 6단계 번호 목록으로 시각화 요건도 충족합니다. 다만 출처가 Google News 리디렉션 링크 1건뿐이라 DHS/ABC News 원문 직접 링크나 USCIS 공식 페이지 인용이 없어 사실 추적성과 출처 신뢰도가 다소 약합니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-02-dhs-says-most-immigrants-won-t-need-to-leave-us-to-obtain-green-card-abc-news-br.md"
-    },
-    {
-      "slug": "2026-06-02-estate-tax-closing-letter-user-fee-update",
-      "score": 80,
-      "scores": {
-        "factuality": 17,
-        "source_diversity": 15,
-        "ka_angle": 16,
-        "originality": 14,
-        "structure": 18
-      },
-      "reasoning": "Federal Register 1차 출처를 정확히 링크하고 본문의 법적 근거(1952년 독립기관 세출법), 규정안 단계, 적용 대상 등 핵심 사실이 출처와 일치해 사실성이 높습니다. 한인 1세대 자산 상속, 한미 양국 자산 분산 가정 등 한인 관점 분석이 구체적이며, 비교표와 번호 단계 점검 리스트로 시각화 요건도 충족했습니다. 다만 단일 출처 구조이고 인상된 수수료의 구체 금액 등 수치가 빠져 독창성·교차검증 측면에서 만점에는 못 미칩니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-02-estate-tax-closing-letter-user-fee-update.md"
-    },
-    {
-      "slug": "2026-06-02-featured-issue-new-policy-on-adjustment-of-status-as-act-of-extraordinary-discre",
-      "score": 87,
-      "scores": {
-        "factuality": 16,
-        "source_diversity": 15,
-        "ka_angle": 19,
-        "originality": 18,
-        "structure": 19
-      },
-      "reasoning": "AILA가 Featured Issue로 다룬 USCIS 신분조정 정책 변화를 INA §245(a) 재량 조항과 연결해 해석하고, H-1B·F-1·가족초청·IR-5 등 한인 신청 유형별로 구체적 점검 포인트를 풀어낸 점이 강점입니다. 비교표 2개와 번호 체크리스트, 실무 다음 단계까지 시각적 구조가 충실하며 USCIS Policy Manual·INA 조문 등 1차 출처 링크가 함께 제시돼 추적 가능성이 높습니다. 다만 'act of extraordinary discretion' 문구의 정확한 출처 페이지가 AILA 자료실 일반 링크로만 제시돼 직접 인용 추적이 다소 약하고, Google News RSS 링크의 원문 매체 식별이 불분명한 점은 약점입니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-02-featured-issue-new-policy-on-adjustment-of-status-as-act-of-extraordinary-discre.md"
-    },
-    {
-      "slug": "2026-06-02-federal-and-state-tax-filing-deadline-for-mississippi-is-days-away-the-clarion-l",
-      "score": 67,
-      "scores": {
-        "factuality": 12,
-        "source_diversity": 9,
-        "ka_angle": 16,
-        "originality": 13,
-        "structure": 17
-      },
-      "reasoning": "한인 자영업자·비자 신분 납세자 관점을 구체적으로 풀어내고 5단계 점검표를 표로 시각화해 실무성을 살렸습니다. 다만 출처가 Google News 리다이렉트 링크 하나뿐이고 IRS·미시시피 주 세무국 같은 1차 공식 출처가 인용되지 않아 사실성·출처 신뢰도가 약하며, 정작 핵심인 구체적 마감일이 본문에서 명시되지 않아 서비스 저널리즘으로서의 완결성이 떨어집니다.",
-      "action": "review",
-      "promoted_to": null
-    },
-    {
-      "slug": "2026-06-02-how-small-businesses-can-leverage-ai",
-      "score": 80,
-      "scores": {
-        "factuality": 16,
-        "source_diversity": 15,
-        "ka_angle": 17,
-        "originality": 15,
-        "structure": 17
-      },
-      "reasoning": "MIT 테크놀로지 리뷰 원문을 정확히 인용하고 한인 자영업자(세탁소·식당·네일숍 등) 맥락으로 구체화한 분석 문단이 살아 있으며, 업무 영역별 비교표로 시각화 요건도 충족했습니다. 다만 원문이 구체 도구·비용·사례 수치를 제시하지 않은 한계를 본문도 그대로 안고 있어 originality와 factuality는 만점에 미치지 못하며, 출처가 단일 매체뿐이라 교차검증 측면에서 source_diversity도 보수적으로 평가했습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-02-how-small-businesses-can-leverage-ai.md"
-    },
-    {
-      "slug": "2026-06-02-remote-work-not-ai-has-sidelined-recent-college-graduates-research-finds",
-      "score": 83,
-      "scores": {
-        "factuality": 16,
+        "factuality": 15,
         "source_diversity": 15,
         "ka_angle": 18,
         "originality": 16,
         "structure": 18
       },
-      "reasoning": "NPR을 통해 전달된 뉴욕 연은 연구의 핵심 진단(AI가 아닌 재택근무 확산)을 정확히 요약하고, 비교표·체크리스트 등 시각적 구조가 충실해 자동승격 기준을 충족합니다. 한인 2세·OPT·H-1B·소상공인 부모 등 구체적 한인 그룹에 대한 실무적 함의가 명료한 점이 큰 강점이며, 출처가 NPR 단일이지만 주요 언론사 1차 보도이고 링크 추적이 가능합니다. 다만 뉴욕 연은 원문 보고서 직접 링크가 함께 있었다면 신뢰도가 더 높았을 것이라는 점은 약점입니다.",
+      "reasoning": "보수단체 주장임을 명확히 구분하고 GAO·HHS OIG·IRS 등 신뢰할 수 있는 공식 출처를 정확한 링크와 함께 인용했으며, 한인 자영업자·신규 이민자의 보조금 환수 위험이라는 실무적 한인 관점이 분석 문단으로 잘 풀려 있습니다. 비교표와 5단계 점검 체크리스트로 시각화 요건도 충족했고 핵심 요약·출처 섹션 구조가 완전합니다. 다만 워싱턴포스트 원문 직접 링크가 없고 Google News 리다이렉트 URL에만 의존한 점은 출처 추적성 측면에서 아쉬운 부분입니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-02-remote-work-not-ai-has-sidelined-recent-college-graduates-research-finds.md"
+      "promoted_to": "queue/2026-06-02-conservative-group-alleges-6-million-were-fraudulently-enrolled-in-aca-the-washi.md"
+    },
+    {
+      "slug": "2026-06-02-hospitals-are-seeing-more-uninsured-patients-after-aca-subsidy-expirations-healt",
+      "score": 87,
+      "scores": {
+        "factuality": 17,
+        "source_diversity": 18,
+        "ka_angle": 18,
+        "originality": 16,
+        "structure": 18
+      },
+      "reasoning": "ACA 강화 보조금 만료의 영향을 KFF·CBO·HealthCare.gov 등 신뢰도 높은 1차·반-1차 출처로 뒷받침했고, 한인 자영업자·1세대 부모·신분 전환 가구 등 구체적 그룹별 분석과 실무 체크리스트가 잘 살아 있습니다. 비교표와 번호 단계 체크리스트 등 시각화 요건도 충족했으며, 역선택 등 편집자 차원의 종합 해석도 더해져 자동 승격 기준을 충분히 넘습니다. 다만 본문 내 구체 수치 인용이 다소 일반적이라 factuality는 만점이 아닌 수준에서 평가했습니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-02-hospitals-are-seeing-more-uninsured-patients-after-aca-subsidy-expirations-healt.md"
+    },
+    {
+      "slug": "2026-06-02-national-homeownership-month-highlights-challenges-facing-first-time-homebuyers",
+      "score": 87,
+      "scores": {
+        "factuality": 17,
+        "source_diversity": 17,
+        "ka_angle": 18,
+        "originality": 17,
+        "structure": 18
+      },
+      "reasoning": "HUD·CFPB·NAR 등 신뢰도 높은 1차 자원이 정확한 링크와 함께 인용돼 사실성과 출처 신뢰도가 모두 양호하며, 한인 자영업자·1.5세·부모 봉양·신규 영주권자 4그룹으로 세분화한 한인 관점 분석이 단순 번역을 넘어섭니다. 비교표와 7단계 체크리스트 형태의 시각화가 주제(첫 주택구매 점검)와 정확히 맞물려 자동 승격 기준을 충족하지만, 원 보도 본문이 Google News 리다이렉트 링크 1건에 의존해 publisher 교차검증은 약한 편입니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-02-national-homeownership-month-highlights-challenges-facing-first-time-homebuyers.md"
+    },
+    {
+      "slug": "2026-06-02-u-s-citizenship-and-immigration-services-reasserts-discretionary-authority-in-ad",
+      "score": 87,
+      "scores": {
+        "factuality": 17,
+        "source_diversity": 16,
+        "ka_angle": 18,
+        "originality": 17,
+        "structure": 19
+      },
+      "reasoning": "USCIS Policy Manual과 INA §245 등 1차 출처를 정확한 링크와 함께 인용했고, 한인 취업비자·가족초청·결혼이민·부모초청 등 그룹별 실무 영향을 구체적으로 풀어냈습니다. 비교표·체크리스트·D-90 타임라인 등 시각화가 주제에 잘 맞고 편집자 분석 문단도 단순 요약을 넘어선 종합 평가를 제공합니다. 약점은 Google News RSS 링크가 원문 출처로 다소 약하다는 점이지만, 정부 1차 출처가 이를 충분히 보완합니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-02-u-s-citizenship-and-immigration-services-reasserts-discretionary-authority-in-ad.md"
     }
   ]
 }
