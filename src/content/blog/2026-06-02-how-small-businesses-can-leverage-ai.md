@@ -5,7 +5,7 @@ pubDate: '2026-06-02'
 tags: ['AI', '소상공인', 'LLM']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'MIT Technology Review — AI'
 sourceUrl: 'https://technologyreview.com/2026/06/02/1138227/how-small-businesses-can-leverage-ai'
 ---

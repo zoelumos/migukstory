@@ -5,7 +5,7 @@ pubDate: '2026-06-02'
 tags: ['취업', '재택근무', '대졸신입', '뉴욕연은', '한인청년']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/06/01/nx-s1-5843076/remote-work-college-graduates-unemployment-ai'
 ---

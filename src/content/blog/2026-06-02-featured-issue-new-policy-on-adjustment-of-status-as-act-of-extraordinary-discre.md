@@ -5,7 +5,7 @@ pubDate: '2026-06-02'
 tags: ['USCIS', '영주권', '신분조정', 'AILA', '이민정책']
 category: 'immigration'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — USCIS / Green Card Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiswFBVV95cUxQbFZyLTBJSV9tV2NxajNqQVhpWmFyLXRRZVA0LWpQZ2hkNGZ5TUYyZEVXNUJLVENZbUdScWlIOWFFUTd3UWEzWmhEZXdEQ0xrcktYbExHRXAxcno2ZWI1Ty1BR3BUaldLQUMxWjJNM2gzanYwM2pSRDF5d2ZSVXVveWhvMWNOTkZQNlFiM0JnMEtFUzhnTmgwa3VHS19lTnpSWTNINHhnT3dlbkZIb3c1SWYyQQ?oc=5'
 ---

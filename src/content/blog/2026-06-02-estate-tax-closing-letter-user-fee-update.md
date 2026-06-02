@@ -5,7 +5,7 @@ pubDate: '2026-06-02'
 tags: ['IRS', '유산세', '상속', '세금', '연방규정']
 category: 'tax'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Federal Register — Tax Rules (IRS)'
 sourceUrl: 'https://federalregister.gov/documents/2026/06/02/2026-10963/estate-tax-closing-letter-user-fee-update'
 ---

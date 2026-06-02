@@ -5,7 +5,7 @@ pubDate: '2026-06-02'
 tags: ['여행경보', '키프로스', '국무부', '미주한인']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'State Department Travel Advisories'
 sourceUrl: 'https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/cyprus-travel-advisory.html'
 ---
