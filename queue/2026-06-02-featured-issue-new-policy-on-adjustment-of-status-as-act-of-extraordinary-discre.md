@@ -7,7 +7,7 @@ category: 'immigration'
 ageGroup: 'all'
 draft: true
 source: 'Google News — USCIS / Green Card Watch'
-sourceUrl: 'https://news.google.com/rss/articles/CBMiswFBVV95cUxQbFZyLTBJSV9tV2NxajNqQVhpWmFyLXRRZVA0LWpQZ2hkNGZ5TUYyZEVXNUJLVENZbUdScWlIOWFFUTd3UWEzWmhEZXdEQ0xrcktYbExHRXAxcno2ZWI1Ty1BR3BUaldLQUMxWjJNM2gzanYwM2pSRDF5d2ZSVXVveWhvMWNOTkZQNlFiM0JnMEtFUzhnTmgwa3VHS19lTnpSWTNINHhnT3dlbkZIb3c1SWYyQQ?oc=5)
+sourceUrl: 'https://news.google.com/rss/articles/CBMiswFBVV95cUxQbFZyLTBJSV9tV2NxajNqQVhpWmFyLXRRZVA0LWpQZ2hkNGZ5TUYyZEVXNUJLVENZbUdScWlIOWFFUTd3UWEzWmhEZXdEQ0xrcktYbExHRXAxcno2ZWI1Ty1BR3BUaldLQUMxWjJNM2gzanYwM2pSRDF5d2ZSVXVveWhvMWNOTkZQNlFiM0JnMEtFUzhnTmgwa3VHS19lTnpSWTNINHhnT3dlbkZIb3c1SWYyQQ?oc=5'
 ---
 
 # USCIS 신분조정, '특별한 재량' 정책으로 재정의 — 한인 영주권 신청 실무 점검
