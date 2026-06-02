@@ -5,7 +5,7 @@ pubDate: '2026-06-02'
 tags: ['ACA', '건강보험', '의료비', '한인커뮤니티', '메디케이드', '오픈인롤먼트']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMingFBVV95cUxPZnJ1XzE1eXE1Qi1fc3M3MDFudW1VUGI5SzdmNTBxX0pFeXZtb2FKdzA4WlM4cGMtRTZEUHk3ZERncXlMNW5fVkVGNkt3WlhDUWw0RVFvSDBzSnVGZ2NsX3V2N1U5WE5ITEFjQ01WdWtldGhic0lmY0sybFlWSzhsSHVlcnVSUExfZTQ2aHdWRmJVaHBFQzZDcEktVUxVUQ?oc=5'
 ---

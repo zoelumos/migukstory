@@ -5,7 +5,7 @@ pubDate: '2026-06-02'
 tags: ['USCIS', '영주권', '신분조정', '이민', 'AOS', 'I-485', '재량권']
 category: 'immigration'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — USCIS / Green Card Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMif0FVX3lxTE1lNFNYMmo0OFBXUUs0NXhITVNRelpNdlgzblBPUjA5V09xUGFiZlowbFVKcHBuZXA4TW9WcFNWMDZlRVVsU0dwNjBwam5CWU9mWXFMZlZDaVBFMGR2MzEwYWF2OWc0NUh5bEY5RjZGcWM0T0x0dEIwUzFxbmhBeE0?oc=5'
 ---

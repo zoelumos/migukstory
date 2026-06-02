@@ -5,7 +5,7 @@ pubDate: '2026-06-02'
 tags: ['주택구매', '모기지', '첫집마련', 'FHA', '다운페이먼트']
 category: 'real-estate'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Housing / Mortgage Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiwwFBVV95cUxPM0taMTdTUnlYVkJqN2thR1RjWXVjZWhldTdnYTk0S2duU3NIMDJ2THVFbldHU1hjY1daNHdPQ0pNcmhKazdlNUIzMHhHbUVNTm5qZkJDMGdMdGlmY2NUTmU1MXhVWG5vMWZ0bGxmTkpENHJUMmFFVkVoUm04V3FMUU1lb1NLLWc2TURmekYtcGJIRHBsMzdhMllieTgzQUJHNU14M0M3WHhUb0VtZmdXMjVxWWh4aWtsQWFCV0ZOUnI5ZjQ?oc=5'
 ---

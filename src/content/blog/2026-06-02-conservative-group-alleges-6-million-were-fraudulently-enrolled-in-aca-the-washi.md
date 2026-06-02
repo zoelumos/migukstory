@@ -5,7 +5,7 @@ pubDate: '2026-06-02'
 tags: ['ACA', '오바마케어', '건강보험', '한인커뮤니티', '의료', '보조금', 'PTC']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiuwFBVV95cUxPUVUzM0t1X3FJV3c4ejVIaWNRVS1DQngyb0dtMjRYN2xEaURzMGc4RDR2LU5ycFJIb2Q0NXk1VnZsdzZfdktMSVRGSFlaV3BHb3pkS2MtLXBhVmlRdk5DNkRIaWdmVEpkRlJLa0hzNXVmUjNBRDJ2cm5rZUNmb0JrbjZVZXhpQlhaXy0xa214c2c0SDBUUUJTSUptZ1c1V3RqS25EeFN5N2Z0dFhlNEI5OEt0YzBOTzNxTFFV?oc=5'
 ---
