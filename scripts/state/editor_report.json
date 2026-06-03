@@ -1,112 +1,42 @@
 {
-  "generated_at": "2026-06-03T11:10:17.178568+00:00",
+  "generated_at": "2026-06-03T23:05:07.085834+00:00",
   "threshold_promote": 70,
   "threshold_review": 50,
   "counts": {
-    "total": 7,
-    "promoted": 6,
-    "review": 1,
+    "total": 2,
+    "promoted": 2,
+    "review": 0,
     "discard_flag": 0,
     "deferred": 0
   },
   "grades": [
     {
-      "slug": "2026-06-03-2026-robotics-summit-expo-recap",
-      "score": 59,
+      "slug": "2026-06-03-oppose-uscis-changes-to-green-card-application-process-5-calls",
+      "score": 81,
       "scores": {
         "factuality": 14,
-        "source_diversity": 13,
-        "ka_angle": 11,
-        "originality": 8,
-        "structure": 13
-      },
-      "reasoning": "The Robot Report 결산 팟캐스트라는 단일 사실에 충실해 허위 구체화를 피한 점과 비교표가 포함된 점은 강점입니다. 그러나 원문이 팟캐스트 결산 자체에 한정돼 발표·기업·수치 등 구체 정보가 없고, 한인 관점도 일반론(자영업·진로) 수준에 머물러 독창성과 실무성이 부족합니다. 시각화도 행사 메타데이터 정리에 그쳐 자동화 도입 단계나 직군별 영향 비교 같은 의사결정용 표가 없으므로 자동승격 기준에는 미달합니다.",
-      "action": "review",
-      "promoted_to": null
-    },
-    {
-      "slug": "2026-06-03-cdc-highlights-adverse-outcomes-linked-to-travel-related-cosmetic-procedures",
-      "score": 88,
-      "scores": {
-        "factuality": 16,
-        "source_diversity": 17,
-        "ka_angle": 19,
-        "originality": 17,
-        "structure": 19
-      },
-      "reasoning": "CDC 공식 경고와 Medicare 해외보장 안내 등 신뢰도 높은 1차/반-1차 출처를 정확한 링크로 인용했고, 유학생·H-1B·영주권자·자영업자·은퇴자별 한인 실무 관점이 매우 구체적으로 풀려 있어 한인 앵글과 독창성이 강합니다. 시술 전·중·후 체크리스트 비교표와 시점별 타임라인이 결합돼 시각화 요구도 충족하며, frontmatter와 핵심 요약·출처 섹션 구조도 완비되어 있습니다. 다만 CDC 6월 2일 공지의 구체적 사례 수치·환자 데이터 등 1차 자료 인용은 다소 일반론에 머물러 사실성에서 만점은 어렵습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-03-cdc-highlights-adverse-outcomes-linked-to-travel-related-cosmetic-procedures.md"
-    },
-    {
-      "slug": "2026-06-03-fda-issues-draft-guidance-to-help-accelerate-cell-and-gene-therapies-for-patient",
-      "score": 87,
-      "scores": {
-        "factuality": 17,
-        "source_diversity": 16,
+        "source_diversity": 15,
         "ka_angle": 18,
-        "originality": 17,
-        "structure": 19
-      },
-      "reasoning": "FDA 공식 발표문과 ClinicalTrials.gov 등 신뢰도 높은 1차 출처가 정확히 인용됐고, 초안 단계임을 명확히 구분해 과장 없이 다뤘습니다. 희귀질환 자녀·암 환자 부모·소상공인 보험 가입자 등 한인 그룹별 실무 영향과 체크리스트, 비교표가 잘 구성돼 있어 시각화·구조 기준도 충족합니다. 다만 단일 출처 구조이고 보험 커버리지 부분은 일반론에 머물러 source_diversity와 factuality에서 소폭 감점했습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-03-fda-issues-draft-guidance-to-help-accelerate-cell-and-gene-therapies-for-patient.md"
-    },
-    {
-      "slug": "2026-06-03-guidance-on-tax-exempt-refunding-bonds-hearing",
-      "score": 78,
-      "scores": {
-        "factuality": 16,
-        "source_diversity": 15,
-        "ka_angle": 16,
-        "originality": 14,
-        "structure": 17
-      },
-      "reasoning": "Federal Register 공식 문서를 1차 출처로 정확히 인용했고, 본문의 리베이트·이전된 수익금·정의 손질 등 주요 항목이 출처 링크로 추적 가능합니다. 한인 학군 채권, 은퇴자 지방채 투자, 한인 비영리/교회 시설 자금 조달 등 구체적 한인 그룹과 명확히 연결한 분석 문단이 살아있고, 「한눈에 보는 변화」 비교표로 시각화 요건도 충족했습니다. 다만 출처가 연방관보 1건으로 교차 검증이 부족하고, 개정안 단계라는 한계로 독창적 심층 분석 폭은 제한적입니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-03-guidance-on-tax-exempt-refunding-bonds-hearing.md"
-    },
-    {
-      "slug": "2026-06-03-petal-surgical-adds-more-funding-for-incisionless-surgical-robot",
-      "score": 75,
-      "scores": {
-        "factuality": 15,
-        "source_diversity": 14,
-        "ka_angle": 16,
-        "originality": 13,
-        "structure": 17
-      },
-      "reasoning": "The Robot Report 원문에 근거해 회사 주장과 미공개 사항(투자 규모·임상 일정·FDA)을 명확히 구분했고, 비교표를 통해 개복·MIS·무절개 방식을 한인 가계 관점까지 정리한 점이 강점입니다. 또한 영주권자·자영업자·의료 종사 한인·메디케어 부모 세대로 한인 앵글을 구체화해 단순 번역을 넘어선 분석이 있습니다. 다만 단일 출처라 교차 검증이 없고 투자 규모 등 핵심 수치가 빠져 사실성 점수는 보수적으로 평가했습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-03-petal-surgical-adds-more-funding-for-incisionless-surgical-robot.md"
-    },
-    {
-      "slug": "2026-06-03-rehumanizing-global-health-care-with-agentic-ai",
-      "score": 78,
-      "scores": {
-        "factuality": 15,
-        "source_diversity": 15,
-        "ka_angle": 17,
-        "originality": 14,
-        "structure": 17
-      },
-      "reasoning": "MIT Technology Review 단일 출처지만 신뢰도 높은 1차 매체로 링크가 정확히 연결되고, 본문 수치·인용도 출처 범위를 넘지 않습니다. 한인 가정·은퇴자·자영업자·학부모 관점이 구체적으로 풀려 있고 비교표와 체크리스트 등 시각화 요건도 충족합니다. 다만 발췌 범위 한계로 구체적 도입 사례·기술 사양이 부족해 독창성과 사실성 깊이가 다소 얕은 점이 약점입니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-03-rehumanizing-global-health-care-with-agentic-ai.md"
-    },
-    {
-      "slug": "2026-06-03-uber-caps-employee-ai-spending-after-blowing-through-budget-in-4-months",
-      "score": 77,
-      "scores": {
-        "factuality": 15,
-        "source_diversity": 15,
-        "ka_angle": 16,
-        "originality": 13,
+        "originality": 16,
         "structure": 18
       },
-      "reasoning": "TechCrunch라는 신뢰할 만한 1차 출처가 정확한 링크와 함께 인용돼 있고, 비교표와 번호 단계 목록 등 시각화 요소가 잘 갖춰져 있습니다. 한인 직장인·자영업자 관점에서 AI 비용 통제라는 구체적 실무 함의를 제시한 점이 강점이지만, Uber가 도입한 상한액·정책 세부 등 구체 수치가 부족해 분석의 깊이가 다소 얕은 편입니다.",
+      "reasoning": "원문 캠페인의 구체적 변경 조항·시행일이 명시되지 않은 한계를 본문에서 솔직히 인정하고, USCIS·5 Calls 공식 링크로 추적 가능성을 확보한 점이 강점입니다. EB·FB·I-485·N-400 등 한인 신청자 그룹별 영향을 구체적으로 분석하고, 비교표와 7단계 체크리스트로 시각화 요건도 충족했습니다. 다만 원문 자체가 짧아 신규 정책 세부사항을 검증할 1차 자료가 부족한 점은 사실성 측면에서 감점 요인입니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-03-uber-caps-employee-ai-spending-after-blowing-through-budget-in-4-months.md"
+      "promoted_to": "queue/2026-06-03-oppose-uscis-changes-to-green-card-application-process-5-calls.md"
+    },
+    {
+      "slug": "2026-06-03-the-trump-administration-stopped-processing-certain-green-card-applications-our",
+      "score": 83,
+      "scores": {
+        "factuality": 16,
+        "source_diversity": 15,
+        "ka_angle": 18,
+        "originality": 16,
+        "structure": 18
+      },
+      "reasoning": "원문에서 단정할 수 없는 수치·날짜는 보수적으로 처리하고 AIC·USCIS 공식 채널을 명확히 링크해 사실성과 출처 신뢰도가 안정적이며, I-130/I-140/I-485/I-589 등 폼별·한인 그룹별 영향과 자가 점검 체크리스트로 한인 실무성과 독창성이 살아 있습니다. 비교표와 번호 단계 목록 등 시각화 요소가 충실해 구조 점수도 높지만, FOIA로 드러난 구체적 수치·범주가 본문에 직접 인용되지 않아 사실성 만점에는 못 미칩니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-03-the-trump-administration-stopped-processing-certain-green-card-applications-our.md"
     }
   ]
 }

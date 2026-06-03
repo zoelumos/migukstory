@@ -105,8 +105,49 @@ jobs:
           git remote set-url origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
           # Checkout is intentionally detached to avoid intermittent checkout-token
           # failures, so push the current commit explicitly back to main.
-          git push origin HEAD:main
-          echo "published=true" >> "$GITHUB_OUTPUT"
+          #
+          # A sibling Daily-post run (push trigger racing with a workflow_dispatch,
+          # or two rapid pushes to queue/**) can advance origin/main during this
+          # run and cause our push to be rejected as non-fast-forward. Rebase
+          # onto the new origin/main and retry. If the sibling already published
+          # the same queue files, the rebase leaves no commits ahead of main and
+          # this run becomes a no-op (downstream notify/deploy steps are
+          # skipped, since the sibling already ran them).
+          PUBLISHED_RESULT=""
+          push_with_retry() {
+            local attempt
+            for attempt in 1 2 3; do
+              if git push origin HEAD:main; then
+                PUBLISHED_RESULT="true"
+                return 0
+              fi
+              echo "Push attempt ${attempt} rejected; fetching origin/main and rebasing..."
+              git fetch origin main || return 1
+              if ! git rebase origin/main; then
+                echo "Rebase had conflicts; aborting and checking for sibling completion."
+                git rebase --abort 2>/dev/null || true
+                if git diff --quiet origin/main -- src/content/blog queue; then
+                  echo "Sibling run already published these files; treating as no-op."
+                  PUBLISHED_RESULT="false"
+                  return 0
+                fi
+                return 1
+              fi
+              if [ "$(git rev-list --count origin/main..HEAD)" = "0" ]; then
+                echo "Rebase left no commits ahead of origin/main; sibling already merged our publish."
+                PUBLISHED_RESULT="false"
+                return 0
+              fi
+              sleep $((attempt * 2))
+            done
+            echo "Push still failing after retries."
+            return 1
+          }
+          if push_with_retry; then
+            echo "published=${PUBLISHED_RESULT}" >> "$GITHUB_OUTPUT"
+          else
+            exit 1
+          fi
 
       - name: Notify search engines (IndexNow + Google Indexing API)
         # Pings indexing APIs for the just-published blog URL(s) so a new post
