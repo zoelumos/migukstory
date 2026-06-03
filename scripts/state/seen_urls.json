@@ -20,6 +20,12 @@
       "title": "FDA Issues Draft Guidance to Cut Unnecessary Animal Testing for Cancer Drugs",
       "draft": "drafts/2026-05-30-fda-issues-draft-guidance-to-cut-unnecessary-animal-testing-for-cancer-drugs.md"
     },
+    "https://fda.gov/news-events/press-announcements/fda-issues-draft-guidance-help-accelerate-cell-and-gene-therapies-patients": {
+      "first_seen": "2026-06-03",
+      "source": "FDA Press Announcements",
+      "title": "FDA Issues Draft Guidance to Help Accelerate Cell and Gene Therapies for Patients",
+      "draft": "drafts/2026-06-03-fda-issues-draft-guidance-to-help-accelerate-cell-and-gene-therapies-for-patient.md"
+    },
     "https://fda.gov/news-events/press-announcements/fda-warns-retailers-selling-illegal-tobacco-products-look-everyday-products": {
       "first_seen": "2026-05-26",
       "source": "FDA Press Announcements",
@@ -61,6 +67,12 @@
       "source": "Federal Register — Tax Rules (IRS)",
       "title": "Estate Tax Closing Letter User Fee Update",
       "draft": "drafts/2026-06-02-estate-tax-closing-letter-user-fee-update.md"
+    },
+    "https://federalregister.gov/documents/2026/06/03/2026-11102/guidance-on-tax-exempt-refunding-bonds-hearing": {
+      "first_seen": "2026-06-03",
+      "source": "Federal Register — Tax Rules (IRS)",
+      "title": "Guidance on Tax-Exempt Refunding Bonds; Hearing",
+      "draft": "drafts/2026-06-03-guidance-on-tax-exempt-refunding-bonds-hearing.md"
     },
     "https://federalreserve.gov/newsevents/pressreleases/monetary20260414a.htm": {
       "first_seen": "2026-05-20",
@@ -578,6 +590,12 @@
       "title": "Making sense of the debate over AI psychosis",
       "draft": "drafts/2026-06-01-making-sense-of-the-debate-over-ai-psychosis.md"
     },
+    "https://techcrunch.com/2026/06/02/uber-caps-employee-ai-spending-after-blowing-through-budget-in-four-months": {
+      "first_seen": "2026-06-03",
+      "source": "TechCrunch AI",
+      "title": "Uber caps employee AI spending after blowing through budget in 4 months",
+      "draft": "drafts/2026-06-03-uber-caps-employee-ai-spending-after-blowing-through-budget-in-4-months.md"
+    },
     "https://technologyreview.com/2026/05/21/1137756/roundtables-can-ai-learn-to-understand-the-world": {
       "first_seen": "2026-05-23",
       "source": "MIT Technology Review — AI",
@@ -620,11 +638,23 @@
       "title": "How the Pope’s Magnifica Humanitas offers a template for individuals to meet the AI moment",
       "draft": "drafts/2026-05-29-how-the-pope-s-magnifica-humanitas-offers-a-template-for-individuals-to-meet-the.md"
     },
+    "https://technologyreview.com/2026/06/02/1137827/rehumanizing-global-health-care-with-agentic-ai": {
+      "first_seen": "2026-06-03",
+      "source": "MIT Technology Review — AI",
+      "title": "Rehumanizing global health care with agentic AI",
+      "draft": "drafts/2026-06-03-rehumanizing-global-health-care-with-agentic-ai.md"
+    },
     "https://technologyreview.com/2026/06/02/1138227/how-small-businesses-can-leverage-ai": {
       "first_seen": "2026-06-02",
       "source": "MIT Technology Review — AI",
       "title": "How small businesses can leverage AI",
       "draft": "drafts/2026-06-02-how-small-businesses-can-leverage-ai.md"
+    },
+    "https://therobotreport.com/2026-robotics-summit-expo-recap": {
+      "first_seen": "2026-06-03",
+      "source": "The Robot Report",
+      "title": "2026 Robotics Summit & Expo Recap",
+      "draft": "drafts/2026-06-03-2026-robotics-summit-expo-recap.md"
     },
     "https://therobotreport.com/exploring-plc-and-robot-integration-with-yrg-robotics-chris-elston": {
       "first_seen": "2026-05-23",
@@ -649,6 +679,12 @@
       "source": "The Robot Report",
       "title": "How humanoids learn to read the room",
       "draft": "drafts/2026-05-27-how-humanoids-learn-to-read-the-room.md"
+    },
+    "https://therobotreport.com/petal-surgical-adds-more-funding-for-incisionless-surgical-robot": {
+      "first_seen": "2026-06-03",
+      "source": "The Robot Report",
+      "title": "Petal Surgical adds more funding for incisionless surgical robot",
+      "draft": "drafts/2026-06-03-petal-surgical-adds-more-funding-for-incisionless-surgical-robot.md"
     },
     "https://therobotreport.com/sortera-uses-physical-ai-to-double-capacity-in-a-tennessee-sorting-facility": {
       "first_seen": "2026-05-25",
@@ -715,6 +751,12 @@
       "source": "CDC Newsroom",
       "title": "Alert Update: Growing number of Salmonella illnesses and outbreaks linked to moringa leaf products",
       "draft": "drafts/2026-05-28-alert-update-growing-number-of-salmonella-illnesses-and-outbreaks-linked-to-mori.md"
+    },
+    "https://tools.cdc.gov/api/embed/downloader/download.asp?c=765689&m=132608": {
+      "first_seen": "2026-06-03",
+      "source": "CDC Newsroom",
+      "title": "CDC Highlights Adverse Outcomes Linked to Travel-Related Cosmetic Procedures",
+      "draft": "drafts/2026-06-03-cdc-highlights-adverse-outcomes-linked-to-travel-related-cosmetic-procedures.md"
     },
     "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin/2026/visa-bulletin-for-may-2026.html": {
       "first_seen": "2026-05-18",
