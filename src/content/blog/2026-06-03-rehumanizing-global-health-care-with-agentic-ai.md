@@ -5,7 +5,7 @@ pubDate: '2026-06-03'
 tags: ['에이전트AI', '글로벌의료', '의료인력난']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'MIT Technology Review — AI'
 sourceUrl: 'https://technologyreview.com/2026/06/02/1137827/rehumanizing-global-health-care-with-agentic-ai'
 ---

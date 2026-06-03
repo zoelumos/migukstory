@@ -5,7 +5,7 @@ pubDate: '2026-06-03'
 tags: ['CDC', '의료관광', '성형시술', '한인건강', '감염예방']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'CDC Newsroom'
 sourceUrl: 'https://tools.cdc.gov/api/embed/downloader/download.asp?c=765689&m=132608'
 ---

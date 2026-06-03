@@ -5,7 +5,7 @@ pubDate: '2026-06-03'
 tags: ['IRS', '면세채권', '재무부', '세법개정', '지방채']
 category: 'tax'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Federal Register — Tax Rules (IRS)'
 sourceUrl: 'https://federalregister.gov/documents/2026/06/03/2026-11102/guidance-on-tax-exempt-refunding-bonds-hearing'
 ---

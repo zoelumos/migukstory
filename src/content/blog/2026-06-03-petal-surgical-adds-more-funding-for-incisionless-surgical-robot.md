@@ -5,7 +5,7 @@ pubDate: '2026-06-03'
 tags: ['수술로봇', '의료기술', 'Petal Surgical']
 category: 'robotics'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'The Robot Report'
 sourceUrl: 'https://therobotreport.com/petal-surgical-adds-more-funding-for-incisionless-surgical-robot'
 ---

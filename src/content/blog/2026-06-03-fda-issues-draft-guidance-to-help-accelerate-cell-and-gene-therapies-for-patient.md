@@ -5,7 +5,7 @@ pubDate: '2026-06-03'
 tags: ['FDA', '유전자치료', '세포치료', '건강', '보험']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'FDA Press Announcements'
 sourceUrl: 'https://fda.gov/news-events/press-announcements/fda-issues-draft-guidance-help-accelerate-cell-and-gene-therapies-patients'
 ---

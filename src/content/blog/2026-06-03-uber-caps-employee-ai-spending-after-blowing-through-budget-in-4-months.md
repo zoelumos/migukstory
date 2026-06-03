@@ -5,7 +5,7 @@ pubDate: '2026-06-03'
 tags: ['Uber', 'AI 예산', '직장 AI', '생성형 AI', '비용 관리']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'TechCrunch AI'
 sourceUrl: 'https://techcrunch.com/2026/06/02/uber-caps-employee-ai-spending-after-blowing-through-budget-in-four-months'
 ---
