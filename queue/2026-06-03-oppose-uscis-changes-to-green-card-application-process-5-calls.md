@@ -57,6 +57,14 @@ sourceUrl: 'https://news.google.com/rss/articles/CBMiW0FVX3lxTE4tV2QybDE4bEVYYXV
 6. **한국 측 서류 사전 준비**: 가족관계·납세·학력 증빙 등 한국에서 발급받아 번역·아포스티유가 필요한 서류는 미리 갱신해 둡니다.
 7. **시민권자 한인의 시민 행동(선택)**: 시민권자 한인은 5 Calls 등 플랫폼을 통해 본인 지역 의원실에 의견을 전달할 수 있습니다. 영주권자·비시민권자는 정치 활동 제약을 고려해 한인단체·변호사를 통한 정보 모니터링에 집중하는 것이 안전합니다.
 
+## 핵심 요약
+
+- 시민참여 플랫폼 5 Calls가 USCIS 영주권 신청 절차 변경에 반대하는 의원 전화 캠페인을 시작했습니다.
+- 원문에는 변경의 구체적 조항과 시행일이 명시돼 있지 않지만, 시민단체가 캠페인을 시작했다는 사실 자체가 행정 절차 변경 추진 신호로 읽힙니다.
+- 영향 가능 그룹: 취업비자 후 EB 진행 한인, F-1/OPT 출신 I-485 대기자, 가족 초청(FB) 진행 가정, EB-1C/EB-5 자영업자, N-400 시민권 신청 대기 영주권자.
+- 행정 절차 변경은 이미 접수된 케이스에도 적용될 수 있으므로, myUSCIS 케이스 상태 확인과 서류 디지털 백업이 우선 대응입니다.
+- 시민권자 한인은 5 Calls 등으로 의원실 의견 전달이 가능하지만, 영주권자·비시민권자는 정치 활동 제약을 고려해 한인단체·변호사를 통한 모니터링에 집중하는 것이 안전합니다.
+
 ## 출처 (Sources)
 
 - [Google News — USCIS / Green Card Watch (원문)](https://news.google.com/rss/articles/CBMiW0FVX3lxTE4tV2QybDE4bEVYYXV3eF94LWM2M2lGcF9qS1RKbXllWk1PbUE5RzFfYk1WZy03ZGk1YVFxUVpFZEVUcWs1ZW9qT2xaMko2ZEY1T3VncjRnTDJKa2c?oc=5)
