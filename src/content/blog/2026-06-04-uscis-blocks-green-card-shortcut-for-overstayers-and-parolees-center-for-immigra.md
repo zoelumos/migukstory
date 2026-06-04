@@ -5,7 +5,7 @@ pubDate: '2026-06-04'
 tags: ['USCIS', '영주권', '이민정책', '한인이민', 'parole', '신분조정']
 category: 'immigration'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — USCIS / Green Card Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiiAFBVV95cUxPTUVsSGNCQkc3S2xOdXhsT284ekc2dzUtVDBCdlJRdnJ1TXZXUFV3eEZ0RTJTSE9LdkhaMFlQeU5MZTItTzRwMTdHOUxsc3ZZd3FDdDRNZk5XS3J1c3JFdnV5TUVVblpxU3V5QndPN2hCVUVsUG1mU2d4WkJQa05iVG1FTTk4Nmog4?oc=5'
 ---

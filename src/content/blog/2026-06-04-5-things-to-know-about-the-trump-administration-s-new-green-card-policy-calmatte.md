@@ -5,7 +5,7 @@ pubDate: '2026-06-04'
 tags: ['그린카드', '트럼프이민정책', '영주권', 'USCIS', '한인이민']
 category: 'immigration'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — USCIS / Green Card Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMickFVX3lxTE54VUZUczZfMmtQdjVfZEtUZ2pEZDJ6a1ZCTnI4S3pBWTBhYTZOWnROUVUzYkJBejdPeDhubDJYSjlnRkNrUC1jdDBZOV85YWhLclFESDRZaEVIT3JZeHJGcGMtRzZaYjRZQm5WbjhBLXRHZw?oc=5'
 ---

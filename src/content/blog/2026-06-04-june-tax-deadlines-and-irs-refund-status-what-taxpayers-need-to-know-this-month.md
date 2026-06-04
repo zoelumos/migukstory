@@ -5,7 +5,7 @@ pubDate: '2026-06-04'
 tags: ['IRS', '세금마감일', '환급조회', '한인납세자', '6월세무', '추정세', '해외거주자']
 category: 'tax'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — IRS / Tax Guidance Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMifEFVX3lxTE55VjJWdG5zYk5DcXRFYnAwdjMySlJaQWpxWk5HenJ0NzAtRWxGeWNkREUwcGxacmhWUkkyZTlTdWRCSU1DY056RVh1Z3VyTGFrSlh5N0pMVmZoaF9xS2JsMEZRdkdPMl9ZdW1ETWQxdllMTEhxM05Mak1OdHc?oc=5'
 ---

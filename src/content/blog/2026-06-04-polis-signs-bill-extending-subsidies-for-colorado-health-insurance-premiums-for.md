@@ -5,7 +5,7 @@ pubDate: '2026-06-04'
 tags: ['콜로라도', '건강보험', '보조금', 'ACA', '한인생활', '자영업자']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMif0FVX3lxTE9TUUpBMUZrZEhXMU0wdldwTDJvcEJISWE0blExTFJwdUI1d2xnVzE1MFNuQWhOamFaNUJGVGxtOFZyYkpBNDltclRob0hjbG53Z0pkSFF0ZzVOSU9jTnJXVnVUS3hLNF9ZbkVNUnpTREgyQnJBX3YwQ3B2MTQ0V0E?oc=5'
 ---
