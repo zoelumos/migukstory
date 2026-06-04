@@ -1,112 +1,84 @@
 {
-  "generated_at": "2026-06-04T11:09:46.848621+00:00",
+  "generated_at": "2026-06-04T23:09:53.486840+00:00",
   "threshold_promote": 70,
   "threshold_review": 50,
   "counts": {
-    "total": 7,
-    "promoted": 7,
-    "review": 0,
+    "total": 5,
+    "promoted": 4,
+    "review": 1,
     "discard_flag": 0,
     "deferred": 0
   },
   "grades": [
     {
-      "slug": "2026-06-04-alphabet-s-record-breaking-85b-raise-for-google-s-ai-business-is-a-helluva-good",
-      "score": 79,
+      "slug": "2026-06-04-5-things-to-know-about-the-trump-administration-s-new-green-card-policy-calmatte",
+      "score": 78,
       "scores": {
-        "factuality": 15,
-        "source_diversity": 14,
-        "ka_angle": 18,
-        "originality": 15,
-        "structure": 17
-      },
-      "reasoning": "TechCrunch AI 단일 출처지만 신뢰할 수 있는 매체이고 본문 수치(850억 달러)와 인용이 출처와 일치합니다. 은퇴계좌·자녀 진로·자영업 마케팅 등 한인 관점이 구체적으로 풀려 있고, 비교표 형식의 시각화가 주제에 맞게 들어가 있어 자동 승격 기준을 충족합니다. 다만 단일 출처라 교차검증이 부족하고 알파벳 IR/공시 등 1차 자료가 함께 인용됐다면 더 강했을 것입니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-04-alphabet-s-record-breaking-85b-raise-for-google-s-ai-business-is-a-helluva-good.md"
-    },
-    {
-      "slug": "2026-06-04-autonomous-defense-manufacturer-mach-industries-raises-300m",
-      "score": 77,
-      "scores": {
-        "factuality": 17,
-        "source_diversity": 14,
-        "ka_angle": 16,
-        "originality": 13,
-        "structure": 17
-      },
-      "reasoning": "원문이 공개한 사실(3억 달러 조달, 자금 용도 4가지)만 정확히 인용하고 비공개 항목을 명시해 사실성이 높으며, The Robot Report라는 신뢰 가능한 1차 매체 링크가 정확히 걸려 있습니다. 한인 엔지니어 채용·보안 클리어런스·자녀 STEM 진로·비상장 투자 리스크로 한인 관점을 구체적으로 풀었고, 비교표와 번호 체크리스트 형태의 시각화가 주제에 맞게 들어가 있어 자동 승격 기준을 충족합니다. 다만 투자자·기업가치 등 핵심 디테일이 원문에서도 비공개라 독창적 분석의 깊이는 다소 제한적입니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-04-autonomous-defense-manufacturer-mach-industries-raises-300m.md"
-    },
-    {
-      "slug": "2026-06-04-don-t-be-fooled-by-sticker-shock-there-s-no-national-housing-affordability-crisi",
-      "score": 72,
-      "scores": {
-        "factuality": 13,
-        "source_diversity": 9,
+        "factuality": 14,
+        "source_diversity": 15,
         "ka_angle": 17,
-        "originality": 15,
+        "originality": 14,
         "structure": 18
       },
-      "reasoning": "Cato 보고서의 핵심 주장과 발행일을 정확히 전달하고, 한인 밀집 도시(LA·뉴욕·뉴저지 등) 및 1.5세·은퇴 세대·소상공인 관점의 의사결정 함의를 구체적으로 풀어낸 점, 비교표로 시각화를 갖춘 점이 강점입니다. 다만 출처가 Google News RSS 링크 1개뿐이고 Cato 원문 직접 링크나 보고서 내부 데이터·저자 인용이 빠져 사실 추적성과 출처 신뢰도가 약하며, 보고서의 구체적 수치·분석 방법론을 검증할 수 없는 점이 한계입니다.",
+      "reasoning": "원문 본문이 헤드라인 수준만 확인된 상황을 솔직히 명시하고 추정을 자제한 점, 그리고 USCIS·국무부·연방관보 등 공식 1차 출처를 명확한 링크와 함께 교차 제시한 점이 강점입니다. 한인 그룹(취업이민·가족초청·유학생·자영업주·시민권 준비자)별 체크리스트와 두 개의 비교표로 시각적 구조와 한인 실무성을 잘 살렸습니다. 다만 원문 세부 5가지를 확인하지 못해 실제 정책 분석 깊이가 제한적이며, 독창적 종합보다는 절차 안내 위주라 originality는 보통 수준입니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-04-don-t-be-fooled-by-sticker-shock-there-s-no-national-housing-affordability-crisi.md"
+      "promoted_to": "queue/2026-06-04-5-things-to-know-about-the-trump-administration-s-new-green-card-policy-calmatte.md"
     },
     {
-      "slug": "2026-06-04-federal-independent-dispute-resolution-operations",
-      "score": 86,
+      "slug": "2026-06-04-june-tax-deadlines-and-irs-refund-status-what-taxpayers-need-to-know-this-month",
+      "score": 87,
       "scores": {
         "factuality": 17,
-        "source_diversity": 17,
+        "source_diversity": 18,
         "ka_angle": 18,
         "originality": 16,
         "structure": 18
       },
-      "reasoning": "연방관보 1차 출처와 CMS 공식 페이지를 함께 인용해 사실성과 출처 신뢰도가 높고, 한인 가정·유학생·소상공인별 적용 시나리오와 CARC/RARC 코드 보관 같은 실무 단계가 구체적입니다. 5단계 변화 비교표와 번호 체크리스트로 시각화 요건도 충족했으며, 편집자 분석이 '정보 공개 의무'라는 차별적 관점을 제시한 점이 강점입니다. 다만 IDR 자격 심사 기준이나 사전 협상 일수 같은 구체 수치가 본문에 더 들어갔다면 사실성·독창성 모두 만점에 가까웠을 것입니다.",
+      "reasoning": "IRS·FinCEN 공식 페이지를 직접 인용해 6월 추정세·해외거주자 자동연장·FBAR·환급 조회 등 핵심 사실이 모두 추적 가능하며, 자영업·한국 거주 시민권자·환급 대기 가정 등 한인 그룹별 실무 시사점이 분명하게 풀려 있습니다. 비교표와 5단계 번호 목록으로 시각화 요건도 충족했고 편집자 분석 문단이 단순 번역을 넘어 '조용한 함정의 달'이라는 맥락을 더해 originality도 양호합니다. 다만 출처가 사실상 IRS 단일 publisher 중심이라 교차검증 폭이 좁다는 점이 소폭 감점 요인입니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-04-federal-independent-dispute-resolution-operations.md"
+      "promoted_to": "queue/2026-06-04-june-tax-deadlines-and-irs-refund-status-what-taxpayers-need-to-know-this-month.md"
     },
     {
-      "slug": "2026-06-04-frost-law-offers-new-tool-to-help-businesses-individuals-apply-for-kwong-refunds",
-      "score": 81,
+      "slug": "2026-06-04-polis-signs-bill-extending-subsidies-for-colorado-health-insurance-premiums-for",
+      "score": 89,
+      "scores": {
+        "factuality": 16,
+        "source_diversity": 17,
+        "ka_angle": 19,
+        "originality": 18,
+        "structure": 19
+      },
+      "reasoning": "콜로라도 주(州) 보조금 연장이라는 사실관계를 신중하게 다루며, 새로운 수치를 만들어내지 않고 'Connect for Health Colorado·HealthCare.gov·USCIS·IRS' 같은 1차 공식 출처를 정확한 링크와 함께 인용해 추적 가능성이 높습니다. 한인 자영업자·1099 프리랜서·은퇴 공백기·영주권 단계별 영향을 구체적으로 풀어쓰고 비교표와 6단계 체크리스트로 시각화·실행 가능성을 모두 확보했습니다. 약점은 보도 원문이 Google News 리다이렉트 링크 한 건이라 1차 보도 publisher가 가려져 있다는 점인데, 공식 기관 링크가 이를 상당 부분 보완합니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-04-polis-signs-bill-extending-subsidies-for-colorado-health-insurance-premiums-for.md"
+    },
+    {
+      "slug": "2026-06-04-the-trump-administration-released-a-new-green-card-policy-here-s-what-to-know-fe",
+      "score": 61,
+      "scores": {
+        "factuality": 11,
+        "source_diversity": 9,
+        "ka_angle": 15,
+        "originality": 10,
+        "structure": 16
+      },
+      "reasoning": "한인 가정·자영업자·유학생·시민권자 자녀·장기 거주자 등 대상별 점검 포인트를 구체적으로 풀어내 한인 관점이 살아있고, 비교표와 체크리스트 형태의 시각화도 갖추고 있어 구조 측면은 양호합니다. 다만 출처가 Borderless Magazine 원문 링크가 아닌 Google News 리디렉션 URL 1개뿐이고 매체명만 본문에 언급되어 추적성이 약하며, 정책의 구체적 변경 항목·시행일·예외 조항 등 핵심 사실이 빠진 1차 인지 단계 보도여서 사실성과 독창성이 제한적입니다.",
+      "action": "review",
+      "promoted_to": null
+    },
+    {
+      "slug": "2026-06-04-uscis-blocks-green-card-shortcut-for-overstayers-and-parolees-center-for-immigra",
+      "score": 85,
       "scores": {
         "factuality": 15,
         "source_diversity": 15,
-        "ka_angle": 17,
-        "originality": 16,
-        "structure": 18
+        "ka_angle": 19,
+        "originality": 17,
+        "structure": 19
       },
-      "reasoning": "Frost Law 도구 공개라는 핵심 사실을 IRS ERC 공식 안내와 Dirty Dozen 사기 경고 페이지로 교차 보강했고, 한인 자영업자(식당·세탁소·네일살롱) 관점과 한국어 CPA 상담 권고, 비교표·번호 체크리스트 등 시각적 구조가 모두 살아있어 자동 승격 기준에 부합합니다. 다만 'Kwong 환급'이라는 용어 자체가 원문에서 충분히 정의되지 않은 채 ERC 맥락으로 확장 해석된 부분, 그리고 Frost Law 공식 페이지가 출처에 직접 링크되지 않은 점은 약점으로 남습니다.",
+      "reasoning": "USCIS Policy Manual, CBP I-94, 국무부 비자 게시판 등 1차 공식 출처가 정확한 링크와 함께 인용되어 추적 가능성이 높고, 비교표·번호 체크리스트·핵심 요약이 모두 갖춰져 시각적 구조가 매우 강합니다. 한인 자영업·유학생·부모 초청 등 구체 그룹별 영향과 3년·10년 재입국 금지 같은 실무 리스크까지 풀어쓴 편집 분석이 돋보입니다. 다만 CIS 보도 자체의 원문 링크가 Google News 리다이렉트 형태로만 제시돼 있고 시행 세부 기준이 확정 보도가 아니라는 한계가 있어 사실성 만점은 어렵습니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-04-frost-law-offers-new-tool-to-help-businesses-individuals-apply-for-kwong-refunds.md"
-    },
-    {
-      "slug": "2026-06-04-new-green-card-changes-may-mean-new-rules-for-immigrants-spectrum-news",
-      "score": 84,
-      "scores": {
-        "factuality": 16,
-        "source_diversity": 16,
-        "ka_angle": 18,
-        "originality": 16,
-        "structure": 18
-      },
-      "reasoning": "USCIS·국무부 Visa Bulletin 등 1차 공식 출처를 정확한 링크로 인용했고, 한인 취업비자·가족 초청·자영업자·노부모 의료 등 구체 그룹별 영향을 명시적으로 분석한 점이 강점입니다. 비교표와 번호 체크리스트로 시각화 요건을 충족했고, 서류 정비 항목과 다음 단계가 실무적입니다. 다만 원문 Spectrum News 보도의 구체적 변경 내용이 모호한 상태에서 일반 안내로 확장된 측면이 있어 사실성·독창성에서 약간 감점했습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-04-new-green-card-changes-may-mean-new-rules-for-immigrants-spectrum-news.md"
-    },
-    {
-      "slug": "2026-06-04-robobusiness-2026-opens-call-for-speakers",
-      "score": 73,
-      "scores": {
-        "factuality": 16,
-        "source_diversity": 14,
-        "ka_angle": 15,
-        "originality": 12,
-        "structure": 16
-      },
-      "reasoning": "The Robot Report 단일 출처를 정확히 추적 가능하게 인용했고, 한인 엔지니어·자영업자·STEM 진로 등 구체적 한인 그룹을 명시한 분석 문단과 비교표·번호 단계 목록 시각화가 갖춰져 있어 자동 승격 기준을 충족합니다. 다만 출처가 1건뿐이고 행사 일정·장소·마감일 등 구체적 사실이 부족해 독창성과 사실 밀도 면에서는 다소 약하며, 분석이 일반적인 시사점 수준에 머무는 한계가 있습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-04-robobusiness-2026-opens-call-for-speakers.md"
+      "promoted_to": "queue/2026-06-04-uscis-blocks-green-card-shortcut-for-overstayers-and-parolees-center-for-immigra.md"
     }
   ]
 }
