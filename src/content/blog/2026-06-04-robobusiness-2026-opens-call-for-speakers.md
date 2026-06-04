@@ -5,7 +5,7 @@ pubDate: '2026-06-04'
 tags: ['로봇산업', '컨퍼런스', '상업용로봇']
 category: 'robotics'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'The Robot Report'
 sourceUrl: 'https://therobotreport.com/robobusiness-2026-opens-call-for-speakers'
 ---

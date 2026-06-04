@@ -5,7 +5,7 @@ pubDate: '2026-06-04'
 tags: ['알파벳', '구글', 'AI투자', '주식시장', '한인투자자']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'TechCrunch AI'
 sourceUrl: 'https://techcrunch.com/2026/06/03/alphabets-record-breaking-85b-raise-for-googles-ai-business-is-a-helluva-good-signal'
 ---

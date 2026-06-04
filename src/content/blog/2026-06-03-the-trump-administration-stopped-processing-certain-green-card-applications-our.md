@@ -1,11 +1,11 @@
 ---
 title: '트럼프 행정부 일부 영주권 심사 중단, FOIA로 드러난 후속 상황과 한인 신청자 점검 포인트'
 description: '미국 이민위원회가 정보공개청구(FOIA)로 확인한 영주권 심사 중단 후속 상황을 정리하고, 미주 한인 신청자가 지금 점검해야 할 폼 종류·서류·EAD/AP 갱신 일정과 변호사 상담 포인트를 안내합니다.'
-pubDate: '2026-06-03'
+pubDate: '2026-06-04'
 tags: ['영주권', 'USCIS', '이민정책', 'FOIA', '트럼프행정부']
 category: 'immigration'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — USCIS / Green Card Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMipAFBVV95cUxNaVlCM2xSckRGdnN4Zk5BX21hYmFQc0NXZUFxZzdJUTl3VERkT0RYZklJTWZyVktTaVpSai1nbkhzSkZFRGo4eGtPRXlEZlR2ZUp1TTAtMlphcGZDVkxaMlQ0MGw3T1N3QmU3MmdrODQtbk9idUVvYmg0N0VuSnB4YmJQODZHaHlLYmhkdkpPSHktWFBwTkRqbUJkNzF4VWdwV0g3TQ?oc=5'
 ---

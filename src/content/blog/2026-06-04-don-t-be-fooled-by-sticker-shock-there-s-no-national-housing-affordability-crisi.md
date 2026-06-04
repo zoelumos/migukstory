@@ -5,7 +5,7 @@ pubDate: '2026-06-04'
 tags: ['주택', '부동산', '한인생활', '주거비', '내집마련']
 category: 'real-estate'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Housing / Mortgage Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMipAFBVV95cUxQRTdSZkxHODNtUWdRRndkT24zWnc4NHdFaTNBbkRJc0ZsWWNyNElRT0dZTE1lNkdFaVZVcl9DeG43VjVUY1VLYWRkWVE1a2hNUm8waXR2TWxZRHZ4QzN5eEhCWjRyS2Y2SXVnWkpybE0zOU8zWnhLU1gyR1dQZTlBM3JCc3RyQVJRQVdvWGx5X19YSWVKcFhrTHQ2QWo2Zkx6M1Jacw?oc=5'
 ---

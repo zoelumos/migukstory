@@ -5,7 +5,7 @@ pubDate: '2026-06-04'
 tags: ['Mach Industries', '자율방산', '국방테크', 'robotics', '미주한인']
 category: 'robotics'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'The Robot Report'
 sourceUrl: 'https://therobotreport.com/autonomous-defense-manufacturer-mach-industries-raises-300m'
 ---

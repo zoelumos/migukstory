@@ -1,11 +1,11 @@
 ---
 title: 'USCIS 영주권 절차 변경 반대 캠페인 시작 — 한인 신청자 체크리스트'
 description: '시민참여 플랫폼 5 Calls가 USCIS 영주권 신청 절차 변경에 반대하는 의원 전화 캠페인을 시작했습니다. 한인 영주권 신청자·신분조정 대기자가 지금 점검해야 할 사항을 단계별로 정리합니다.'
-pubDate: '2026-06-03'
+pubDate: '2026-06-04'
 tags: ['USCIS', '영주권', '이민정책', '5Calls', '한인이민', 'I-485']
 category: 'immigration'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — USCIS / Green Card Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiW0FVX3lxTE4tV2QybDE4bEVYYXV3eF94LWM2M2lGcF9qS1RKbXllWk lPbUE5RzFfYk1WZy03ZGk1YVFxUVpFZEVUcWs1ZW9qT2xaMko2ZEY1T3VncjRnTDJKa2c?oc=5'
 ---

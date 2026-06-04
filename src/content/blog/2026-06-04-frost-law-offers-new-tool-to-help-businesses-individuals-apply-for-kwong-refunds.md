@@ -5,7 +5,7 @@ pubDate: '2026-06-04'
 tags: ['세금', '환급', 'Frost Law', '한인 자영업자', 'IRS', 'ERC']
 category: 'tax'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — IRS / Tax Guidance Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMi0wFBVV95cUxPcUZVcGR1ZlFFZnVLZ1VaWlBzLWR2b2h0LWFib1UzdXNxMEE1a0xaMjY4dHhjSFlfQnpsdlF0dTZkQ0d2bHRuaVlHTlU1RXdaYm5vYklVd0tSMW93MlQydGdFSTdldlo1R2tGMURMWEJwZl8xakJsVGc0amlCNWUyT001cl9rbjZxMVlGeDgzV0ZXdlM1NzI3QUNLT3BVU2NjaW9oNUt3VXk0MEFEekhQMUtvWTgzWk9VTmhoRHkwR1ZUTFFNQldmb0JJOUNDSzNzQ09n?oc=5'
 ---

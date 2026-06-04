@@ -5,7 +5,7 @@ pubDate: '2026-06-04'
 tags: ['IDR', '깜짝청구서', '건강보험', '연방규칙', 'NoSurprisesAct']
 category: 'tax'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Federal Register — Tax Rules (IRS)'
 sourceUrl: 'https://federalregister.gov/documents/2026/06/04/2026-11140/federal-independent-dispute-resolution-operations'
 ---
