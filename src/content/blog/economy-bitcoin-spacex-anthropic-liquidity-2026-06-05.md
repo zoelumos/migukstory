@@ -71,7 +71,7 @@ faq:
 
 | 단계 | 무슨 일이 | 데이터 |
 |---|---|---|
-| ① 매크로 | 강한 6월 고용(+172K)·끈적한 인플레(4월 CPI 3.8%)·에너지 가격 재상승 부담 | [CNBC](https://www.cnbc.com/2026/06/05/hot-jobs-report-puts-fed-cuts-further-out-of-reach-as-chair-warsh-faces-policy-tests.html) |
+| ① 매크로 | 강한 5월 비농업 고용(+172K, 2026-06-05 BLS 발표)·끈적한 인플레(4월 CPI 3.8%)·에너지 가격 재상승 부담 | [BLS Employment Situation](https://www.bls.gov/news.release/empsit.nr0.htm), [CNBC](https://www.cnbc.com/2026/06/05/hot-jobs-report-puts-fed-cuts-further-out-of-reach-as-chair-warsh-faces-policy-tests.html) |
 | ② Fed 기대 | 인하 기대 후퇴, 6월 동결 가능성이 매우 높게 반영되고 9월 이후 경로는 시장 전망이 계속 흔들림 | [CME FedWatch](https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html) |
 | ③ 금리·달러 | 10Y 4.48%·DXY 100 — 실질금리 ↑ → 무수익 자산 디스카운트 | [Fed H.15](https://www.federalreserve.gov/releases/h15/) |
 | ④ ETF 자금 | 비트코인 현물 ETF 13일 연속 $4.4B 순유출 — 2024~25 상승 엔진의 역방향 작동 | [Blockchain Reporter](https://blockchainreporter.net/bitcoin-price-today-btc-at-62875-as-etf-outflows-hit-record-4-4b-over-13-days/) |
@@ -162,6 +162,7 @@ Anthropic은 6월 첫째 주의 또 다른 주인공입니다. 2026년 5월 28�
 세 사건을 묶는 마지막 배경은 매크로입니다.
 
 - **연방기금금리: 3.50–3.75% 동결.** [CME FedWatch](https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html)는 6월 16–17일 FOMC 동결 확률 98.7%를 반영합니다.
+- **고용보고서 날짜:** 2026년 6월 5일 BLS가 발표한 것은 **5월 비농업 고용(+172K)**입니다. “6월 고용”이 아니라 “6월 5일 발표된 5월 고용”으로 읽어야 합니다.
 - **Kevin Warsh 신임 의장**이 [2026년 5월 15일 취임](https://www.cnbc.com/2026/05/16/kevin-warsh-comes-into-the-fed-facing-a-big-family-fight-over-cutting-interest-rates.html)했습니다. 도비시 성향으로 알려졌지만 인플레이션 환경상 인하 여력이 크지 않습니다.
 - **10년물 4.48% · DXY 100 · 4월 CPI 3.8% YoY.** 에너지 가격 재상승 부담도 인플레이션 경로를 덜 단순하게 만들고 있습니다.
 - **QT(양적긴축)는 2025-12-01 공식 종료**되었으나, [익일물 역레포(RRP) 사실상 0달러](https://fred.stlouisfed.org/series/RRPONTSYD/), 은행 지급준비금 ~$3T, 2025년 말 NY Fed 스탠딩 레포 일일 [746억 달러 사상 최대 대출](https://www.federalreserve.gov/releases/h41/current/) — 실효 유동성은 더 빡빡해졌습니다.
@@ -220,6 +221,7 @@ Anthropic은 6월 첫째 주의 또 다른 주인공입니다. 2026년 5월 28�
 - [Fortune — 빅테크 이익 중 Anthropic 지분 비중](https://fortune.com/2026/04/30/google-amazon-ai-profits-anthropic-stake-bubble-earnings-2026/)
 - [CNBC — Anthropic S-1 사회적 리스크 경고](https://www.cnbc.com/2026/06/05/anthropic-warns-of-ais-rapid-development-societal-risk-ahead-of-ipo.html)
 - [CNBC — Warsh 의장 취임·인하 논쟁](https://www.cnbc.com/2026/05/16/kevin-warsh-comes-into-the-fed-facing-a-big-family-fight-over-cutting-interest-rates.html)
+- [BLS — Employment Situation, 2026-06-05 발표](https://www.bls.gov/news.release/empsit.nr0.htm)
 - [CNBC — 6/5 고용 호조 인하 후퇴](https://www.cnbc.com/2026/06/05/hot-jobs-report-puts-fed-cuts-further-out-of-reach-as-chair-warsh-faces-policy-tests.html)
 - [Federal Reserve H.15 — 금리](https://www.federalreserve.gov/releases/h15/)
 - [Federal Reserve H.4.1 — 대차대조표](https://www.federalreserve.gov/releases/h41/current/)
