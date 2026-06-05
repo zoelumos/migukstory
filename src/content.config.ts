@@ -34,6 +34,12 @@ const blog = defineCollection({
 				'education', 'retirement', 'community', 'real-estate',
 			]),
 			ageGroup: z.enum(['20-35', '35-55', '55+', 'all']).default('all'),
+			// Homepage editorial controls. Narrow/local items can remain published but must not
+			// automatically become the main headline just because they are newest.
+			scope: z.enum(['national', 'regional', 'local']).optional(),
+			headlineStrength: z.number().int().min(1).max(5).optional(),
+			featured: z.boolean().default(false),
+			leadEligible: z.boolean().optional(),
 			// E-E-A-T: per-article author slug. Looked up in AUTHORS map in consts.ts.
 			// Defaults to 'editorial-staff' (Organization-flavored author) for legacy posts.
 			author: z.string().default('editorial-staff'),
