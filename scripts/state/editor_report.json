@@ -1,84 +1,112 @@
 {
-  "generated_at": "2026-06-04T23:09:53.486840+00:00",
+  "generated_at": "2026-06-05T11:10:25.511309+00:00",
   "threshold_promote": 70,
   "threshold_review": 50,
   "counts": {
-    "total": 5,
-    "promoted": 4,
+    "total": 7,
+    "promoted": 6,
     "review": 1,
     "discard_flag": 0,
     "deferred": 0
   },
   "grades": [
     {
-      "slug": "2026-06-04-5-things-to-know-about-the-trump-administration-s-new-green-card-policy-calmatte",
-      "score": 78,
+      "slug": "2026-06-05-bofa-on-the-fundamental-disconnect-in-the-housing-market-fortune",
+      "score": 70,
       "scores": {
-        "factuality": 14,
-        "source_diversity": 15,
-        "ka_angle": 17,
+        "factuality": 12,
+        "source_diversity": 11,
+        "ka_angle": 16,
         "originality": 14,
-        "structure": 18
+        "structure": 17
       },
-      "reasoning": "원문 본문이 헤드라인 수준만 확인된 상황을 솔직히 명시하고 추정을 자제한 점, 그리고 USCIS·국무부·연방관보 등 공식 1차 출처를 명확한 링크와 함께 교차 제시한 점이 강점입니다. 한인 그룹(취업이민·가족초청·유학생·자영업주·시민권 준비자)별 체크리스트와 두 개의 비교표로 시각적 구조와 한인 실무성을 잘 살렸습니다. 다만 원문 세부 5가지를 확인하지 못해 실제 정책 분석 깊이가 제한적이며, 독창적 종합보다는 절차 안내 위주라 originality는 보통 수준입니다.",
+      "reasoning": "BofA의 '근본적 단절' 진단을 한인 실수요자(1세대 자영업자, H-1B/영주권 직장인, 부모 세대 자금 지원)의 현금흐름·신분·세금 시나리오로 풀어낸 한인 관점 분석과 비교표·체크리스트 시각화가 강점입니다. 다만 원문이 Google News 단일 RSS 링크이고 BofA 원보고서나 Fortune 직접 링크가 아니라 구체 수치·지역·인용자가 부재해 사실성과 출처 신뢰도가 약하고, '읽힙니다/의미로도 읽힙니다' 식 추론 표현이 검증 가능한 사실을 대체하고 있어 보수적으로 평가했습니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-04-5-things-to-know-about-the-trump-administration-s-new-green-card-policy-calmatte.md"
+      "promoted_to": "queue/2026-06-05-bofa-on-the-fundamental-disconnect-in-the-housing-market-fortune.md"
     },
     {
-      "slug": "2026-06-04-june-tax-deadlines-and-irs-refund-status-what-taxpayers-need-to-know-this-month",
-      "score": 87,
+      "slug": "2026-06-05-bolivia-level-2-exercise-increased-caution",
+      "score": 81,
       "scores": {
         "factuality": 17,
-        "source_diversity": 18,
-        "ka_angle": 18,
-        "originality": 16,
+        "source_diversity": 15,
+        "ka_angle": 16,
+        "originality": 15,
         "structure": 18
       },
-      "reasoning": "IRS·FinCEN 공식 페이지를 직접 인용해 6월 추정세·해외거주자 자동연장·FBAR·환급 조회 등 핵심 사실이 모두 추적 가능하며, 자영업·한국 거주 시민권자·환급 대기 가정 등 한인 그룹별 실무 시사점이 분명하게 풀려 있습니다. 비교표와 5단계 번호 목록으로 시각화 요건도 충족했고 편집자 분석 문단이 단순 번역을 넘어 '조용한 함정의 달'이라는 맥락을 더해 originality도 양호합니다. 다만 출처가 사실상 IRS 단일 publisher 중심이라 교차검증 폭이 좁다는 점이 소폭 감점 요인입니다.",
+      "reasoning": "국무부 1차 출처가 정확히 링크돼 있고 본문의 수치·지명·권고 내용이 출처와 일치하며, 비교표 형식의 시각화가 주제(여행경보 단계별 위험 항목)에 잘 맞습니다. 미주 한인 여름휴가·선교·은퇴자 관광이라는 구체적 그룹별 의미와 medical evacuation 보험 점검이라는 실무 조언이 들어 있어 한인 관점이 살아 있으나, 출처가 국무부 단일 페이지에 한정돼 교차 검증과 독창적 분석 폭은 다소 제한적입니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-04-june-tax-deadlines-and-irs-refund-status-what-taxpayers-need-to-know-this-month.md"
+      "promoted_to": "queue/2026-06-05-bolivia-level-2-exercise-increased-caution.md"
     },
     {
-      "slug": "2026-06-04-polis-signs-bill-extending-subsidies-for-colorado-health-insurance-premiums-for",
-      "score": 89,
-      "scores": {
-        "factuality": 16,
-        "source_diversity": 17,
-        "ka_angle": 19,
-        "originality": 18,
-        "structure": 19
-      },
-      "reasoning": "콜로라도 주(州) 보조금 연장이라는 사실관계를 신중하게 다루며, 새로운 수치를 만들어내지 않고 'Connect for Health Colorado·HealthCare.gov·USCIS·IRS' 같은 1차 공식 출처를 정확한 링크와 함께 인용해 추적 가능성이 높습니다. 한인 자영업자·1099 프리랜서·은퇴 공백기·영주권 단계별 영향을 구체적으로 풀어쓰고 비교표와 6단계 체크리스트로 시각화·실행 가능성을 모두 확보했습니다. 약점은 보도 원문이 Google News 리다이렉트 링크 한 건이라 1차 보도 publisher가 가려져 있다는 점인데, 공식 기관 링크가 이를 상당 부분 보완합니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-04-polis-signs-bill-extending-subsidies-for-colorado-health-insurance-premiums-for.md"
-    },
-    {
-      "slug": "2026-06-04-the-trump-administration-released-a-new-green-card-policy-here-s-what-to-know-fe",
+      "slug": "2026-06-05-seattle-homebuyers-face-spring-double-whammy-the-seattle-times",
       "score": 61,
       "scores": {
         "factuality": 11,
-        "source_diversity": 9,
-        "ka_angle": 15,
+        "source_diversity": 12,
+        "ka_angle": 14,
         "originality": 10,
-        "structure": 16
+        "structure": 14
       },
-      "reasoning": "한인 가정·자영업자·유학생·시민권자 자녀·장기 거주자 등 대상별 점검 포인트를 구체적으로 풀어내 한인 관점이 살아있고, 비교표와 체크리스트 형태의 시각화도 갖추고 있어 구조 측면은 양호합니다. 다만 출처가 Borderless Magazine 원문 링크가 아닌 Google News 리디렉션 URL 1개뿐이고 매체명만 본문에 언급되어 추적성이 약하며, 정책의 구체적 변경 항목·시행일·예외 조항 등 핵심 사실이 빠진 1차 인지 단계 보도여서 사실성과 독창성이 제한적입니다.",
+      "reasoning": "시애틀타임스 제목 한 줄만을 근거로 작성돼 구체 수치·금리·재고 데이터가 전혀 없고, 출처도 Google News 리다이렉트 링크 1건에 그쳐 사실성과 출처 신뢰도가 약합니다. 한인 그룹별 점검 포인트 표와 H-1B·자영업·은퇴세대 맥락 분석은 강점이지만, 원문의 '이중 부담' 실체(가격·금리 등)를 채우지 못한 채 일반론에 머물러 독창성이 부족합니다. 시각화로 비교표는 있으나 본문 정보가 빈약해 자동승격 기준 미만으로 평가합니다.",
       "action": "review",
       "promoted_to": null
     },
     {
-      "slug": "2026-06-04-uscis-blocks-green-card-shortcut-for-overstayers-and-parolees-center-for-immigra",
-      "score": 85,
+      "slug": "2026-06-05-trump-accounts-hearing",
+      "score": 80,
       "scores": {
-        "factuality": 15,
+        "factuality": 17,
         "source_diversity": 15,
+        "ka_angle": 16,
+        "originality": 14,
+        "structure": 18
+      },
+      "reasoning": "연방관보 1차 출처를 정확히 링크하고 공청회와 시행을 분명히 구분한 점, 한인 가정의 자녀 SSN·영주권·교육저축 맥락을 구체적으로 연결한 점이 강점입니다. 5단계 비교표로 시각화 요건도 충족했으나, 출처가 단일 연방관보 문서 하나뿐이고 REG-117270-25 원안 링크나 IRS 보도자료 등 교차 참조가 없어 source_diversity와 originality에서 감점했습니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-05-trump-accounts-hearing.md"
+    },
+    {
+      "slug": "2026-06-05-uganda-level-4-do-not-travel",
+      "score": 89,
+      "scores": {
+        "factuality": 17,
+        "source_diversity": 17,
         "ka_angle": 19,
         "originality": 17,
         "structure": 19
       },
-      "reasoning": "USCIS Policy Manual, CBP I-94, 국무부 비자 게시판 등 1차 공식 출처가 정확한 링크와 함께 인용되어 추적 가능성이 높고, 비교표·번호 체크리스트·핵심 요약이 모두 갖춰져 시각적 구조가 매우 강합니다. 한인 자영업·유학생·부모 초청 등 구체 그룹별 영향과 3년·10년 재입국 금지 같은 실무 리스크까지 풀어쓴 편집 분석이 돋보입니다. 다만 CIS 보도 자체의 원문 링크가 Google News 리다이렉트 형태로만 제시돼 있고 시행 세부 기준이 확정 보도가 아니라는 한계가 있어 사실성 만점은 어렵습니다.",
+      "reasoning": "국무부·CDC·WHO·USCIS 등 1차/반-1차 출처가 정확한 링크와 함께 인용돼 추적 가능성이 높고, 영사 보호 한계·보험 면책·재입국 허가·체류 일수 등 한인 그룹별 실무 함의를 구체적으로 분석한 점이 강점입니다. Level 4 단계표, 한인 그룹별 점검 표, 8단계 체크리스트 등 시각화가 주제와 정확히 맞물려 있고 frontmatter·핵심 요약·출처 섹션도 완비되어 있어 자동 승격 기준을 충족합니다. 다만 PHEIC 선포·21일 격리 등 일부 핵심 수치는 출처 섹션의 일반 링크가 아닌 구체 페이지로 더 직접 매핑되면 사실성 점수가 더 올라갈 수 있습니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-04-uscis-blocks-green-card-shortcut-for-overstayers-and-parolees-center-for-immigra.md"
+      "promoted_to": "queue/2026-06-05-uganda-level-4-do-not-travel.md"
+    },
+    {
+      "slug": "2026-06-05-update-irs-extends-tax-filing-deadline-for-tennessee-storm-victims-to-june-8-loc",
+      "score": 72,
+      "scores": {
+        "factuality": 13,
+        "source_diversity": 10,
+        "ka_angle": 17,
+        "originality": 14,
+        "structure": 18
+      },
+      "reasoning": "테네시 폭풍 피해자 대상 IRS 마감 연장이라는 세금/IRS 고검색의도 주제를 한인 자영업자·가정 관점으로 풀어내고, 비교표·체크리스트 등 시각적 구조도 갖추어 자동승격 기준을 충족합니다. 다만 출처가 Google News 리다이렉트 링크 1건뿐이고 원 보도사인 Local 3 News나 IRS 공식 발표 페이지로의 직접 링크가 없어 사실성·출처 추적 가능성이 약하며, 정확한 적용 카운티·세부 세금 항목 등 구체 정보가 부족합니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-05-update-irs-extends-tax-filing-deadline-for-tennessee-storm-victims-to-june-8-loc.md"
+    },
+    {
+      "slug": "2026-06-05-what-are-the-deadlines-for-the-aca-s-open-enrollment-period-healthinsurance-org",
+      "score": 89,
+      "scores": {
+        "factuality": 17,
+        "source_diversity": 18,
+        "ka_angle": 18,
+        "originality": 17,
+        "structure": 19
+      },
+      "reasoning": "원문 발췌가 짧다는 한계를 정직하게 밝히고 HealthCare.gov·USCIS·KFF 등 신뢰도 높은 1차/반-1차 출처로 핵심 주장을 뒷받침한 점이 강점입니다. 자영업자·OPT/H-1B·영주권 진행 가정 등 한인 그룹별 의미를 구체적으로 풀고 자동 갱신 위험과 공적 부담 이슈까지 편집자 분석을 더한 독창성이 돋보입니다. 비교표와 7일 체크리스트 형태의 시각화가 주제에 적합하게 배치되어 자동 승격 기준을 충족합니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-05-what-are-the-deadlines-for-the-aca-s-open-enrollment-period-healthinsurance-org.md"
     }
   ]
 }
