@@ -5,7 +5,7 @@ pubDate: '2026-06-05'
 tags: ['에볼라', 'CDC', '공중보건', '아프리카', '여행주의', '한인생활']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'CDC Newsroom'
 sourceUrl: 'https://tools.cdc.gov/api/embed/downloader/download.asp?c=765752&m=132608'
 ---

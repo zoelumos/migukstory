@@ -5,7 +5,7 @@ pubDate: '2026-06-05'
 tags: ['미국고용', '실업률', '임금', '인플레이션', '한인경제']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/06/05/nx-s1-5847669/jobs-labor-market-unemployment-wages-inflation'
 ---

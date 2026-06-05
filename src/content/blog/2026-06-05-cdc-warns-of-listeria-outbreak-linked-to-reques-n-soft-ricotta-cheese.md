@@ -5,7 +5,7 @@ pubDate: '2026-06-05'
 tags: ['리스테리아', '식품안전', 'CDC', '리코타치즈', '한인마트']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'CDC Newsroom'
 sourceUrl: 'https://tools.cdc.gov/api/embed/downloader/download.asp?c=765751&m=132608'
 ---

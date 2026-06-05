@@ -5,7 +5,7 @@ pubDate: '2026-06-05'
 tags: ['주택시장', '모기지', '압류', '고용', '한인가정']
 category: 'real-estate'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Housing / Mortgage Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMioAFBVV95cUxQOU5lclhiNV9OdVdiZEJXLUI0bXVIbFlzSTQ0WHBXczlUOUVORVRpM3pwb1YwRW9sQlJZVll2Y0JvT2EtbVNVSlZobElJb2Nwa2k4WnUzNjR4LTNXREZMZUxfV0Y5V0Q4Z2FFYk5pQ1JoS2xKbGtMam9MTTNUa3JhTldfZGhIcUkwXzh6eExwS1UteE1vcFBEWHNoT2JfSXl0?oc=5)'
 ---

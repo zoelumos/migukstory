@@ -5,7 +5,7 @@ pubDate: '2026-06-05'
 tags: ['ACA', '건강보험', '오바마케어', '보험료', '프리미엄세액공제', '한인커뮤니티']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiqwFBVV95cUxPTkJsQXh6MWFhTFNJc2JwX3MzUXBTUUZGZ0JSS0w4WW9FZzVWaDRjb0x4OUJ4bTJ5MG5fbzNUcndtc2VXMHBTUG83OU9qQ254eG5kaTZ4MzMtRUNBMGlXRUZ1V1BtdDJZNUdSR0JRdTZyQ2Vnc2JqU0FPb09XdFdJbjVoVllHSkRmZkx2WDZLMml2VWlMRkprOElIdjNpUjZ5dTktUzZJZGFpSlE?oc=5'
 ---
