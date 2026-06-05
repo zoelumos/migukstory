@@ -5,7 +5,7 @@ pubDate: '2026-06-05'
 tags: ['Trump Accounts', 'IRS', '세금규정', '공청회', '한인가정']
 category: 'tax'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Federal Register — Tax Rules (IRS)'
 sourceUrl: 'https://federalregister.gov/documents/2026/06/05/2026-11343/trump-accounts-hearing'
 ---

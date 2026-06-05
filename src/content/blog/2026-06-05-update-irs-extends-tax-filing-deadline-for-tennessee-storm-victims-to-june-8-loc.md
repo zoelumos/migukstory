@@ -5,7 +5,7 @@ pubDate: '2026-06-05'
 tags: ['IRS', '세금신고', '재해구제', '테네시', '한인자영업']
 category: 'tax'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — IRS / Tax Guidance Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMihAJBVV95cUxPUFNqRHpuNjlfaHNMbXFKYS16c280RWZiRmdPc2R4RVh6a0k5dVB3NnhrNzBlREtONldWa0FMQy1DMEJxZGVxaUZ0ZVlvaGt1V25Ia2lWVzhISkFfMU5nSVZhQnlJVFVucVVXV19aVmpmdWJoa2tYbjFBWWlpSDRVb09jb3hTSkd3cDhqMlJ1TFVmQW5SSWU1bTRrSWQzSU80ZVRTN0cwRUVILVVWTHlPV24zbFg0LTNxR1ljUXdDR2VDUzJaOF9XMVNXSVBCbHBwbHFxTjQtaEtNclFFWl8yRjdPTlUzUHRjcGg1azFER1BTTGQxaFZHOFpRMWVPcDdjdWdjZw?oc=5'
 ---

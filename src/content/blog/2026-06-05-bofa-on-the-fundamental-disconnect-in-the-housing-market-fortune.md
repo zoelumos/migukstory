@@ -5,7 +5,7 @@ pubDate: '2026-06-05'
 tags: ['주택시장', '모기지', '한인 부동산', 'BofA', '실수요자']
 category: 'real-estate'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Housing / Mortgage Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMilwFBVV95cUxNMGpVUXk5R1RISUFfOEVkZVNUaFZONzFrRE5KQW1GUkQ4dllMNkRjU1BVbHVqaFZELXVHZkhqQk9MQUFZZTB6cHNHVUpjQ255amNVRTJiU1JNbEh1TGU1NHE4QnVaZTN5dTQ5VGlfQVNmQ2xhNW15bXFOMUEwTmx5bnZZMFNyNFlfYkVWLWUyODN0akVZWjgw?oc=5'
 ---

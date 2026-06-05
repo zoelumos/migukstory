@@ -5,7 +5,7 @@ pubDate: '2026-06-05'
 tags: ['우간다', '여행경보', '에볼라', '국무부', '여행안전', 'CDC', 'WHO']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'State Department Travel Advisories'
 sourceUrl: 'https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.uga.html'
 ---

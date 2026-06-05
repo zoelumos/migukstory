@@ -5,7 +5,7 @@ pubDate: '2026-06-05'
 tags: ['볼리비아', '여행경보', '국무부', '해외여행', '미주한인']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'State Department Travel Advisories'
 sourceUrl: 'https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.bol.html'
 ---
