@@ -1,112 +1,106 @@
 {
-  "generated_at": "2026-06-05T11:10:25.511309+00:00",
+  "generated_at": "2026-06-05T23:11:42.480393+00:00",
   "threshold_promote": 70,
   "threshold_review": 50,
   "counts": {
     "total": 7,
-    "promoted": 6,
+    "promoted": 5,
     "review": 1,
-    "discard_flag": 0,
+    "discard_flag": 1,
     "deferred": 0
   },
   "grades": [
     {
-      "slug": "2026-06-05-bofa-on-the-fundamental-disconnect-in-the-housing-market-fortune",
-      "score": 70,
+      "slug": "2026-06-05-cdc-warns-of-listeria-outbreak-linked-to-reques-n-soft-ricotta-cheese",
+      "score": 78,
       "scores": {
-        "factuality": 12,
-        "source_diversity": 11,
-        "ka_angle": 16,
+        "factuality": 15,
+        "source_diversity": 15,
+        "ka_angle": 17,
         "originality": 14,
         "structure": 17
       },
-      "reasoning": "BofA의 '근본적 단절' 진단을 한인 실수요자(1세대 자영업자, H-1B/영주권 직장인, 부모 세대 자금 지원)의 현금흐름·신분·세금 시나리오로 풀어낸 한인 관점 분석과 비교표·체크리스트 시각화가 강점입니다. 다만 원문이 Google News 단일 RSS 링크이고 BofA 원보고서나 Fortune 직접 링크가 아니라 구체 수치·지역·인용자가 부재해 사실성과 출처 신뢰도가 약하고, '읽힙니다/의미로도 읽힙니다' 식 추론 표현이 검증 가능한 사실을 대체하고 있어 보수적으로 평가했습니다.",
+      "reasoning": "CDC 공식 출처 1건이 정확히 링크돼 있고 본문 주장이 출처 범위 내에서 절제돼 있어 사실성과 출처 신뢰도가 안정적입니다. 임신부·고령자·면역저하자 등 한인 가정 구성원과 마트·식당·교회 행사까지 구체적 한인 동선으로 풀어낸 점이 강점이며, 비교표 형태의 시각화도 주제에 부합합니다. 다만 발병 규모·주(州)·회수 브랜드 등 구체 수치가 원문 공지의 한계로 빠져 있어 독창적 분석 깊이는 보통 수준입니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-05-bofa-on-the-fundamental-disconnect-in-the-housing-market-fortune.md"
+      "promoted_to": "queue/2026-06-05-cdc-warns-of-listeria-outbreak-linked-to-reques-n-soft-ricotta-cheese.md"
     },
     {
-      "slug": "2026-06-05-bolivia-level-2-exercise-increased-caution",
-      "score": 81,
+      "slug": "2026-06-05-foreclosure-and-employment-trends-signal-housing-risk-national-mortgage-professi",
+      "score": 86,
       "scores": {
         "factuality": 17,
-        "source_diversity": 15,
-        "ka_angle": 16,
-        "originality": 15,
+        "source_diversity": 17,
+        "ka_angle": 18,
+        "originality": 16,
         "structure": 18
       },
-      "reasoning": "국무부 1차 출처가 정확히 링크돼 있고 본문의 수치·지명·권고 내용이 출처와 일치하며, 비교표 형식의 시각화가 주제(여행경보 단계별 위험 항목)에 잘 맞습니다. 미주 한인 여름휴가·선교·은퇴자 관광이라는 구체적 그룹별 의미와 medical evacuation 보험 점검이라는 실무 조언이 들어 있어 한인 관점이 살아 있으나, 출처가 국무부 단일 페이지에 한정돼 교차 검증과 독창적 분석 폭은 다소 제한적입니다.",
+      "reasoning": "ATTOM 압류 보고서와 BLS 고용 보고서 등 신뢰도 높은 1차 출처를 정확히 인용했고, 한인 자영업자·첫 집 구매자·H-1B 보유자·다운사이징 부모 세대까지 그룹별 점검 포인트를 구체적으로 풀어 한인 실무성이 강합니다. 지표별 비교표와 가구별 번호 단계 체크리스트 등 시각화 요소가 충실하며, 후행/선행 지표 해석 등 편집자 차원의 분석도 더해져 단순 번역 수준을 넘어섭니다. 다만 원문 기사 본문이 Google News 리다이렉트 링크로만 제시돼 1차 보도 매체의 직접 링크가 빠진 점은 약점입니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-05-bolivia-level-2-exercise-increased-caution.md"
+      "promoted_to": "queue/2026-06-05-foreclosure-and-employment-trends-signal-housing-risk-national-mortgage-professi.md"
     },
     {
-      "slug": "2026-06-05-seattle-homebuyers-face-spring-double-whammy-the-seattle-times",
-      "score": 61,
+      "slug": "2026-06-05-inside-trump-s-suddenly-softened-new-green-card-policy-the-washington-post",
+      "score": 67,
       "scores": {
-        "factuality": 11,
-        "source_diversity": 12,
-        "ka_angle": 14,
-        "originality": 10,
-        "structure": 14
+        "factuality": 12,
+        "source_diversity": 10,
+        "ka_angle": 16,
+        "originality": 12,
+        "structure": 17
       },
-      "reasoning": "시애틀타임스 제목 한 줄만을 근거로 작성돼 구체 수치·금리·재고 데이터가 전혀 없고, 출처도 Google News 리다이렉트 링크 1건에 그쳐 사실성과 출처 신뢰도가 약합니다. 한인 그룹별 점검 포인트 표와 H-1B·자영업·은퇴세대 맥락 분석은 강점이지만, 원문의 '이중 부담' 실체(가격·금리 등)를 채우지 못한 채 일반론에 머물러 독창성이 부족합니다. 시각화로 비교표는 있으나 본문 정보가 빈약해 자동승격 기준 미만으로 평가합니다.",
+      "reasoning": "한인 영주권 신청자 관점에서 카테고리별 점검·재검토 포인트를 구체적으로 짚었고, 비교표와 체크리스트 등 시각적 구조도 갖춰 structure는 양호합니다. 다만 원문이 제목 수준의 발췌라 구체 조항·시행일·수치가 빠져 있고, 출처가 Google News 래퍼 링크 1건이라 워싱턴포스트 원문이나 USCIS 공식 자료로의 추적이 불완전해 factuality·source_diversity가 낮습니다. 사실관계가 보강되기 전에는 자동 승격보다는 보류가 안전합니다.",
       "action": "review",
       "promoted_to": null
     },
     {
-      "slug": "2026-06-05-trump-accounts-hearing",
-      "score": 80,
+      "slug": "2026-06-05-nearly-5-million-people-could-drop-aca-coverage-this-year-pushing-premiums-even",
+      "score": 84,
+      "scores": {
+        "factuality": 15,
+        "source_diversity": 16,
+        "ka_angle": 18,
+        "originality": 17,
+        "structure": 18
+      },
+      "reasoning": "ACA 보조금 일몰 시나리오와 500만 명 이탈 분석을 자영업·프리랜서·1099·조기 은퇴자 등 한인 실무 그룹으로 구체적으로 풀어내고, 비교표와 7단계 체크리스트로 시각적 구조도 확보했습니다. KFF·CBO·CMS·HealthCare.gov 등 신뢰도 높은 1차 자료를 출처에 함께 제시한 점이 강점이나, '500만 명' 수치의 원 보도가 Google News 리다이렉트 링크로만 추적돼 본문 수치의 1차 추적성이 약간 약한 점은 감점 요인입니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-05-nearly-5-million-people-could-drop-aca-coverage-this-year-pushing-premiums-even.md"
+    },
+    {
+      "slug": "2026-06-05-the-u-s-adds-172-000-jobs-many-are-in-restaurants-bars-and-hotels",
+      "score": 82,
       "scores": {
         "factuality": 17,
         "source_diversity": 15,
-        "ka_angle": 16,
-        "originality": 14,
-        "structure": 18
-      },
-      "reasoning": "연방관보 1차 출처를 정확히 링크하고 공청회와 시행을 분명히 구분한 점, 한인 가정의 자녀 SSN·영주권·교육저축 맥락을 구체적으로 연결한 점이 강점입니다. 5단계 비교표로 시각화 요건도 충족했으나, 출처가 단일 연방관보 문서 하나뿐이고 REG-117270-25 원안 링크나 IRS 보도자료 등 교차 참조가 없어 source_diversity와 originality에서 감점했습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-05-trump-accounts-hearing.md"
-    },
-    {
-      "slug": "2026-06-05-uganda-level-4-do-not-travel",
-      "score": 89,
-      "scores": {
-        "factuality": 17,
-        "source_diversity": 17,
-        "ka_angle": 19,
-        "originality": 17,
-        "structure": 19
-      },
-      "reasoning": "국무부·CDC·WHO·USCIS 등 1차/반-1차 출처가 정확한 링크와 함께 인용돼 추적 가능성이 높고, 영사 보호 한계·보험 면책·재입국 허가·체류 일수 등 한인 그룹별 실무 함의를 구체적으로 분석한 점이 강점입니다. Level 4 단계표, 한인 그룹별 점검 표, 8단계 체크리스트 등 시각화가 주제와 정확히 맞물려 있고 frontmatter·핵심 요약·출처 섹션도 완비되어 있어 자동 승격 기준을 충족합니다. 다만 PHEIC 선포·21일 격리 등 일부 핵심 수치는 출처 섹션의 일반 링크가 아닌 구체 페이지로 더 직접 매핑되면 사실성 점수가 더 올라갈 수 있습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-05-uganda-level-4-do-not-travel.md"
-    },
-    {
-      "slug": "2026-06-05-update-irs-extends-tax-filing-deadline-for-tennessee-storm-victims-to-june-8-loc",
-      "score": 72,
-      "scores": {
-        "factuality": 13,
-        "source_diversity": 10,
         "ka_angle": 17,
-        "originality": 14,
+        "originality": 15,
         "structure": 18
       },
-      "reasoning": "테네시 폭풍 피해자 대상 IRS 마감 연장이라는 세금/IRS 고검색의도 주제를 한인 자영업자·가정 관점으로 풀어내고, 비교표·체크리스트 등 시각적 구조도 갖추어 자동승격 기준을 충족합니다. 다만 출처가 Google News 리다이렉트 링크 1건뿐이고 원 보도사인 Local 3 News나 IRS 공식 발표 페이지로의 직접 링크가 없어 사실성·출처 추적 가능성이 약하며, 정확한 적용 카운티·세부 세금 항목 등 구체 정보가 부족합니다.",
+      "reasoning": "NPR 단일 출처지만 주요 언론사이고 본문 수치(17만2천명, 4.3%, 3개월 연속)가 모두 출처 링크로 추적 가능하며, 한인 자영업·H-1B·은퇴 세대로 나눠 실무 영향을 구체적으로 풀어낸 점이 강점입니다. '한눈에 보는 변화' 비교표가 주제에 맞는 시각화 역할을 충실히 수행하고 프런트매터·핵심 요약·출처 구조도 완전합니다. 다만 출처가 1곳이라 교차 검증 측면에서 만점은 아니며, 임금 상승 둔화에 대한 구체 수치가 본문에 없어 분석 깊이가 다소 아쉽습니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-05-update-irs-extends-tax-filing-deadline-for-tennessee-storm-victims-to-june-8-loc.md"
+      "promoted_to": "queue/2026-06-05-the-u-s-adds-172-000-jobs-many-are-in-restaurants-bars-and-hotels.md"
     },
     {
-      "slug": "2026-06-05-what-are-the-deadlines-for-the-aca-s-open-enrollment-period-healthinsurance-org",
-      "score": 89,
+      "slug": "2026-06-05-update-on-ebola-outbreak-in-the-democratic-republic-of-the-congo-and-uganda-6-5",
+      "score": 85,
       "scores": {
-        "factuality": 17,
-        "source_diversity": 18,
+        "factuality": 16,
+        "source_diversity": 17,
         "ka_angle": 18,
-        "originality": 17,
-        "structure": 19
+        "originality": 16,
+        "structure": 18
       },
-      "reasoning": "원문 발췌가 짧다는 한계를 정직하게 밝히고 HealthCare.gov·USCIS·KFF 등 신뢰도 높은 1차/반-1차 출처로 핵심 주장을 뒷받침한 점이 강점입니다. 자영업자·OPT/H-1B·영주권 진행 가정 등 한인 그룹별 의미를 구체적으로 풀고 자동 갱신 위험과 공적 부담 이슈까지 편집자 분석을 더한 독창성이 돋보입니다. 비교표와 7일 체크리스트 형태의 시각화가 주제에 적합하게 배치되어 자동 승격 기준을 충족합니다.",
+      "reasoning": "CDC·WHO·국무부 STEP 등 신뢰도 높은 1차 공식 출처가 정확한 링크와 함께 인용됐고, 단기 선교팀·아프리카 거주 가족·의료 종사자·자영업자·노약자 가정 등 한인 그룹별로 구체적 체크포인트가 잘 분리되어 있어 한인 관점이 살아 있다. 비교표와 6단계 출국 전·귀국 후 체크리스트 등 시각적 구조도 충실하지만, 본문 자체에 발병 규모·환자 수 등 구체 수치가 거의 없고 원문 확인을 독자에게 미루는 면이 있어 사실성과 독창성에서 약간 감점한다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-05-what-are-the-deadlines-for-the-aca-s-open-enrollment-period-healthinsurance-org.md"
+      "promoted_to": "queue/2026-06-05-update-on-ebola-outbreak-in-the-democratic-republic-of-the-congo-and-uganda-6-5.md"
+    },
+    {
+      "slug": "2026-06-05-uscis-shift-on-green-card-processing-center-for-immigration-studies",
+      "score": 0,
+      "scores": {},
+      "reasoning": "",
+      "action": "discard_flag",
+      "promoted_to": null
     }
   ]
 }
