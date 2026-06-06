@@ -5,7 +5,7 @@ pubDate: '2026-06-06'
 tags: ['건강보험', 'ACA', '주정부보조금']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMimAFBVV95cUxQLWt6b005UUVrMFdsUGVSU2xLbmtBcW1wX1V4NC1Vd3ZWQkN0ZmxfS3ZUZEdpY014V0M1VVJrem91WGtCWXFhanJJQ0pTQm93a1AtZzZIWTNBQXZRcG5mRURWM09KM0dIVXVZbHRBX25PQXZESndpcGYxOG5QV1FWRUhxQUpBZm9fRkxLWmlSSWY5dHAtMEYySA?oc=5'
 ---

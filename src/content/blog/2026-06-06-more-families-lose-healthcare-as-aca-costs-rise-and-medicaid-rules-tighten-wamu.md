@@ -5,7 +5,7 @@ pubDate: '2026-06-06'
 tags: ['ACA', '메디케이드', '건강보험', '한인가정', '의료비', '오바마케어']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMifkFVX3lxTE5YUTBlTjd6QzFNcTZXZjJmWTJVREh1Yzd5MFVlUERmdVNidUNqZTQxa3ZHcFc1RjBuS2hKN3BUYXlxdVFQQ2UzQVZhX3RaeHlsQmlMeTYwYXE0dUFkanNzNHB5UndtdW5iekI3S0tvQms2SmhNMTh6dncyRExUUQ?oc=5)'
 ---

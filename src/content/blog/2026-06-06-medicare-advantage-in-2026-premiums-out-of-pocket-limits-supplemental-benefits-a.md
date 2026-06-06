@@ -5,7 +5,7 @@ pubDate: '2026-06-06'
 tags: ['메디케어', 'Medicare Advantage', '건강보험', '은퇴', '한인커뮤니티', '오픈 인롤먼트']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMizAFBVV95cUxQYUtnRU5EVHFjNzQxOVJUaFB5MFc5RXBUbDFCZlY0Y0RwS0lMYmFueDVrZWxSYnlhMUZLTGZsRXRPVFp6a3JhSkJSQ1hzamJMY2dJcGRyTGVSakdxQ3phcDIwWnN5enFtbmw4ZDlRRERURHg4WjM5YlU4RVgtcVJIWkhrWGpfeV9SMEl1cm11bUlQWFRka0JIZEY3VjJWbWRJekFwcGU4SXJucTN3Z01GM2tRZW1KZUh0MlVEZGZsQ2ltSzliaXJCOGt5Sk8?oc=5'
 ---
