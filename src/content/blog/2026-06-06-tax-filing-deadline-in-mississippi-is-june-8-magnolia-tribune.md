@@ -5,7 +5,7 @@ pubDate: '2026-06-06'
 tags: ['세금', '미시시피', 'IRS']
 category: 'tax'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — IRS / Tax Guidance Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMijAFBVV95cUxOdXNHcmstUUt4bDJTTXdBbi1zUFZiLVRyckZPS0kxQk5keGRiTlJ0WHNNdnZvcjh5OFhUQWhiVmJEbXJJa2VkWVJ6ODU3LThHOTE5bXRVY21TY01CT01SeHJuVE1aNndJNXRyTWhOaXVqUE1aRG1zajcwU282MUhQaExSZ1lmczlodHA1dw?oc=5'
 ---

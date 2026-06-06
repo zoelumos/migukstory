@@ -5,7 +5,7 @@ pubDate: '2026-06-06'
 tags: ['캐나다여행', '국무부여행경보', 'FIFA월드컵', '미주한인', '여행안전']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'State Department Travel Advisories'
 sourceUrl: 'https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.can.html'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-06-06'
 tags: ['ACA', '오바마케어', '건강보험', '미시시피', '한인사회', '세금정산', 'PTC']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiwgFBVV95cUxQUm4xY1dBQUM2dWxnUVdzd25EOE5KQTA5alFha1FoVFNFdXF4Rm9UR1Zzem9RTGhfT1E4WTNFVlV2MzkyLTJLNlhBVXlOTGwtamtQalM2TEliMllWY3NnUkZoTV9xc1Z4bjlDSUViaHRyV2ZER0RnVnhGM0VIb0VjLU9JeURlSFUzNXZlRWpESlB3MElVT0tOSWJoQ29sN2xxMldScmdtdUpaVC00SGZGSjdfUTQ5RXRnMk5NaFduRmp5QQ?oc=5'
 ---

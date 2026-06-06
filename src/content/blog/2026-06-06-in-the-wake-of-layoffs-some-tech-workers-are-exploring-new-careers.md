@@ -5,7 +5,7 @@ pubDate: '2026-06-06'
 tags: ['테크해고', '커리어전환', '미국노동시장', '한인IT']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/06/05/nx-s1-5788006/in-the-wake-of-layoffs-some-tech-workers-are-exploring-new-careers'
 ---

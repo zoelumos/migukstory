@@ -5,7 +5,7 @@ pubDate: '2026-06-06'
 tags: ['건강보험', 'IRS', 'ACA', '한인생활', '메디케어']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMirwFBVV95cUxOTGhsaXZFX2pSb0ZqcXRadUZrMmExVkxvWURhZWNmaS1Tb2VLcnhIT2d2bkdmUG9DekIyRTdpRE82TTB5QmNnTk5ZcW5lOFdKUVdXVXhTMWJ5ZkIzWHlHVUgxdzRVTDAyUDFtZUtFVE9UUC14WEs2WTM5SGVlZnhnenFCb3BQR1ZMN1dRQmNVc2ZWZWhFWjlxWDFCU0FpRWJQTXVVVnpNdDR3a09QTHhv?oc=5)'
 ---
