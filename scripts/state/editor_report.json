@@ -1,45 +1,73 @@
 {
-  "generated_at": "2026-06-06T23:06:57.914444+00:00",
+  "generated_at": "2026-06-07T11:11:25.546892+00:00",
   "threshold_promote": 70,
   "threshold_review": 50,
   "counts": {
-    "total": 3,
-    "promoted": 3,
-    "review": 0,
+    "total": 7,
+    "promoted": 6,
+    "review": 1,
     "discard_flag": 0,
     "deferred": 0
   },
   "grades": [
     {
-      "slug": "2026-06-06-medicare-advantage-in-2026-premiums-out-of-pocket-limits-supplemental-benefits-a",
-      "score": 91,
+      "slug": "2026-06-07-cms-fda-team-up-to-fast-track-reimbursement-for-breakthrough-devices-statnews-co",
+      "score": 73,
       "scores": {
-        "factuality": 17,
-        "source_diversity": 18,
-        "ka_angle": 19,
-        "originality": 18,
-        "structure": 19
-      },
-      "reasoning": "KFF·CMS·Medicare.gov 등 신뢰도 높은 1차/반-1차 출처를 정확한 링크와 함께 제시했고, 본인부담 한도·사전승인·부가혜택을 한인 은퇴자·2세 자녀·부모 초청 가정·자영업자 그룹별로 구체적으로 풀어낸 한인 관점이 매우 강합니다. 4축 비교표, 5단계 체크리스트, 가을 일정 타임라인 등 시각화 요소가 풍부하고 YAML frontmatter·핵심 요약·출처 섹션 구조도 완비되어 있어 자동 승격 기준에 충분히 부합합니다. 다만 ANOC 문서 정비 관련 부분이 일반적 경향 추정 수준이라 사실성에서 약간의 보수적 감점을 두었습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-06-medicare-advantage-in-2026-premiums-out-of-pocket-limits-supplemental-benefits-a.md"
-    },
-    {
-      "slug": "2026-06-06-more-families-lose-healthcare-as-aca-costs-rise-and-medicaid-rules-tighten-wamu",
-      "score": 85,
-      "scores": {
-        "factuality": 16,
-        "source_diversity": 17,
-        "ka_angle": 18,
-        "originality": 16,
+        "factuality": 13,
+        "source_diversity": 11,
+        "ka_angle": 17,
+        "originality": 14,
         "structure": 18
       },
-      "reasoning": "WAMU 보도를 KFF·CBO·HealthCare.gov·Medicaid.gov 등 신뢰도 높은 1차/반-1차 출처와 교차 연결해 사실성과 출처 신뢰도가 안정적이고, 자영업자·노부모 동거 가정·비자 진행 가정 등 한인 그룹별로 영향과 대응을 구체화한 점이 강점입니다. 비교표와 번호 체크리스트로 시각화 요구도 충족했으나, WAMU 원문 URL이 Google News 리다이렉트로만 인용돼 1차 링크 추적성이 다소 약한 점은 아쉽습니다.",
+      "reasoning": "CMS·FDA 협력이라는 보건정책 주제를 한인 메디케어 이용자·만성질환 환자·소규모 한인 의료사업자 관점으로 구체적으로 풀어냈고, 비교표와 체크리스트 등 시각적 구조가 잘 갖춰져 자동 승격 기준을 충족합니다. 다만 출처가 Google News 리다이렉트 링크 1건뿐이고 원문(STAT News) 직접 링크가 없어 사실성·출처 신뢰도 검증이 약하며, fast-track의 구체 일정·대상 기기 등 핵심 수치가 빠져 보강이 필요합니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-06-more-families-lose-healthcare-as-aca-costs-rise-and-medicaid-rules-tighten-wamu.md"
+      "promoted_to": "queue/2026-06-07-cms-fda-team-up-to-fast-track-reimbursement-for-breakthrough-devices-statnews-co.md"
     },
     {
-      "slug": "2026-06-06-which-states-offer-their-own-health-insurance-subsidies-healthinsurance-org",
+      "slug": "2026-06-07-democratic-republic-of-the-congo-level-4-do-not-travel",
+      "score": 86,
+      "scores": {
+        "factuality": 17,
+        "source_diversity": 16,
+        "ka_angle": 18,
+        "originality": 17,
+        "structure": 18
+      },
+      "reasoning": "국무부·CDC·WHO 등 1차 공식 출처가 정확한 링크와 함께 인용되어 사실성과 출처 신뢰도가 높고, 선교사·NGO·H-1B/L-1 소지자·자영업자 등 한인 그룹별 실무 영향과 보험·재입국 검역까지 구체적으로 풀어낸 한인 관점이 뛰어납니다. 등급 변화 없음에도 '왜 4단계가 풀리지 않는가'를 보건·치안·인프라 3축으로 재구성한 편집자 분석과 비교표·타임라인·체크리스트 3종 시각화가 모두 살아 있어 자동 승격 기준을 충족합니다. 다만 PHEIC 선언 일자 등 일부 수치는 출처 링크 본문에서 직접 확인되는 항목이 아닐 수 있어 사실성에서 소폭 감점했습니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-07-democratic-republic-of-the-congo-level-4-do-not-travel.md"
+    },
+    {
+      "slug": "2026-06-07-how-courts-are-coping-with-a-flood-of-ai-generated-lawsuits",
+      "score": 80,
+      "scores": {
+        "factuality": 16,
+        "source_diversity": 15,
+        "ka_angle": 17,
+        "originality": 15,
+        "structure": 17
+      },
+      "reasoning": "MIT Technology Review 원문을 기반으로 Braswell 판사 사례와 AI 가짜 판례 인용 위험을 정확히 전달하고, 1세대 자영업자·유학생·비자 신청자 등 구체적 한인 그룹의 실무적 의미를 별도 문단으로 풀어낸 점이 강점입니다. '한눈에 보는 변화' 비교표가 기존 pro se와 AI 시대 pro se의 차이를 명확히 시각화해 구조 점수도 양호합니다. 다만 출처가 MIT Technology Review 단일 publisher에 의존하고 미국 사법회의(Judicial Conference)나 ABA 등 1차 공식 자료가 빠져 교차 검증이 약한 점은 한계입니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-07-how-courts-are-coping-with-a-flood-of-ai-generated-lawsuits.md"
+    },
+    {
+      "slug": "2026-06-07-robots-can-enhance-manufacturing-workers-rather-than-replace-them",
+      "score": 76,
+      "scores": {
+        "factuality": 15,
+        "source_diversity": 14,
+        "ka_angle": 16,
+        "originality": 14,
+        "structure": 17
+      },
+      "reasoning": "The Robot Report 원문 주장(AI·원격조작·안전장치 세 조건)을 정확히 추적 가능하게 인용했고, 한인 소상공인·청년 진로·취업비자 인력으로 연결한 한인 관점 분석이 명확합니다. 비교표를 통해 '대체 vs 보완' 시나리오를 시각화한 점이 강점이나, 출처가 단일 업계 매체이고 구체 통계가 없어 사실성과 독창성 모두 추가 데이터로 보강될 여지가 있습니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-07-robots-can-enhance-manufacturing-workers-rather-than-replace-them.md"
+    },
+    {
+      "slug": "2026-06-07-the-meta-hack-shows-there-s-more-to-ai-security-than-mythos",
       "score": 83,
       "scores": {
         "factuality": 16,
@@ -48,9 +76,37 @@
         "originality": 16,
         "structure": 18
       },
-      "reasoning": "원문에 없는 수치나 주 이름을 임의로 만들지 않고 보수적으로 작성했으며, HealthCare.gov·CMS·KFF 등 신뢰도 높은 공식 출처를 정확한 링크와 함께 인용해 추적 가능성이 확보됐습니다. 한인 자영업자·다세대 가정·은퇴 직전 가구 등 그룹별 영향과 확인 순서 체크리스트, 비교표를 통한 시각화가 분명히 살아 있어 ACA/건강보험 서비스 저널리즘 기준에서 자동 승격에 적합합니다. 다만 원문 자체가 짧아 구체적 주 목록·금액 같은 1차 정보가 부족하다는 한계가 있어 사실성 만점은 부여하지 않았습니다.",
+      "reasoning": "404 Media 보도와 오바마 백악관 계정 사례 등 핵심 사실이 MIT Technology Review 출처로 추적 가능하며, 인스타그램에 의존하는 한인 소상공인·가정 관점이 구체적으로 살아있습니다. 비교표와 번호 체크리스트로 시각화 요건을 충족하고 실무 점검 항목이 명확합니다. 다만 출처가 단일 매체이고 404 Media 원문 직접 링크가 없어 교차 검증 측면은 다소 약합니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-06-which-states-offer-their-own-health-insurance-subsidies-healthinsurance-org.md"
+      "promoted_to": "queue/2026-06-07-the-meta-hack-shows-there-s-more-to-ai-security-than-mythos.md"
+    },
+    {
+      "slug": "2026-06-07-video-friday-watch-this-running-robot-not-fall-down-stairs",
+      "score": 81,
+      "scores": {
+        "factuality": 16,
+        "source_diversity": 15,
+        "ka_angle": 17,
+        "originality": 15,
+        "structure": 18
+      },
+      "reasoning": "IEEE Spectrum 1차 출처를 정확히 인용하고 계단 회복·야외 보행·3개월 양산이라는 핵심 사실을 추적 가능하게 정리했으며, 자영업·1세대 노동·자녀 진로·401(k)/IRA 점검까지 한인 실무 각도로 풀어낸 점이 강점입니다. 비교표와 번호 체크리스트 형식의 시각화가 주제(자동화 영향)와 잘 맞아 구조 점수도 높습니다. 다만 출처가 단일 매체 1건이라 교차 검증은 약하고, Generative Bionics·DARoS Lab 등 개별 회사 주장은 1차 보도자료 링크가 추가되면 더 견고했을 것입니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-07-video-friday-watch-this-running-robot-not-fall-down-stairs.md"
+    },
+    {
+      "slug": "2026-06-07-when-are-estimated-tax-payments-due-in-2026-kiplinger",
+      "score": 69,
+      "scores": {
+        "factuality": 12,
+        "source_diversity": 11,
+        "ka_angle": 16,
+        "originality": 13,
+        "structure": 17
+      },
+      "reasoning": "한인 자영업자·프리랜서·은퇴자 관점이 구체적으로 살아있고 체크리스트 표와 번호 단계 목록 등 시각화 구조가 갖춰져 있는 점은 강점입니다. 다만 출처가 Google News 리다이렉트 링크 하나뿐이라 Kiplinger 원문 직접 링크와 IRS 공식 페이지가 누락돼 사실성·출처 신뢰도가 약하고, 정작 핵심인 2026년 분기별 구체 마감일(4/15, 6/15, 9/15, 1/15 등)이 본문에 명시되지 않아 가이드 기사로서의 실효성이 떨어집니다.",
+      "action": "review",
+      "promoted_to": null
     }
   ]
 }
