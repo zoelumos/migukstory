@@ -5,7 +5,7 @@ pubDate: '2026-06-07'
 tags: ['로봇', '제조업', '자동화', 'AI', '일자리']
 category: 'robotics'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'The Robot Report'
 sourceUrl: 'https://therobotreport.com/robots-can-enhance-manufacturing-workers-rather-than-replace-them'
 ---

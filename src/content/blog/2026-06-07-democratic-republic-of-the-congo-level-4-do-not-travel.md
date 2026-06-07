@@ -5,7 +5,7 @@ pubDate: '2026-06-07'
 tags: ['여행경보', '국무부', '에볼라', '콩고민주공화국', '한인커뮤니티', 'CDC', 'WHO']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'State Department Travel Advisories'
 sourceUrl: 'https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/democratic-republic-of-the-congo-travel-advisory.html'
 ---

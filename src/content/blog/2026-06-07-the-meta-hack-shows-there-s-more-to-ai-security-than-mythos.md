@@ -5,7 +5,7 @@ pubDate: '2026-06-07'
 tags: ['메타', 'AI보안', '인스타그램']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'MIT Technology Review — AI'
 sourceUrl: 'https://technologyreview.com/2026/06/05/1138437/the-meta-hack-shows-theres-more-to-ai-security-than-mythos'
 ---

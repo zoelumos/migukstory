@@ -5,7 +5,7 @@ pubDate: '2026-06-07'
 tags: ['AI', '미국법원', '소송', '한인생활', '리걸테크']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'MIT Technology Review — AI'
 sourceUrl: 'https://technologyreview.com/2026/06/04/1138391/courts-coping-ai-lawsuits'
 ---

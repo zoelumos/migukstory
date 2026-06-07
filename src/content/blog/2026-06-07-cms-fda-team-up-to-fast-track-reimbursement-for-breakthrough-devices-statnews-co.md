@@ -5,7 +5,7 @@ pubDate: '2026-06-07'
 tags: ['CMS', 'FDA', '의료기기', '메디케어', '건강보험']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Policy / Recall Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMimAFBVV95cUxNX242WlNvai1NQmgtTWk4X1RELW96MV81MlFSQ2U2UmtsRFhnQkU2NWZvd0p5YlpORE1XUHRiRFlZVnhtVzFtZlk2MjB0UW1Ha3RDQUNSZy1abldzVTlwM3RHTXBqcm5MeU1WVUlfTTdFVmpEUlAtQV9NRmhVbkpMbTZuazlzSWNKaUw5cGpITFNTNlkyUURhSg?oc=5'
 ---

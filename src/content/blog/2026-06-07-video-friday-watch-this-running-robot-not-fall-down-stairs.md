@@ -5,7 +5,7 @@ pubDate: '2026-06-07'
 tags: ['휴머노이드', '로봇', '자동화', '미주한인', '일자리']
 category: 'robotics'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'IEEE Spectrum — Robotics'
 sourceUrl: 'https://spectrum.ieee.org/video-friday-humanoid-robot-running'
 ---
