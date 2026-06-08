@@ -108,17 +108,42 @@ export function compareForHomepage(a: BlogLike, b: BlogLike) {
 	return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
 }
 
+function dateKey(post: BlogLike) {
+	return post.data.pubDate.toISOString().slice(0, 10);
+}
+
 export function splitHomepageStories<T extends BlogLike>(posts: T[]) {
 	const latest = [...posts].sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-	const eligible = latest.filter(isLeadEligible).sort(compareForHomepage);
-	const lead = eligible[0] || latest.find(post => inferHeadlineScope(post) !== 'local');
-	const rest = latest.filter(post => post.id !== lead?.id).sort(compareForHomepage);
-	const eligibleAboveFold = rest.filter(isLeadEligible);
-	const nonLocalFallback = rest.filter(post => inferHeadlineScope(post) !== 'local' && !eligibleAboveFold.includes(post));
+	const newestDate = latest[0] ? dateKey(latest[0]) : '';
+	const todayPosts = latest.filter(post => dateKey(post) === newestDate);
+	const olderPosts = latest.filter(post => dateKey(post) !== newestDate);
+
+	// Homepage must behave like a live news front page: whenever fresh posts are
+	// published, the headline + above-fold "slides" must come from the newest
+	// publication date first. High-scoring older service guides are valuable, but
+	// they must never bury today's breaking/current-news package.
+	const todayEligible = todayPosts.filter(isLeadEligible).sort(compareForHomepage);
+	const todayNonLocal = todayPosts
+		.filter(post => inferHeadlineScope(post) !== 'local' && !todayEligible.includes(post))
+		.sort(compareForHomepage);
+	const olderEligible = olderPosts.filter(isLeadEligible).sort(compareForHomepage);
+
+	const lead = todayEligible[0] || todayNonLocal[0] || olderEligible[0] || olderPosts.find(post => inferHeadlineScope(post) !== 'local');
+	const rest = latest.filter(post => post.id !== lead?.id);
+	const todayRest = rest.filter(post => dateKey(post) === newestDate);
+	const olderRest = rest.filter(post => dateKey(post) !== newestDate);
+	const todayAboveFold = todayRest.filter(isLeadEligible).sort(compareForHomepage);
+	const todayFallback = todayRest
+		.filter(post => inferHeadlineScope(post) !== 'local' && !todayAboveFold.includes(post))
+		.sort(compareForHomepage);
+	const olderAboveFold = olderRest.filter(isLeadEligible).sort(compareForHomepage);
+	const olderFallback = olderRest
+		.filter(post => inferHeadlineScope(post) !== 'local' && !olderAboveFold.includes(post))
+		.sort(compareForHomepage);
 
 	return {
 		lead,
-		aboveFold: [...eligibleAboveFold, ...nonLocalFallback].slice(0, 2),
-		continued: rest,
+		aboveFold: [...todayAboveFold, ...todayFallback, ...olderAboveFold, ...olderFallback].slice(0, 2),
+		continued: [...todayRest.sort(compareForHomepage), ...olderRest.sort(compareForHomepage)],
 	};
 }
