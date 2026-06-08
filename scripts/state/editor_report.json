@@ -1,110 +1,110 @@
 {
-  "generated_at": "2026-06-07T11:11:25.546892+00:00",
+  "generated_at": "2026-06-08T11:11:12.403870+00:00",
   "threshold_promote": 70,
   "threshold_review": 50,
   "counts": {
     "total": 7,
-    "promoted": 6,
-    "review": 1,
+    "promoted": 3,
+    "review": 4,
     "discard_flag": 0,
     "deferred": 0
   },
   "grades": [
     {
-      "slug": "2026-06-07-cms-fda-team-up-to-fast-track-reimbursement-for-breakthrough-devices-statnews-co",
-      "score": 73,
+      "slug": "2026-06-08-cms-finalizes-major-changes-to-aca-exchanges-including-greater-access-to-catastr",
+      "score": 70,
       "scores": {
-        "factuality": 13,
-        "source_diversity": 11,
+        "factuality": 12,
+        "source_diversity": 10,
         "ka_angle": 17,
         "originality": 14,
-        "structure": 18
+        "structure": 17
       },
-      "reasoning": "CMS·FDA 협력이라는 보건정책 주제를 한인 메디케어 이용자·만성질환 환자·소규모 한인 의료사업자 관점으로 구체적으로 풀어냈고, 비교표와 체크리스트 등 시각적 구조가 잘 갖춰져 자동 승격 기준을 충족합니다. 다만 출처가 Google News 리다이렉트 링크 1건뿐이고 원문(STAT News) 직접 링크가 없어 사실성·출처 신뢰도 검증이 약하며, fast-track의 구체 일정·대상 기기 등 핵심 수치가 빠져 보강이 필요합니다.",
+      "reasoning": "한인 자영업자·프리랜서·1.5세 가정 등 구체적 그룹을 짚고 캐터스트로픽 플랜과 일반 ACA 플랜을 비교하는 표가 있어 시각화와 한인 관점은 살아있습니다. 다만 출처가 Google News 리다이렉트 링크 한 건뿐이고 원 Healthcare Dive 기사로 바로 추적되지 않아 사실성·출처 신뢰도가 낮으며, '18일 보도'처럼 검증이 어려운 구체 표현이 포함돼 있어 보수적으로 채점했습니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-07-cms-fda-team-up-to-fast-track-reimbursement-for-breakthrough-devices-statnews-co.md"
+      "promoted_to": "queue/2026-06-08-cms-finalizes-major-changes-to-aca-exchanges-including-greater-access-to-catastr.md"
     },
     {
-      "slug": "2026-06-07-democratic-republic-of-the-congo-level-4-do-not-travel",
-      "score": 86,
+      "slug": "2026-06-08-consumer-price-index-cpi-what-is-it-and-how-does-it-work-chase-bank",
+      "score": 85,
       "scores": {
         "factuality": 17,
         "source_diversity": 16,
         "ka_angle": 18,
-        "originality": 17,
-        "structure": 18
-      },
-      "reasoning": "국무부·CDC·WHO 등 1차 공식 출처가 정확한 링크와 함께 인용되어 사실성과 출처 신뢰도가 높고, 선교사·NGO·H-1B/L-1 소지자·자영업자 등 한인 그룹별 실무 영향과 보험·재입국 검역까지 구체적으로 풀어낸 한인 관점이 뛰어납니다. 등급 변화 없음에도 '왜 4단계가 풀리지 않는가'를 보건·치안·인프라 3축으로 재구성한 편집자 분석과 비교표·타임라인·체크리스트 3종 시각화가 모두 살아 있어 자동 승격 기준을 충족합니다. 다만 PHEIC 선언 일자 등 일부 수치는 출처 링크 본문에서 직접 확인되는 항목이 아닐 수 있어 사실성에서 소폭 감점했습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-07-democratic-republic-of-the-congo-level-4-do-not-travel.md"
-    },
-    {
-      "slug": "2026-06-07-how-courts-are-coping-with-a-flood-of-ai-generated-lawsuits",
-      "score": 80,
-      "scores": {
-        "factuality": 16,
-        "source_diversity": 15,
-        "ka_angle": 17,
-        "originality": 15,
-        "structure": 17
-      },
-      "reasoning": "MIT Technology Review 원문을 기반으로 Braswell 판사 사례와 AI 가짜 판례 인용 위험을 정확히 전달하고, 1세대 자영업자·유학생·비자 신청자 등 구체적 한인 그룹의 실무적 의미를 별도 문단으로 풀어낸 점이 강점입니다. '한눈에 보는 변화' 비교표가 기존 pro se와 AI 시대 pro se의 차이를 명확히 시각화해 구조 점수도 양호합니다. 다만 출처가 MIT Technology Review 단일 publisher에 의존하고 미국 사법회의(Judicial Conference)나 ABA 등 1차 공식 자료가 빠져 교차 검증이 약한 점은 한계입니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-07-how-courts-are-coping-with-a-flood-of-ai-generated-lawsuits.md"
-    },
-    {
-      "slug": "2026-06-07-robots-can-enhance-manufacturing-workers-rather-than-replace-them",
-      "score": 76,
-      "scores": {
-        "factuality": 15,
-        "source_diversity": 14,
-        "ka_angle": 16,
-        "originality": 14,
-        "structure": 17
-      },
-      "reasoning": "The Robot Report 원문 주장(AI·원격조작·안전장치 세 조건)을 정확히 추적 가능하게 인용했고, 한인 소상공인·청년 진로·취업비자 인력으로 연결한 한인 관점 분석이 명확합니다. 비교표를 통해 '대체 vs 보완' 시나리오를 시각화한 점이 강점이나, 출처가 단일 업계 매체이고 구체 통계가 없어 사실성과 독창성 모두 추가 데이터로 보강될 여지가 있습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-07-robots-can-enhance-manufacturing-workers-rather-than-replace-them.md"
-    },
-    {
-      "slug": "2026-06-07-the-meta-hack-shows-there-s-more-to-ai-security-than-mythos",
-      "score": 83,
-      "scores": {
-        "factuality": 16,
-        "source_diversity": 15,
-        "ka_angle": 18,
         "originality": 16,
         "structure": 18
       },
-      "reasoning": "404 Media 보도와 오바마 백악관 계정 사례 등 핵심 사실이 MIT Technology Review 출처로 추적 가능하며, 인스타그램에 의존하는 한인 소상공인·가정 관점이 구체적으로 살아있습니다. 비교표와 번호 체크리스트로 시각화 요건을 충족하고 실무 점검 항목이 명확합니다. 다만 출처가 단일 매체이고 404 Media 원문 직접 링크가 없어 교차 검증 측면은 다소 약합니다.",
+      "reasoning": "BLS·SSA 등 공식 1차 출처가 정확한 링크와 함께 인용돼 사실성과 출처 신뢰도가 높고, CPI가 한인 자영업자·은퇴자·유학생 가계에 닿는 경로를 구체적으로 분석한 점이 강점입니다. 비교표와 7단계 체크리스트로 시각적 구조도 충족했으며, 헤드라인 출처가 Google News 리다이렉트 링크라는 점과 구체적 최근 CPI 수치가 빠진 점은 약점이지만 자동 승격 기준은 충족합니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-07-the-meta-hack-shows-there-s-more-to-ai-security-than-mythos.md"
+      "promoted_to": "queue/2026-06-08-consumer-price-index-cpi-what-is-it-and-how-does-it-work-chase-bank.md"
     },
     {
-      "slug": "2026-06-07-video-friday-watch-this-running-robot-not-fall-down-stairs",
-      "score": 81,
-      "scores": {
-        "factuality": 16,
-        "source_diversity": 15,
-        "ka_angle": 17,
-        "originality": 15,
-        "structure": 18
-      },
-      "reasoning": "IEEE Spectrum 1차 출처를 정확히 인용하고 계단 회복·야외 보행·3개월 양산이라는 핵심 사실을 추적 가능하게 정리했으며, 자영업·1세대 노동·자녀 진로·401(k)/IRA 점검까지 한인 실무 각도로 풀어낸 점이 강점입니다. 비교표와 번호 체크리스트 형식의 시각화가 주제(자동화 영향)와 잘 맞아 구조 점수도 높습니다. 다만 출처가 단일 매체 1건이라 교차 검증은 약하고, Generative Bionics·DARoS Lab 등 개별 회사 주장은 1차 보도자료 링크가 추가되면 더 견고했을 것입니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-07-video-friday-watch-this-running-robot-not-fall-down-stairs.md"
-    },
-    {
-      "slug": "2026-06-07-when-are-estimated-tax-payments-due-in-2026-kiplinger",
-      "score": 69,
+      "slug": "2026-06-08-iran-threatens-to-target-tourism-sites-worldwide-and-says-it-s-still-building-mi",
+      "score": 66,
       "scores": {
         "factuality": 12,
-        "source_diversity": 11,
+        "source_diversity": 9,
         "ka_angle": 16,
         "originality": 13,
+        "structure": 16
+      },
+      "reasoning": "한인 여행·유가·송금·은퇴계좌 관점으로 잘 연결했고 비교표 시각화도 갖췄습니다. 다만 본문은 PBS 보도를 인용한다고 하면서 출처 섹션에는 Google News 리다이렉트 링크 1건만 있어 원문 추적성이 약하고, '3주차'·'미사일 생산 지속' 같은 수치·주장의 1차 출처 검증이 어렵습니다. 단일 출처 구조는 허용되나 신뢰도 높은 1차 보도 링크가 빠져 자동승격은 보수적으로 평가했습니다.",
+      "action": "review",
+      "promoted_to": null
+    },
+    {
+      "slug": "2026-06-08-is-it-safe-to-travel-to-the-middle-east-the-latest-advisory-updates-travelpirate",
+      "score": 60,
+      "scores": {
+        "factuality": 10,
+        "source_diversity": 8,
+        "ka_angle": 15,
+        "originality": 11,
+        "structure": 16
+      },
+      "reasoning": "한인 여행자·비자 신분·자영업자 관점에서 출발 전 점검 항목을 표로 정리한 점과 frontmatter·핵심 요약·출처 섹션 등 구조는 충실합니다. 그러나 출처가 Google News 집계 링크 한 건뿐이라 신뢰도와 추적 가능성이 낮고, 원문이 헤드라인 수준이라 본문에 구체적 권고 등급·국가·날짜·기관 인용 등 검증 가능한 사실이 거의 없어 사실성과 독창성이 약합니다.",
+      "action": "review",
+      "promoted_to": null
+    },
+    {
+      "slug": "2026-06-08-israel-strikes-iran-after-missile-attack-raises-new-travel-and-airspace-concerns",
+      "score": 60,
+      "scores": {
+        "factuality": 11,
+        "source_diversity": 9,
+        "ka_angle": 14,
+        "originality": 11,
+        "structure": 15
+      },
+      "reasoning": "중동 충돌의 항공·여행 영향과 한인 가족 방문·USCIS 일정 연결 등 한인 관점은 비교적 잘 살아 있고, 비교표 형태의 시각화와 핵심 요약·출처 섹션 등 구조 요건도 갖췄습니다. 다만 출처가 Google News RSS 리다이렉트 링크 1건뿐이라 1차 출처(이스라엘·이란 정부 발표, 국무부 여행경보, 항공사 공지) 추적이 불가능하고, 본문 수치·시점·구체적 노선/항공사 정보가 부족해 사실성과 출처 신뢰도 모두 낮습니다. 원문 요약 위주이고 편집자 차원의 비교·종합이 약해 자동 승격 기준에는 미달합니다.",
+      "action": "review",
+      "promoted_to": null
+    },
+    {
+      "slug": "2026-06-08-trump-says-iran-war-could-wrap-up-in-2-3-weeks-as-conflict-pushes-gas-prices-ove",
+      "score": 74,
+      "scores": {
+        "factuality": 14,
+        "source_diversity": 12,
+        "ka_angle": 17,
+        "originality": 14,
         "structure": 17
       },
-      "reasoning": "한인 자영업자·프리랜서·은퇴자 관점이 구체적으로 살아있고 체크리스트 표와 번호 단계 목록 등 시각화 구조가 갖춰져 있는 점은 강점입니다. 다만 출처가 Google News 리다이렉트 링크 하나뿐이라 Kiplinger 원문 직접 링크와 IRS 공식 페이지가 누락돼 사실성·출처 신뢰도가 약하고, 정작 핵심인 2026년 분기별 구체 마감일(4/15, 6/15, 9/15, 1/15 등)이 본문에 명시되지 않아 가이드 기사로서의 실효성이 떨어집니다.",
+      "reasoning": "트럼프의 '2~3주 종결' 발언과 갤런당 4달러 돌파라는 핵심 사실을 출처 한 곳(CBS News 인용 Google News)에 연결하고, 출퇴근·자영업·은퇴 가구로 나눠 한인 관점을 구체적으로 풀어쓴 점이 강점입니다. 비교표가 시각화 요건을 충족하고 구조가 깔끔하지만, 출처가 Google News 리다이렉트 1건뿐이고 원문 외 추가 수치·교차검증이 부족해 사실성과 출처 신뢰도 점수는 보수적으로 평가했습니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-08-trump-says-iran-war-could-wrap-up-in-2-3-weeks-as-conflict-pushes-gas-prices-ove.md"
+    },
+    {
+      "slug": "2026-06-08-us-cpi-report-do-stock-markets-need-to-worry-tastylive",
+      "score": 68,
+      "scores": {
+        "factuality": 13,
+        "source_diversity": 9,
+        "ka_angle": 16,
+        "originality": 14,
+        "structure": 16
+      },
+      "reasoning": "CPI 발표가 한인 401(k)·자영업·모기지에 미치는 영향을 구체적으로 풀어쓴 한인 관점과 예상보다 높을 때/낮을 때를 정리한 비교표가 강점입니다. 다만 출처가 Google News 리디렉션 링크 1건뿐이고 원문 tastylive 기사로 직접 추적되지 않아 신뢰도·검증 가능성이 약하며, 실제 CPI 수치·발표 일정 등 검증 가능한 사실이 부족합니다. 이번 발표 시점·예상치 같은 구체 수치가 빠져 자동 승격보다는 보수적으로 평가합니다.",
       "action": "review",
       "promoted_to": null
     }
