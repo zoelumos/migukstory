@@ -104,7 +104,7 @@ SECONDARY_MAINTAIN_CATEGORIES = {"economy", "ai", "robotics"}
 # Tier-1 high-impact categories. The second daily "urgent" ingest restricts
 # itself to these so it catches things like USCIS adjustment-of-status policy
 # memos, IRS changes, health/insurance alerts, and rate/CPI shocks.
-TIER1_CATEGORIES = {"immigration", "tax", "health", "economy", "retirement", "real-estate"}
+TIER1_CATEGORIES = {"immigration", "tax", "health", "economy", "retirement", "real-estate", "community"}
 
 # Patterns that mark an item as "urgent / high-impact" for Korean-American
 # readers. Matched case-insensitively against title + summary. Items that
@@ -133,6 +133,11 @@ URGENT_TERMS = [
     r"unemployment", r"\bfomc\b", r"recession", r"inflation report",
     r"mortgage", r"home insurance", r"health insurance", r"\baca\b",
     r"medicare premium", r"social security cola", r"\bssi\b",
+    # Geopolitical / energy / travel shocks that hit Korean-American households
+    r"\biran\b", r"\bisrael\b", r"\bhormuz\b", r"strait of hormuz",
+    r"middle east", r"missile", r"drone attack", r"airstrike", r"ceasefire",
+    r"oil shock", r"crude oil", r"gas prices?", r"gasoline", r"travel advisory",
+    r"state department", r"do not travel", r"flight disruptions?",
 ]
 URGENT_RE = re.compile("|".join(URGENT_TERMS), re.IGNORECASE)
 
@@ -149,7 +154,9 @@ CATEGORY_RELEVANCE_TERMS = {
         r"inflation|\bcpi\b|interest rate|federal reserve|\bfed\b|jobs?|wages?|"
         r"unemployment|recession|tariff|mortgage|housing|rent|consumer|"
         r"small business|retirement|401\(k\)|ira|tax|irs|social security|"
-        r"credit|debt|insurance|affordability|prices?",
+        r"credit|debt|insurance|affordability|prices?|"
+        r"iran|israel|hormuz|middle east|missile|airstrike|ceasefire|"
+        r"oil|crude|gasoline|gas prices?|travel advisory|do not travel|flight", 
         re.IGNORECASE,
     ),
     # AI/robotics stay, but should connect to work, automation, small business,

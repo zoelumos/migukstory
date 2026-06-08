@@ -130,6 +130,22 @@ sources:
     enabled: true
     max_items: 3
 
+  # Urgent geopolitical/energy shocks that hit Korean-American households via
+  # gasoline, airfare, 401(k), remittance FX, travel advisories, and small-
+  # business shipping costs. Added 2026-06-07 after the Iran/Israel/Hormuz
+  # escalation was missed by CPI/Fed-focused economy watches.
+  - name: Google News — Iran / Israel / Hormuz Urgent Watch
+    url: https://news.google.com/rss/search?q=Iran%20Israel%20missile%20OR%20Hormuz%20OR%20Middle%20East%20oil%20gas%20prices%20OR%20State%20Department%20travel%20advisory&hl=en-US&gl=US&ceid=US:en
+    category: economy
+    enabled: true
+    max_items: 6
+
+  - name: Google News — Middle East Travel / Airline Disruption Watch
+    url: https://news.google.com/rss/search?q=Middle%20East%20flight%20disruption%20OR%20Iran%20travel%20advisory%20OR%20Israel%20travel%20advisory%20OR%20Do%20Not%20Travel&hl=en-US&gl=US&ceid=US:en
+    category: community
+    enabled: true
+    max_items: 4
+
   - name: NPR Business
     url: https://feeds.npr.org/1006/rss.xml
     category: economy
