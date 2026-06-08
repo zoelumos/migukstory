@@ -5,7 +5,7 @@ pubDate: '2026-06-08'
 tags: ['CPI', '인플레이션', '금리', '경제', '생활비', 'Social Security', 'COLA']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — CPI / Interest Rate Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMizgFBVV95cUxOMXhqTEJwZ1FPLTVIUWsxY3phN3B1eVNvNi1RZnBKbTVCZXZ3TlJ4b2syTmdWMjJRSnY4dVVnaVp6Y3BtWHAtQVBaWjA0VVlyMFN5LWhuNGdGdUgwWWtTdFZtNEJ5NHNIOHZTZE9XMVc0VG9FU1RIdVJWOFkyME5BQWVrQlBlUXYtd2xDbWplM1h0OTBCZmdZb0trR0hQR0x1SkV3a0RTQ0RPSEVXbzRSNE5HY1FGcHVLUEtFdEtKUWZzeTN0SEtsRXBYaTZEQQ?oc=5'
 ---

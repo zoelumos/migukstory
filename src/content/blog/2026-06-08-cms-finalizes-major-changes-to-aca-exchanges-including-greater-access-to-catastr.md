@@ -5,7 +5,7 @@ pubDate: '2026-06-08'
 tags: ['ACA', 'CMS', '건강보험', '캐터스트로픽플랜', '오바마케어']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMinAFBVV95cUxPSlQtUVp5QVNsUnV2ZmpGR2J0a3h1SUFkcUVCWU80bXU4aEg5c21hNXRlWlpjNFJmb3JqQ1VOd1NrMUtZbG1raTNROXJHWlNfWW9MTzR0bExLR292aHRpNm9QS3pIS2ZzbFk1X255T3lEWGRaUDJmallxaGdfOEZJclBoTW8xbVBKMDFhUmd2d3lxM3FQNDJ2ejljdXY?oc=5'
 ---
