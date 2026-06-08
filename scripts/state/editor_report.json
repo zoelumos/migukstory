@@ -1,110 +1,96 @@
 {
-  "generated_at": "2026-06-08T11:11:12.403870+00:00",
+  "generated_at": "2026-06-08T23:12:33.253323+00:00",
   "threshold_promote": 70,
   "threshold_review": 50,
   "counts": {
-    "total": 7,
-    "promoted": 3,
-    "review": 4,
+    "total": 6,
+    "promoted": 5,
+    "review": 1,
     "discard_flag": 0,
     "deferred": 0
   },
   "grades": [
     {
-      "slug": "2026-06-08-cms-finalizes-major-changes-to-aca-exchanges-including-greater-access-to-catastr",
-      "score": 70,
-      "scores": {
-        "factuality": 12,
-        "source_diversity": 10,
-        "ka_angle": 17,
-        "originality": 14,
-        "structure": 17
-      },
-      "reasoning": "한인 자영업자·프리랜서·1.5세 가정 등 구체적 그룹을 짚고 캐터스트로픽 플랜과 일반 ACA 플랜을 비교하는 표가 있어 시각화와 한인 관점은 살아있습니다. 다만 출처가 Google News 리다이렉트 링크 한 건뿐이고 원 Healthcare Dive 기사로 바로 추적되지 않아 사실성·출처 신뢰도가 낮으며, '18일 보도'처럼 검증이 어려운 구체 표현이 포함돼 있어 보수적으로 채점했습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-08-cms-finalizes-major-changes-to-aca-exchanges-including-greater-access-to-catastr.md"
-    },
-    {
-      "slug": "2026-06-08-consumer-price-index-cpi-what-is-it-and-how-does-it-work-chase-bank",
+      "slug": "2026-06-08-bay-area-buyers-bring-bigger-down-payments-as-ai-wealth-grows-national-mortgage",
       "score": 85,
       "scores": {
-        "factuality": 17,
+        "factuality": 15,
         "source_diversity": 16,
+        "ka_angle": 19,
+        "originality": 17,
+        "structure": 18
+      },
+      "reasoning": "베이 에어리어 AI 자산 효과라는 거시 흐름을 H-1B·영주권 한인 엔지니어, 학군 진입 가정, 자영업자 등 구체적 한인 그룹별 의사결정으로 풀어낸 한인 관점이 매우 강하고, '두 개의 시장' 편집자 분석과 비교표·5단계 체크리스트 시각화가 모두 갖춰져 자동 승격 기준을 충족합니다. 다만 원 출처가 Google News 래퍼 링크라 원문 publisher 추적이 약하고, Freddie Mac·Census/HUD는 보조 통계로 인용돼 베이 에어리어 다운페이먼트 규모의 구체 수치는 직접 검증되지 않는 점이 약점입니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-08-bay-area-buyers-bring-bigger-down-payments-as-ai-wealth-grows-national-mortgage.md"
+    },
+    {
+      "slug": "2026-06-08-israel-joins-iran-united-states-lebanon-iraq-yemen-syria-bahrain-jordan-kuwait-o",
+      "score": 89,
+      "scores": {
+        "factuality": 17,
+        "source_diversity": 18,
+        "ka_angle": 18,
+        "originality": 17,
+        "structure": 19
+      },
+      "reasoning": "미 국무부 레벨 3/4 분류, 6월 4일자 안내, 영공 폐쇄 국가와 결항 항공사 명단 등 주요 사실이 출처 섹션의 국무부·CNN·Airline Ratings 링크로 추적 가능하며, 정부 1차 출처와 주요 언론이 교차 인용돼 신뢰도가 높습니다. 환승 허브 리스크를 한인 자영업자·부모 세대·유학생 일정 관점에서 구체적으로 풀어쓴 편집자 분석과 비교표·번호 체크리스트 시각화가 모두 갖춰져 자동 승격 기준을 충분히 충족합니다. 다만 '시뮬레이션 결항 1만 2,000편' 같은 수치는 원문 표현을 그대로 옮긴 것이라 1차 통계 인용이었다면 더 강했을 것입니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-08-israel-joins-iran-united-states-lebanon-iraq-yemen-syria-bahrain-jordan-kuwait-o.md"
+    },
+    {
+      "slug": "2026-06-08-mali-level-4-do-not-travel",
+      "score": 82,
+      "scores": {
+        "factuality": 17,
+        "source_diversity": 15,
+        "ka_angle": 17,
+        "originality": 15,
+        "structure": 18
+      },
+      "reasoning": "국무부 1차 출처에 정확히 연결되며 수치·기관명·운영 제한 사항이 추적 가능하고, 한인 자영업자·유학생·영주권자·시민권자별 실무 대응(STEP 등록, 보험 약관 확인, 재입국 서류 등)이 구체적으로 제시돼 단순 번역을 넘어선 편집 가치가 있습니다. 비교표와 번호 단계 체크리스트로 시각화 요건도 충족했으며 frontmatter와 출처 섹션 구조도 완전합니다. 다만 출처가 국무부 단일이라 교차 검증이 부족하고, 한인 말리 방문 통계 같은 더 구체적인 한인 연결 데이터가 있으면 독창성이 더 강화됐을 것입니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-08-mali-level-4-do-not-travel.md"
+    },
+    {
+      "slug": "2026-06-08-tax-deadline-today-irs-filing-extension-for-mississippi-expires-wapt",
+      "score": 88,
+      "scores": {
+        "factuality": 17,
+        "source_diversity": 17,
+        "ka_angle": 18,
+        "originality": 17,
+        "structure": 19
+      },
+      "reasoning": "IRS 공식 페이지(재난 구제, 가산세, Form 4868/1040-X) 다수 링크가 본문 주장과 정확히 매칭되며 추적 가능성이 높고, 미시시피 한인 자영업자·유학생·취업비자·은퇴자별 영향과 행동을 구체적으로 분리해 한인 관점이 살아 있습니다. 8단계 체크리스트 표와 핵심 요약 불릿이 시각화 요건을 충족하며 편집자 분석으로 가산세 구조 비교까지 더해 단순 번역을 넘어섰습니다. 다만 원 보도가 Google News 리다이렉트 링크 하나로만 인용돼 publisher 교차검증이 약한 점이 source_diversity 만점을 막습니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-08-tax-deadline-today-irs-filing-extension-for-mississippi-expires-wapt.md"
+    },
+    {
+      "slug": "2026-06-08-us-renews-middle-east-travel-warnings-as-regional-security-remains-complex-aa-co",
+      "score": 83,
+      "scores": {
+        "factuality": 16,
+        "source_diversity": 15,
         "ka_angle": 18,
         "originality": 16,
         "structure": 18
       },
-      "reasoning": "BLS·SSA 등 공식 1차 출처가 정확한 링크와 함께 인용돼 사실성과 출처 신뢰도가 높고, CPI가 한인 자영업자·은퇴자·유학생 가계에 닿는 경로를 구체적으로 분석한 점이 강점입니다. 비교표와 7단계 체크리스트로 시각적 구조도 충족했으며, 헤드라인 출처가 Google News 리다이렉트 링크라는 점과 구체적 최근 CPI 수치가 빠진 점은 약점이지만 자동 승격 기준은 충족합니다.",
+      "reasoning": "원문이 한 줄짜리 헤드라인 수준임을 명시적으로 인정하면서 미 국무부 Level 1~4 체계, STEP, 영사관 등 검증 가능한 공식 출처로 보강했고, 비자 신분·영주권 수속·자영업자·은퇴자별로 한인 실무 관점을 구체적으로 풀어낸 점이 강점입니다. 비교표와 번호 체크리스트, FAQ까지 시각적 구조가 충실해 자동 승격 기준을 충족합니다. 다만 원문 출처가 Google News 헤드라인 한 건이라 교차 검증 깊이는 제한적이며, 국가별 등급 등 구체 수치 인용이 적어 source_diversity는 최상위는 아닙니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-08-consumer-price-index-cpi-what-is-it-and-how-does-it-work-chase-bank.md"
+      "promoted_to": "queue/2026-06-08-us-renews-middle-east-travel-warnings-as-regional-security-remains-complex-aa-co.md"
     },
     {
-      "slug": "2026-06-08-iran-threatens-to-target-tourism-sites-worldwide-and-says-it-s-still-building-mi",
-      "score": 66,
+      "slug": "2026-06-08-us-renews-middle-east-travel-warnings-as-regional-war-continues-yeni-safak-engli",
+      "score": 65,
       "scores": {
-        "factuality": 12,
+        "factuality": 11,
         "source_diversity": 9,
         "ka_angle": 16,
         "originality": 13,
         "structure": 16
       },
-      "reasoning": "한인 여행·유가·송금·은퇴계좌 관점으로 잘 연결했고 비교표 시각화도 갖췄습니다. 다만 본문은 PBS 보도를 인용한다고 하면서 출처 섹션에는 Google News 리다이렉트 링크 1건만 있어 원문 추적성이 약하고, '3주차'·'미사일 생산 지속' 같은 수치·주장의 1차 출처 검증이 어렵습니다. 단일 출처 구조는 허용되나 신뢰도 높은 1차 보도 링크가 빠져 자동승격은 보수적으로 평가했습니다.",
-      "action": "review",
-      "promoted_to": null
-    },
-    {
-      "slug": "2026-06-08-is-it-safe-to-travel-to-the-middle-east-the-latest-advisory-updates-travelpirate",
-      "score": 60,
-      "scores": {
-        "factuality": 10,
-        "source_diversity": 8,
-        "ka_angle": 15,
-        "originality": 11,
-        "structure": 16
-      },
-      "reasoning": "한인 여행자·비자 신분·자영업자 관점에서 출발 전 점검 항목을 표로 정리한 점과 frontmatter·핵심 요약·출처 섹션 등 구조는 충실합니다. 그러나 출처가 Google News 집계 링크 한 건뿐이라 신뢰도와 추적 가능성이 낮고, 원문이 헤드라인 수준이라 본문에 구체적 권고 등급·국가·날짜·기관 인용 등 검증 가능한 사실이 거의 없어 사실성과 독창성이 약합니다.",
-      "action": "review",
-      "promoted_to": null
-    },
-    {
-      "slug": "2026-06-08-israel-strikes-iran-after-missile-attack-raises-new-travel-and-airspace-concerns",
-      "score": 60,
-      "scores": {
-        "factuality": 11,
-        "source_diversity": 9,
-        "ka_angle": 14,
-        "originality": 11,
-        "structure": 15
-      },
-      "reasoning": "중동 충돌의 항공·여행 영향과 한인 가족 방문·USCIS 일정 연결 등 한인 관점은 비교적 잘 살아 있고, 비교표 형태의 시각화와 핵심 요약·출처 섹션 등 구조 요건도 갖췄습니다. 다만 출처가 Google News RSS 리다이렉트 링크 1건뿐이라 1차 출처(이스라엘·이란 정부 발표, 국무부 여행경보, 항공사 공지) 추적이 불가능하고, 본문 수치·시점·구체적 노선/항공사 정보가 부족해 사실성과 출처 신뢰도 모두 낮습니다. 원문 요약 위주이고 편집자 차원의 비교·종합이 약해 자동 승격 기준에는 미달합니다.",
-      "action": "review",
-      "promoted_to": null
-    },
-    {
-      "slug": "2026-06-08-trump-says-iran-war-could-wrap-up-in-2-3-weeks-as-conflict-pushes-gas-prices-ove",
-      "score": 74,
-      "scores": {
-        "factuality": 14,
-        "source_diversity": 12,
-        "ka_angle": 17,
-        "originality": 14,
-        "structure": 17
-      },
-      "reasoning": "트럼프의 '2~3주 종결' 발언과 갤런당 4달러 돌파라는 핵심 사실을 출처 한 곳(CBS News 인용 Google News)에 연결하고, 출퇴근·자영업·은퇴 가구로 나눠 한인 관점을 구체적으로 풀어쓴 점이 강점입니다. 비교표가 시각화 요건을 충족하고 구조가 깔끔하지만, 출처가 Google News 리다이렉트 1건뿐이고 원문 외 추가 수치·교차검증이 부족해 사실성과 출처 신뢰도 점수는 보수적으로 평가했습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-08-trump-says-iran-war-could-wrap-up-in-2-3-weeks-as-conflict-pushes-gas-prices-ove.md"
-    },
-    {
-      "slug": "2026-06-08-us-cpi-report-do-stock-markets-need-to-worry-tastylive",
-      "score": 68,
-      "scores": {
-        "factuality": 13,
-        "source_diversity": 9,
-        "ka_angle": 16,
-        "originality": 14,
-        "structure": 16
-      },
-      "reasoning": "CPI 발표가 한인 401(k)·자영업·모기지에 미치는 영향을 구체적으로 풀어쓴 한인 관점과 예상보다 높을 때/낮을 때를 정리한 비교표가 강점입니다. 다만 출처가 Google News 리디렉션 링크 1건뿐이고 원문 tastylive 기사로 직접 추적되지 않아 신뢰도·검증 가능성이 약하며, 실제 CPI 수치·발표 일정 등 검증 가능한 사실이 부족합니다. 이번 발표 시점·예상치 같은 구체 수치가 빠져 자동 승격보다는 보수적으로 평가합니다.",
+      "reasoning": "한인 환승 가정·자영업자·유학생·노년층 등 그룹별 영향을 비교표와 5단계 점검 절차로 시각화한 구조는 강점이며, 한인 관점도 명확하게 풀어썼습니다. 다만 출처가 Google News 집계 링크 1개뿐이고 국무부 공식 경보 단계·갱신일자 등 핵심 수치가 본문에서 추적 가능한 1차 출처로 연결되지 않아 사실성과 출처 신뢰도가 약합니다. 분쟁 지속·유가 영향 등도 일반론에 머물러 독창적 분석으로는 부족합니다.",
       "action": "review",
       "promoted_to": null
     }
