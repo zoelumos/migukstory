@@ -23,6 +23,9 @@ const HIGH_STAKES_TERMS = [
 	'금리', '모기지', 'mortgage', '주택', '학자금', 'college', '은퇴', '연금', '401k',
 	'대법원', 'scotus', 'trump', '연방', 'deadline', '마감', '주의', '변경', 'cutoff', 'fee', 'increase',
 	'war', '전쟁', 'gaza', 'ukraine', 'north korea', '북핵', 'taiwan', '대만', '미중', '한미',
+	'iran', '이란', 'israel', '이스라엘', 'hormuz', '호르무즈', 'middle east', '중동',
+	'미사일', 'missile', 'airstrike', '공습', '휴전', 'ceasefire', 'drone', '드론',
+	'oil', 'crude', '유가', '가스값', 'gas price', 'gasoline', 'travel advisory', '여행경보',
 ];
 
 const NARROW_LOCAL_TERMS = [

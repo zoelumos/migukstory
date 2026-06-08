@@ -7,6 +7,10 @@ category: 'economy'
 ageGroup: 'all'
 draft: false
 author: 'steve-song'
+featured: true
+leadEligible: true
+headlineStrength: 5
+scope: 'national'
 source: 'NPR / CNN / Al Jazeera / U.S. State Department / EIA'
 sourceUrl: 'https://www.npr.org/2026/06/07/g-s1-126816/israel-iran-missile-ceasefire'
 editorNote: '전쟁 속보는 숫자와 책임 소재가 빠르게 바뀝니다. 이 글은 2026년 6월 7일 PDT 저녁 기준으로 확인 가능한 공식·주요 매체 보도를 바탕으로 작성했으며, 확인된 사실과 보도 단계 정보를 분리했습니다. 투자 조언이나 법률 조언이 아니라 한인 가정의 생활·여행·가계 점검용 안내입니다.'
