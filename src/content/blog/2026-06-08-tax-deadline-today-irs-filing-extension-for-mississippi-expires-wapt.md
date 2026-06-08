@@ -5,7 +5,7 @@ pubDate: '2026-06-08'
 tags: ['IRS', '세금신고', '미시시피', '연방세금', '한인납세자', '재난구제']
 category: 'tax'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — IRS / Tax Guidance Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiowFBVV95cUxPWm1xV1Y4U09iUHhHTjZjUXd3X3B3alNoV1R4ZHMyWC1leF9wajZLYUVZV09xdnFVTFFHMFZCU25lWlFjaUl2ZGJlZTZKeUpkRlIxNzE5SV9fUkpVWHpfTUZ6TzBfRl8yMkxpQ1dpWTZpUkRwcFZ4UV95SEwzTlluUDNtQTJlcU9JcUtDTkNvbXdoY0h5TUZyczZ3NDJpVVhJOVJn?oc=5'
 ---

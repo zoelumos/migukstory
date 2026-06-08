@@ -5,7 +5,7 @@ pubDate: '2026-06-08'
 tags: ['중동여행경보', '미국무부', '이란이스라엘', '미주한인안전', '해외여행', '여행자보험', '영사조력']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Iran / Israel / Hormuz Urgent Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMitwFBVV95cUxPWXNISXZzWVRaY0JfaFQ4c3F1a0RvRHBKcHVydUJGODczcXNmOEh5ZXNLNmlsX2FQeXhkcmNWV1ZBLXFMalgyMDBEMTl0TEJlb010aDQ2UVVreWpKNGlwakpLcWNYa1h5bHBnZ1ZCa3FsX096TElXVEh6NmV0U3dQN1JRdUZySk5hQkdPenI5UW1vUmtvZVRmdHZTWEpxd3BLckxHRmJ6NFk3ek5fbzBlRGw3YnhMQ00?oc=5'
 ---

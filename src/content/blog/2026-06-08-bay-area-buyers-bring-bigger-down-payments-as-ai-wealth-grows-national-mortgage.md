@@ -5,7 +5,7 @@ pubDate: '2026-06-08'
 tags: ['베이에어리어', '주택시장', 'AI', '다운페이먼트', '한인부동산', '모기지', '한인생활']
 category: 'real-estate'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Housing / Mortgage Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMipwFBVV95cUxPWGlNYTY0Rk1Rc0htb0Q0RkZhZTAxSzhRdHZ3U3M2VG5ka3B3TW9TT0g5LThLOE5GcC1fc1U1ZjE2T0pycjQzclVsSVNHeEZHbHE0bUJrNFNCU2EwR2xzRGxEY0lFTU1qM2c1UFVhRC1GRzdQbzRtQzZ5RjJ0OTlSLVd0d3B1a1M0TkxaM1FZamNPUmdTOFBMUm5zdnA0M3F1SnQ2Mk5jaw?oc=5'
 ---

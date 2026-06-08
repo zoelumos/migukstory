@@ -5,7 +5,7 @@ pubDate: '2026-06-08'
 tags: ['여행경보', '말리', '국무부', '안전', '한인커뮤니티']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'State Department Travel Advisories'
 sourceUrl: 'https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/mali-travel-advisory.html'
 ---
