@@ -5,7 +5,7 @@ pubDate: '2026-06-09'
 tags: ['에볼라', '동아프리카', '여행안전', '콩고', '한인여행', 'CDC', '국무부여행경보']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Middle East Travel / Airline Disruption Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMi2wFBVV95cUxOdmdtMWRjaXZTbDlRSWZ1VTl1ZFFNd2VXR3kzZURrNnNmWVo5aGFZLWJ1OTREeXYwR0RRTU41YlBRZlJYamtrWl8zdXJqdDRpRHAtT1duUmVMajJNWmxFWGJmWDZrS1RIMnBkSElVQnRxT0RybHQxNUxMaW9oRk0yajg2ZWV1TjZqMktsTkhJdjJQOW9qSGpLRUw2OGlxNzhBc0JwTl82SUpBNTRRU3JoMmVpVlNXOGtuR3ZvQWdRbFZFRXoyUk9BT2JGdHd4Wi1uUDJnMmFaVF9yTWc?oc=5)'
 ---

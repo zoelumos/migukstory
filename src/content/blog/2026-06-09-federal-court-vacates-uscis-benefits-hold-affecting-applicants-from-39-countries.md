@@ -5,7 +5,7 @@ pubDate: '2026-06-09'
 tags: ['USCIS', '이민', '연방법원', '영주권', '비자', 'EAD', 'I-485']
 category: 'immigration'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — USCIS / Green Card Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMizAFBVV95cUxQa0U5MGtXdC1YTGVKNmxxTW9HYm1KcEs4QjJzOWFMRDhSSTVncENvWmJWd2xPcF9IR2ZyOVZCR0hSNlJSUDl4dEVKQWdrNVhFZ0dDamg1MjUxX0MxZUJkMDBPYVlrSFlnWUlHc1I3TlQ5MEtndnZWMzJRYlFfeW9WT1lXZmhVQXN6NHROUlNHREc3YVpTNVBYNnpZVVNXM0tFaHkxUmplQmV2MUJlM0JEd1Q0SHNBWDlPeFprUlhlR19SMVNlMTN1MkVjeGY?oc=5'
 ---

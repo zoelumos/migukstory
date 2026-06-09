@@ -5,7 +5,7 @@ pubDate: '2026-06-09'
 tags: ['소셜시큐리티', '은퇴', '연방정부', '재정']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/06/09/nx-s1-5850279/social-security-funds-trustees-congress'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-06-09'
 tags: ['모기지', '주택', '신용평가', '한인가정', '금융', 'Fitch', '주택감당능력']
 category: 'real-estate'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Housing / Mortgage Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMitwFBVV95cUxQeFBxbU91VmViUzZvTVNPQ2RoNmpVMFN4QlNjTmdYSVZwM0RXYW5zWUNVR0JFb1ZjNlVuVGIyUUN4TmpOSmtDaXpyMmxPY2hsVFZRWmgwTjVZX1c3TFhsMHBhYk12NlhKc1g3Qzd6UEpuLXlkZ2hVQm83X21qMzhoU1dOejdNZGxUQ09LbV9ZU2NsaXdXQmNlUWQtR0UtX092dDJGSi1uMWJ4cjRaeUdldEQwSEdTOGM?oc=5'
 ---

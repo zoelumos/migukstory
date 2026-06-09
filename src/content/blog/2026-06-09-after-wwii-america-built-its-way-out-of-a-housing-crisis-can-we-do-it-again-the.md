@@ -5,7 +5,7 @@ pubDate: '2026-06-09'
 tags: ['주택', '모기지', '주거위기', '미주한인', '부동산']
 category: 'real-estate'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Housing / Mortgage Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMitwFBVV95cUxQTEw3M1ZuaERzV1dZUlBjVUtTTmp2TE1od284aF9fZUR1WUczLVgtdUlJdzhhRlZWSnZTT0JPU0wwYndvQUZTR2N1cWNBdkpqa3E2emxSWWxmZTJXRHZleFhEUTRPRDQzc1hoMHRHYk15M2ZLcWVQMFljRGNzWHFtTnMxMG5rTXl5aU1DR1FTS1d6TWJBcTNnLXNIMWZXM0I4ZGxoVHVieXZuei1MSmYwY0ZzNGczUFU?oc=5'
 ---
