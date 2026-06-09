@@ -5,7 +5,7 @@ pubDate: '2026-06-09'
 tags: ['중동여행경보', 'UAE', '항공운항', '한인커뮤니티', '여행안전']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Middle East Travel / Airline Disruption Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMibkFVX3lxTFBOVVB3U0JGOWEyRC1nS0xFeDdITTVBdnVNdnBZQzEtTFRiY2wzalhFM0xGMEFMYV85Vjg5OWI3c2Z5X0pXeVltVW9TODJIWEE1MnUzendKLTA1ZVVfMThBU1dybWxySFg5enlsRHpB?oc=5'
 ---

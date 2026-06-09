@@ -5,7 +5,7 @@ pubDate: '2026-06-09'
 tags: ['이집트여행', '중동분쟁', '여행안전', '한인커뮤니티']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Middle East Travel / Airline Disruption Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiqgFBVV95cUxOblg2Tm44cU12cTF4eExGTDhoOEwyNXowU1JPY1NmeU1ITjM1a3o5a2p5MFQ0ejQ1M3Q1LXFBQ2JoM283YTJUV0ZKWXM4VjNBMmZTblcyOFIwMWphcWswamVBMEw0NUtKSm1RT21sYzVGenFHbDZNLUJpYTZuUUFfdFRXbTdHblkwNnJhQ24zQVdQSTVlMXJxN2VIZ3JUR2lLRWJTb096dXp3Zw?oc=5'
 ---

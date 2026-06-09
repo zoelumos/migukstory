@@ -5,7 +5,7 @@ pubDate: '2026-06-09'
 tags: ['이민', 'USCIS', '취업허가', '망명', '비자처리', 'EAD', 'H-1B']
 category: 'immigration'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — USCIS / Green Card Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiogFBVV95cUxONElyYTBLY3dpWFRwZmpoLXctYzZ4cnRncFl6YTRaOVJUNElnMjIweE96b0tYT083R0I4LTRZWGZlSkRxWlF0ZFpJYkFXRlBIY2lkSkVKZEdzS2NFSFRrZkRDYVh1WXN6bnBCQ3c2QWx6U0M4QXBVYWNOWGRBYkZOcjVBYkZTbnNyeHpNcHlVVVVkdFNvb25CblhPTmZVN25hUmc?oc=5'
 ---

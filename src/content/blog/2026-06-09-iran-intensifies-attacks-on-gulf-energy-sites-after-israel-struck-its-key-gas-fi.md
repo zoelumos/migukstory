@@ -5,7 +5,7 @@ pubDate: '2026-06-09'
 tags: ['중동정세', '유가', '에너지', '미주한인경제']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Iran / Israel / Hormuz Urgent Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiugFBVV95cUxNaFVCX2djRl9zQWlmMl81bVd6b3pqbFlOdkl3V0dFaGFKS21DX0FDMXB4cVVWRDljcl9zTkdvUk5CU2V5elliVENtMmNMaHRxS3hqSmJXQk5qMmsyT0NocUNTQnRialNoZ1czaHJTZlhfRXd2Z1djazQ0a0JQTlpjMFBPRjdvOFVJT1ItenBfUlJhbnpoY2ZpMWVsc2ViVUVpU0pNMTAwdWk4REVoZWtTTXdud1daU3FmWnfSAb8BQVVfeXFMT3pKRTZ1dUREa2dOdTMxS1Q1TWg2MWUwSjloRUJlcFpFZHZ1SHh3QlhfYXdDa05OUDMtSTk1d2xWOXFTVENxSWZXcjFvaUp1V2JxaTRlNC1ucFZwYnVyZ1NpWm01ZWwtTEt2QmlBZHF5V2dfbEhHU01xRkQyd21vNW9xbGFBZm52bnlLbzNsUjNGajVQb1ZJY1hnbEtGbjVFRkRKQ1YxSEhXTC12M3pBXzEtZ2xPZXRuX194c0Zpb1E?oc=5'
 ---
