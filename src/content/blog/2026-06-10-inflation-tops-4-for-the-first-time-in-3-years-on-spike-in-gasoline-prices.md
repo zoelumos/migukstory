@@ -5,7 +5,7 @@ pubDate: '2026-06-10'
 tags: ['인플레이션', '휘발유값', '이란전쟁', '미국경제', '한인생활비']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/06/10/nx-s1-5853077/inflation-over-4-cpi-gasoline-prices'
 ---

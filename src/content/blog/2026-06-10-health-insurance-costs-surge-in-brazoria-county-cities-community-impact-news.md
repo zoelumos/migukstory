@@ -5,7 +5,7 @@ pubDate: '2026-06-10'
 tags: ['건강보험', '텍사스', '의료비', '한인생활', '보험료인상', 'ACA', '메디케어']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMi2gFBVV95cUxQQmJYLW5SVDlXVlprYjBVX1lsd0MxNDFERjdEWWZKMkx3WjE1RUc3djlGVjdQX3lqVHJtdjRSbzRZZE5OYkphWng5Q1dvMUtJOXJuZ0NYT0NGLXRFNE02QjdEZHd2TTZCZWc0TVBQQTZuSnVKOTVSSVdKZ012a2oxLVR1bnJ4YmY1cWI2RUxNTjJXYVNnOU9hbko2UkNjWHgwVjlrd1RQWVdMWGlsVUU3QThhTVd4aGdLMGNpckJMSER5VkJMRTRJb1Y5OEdjRkp2c2lXMjZMdjdydw?oc=5'
 ---

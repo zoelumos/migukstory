@@ -5,7 +5,7 @@ pubDate: '2026-06-10'
 tags: ['중동', '항공편차질', '두바이', '여행경보', '한인커뮤니티', 'H-1B', '영주권']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Middle East Travel / Airline Disruption Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMi9AFBVV95cUxNMmh1c1hHeG9fRlRKbndEdFVsdjlVcGNhaE81dHh3YThMRlNmZUNReWJ0by1DQ2UtUFdoYUM4ZGUyNmxxYWxsU0FoRlhMQk9jUWtZQmwwWmxxVHB2Tk1kSEJGelAzcTJXZFV6WkcyMXRVMndERjYwMHdIN3BxalZUMUtrdVNwS1JZN25ndTdZTFc2N2s5NHY4aDJoRXozc3lTOUpmMmdBZnNSZ2ptSDY1ZkwtM0ZYMkJ2OE5pbzRLcU1oZzNMaV9RaTNqYVNJeG1YemF1cWc1YVIyYXFJRDBuSy10VTBRckFqa2E4Uzd1a1c1d0U3?oc=5'
 ---
