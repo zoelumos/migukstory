@@ -57,7 +57,13 @@ Allow: /
 User-agent: *
 Allow: /
 Disallow: /admin
+Disallow: /admin/
 Disallow: /auth
+Disallow: /auth/
+Disallow: /login
+Disallow: /login/
+Disallow: /api
+Disallow: /api/
 
 Sitemap: https://migukstory.com/sitemap-index.xml
 Sitemap: https://migukstory.com/sitemap-news.xml

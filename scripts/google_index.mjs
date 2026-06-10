@@ -8,9 +8,11 @@
  * Commands:
  *   node scripts/google_index.mjs auth     — verify service-account access
  *   node scripts/google_index.mjs sitemap  — submit sitemap to Search Console
- *   node scripts/google_index.mjs status   — index-status report for all URLs
- *   node scripts/google_index.mjs push     — Indexing API push for all URLs
- *   node scripts/google_index.mjs all      — sitemap + push (the CI default)
+ *   node scripts/google_index.mjs status [--limit N] [--latest-blog-only]
+ *                                      — bounded index-status report
+ *   node scripts/google_index.mjs push [--limit N] [--latest-blog-only]
+ *                                      — bounded Indexing API push
+ *   node scripts/google_index.mjs all  — sitemap + bounded push
  *
  * Property is a Domain property: sc-domain:migukstory.com
  */
@@ -44,6 +46,20 @@ const SITEMAP = 'https://migukstory.com/sitemap-index.xml';
 
 const b64url = (s) =>
 	Buffer.from(s).toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+
+const rawArgs = process.argv.slice(2);
+const cmd = rawArgs[0] || 'auth';
+function argValue(name, fallback) {
+	const i = rawArgs.indexOf(name);
+	if (i === -1 || i + 1 >= rawArgs.length) return fallback;
+	return rawArgs[i + 1];
+}
+function hasFlag(name) {
+	return rawArgs.includes(name);
+}
+const limitArg = Number.parseInt(argValue('--limit', process.env.GSC_URL_LIMIT || ''), 10);
+const defaultLimit = Number.isFinite(limitArg) && limitArg > 0 ? limitArg : 30;
+const latestBlogOnly = hasFlag('--latest-blog-only') || process.env.GSC_LATEST_BLOG_ONLY === '1';
 
 function makeJWT(scope) {
 	const now = Math.floor(Date.now() / 1000);
@@ -82,18 +98,44 @@ async function getToken(scope) {
 	return j.access_token;
 }
 
-async function getSitemapUrls() {
+async function getSitemapEntries() {
 	const idx = await (await fetch(SITEMAP)).text();
 	const subs = Array.from(idx.matchAll(/<loc>([^<]+)<\/loc>/g)).map((m) => m[1]);
-	const all = [];
+	const entries = [];
 	for (const sm of subs) {
 		const x = await (await fetch(sm)).text();
-		all.push(...Array.from(x.matchAll(/<loc>([^<]+)<\/loc>/g)).map((m) => m[1]));
+		for (const match of x.matchAll(/<url>([\s\S]*?)<\/url>/g)) {
+			const block = match[1];
+			const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1];
+			if (!loc) continue;
+			const lastmod = block.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1] || '';
+			entries.push({ url: loc, lastmod });
+		}
 	}
-	// Skip auth/admin/api routes — no SEO value, shouldn't be indexed
-	return [...new Set(all)].filter(
-		(u) => !/\/(api|admin|login|auth)(\/|$)/.test(new URL(u).pathname)
-	);
+	const seen = new Set();
+	return entries
+		.filter(({ url }) => {
+			const pathname = new URL(url).pathname;
+			return !/\/(api|admin|login|auth)(\/|$)/.test(pathname);
+		})
+		.filter(({ url }) => {
+			if (seen.has(url)) return false;
+			seen.add(url);
+			return true;
+		})
+		.sort((a, b) => {
+			const bd = Date.parse(b.lastmod || '') || 0;
+			const ad = Date.parse(a.lastmod || '') || 0;
+			if (bd !== ad) return bd - ad;
+			return b.url.localeCompare(a.url);
+		});
+}
+
+async function getSitemapUrls({ limit = defaultLimit, blogOnly = latestBlogOnly } = {}) {
+	let entries = await getSitemapEntries();
+	if (blogOnly) entries = entries.filter(({ url }) => new URL(url).pathname.startsWith('/blog/'));
+	if (limit && limit > 0) entries = entries.slice(0, limit);
+	return entries.map(({ url }) => url);
 }
 
 async function cmdAuth() {
@@ -123,7 +165,7 @@ async function cmdSitemap() {
 async function cmdStatus() {
 	const tok = await getToken('https://www.googleapis.com/auth/webmasters.readonly');
 	const urls = await getSitemapUrls();
-	console.log(`Inspecting ${urls.length} URLs...`);
+	console.log(`Inspecting ${urls.length} latest ${latestBlogOnly ? 'blog ' : ''}URLs (limit=${defaultLimit})...`);
 	const buckets = {};
 	for (const url of urls) {
 		try {
@@ -149,7 +191,7 @@ async function cmdStatus() {
 async function cmdPush() {
 	const tok = await getToken('https://www.googleapis.com/auth/indexing');
 	const urls = await getSitemapUrls();
-	console.log(`Pushing ${urls.length} URLs via Indexing API...`);
+	console.log(`Pushing ${urls.length} latest ${latestBlogOnly ? 'blog ' : ''}URLs via Indexing API (limit=${defaultLimit})...`);
 	let ok = 0, fail = 0;
 	for (const url of urls) {
 		const r = await fetch('https://indexing.googleapis.com/v3/urlNotifications:publish', {
@@ -165,7 +207,6 @@ async function cmdPush() {
 	if (fail > 0) process.exitCode = 1;
 }
 
-const cmd = process.argv[2] || 'auth';
 const fns = { auth: cmdAuth, sitemap: cmdSitemap, status: cmdStatus, push: cmdPush };
 if (cmd === 'all') {
 	await cmdSitemap();
