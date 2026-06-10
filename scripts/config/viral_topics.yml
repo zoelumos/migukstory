@@ -1,0 +1,90 @@
+# Viral topic discovery config for scripts/discover_viral_topics.py.
+#
+# pulse_feeds: broad, high-volume RSS feeds used ONLY to measure what the
+#   general news cycle is talking about right now. They are never drafted
+#   from directly — drafting still goes through scripts/config/rss_sources.yml.
+#
+# clusters: deterministic topic definitions. A cluster "fires" when its
+#   keywords match headline/summary text across pulse feeds + the regular
+#   drafting feeds. Scoring (see discover_viral_topics.py):
+#     breadth  — how many distinct feeds mention the cluster today
+#     burst    — today's mention count vs the 7-day rolling baseline
+#     relevance— static Korean-American service-journalism weight (0–4)
+#   Top-scoring clusters are written to scripts/state/viral_boost_terms.json,
+#   which draft_from_rss.py reads to give matching items urgent-level
+#   selection priority. Editor grading still gates quality afterward.
+#
+# Fields per cluster:
+#   name      : stable slug (used as history key — do not rename casually)
+#   category  : content category the cluster usually maps to (informational)
+#   relevance : 0–4 Korean-American reader relevance weight
+#   keywords  : case-insensitive regex fragments OR'd together
+
+pulse_feeds:
+  - name: Google News — Top Stories
+    url: https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en
+  - name: Google News — Business
+    url: https://news.google.com/rss/headlines/section/topic/BUSINESS?hl=en-US&gl=US&ceid=US:en
+  - name: Google News — Nation
+    url: https://news.google.com/rss/headlines/section/topic/NATION?hl=en-US&gl=US&ceid=US:en
+  - name: Google News — Health
+    url: https://news.google.com/rss/headlines/section/topic/HEALTH?hl=en-US&gl=US&ceid=US:en
+  - name: Google News — Technology
+    url: https://news.google.com/rss/headlines/section/topic/TECHNOLOGY?hl=en-US&gl=US&ceid=US:en
+
+# Bonus terms: +2 score when a cluster's matched headlines also mention an
+# explicitly Korean/Korean-American angle.
+korean_angle_terms:
+  - 'korean[ -]american'
+  - '\bkorea(?:n)?\b'
+  - 'koreatown'
+
+clusters:
+  - name: cpi-inflation
+    category: economy
+    relevance: 4
+    keywords: ['\bcpi\b', 'inflation', 'consumer price']
+  - name: fed-rates
+    category: economy
+    relevance: 4
+    keywords: ['\bfomc\b', 'federal reserve', 'interest rate', 'rate (?:cut|hike|decision)', '\bpowell\b']
+  - name: immigration-uscis
+    category: immigration
+    relevance: 4
+    keywords: ['\buscis\b', 'green\s*card', 'visa bulletin', 'visa processing', 'visa interview', 'immigrant visa', 'nonimmigrant visa', 'student visa', 'work visa', '\bh-?1b\b', '\bi-?485\b', 'deportation', 'ice raid', 'asylum', '\bdaca\b', '\btps\b']
+  - name: tax-irs
+    category: tax
+    relevance: 4
+    keywords: ['\birs\b', 'tax (?:deadline|refund|credit|filing)', '\bfbar\b']
+  - name: social-security-retirement
+    category: retirement
+    relevance: 4
+    keywords: ['social security', '\bmedicare\b', '\bmedicaid\b', '\bcola\b', '401\(k\)', '\bira\b contribution']
+  - name: housing-mortgage
+    category: real-estate
+    relevance: 3
+    keywords: ['mortgage', 'housing market', 'home prices', 'rent(?:al)? (?:prices|market|costs)']
+  - name: energy-gas-prices
+    category: economy
+    relevance: 3
+    keywords: ['gas(?:oline)? prices?', 'oil prices?', 'crude oil', '\bopec\b', 'energy (?:shock|prices)']
+  - name: mideast-conflict
+    category: economy
+    relevance: 3
+    keywords: ['\biran\b', '\bisrael\b', '\bhormuz\b', 'missile', 'airstrike', 'ceasefire']
+  - name: markets-volatility
+    category: economy
+    relevance: 2
+    keywords: ['stock market', 's&p 500', '\bnasdaq\b', 'sell-?off', '\bdow\b (?:falls|drops|surges)', 'bitcoin', 'crypto']
+  - name: ai-jobs-automation
+    category: ai
+    relevance: 2
+    keywords: ['\bai\b', 'artificial intelligence', 'layoffs?', 'automation', 'openai', 'anthropic', 'chatgpt']
+  - name: health-alerts
+    category: health
+    relevance: 3
+    keywords: ['fda recall', 'recall(?:s|ed)?', 'outbreak', '\bcdc\b', 'health insurance', '\baca\b premiums?']
+  - name: travel-advisory
+    category: community
+    relevance: 3
+    keywords: ['travel advisory', 'state department', 'flight (?:cancellations|disruptions|delays)', 'do not travel']

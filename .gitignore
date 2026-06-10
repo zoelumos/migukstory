@@ -11,6 +11,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# generated automation state
+scripts/state/*.json
+!scripts/state/.gitkeep
+
 # environment variables
 .env
 .env.production

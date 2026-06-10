@@ -118,7 +118,8 @@ URGENT_TERMS = [
     # Immigration
     r"\buscis\b", r"green\s*card", r"adjustment of status",
     r"\bi-?485\b", r"\bi-?130\b", r"\bi-?765\b", r"\bi-?864\b",
-    r"policy memo", r"\bvisa bulletin\b", r"\bvisa\b",
+    r"policy memo", r"\bvisa bulletin\b", r"visa processing", r"visa interview",
+    r"immigrant visa", r"nonimmigrant visa", r"student visa", r"work visa",
     r"deport", r"asylum", r"\bdaca\b", r"travel ban",
     r"\bopt\b", r"\bh-?1b\b", r"\beb-?[1-5]\b", r"\btps\b",
     # Tax
@@ -146,6 +147,42 @@ def is_urgent(item: "FeedItem") -> bool:
     """True if title or summary matches any URGENT_TERMS pattern."""
     hay = f"{item.title}\n{item.summary}"
     return bool(URGENT_RE.search(hay))
+
+
+def matches_pattern(item: "FeedItem", pattern: re.Pattern | None) -> bool:
+    if not pattern:
+        return False
+    hay = f"{item.title}\n{item.summary}"
+    return bool(pattern.search(hay))
+
+
+# Viral-topic boost: scripts/discover_viral_topics.py writes the day's
+# bursting topic clusters to this file. Matching items get urgent-level
+# selection priority. The file is advisory only — stale (>36h) or broken
+# files are ignored, and editor grading still gates quality afterward.
+VIRAL_BOOST_FILE = REPO / "scripts" / "state" / "viral_boost_terms.json"
+VIRAL_BOOST_MAX_AGE_HOURS = 36
+
+
+def load_viral_boost() -> re.Pattern | None:
+    if not VIRAL_BOOST_FILE.exists():
+        return None
+    try:
+        data = json.loads(VIRAL_BOOST_FILE.read_text(encoding="utf-8"))
+        generated = datetime.fromisoformat(data["generated_at"])
+        age_h = (datetime.now(timezone.utc) - generated).total_seconds() / 3600
+        if age_h > VIRAL_BOOST_MAX_AGE_HOURS:
+            print(f"↩️  viral boost file is {age_h:.0f}h old — ignoring", file=sys.stderr)
+            return None
+        terms = [t for c in data.get("clusters", []) for t in c.get("terms", [])]
+        if not terms:
+            return None
+        names = ", ".join(c["name"] for c in data["clusters"])
+        print(f"🔥 viral boost active: {names}")
+        return re.compile("|".join(terms), re.IGNORECASE)
+    except (json.JSONDecodeError, KeyError, ValueError, re.error) as e:
+        print(f"⚠️  ignoring broken viral boost file: {e}", file=sys.stderr)
+        return None
 
 
 CATEGORY_RELEVANCE_TERMS = {
@@ -629,6 +666,8 @@ def main() -> int:
         print("✅ Nothing new — all feed items already seen.")
         return 0
 
+    viral_boost_re = load_viral_boost()
+
     if args.tier1_only:
         before = len(candidates)
         candidates = [c for c in candidates if c.category in TIER1_CATEGORIES]
@@ -637,8 +676,8 @@ def main() -> int:
 
     if args.urgent_only:
         before = len(candidates)
-        candidates = [c for c in candidates if is_urgent(c)]
-        print(f"🚨 --urgent-only: kept {len(candidates)}/{before} URGENT candidates")
+        candidates = [c for c in candidates if is_urgent(c) or matches_pattern(c, viral_boost_re)]
+        print(f"🚨 --urgent-only: kept {len(candidates)}/{before} URGENT/viral candidates")
         if not candidates:
             print("✅ No urgent candidates this run — nothing to draft.")
             return 0
@@ -650,7 +689,7 @@ def main() -> int:
     urgent_picks: list[FeedItem] = []
     remaining: list[FeedItem] = []
     for c in candidates:
-        if is_urgent(c):
+        if is_urgent(c) or matches_pattern(c, viral_boost_re):
             urgent_picks.append(c)
         else:
             remaining.append(c)
@@ -689,14 +728,18 @@ def main() -> int:
                     break
 
     urgent_in_selected = sum(1 for s in selected if is_urgent(s))
+    viral_in_selected = sum(1 for s in selected if matches_pattern(s, viral_boost_re))
     primary_focus_selected = sum(1 for s in selected if s.category in PRIMARY_FOCUS_CATEGORIES)
     secondary_maintained_selected = sum(1 for s in selected if s.category in SECONDARY_MAINTAIN_CATEGORIES)
     print(f"\n🎯 Planning {len(selected)} draft(s) "
           f"(max {max_drafts}, max/category {max_per_category}, "
-          f"urgent-prio {urgent_in_selected}, primary-focus {primary_focus_selected}, "
+          f"urgent-prio {urgent_in_selected}, viral-prio {viral_in_selected}, "
+          f"primary-focus {primary_focus_selected}, "
           f"economy/AI/robotics maintained {secondary_maintained_selected}):")
     for it in selected:
-        flag = "🚨" if is_urgent(it) else "  "
+        urgent = is_urgent(it)
+        viral = matches_pattern(it, viral_boost_re)
+        flag = "🚨🔥" if urgent and viral else "🚨" if urgent else "🔥" if viral else "  "
         print(f"   {flag} [{it.category}] {it.source_name}: {it.title[:80]}")
 
     if args.dry_run:
