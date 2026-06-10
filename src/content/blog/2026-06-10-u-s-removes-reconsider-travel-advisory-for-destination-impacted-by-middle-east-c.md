@@ -5,7 +5,7 @@ pubDate: '2026-06-10'
 tags: ['여행경보', '중동', '항공편', '국무부', '미주한인']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Middle East Travel / Airline Disruption Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMi1gFBVV95cUxNMWdQV2xBOHF3QzVkNG4wUWh1eF9GZEZxRjRJRkptQ3VSX1drSFdENXdFOHIwbldEZlZIdXJ5R3pnYTVrcXJyUmFoUTMyODhKQzJOcmNZeVhfRml5UmFDLXB0NkF4c1I4VkU0WGoxY1A3bjZOV0h4elNwWElBd0ROWFVYNUJHQnhjZVQwRFdxQjBWYkR4RHNrWG1HODB1cnd1N0tFMGthQ0R3ZWpON3d3OG01OVZKVmpMa3k1dVdmZmd0X1VQZ2NHQi10cjBLeGpDdmZFeGNB?oc=5'
 ---

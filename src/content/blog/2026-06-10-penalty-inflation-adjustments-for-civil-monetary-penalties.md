@@ -5,7 +5,7 @@ pubDate: '2026-06-10'
 tags: ['사회보장', '벌금', '연방규정', '은퇴']
 category: 'retirement'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Federal Register — Social Security Rules'
 sourceUrl: 'https://federalregister.gov/documents/2026/06/10/2026-11585/penalty-inflation-adjustments-for-civil-monetary-penalties'
 ---

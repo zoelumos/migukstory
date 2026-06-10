@@ -5,7 +5,7 @@ pubDate: '2026-06-10'
 tags: ['세금', 'IRS', '테네시', '한인생활', '신고마감']
 category: 'tax'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — IRS / Tax Guidance Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMipgFBVV95cUxPWm5tYk00dC1IMjlpc3RySmVzZW5NdE9PRk53TTBmc2Mzak5HLUpvaGVXWW1wMGtLbW4tQU5WRldDdy1ya2UxZnQxdm1XUWRBWWdkTkpKdURjYUw4MV9kUFdMZXBNNF9Mbl9YVGpXTTNNNGFMNnRWSUZUSDN2Wl9QSmNxRlZZRXZudTJjMXdrWmZ4MDMtMm1PN0NKb2VaUDhDRkw3M0xR?oc=5'
 ---

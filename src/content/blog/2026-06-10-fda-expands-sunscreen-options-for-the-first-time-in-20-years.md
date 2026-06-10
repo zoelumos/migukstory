@@ -5,7 +5,7 @@ pubDate: '2026-06-10'
 tags: ['FDA', '자외선차단제', '피부건강']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'FDA Press Announcements'
 sourceUrl: 'https://fda.gov/news-events/press-announcements/fda-expands-sunscreen-options-first-time-20-years'
 ---
