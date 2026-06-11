@@ -5,7 +5,7 @@ pubDate: '2026-06-11'
 tags: ['SBA', '영주권', '소상공인', '한인자영업']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/06/11/nx-s1-5825842/small-business-administration-stops-lending-to-green-card-holders'
 ---

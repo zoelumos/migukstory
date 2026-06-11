@@ -5,7 +5,7 @@ pubDate: '2026-06-11'
 tags: ['영주권', '이민', 'USCIS', '한인생활', '비자']
 category: 'immigration'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — USCIS / Green Card Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMi1wFBVV95cUxQSGJwd1FRQllkTU11aVRPZFhMNnJkSlBIQUhfSlBkM3I2ZG5pc0pPYjNKcVB6Mnd5c2xVUUYxa3FnWko5bXFUNV9BMEFqTll0bXZad0E1U2hpWU9HSmowRFZIM0k2cmpWTWhjczlxYjVBUHBNdVI1Q3dTMk55ckNvdUpmZ0lnSElmOFc4RHExSlpGM25Xd29NbDJxWHNSOTlWM1otVUFsWkZJQzV6NVRLb1ZRQjVZMlVuZUlXYTE2REgxT05PWFAtNmh3SnJqMmtSak5ScHV0bw?oc=5'
 ---

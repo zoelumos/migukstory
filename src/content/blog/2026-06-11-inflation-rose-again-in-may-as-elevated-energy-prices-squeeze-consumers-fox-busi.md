@@ -5,7 +5,7 @@ pubDate: '2026-06-11'
 tags: ['인플레이션', 'CPI', '에너지가격', '미주한인경제', '생활비', '자영업', '모기지']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — CPI / Interest Rate Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiakFVX3lxTE4ycXprcGlVZDlTc1BSZ204cEJCd3ctMkQ1dzh3Mm9VUDdQVGZoX2U0blJ5VW9IRTFCMFRlQzdFWUMwd1Exc3hFSnFKa2ljR0JyR3QtVHBFRzFiQzBiYXh1QWxaYnNuUHBwN3fSAW9BVV95cUxNbUxtbkY4bDFIZEV5TE9xLUd2ekxUY3BSWFZVRkFVT25zSTRmV1JWY0Y2WjJrd0w1bjNRR2I3NXY5ZFAycTNSd25VQnBwQzJ5R1RvMDhyMWdCa3dSRmpfWGtDNlZXZThWQzFaRDZUb00?oc=5'
 ---
