@@ -5,7 +5,7 @@ pubDate: '2026-06-11'
 tags: ['SpaceX', 'IPO', '일론머스크', 'xAI', '주식시장']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/06/11/nx-s1-5853199/spacex-ipo-price-elon-musk'
 ---

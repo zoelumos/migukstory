@@ -5,7 +5,7 @@ pubDate: '2026-06-11'
 tags: ['AI에이전트', '직장변화', '자동화', '한인커뮤니티']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'MIT Technology Review — AI'
 sourceUrl: 'https://technologyreview.com/2026/06/09/1137830/learning-to-lead-in-a-hybrid-human-ai-enterprise'
 ---

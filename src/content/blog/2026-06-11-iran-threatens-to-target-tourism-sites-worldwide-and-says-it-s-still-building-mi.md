@@ -5,7 +5,7 @@ pubDate: '2026-06-11'
 tags: ['이란', '중동전쟁', '여행안전', '미주한인', '경제']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Iran / Israel / Hormuz Urgent Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMi3AFBVV95cUxOSTQyRFM1dE03MXExaXc0LUJRcEdMTlhJSXFIbTRwSVdKcGVkbVJmUXdzQ2FELTJydXVKVXNhV1RIdXdhdkpac2lJeWl4VGNsXzV1dHMyMHpEMmdrbkVLQXByZG5PRlB4UjZ4UkhieGhmZ0tzdXdJTGxUNXJERXlBQUN2dVFXR3ItNTFnMEktdzZuOUQ4ZTRRMDcwcXNxZkJkTndjbWdzd2doVnNkTm9fbFFpR25QSzA2ZDFGVmRMNjhzbkxZVTM1TUI4M21NaVVPM1lKVUJIQ091VHZz?oc=5'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-06-11'
 tags: ['AI', '아웃소싱', '인도', 'Opendoor', 'GCC']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'TechCrunch AI'
 sourceUrl: 'https://techcrunch.com/2026/06/10/opendoors-india-exit-is-fueling-a-bigger-conversation-about-ai-and-outsourcing'
 ---

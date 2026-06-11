@@ -5,7 +5,7 @@ pubDate: '2026-06-11'
 tags: ['중동정세', '여행경보', '항공편결항', '한인커뮤니티', '여행안전']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Middle East Travel / Airline Disruption Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMibkFVX3lxTFBtNV9wRDFsWS0tWDY1Rm52UGtEMVdDU1lDTU03eEdFNnZZaEd5RzY2Q2lyMnFveExoTmZraVpZcXVOQ1FIQ1pzRUlzelNRdzdSS3RYU24wdDVLcDFsQVptbWVlREVvd2NsdXBGNXdB?oc=5)'
 ---
