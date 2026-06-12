@@ -5,7 +5,7 @@ pubDate: '2026-06-12'
 tags: ['SpaceX', 'IPO', '일론머스크', '주식시장', '미주한인투자']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/06/12/nx-s1-5855004/stock-ai-spacex-ipo-elon-musk'
 ---

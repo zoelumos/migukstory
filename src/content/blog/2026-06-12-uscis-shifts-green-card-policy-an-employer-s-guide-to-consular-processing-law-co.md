@@ -5,7 +5,7 @@ pubDate: '2026-06-12'
 tags: ['USCIS', '영주권', '영사절차', '고용주', '취업이민', 'H-1B', 'PERM', 'I-140', 'I-485']
 category: 'immigration'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — USCIS / Green Card Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMixAFBVV95cUxPaHkybVVBV3NDcmtFN2h6OUF6LWFGS1FuRUQxVEhWbk9PUmJVT0EwbEt6ODBNVkphbHpVZUNJd18yeFV4QURoVzNtei1aQlZTZTQyNi1kdmRjeDdmVWtWM2ctNjVSVDhWcjFSOEtyZzNwRzdsQlZGRXVDc0F6SVhlMEZJcWhHOURoY1ZSU0RPcUR6aGphaF90Y3F3QnZSUEJlQWl3cFoxLXpnbUdfamc3WHZVLWFORllkdWdiZ3BHVlAzSEJw?oc=5'
 ---

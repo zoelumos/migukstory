@@ -5,7 +5,7 @@ pubDate: '2026-06-12'
 tags: ['CDC', '공중보건', '신세계스크류웜', '비상운영센터', '미주한인', 'USDA']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'CDC Newsroom'
 sourceUrl: 'https://tools.cdc.gov/api/embed/downloader/download.asp?c=765831&m=132608'
 ---

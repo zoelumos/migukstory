@@ -5,7 +5,7 @@ pubDate: '2026-06-12'
 tags: ['중동여행', '여행경보', '한인커뮤니티', '항공권', '재입국']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Middle East Travel / Airline Disruption Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMibkFVX3lxTE52UFgxbUdRX2RCT3UtVlVYYzBqNy0xS2lvQ3czb2w5cTBfNzlXMVVMU2hFLUkyeDJhMkItbTY0Ym8xOFZiRndRUWtzOGZqdDR6N3VZVEkwVTcxdnhzeE03bUNRYUN6dGRyREFDYmpB?oc=5)'
 ---

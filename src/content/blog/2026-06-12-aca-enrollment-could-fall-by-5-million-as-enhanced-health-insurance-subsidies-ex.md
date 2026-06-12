@@ -5,7 +5,7 @@ pubDate: '2026-06-12'
 tags: ['ACA', '건강보험', '오바마케어', '보조금', '한인생활', '자영업', '은퇴']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMingFBVV95cUxNRm1aNHQtZzl6b2VucnpfWmNlb0N2NWFGTExfQUJMZXRqRG9jdV96eklxM1hoaGtROURtcjYyYWdRa0Q0aXVKMnpiVjVuSVZ5V0hsS19xd1VVRDRia0VZbzhEMzkwZE1RVHQ5a1o4ZWxpS0lNdjNiREExYVJPUUdHRUxTVzVDbWVHcHZDM3BPbm9ILTM4ZGVyUmdpQkZBZw?oc=5'
 ---
