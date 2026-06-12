@@ -5,7 +5,7 @@ pubDate: '2026-06-12'
 tags: ['트럼프', '이란', '중동정세', '유가', '한인경제']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Iran / Israel / Hormuz Urgent Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMickFVX3lxTFBQVWE4NTYyRFZ3QzNicGdjZ1JxdGlyQ1JHS0RkQW1xZWdpZVVaTjhrUW4tUGVXVzlfTGkxS3ljMVFTMHVFMjJfaXVWY2o2a01Kd3hJaHRUNk9hcloyX3FLc09mN1h2V1g5a2ZPekprU2dBdw?oc=5'
 ---

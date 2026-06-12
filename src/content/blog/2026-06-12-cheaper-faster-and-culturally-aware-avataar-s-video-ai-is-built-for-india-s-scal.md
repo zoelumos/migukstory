@@ -5,7 +5,7 @@ pubDate: '2026-06-12'
 tags: ['AI', '영상생성', 'Avataar', '인도스타트업', '생성형AI']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'TechCrunch AI'
 sourceUrl: 'https://techcrunch.com/2026/06/11/cheaper-faster-and-culturally-aware-avataars-video-ai-is-built-for-indias-scale'
 ---

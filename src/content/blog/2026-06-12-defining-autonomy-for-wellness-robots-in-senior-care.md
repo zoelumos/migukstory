@@ -5,7 +5,7 @@ pubDate: '2026-06-12'
 tags: ['로봇', '시니어케어', '자율성', '한인커뮤니티', 'AI']
 category: 'robotics'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'IEEE Spectrum — Robotics'
 sourceUrl: 'https://content.knowledgehub.wiley.com/wellness-robots-and-the-path-to-full-autonomy-a-new-paradigm-in-ai-powered-senior-care'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-06-12'
 tags: ['기름값', '호르무즈', '이란', '트럼프', '미국경제']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Iran / Israel / Hormuz Urgent Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiogFBVV95cUxQdWh6X3pJTzBFT1lrSTRtcU11Tnlza0RJcjRuU290SlFORDUwU25jbW9yRDJfNzgxdy16c0VkNE9FNE8xSzUzLU52UG5SbmJNR2hyeFQyUVpYMnBlQm1FMjhTUGZoZ1JuUlNSTFdLRkZYOHA0TXYwSm40RjBSNzVlUGJlak9uV0xHaHRjd2hFRS1BaU1BRTB0WGJNOVQ4ME1nQ0HSAacBQVVfeXFMT09HU2M2SDhRbkJNZnQ5bEtfRkxLa1ZMWjY2Nl9taWZNV3pfNVpqOEZQWEZncS1LRVc1UlZkNHczQ05TNHRaZzQ0YjFvNlZFTXhJTkM3SFViUmN1UUgycGdRNVlsOTJPamluRjJtWEZ0RnBUajkyOTBkVnlfMXEtZ2tUbmp6dWhRbXpkU0JJWDJLdWdLdWM2WmNwS1V3Z3k0ZkoyWUVhdXc?oc=5'
 ---

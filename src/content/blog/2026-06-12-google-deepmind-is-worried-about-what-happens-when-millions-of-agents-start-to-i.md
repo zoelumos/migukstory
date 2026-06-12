@@ -5,7 +5,7 @@ pubDate: '2026-06-12'
 tags: ['AI', '구글딥마인드', 'AI에이전트', '안전성', '한인']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'MIT Technology Review — AI'
 sourceUrl: 'https://technologyreview.com/2026/06/11/1138794/google-deepmind-is-worried-about-what-happens-when-millions-of-agents-start-to-interact'
 ---

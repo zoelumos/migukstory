@@ -5,7 +5,7 @@ pubDate: '2026-06-12'
 tags: ['CDC', 'FDA', '공중보건', '백신', '한인가정']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Policy / Recall Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMinAFBVV95cUxOaWJNMExlVzJzX3ByZHk5a2pTWkQ5Z21FbjdBVVlmVzJTanFnLXpCdWhHejBhQkhpN3dLNHhQRUdlWUJGeXlxMFRodUNxaTJwdjZvamQ5S285Y29PeVB1Q1VZOVNJRDBxMkd5MkNCYzlXRXNiWmdvdGFhRWRMYTBEWWl1QlVjMi11Yi00UWZLQUFDdS1rV1VRTjNtUUw?oc=5'
 ---

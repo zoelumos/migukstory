@@ -5,7 +5,7 @@ pubDate: '2026-06-12'
 tags: ['ACA', '건강보험', '뉴욕', '오바마케어', '한인커뮤니티']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiigFBVV95cUxQZ1ViX18xMUlIZkZ3dERaMWRfcEd4MzhYdUFVRzVuMS1YekxxR0d1b1UxUkFWNlRmVE1YbWtBMXl4WDJtQ0dMS2thWTVDQ0NtWjFSYXAzeWJBXzZtVHBDajVUQlN3X3FjYUU3ZWZiZkp4Q2hNWVpLaTMxZzJic0VtRTVFNGxHNVpKYmc?oc=5'
 ---
