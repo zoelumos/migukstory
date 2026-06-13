@@ -5,7 +5,7 @@ pubDate: '2026-06-13'
 tags: ['Anthropic', 'AI규제', '한인업계']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'TechCrunch AI'
 sourceUrl: 'https://techcrunch.com/2026/06/12/anthropics-safety-warnings-may-have-just-backfired-the-government-has-pulled-the-plug-on-its-most-powerful-ai'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-06-13'
 tags: ['AI', '창고자동화', '물류', 'GreyOrange', '로보틱스']
 category: 'robotics'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'The Robot Report'
 sourceUrl: 'https://therobotreport.com/ai-in-warehousing-akash-guptas-vision-for-the-future'
 ---

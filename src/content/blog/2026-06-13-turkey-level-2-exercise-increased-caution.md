@@ -5,7 +5,7 @@ pubDate: '2026-06-13'
 tags: ['튀르키예', '여행경보', '국무부', '안전', '한인커뮤니티']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'State Department Travel Advisories'
 sourceUrl: 'https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.tur.html'
 ---

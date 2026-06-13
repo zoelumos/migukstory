@@ -5,7 +5,7 @@ pubDate: '2026-06-13'
 tags: ['FDA', '연속혈당측정기', '어린이건강']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'FDA Press Announcements'
 sourceUrl: 'https://fda.gov/news-events/press-announcements/fda-clears-first-over-counter-continuous-glucose-monitor-children'
 ---

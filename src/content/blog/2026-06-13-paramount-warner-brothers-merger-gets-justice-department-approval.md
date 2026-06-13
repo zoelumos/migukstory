@@ -5,7 +5,7 @@ pubDate: '2026-06-13'
 tags: ['파라마운트', '워너브라더스', '미디어합병', '스트리밍', '법무부']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/06/12/nx-s1-5856563/justice-dept-approves-paramounts-acquisition-of-warner-bros-discovery'
 ---

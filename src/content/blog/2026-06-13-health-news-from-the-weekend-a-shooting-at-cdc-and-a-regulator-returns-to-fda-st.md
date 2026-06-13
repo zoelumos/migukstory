@@ -5,7 +5,7 @@ pubDate: '2026-06-13'
 tags: ['CDC', 'FDA', '보건정책', '미주한인', '공공안전', '식품리콜', '백신']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Policy / Recall Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMinAFBVV95cUxOZDFMdF9UM0plUWpYQlY0S05yZjVRTDAzOFQ1RHJMc1VqeExXZE1FbHRRUERMZ1FUaXQ4bE1LS2lBZ01WbXlUVGNDSU5ONVNDYzc1eFRscW9TR3NUcGotM2l5SFdMRGp0elZ6dlpHNkZyTF9HNzAxZUltcUwtVXR1RjJoM0xaVHY4Ul9YQWp3N2VVY1JCWDNjT0ZBY0s?oc=5'
 ---
