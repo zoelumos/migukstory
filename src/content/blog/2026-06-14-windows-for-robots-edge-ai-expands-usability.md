@@ -5,7 +5,7 @@ pubDate: '2026-06-14'
 tags: ['로봇', '엣지AI', '자동화', '한인자영업', '진로']
 category: 'robotics'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'The Robot Report'
 sourceUrl: 'https://therobotreport.com/computers-software-windows-utility-robots'
 ---

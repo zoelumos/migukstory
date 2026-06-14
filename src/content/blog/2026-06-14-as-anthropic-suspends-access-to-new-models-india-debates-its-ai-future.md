@@ -5,7 +5,7 @@ pubDate: '2026-06-14'
 tags: ['앤트로픽', '인도', 'AI주권', '한인IT', '취업비자']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'TechCrunch AI'
 sourceUrl: 'https://techcrunch.com/2026/06/13/as-anthropic-suspends-access-to-new-models-india-debates-its-ai-future'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-06-14'
 tags: ['ACA', '건강보험', '오바마케어', '한인가정', '의료정책', '자영업자', 'HealthCare.gov']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMirwFBVV95cUxQbXZ4N3lnM3dRd3lmc2J5aHR3WUhObzgwLXRJcl9Belp0dmhwYWJiNjNCYm43NkhQaDNMeG1WUHZadlFZSE5GT2xoVFdvNUllekJiMmM5dXZubkZISklZYXZTaG1aakRDejhjTmNaZUpJeHpIQVJySHYtRHpWaElzajlfZEJ0b2N3N1oyYThzR2FLczRIaGlNb3Z4TUxicEpzX1pHMFlvZFRuWDlfVjdv?oc=5'
 ---

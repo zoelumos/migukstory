@@ -5,7 +5,7 @@ pubDate: '2026-06-14'
 tags: ['영아보툴리눔', '분유리콜', 'CDC', 'FDA', '한인가정', '육아안전']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'CDC Newsroom'
 sourceUrl: 'https://tools.cdc.gov/api/embed/downloader/download.asp?c=765836&m=132608'
 ---
