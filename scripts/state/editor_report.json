@@ -1,126 +1,106 @@
 {
-  "generated_at": "2026-06-13T11:10:51.647347+00:00",
+  "generated_at": "2026-06-14T11:10:01.083060+00:00",
   "threshold_promote": 70,
   "threshold_review": 50,
   "counts": {
-    "total": 8,
-    "promoted": 7,
-    "review": 1,
-    "discard_flag": 0,
+    "total": 7,
+    "promoted": 4,
+    "review": 2,
+    "discard_flag": 1,
     "deferred": 0
   },
   "grades": [
     {
-      "slug": "2026-06-13-ai-in-warehousing-akash-gupta-s-vision-for-the-future",
-      "score": 77,
+      "slug": "2026-06-14-as-anthropic-suspends-access-to-new-models-india-debates-its-ai-future",
+      "score": 75,
       "scores": {
         "factuality": 15,
         "source_diversity": 14,
-        "ka_angle": 17,
-        "originality": 14,
-        "structure": 17
-      },
-      "reasoning": "The Robot Report 단일 출처지만 신뢰할 수 있는 업계 매체로 정확히 링크되어 있고, 본문 주장도 출처 범위 내에서 절제되어 있습니다. 식품 유통·도매·이커머스 셀러 등 구체적 한인 자영업자 그룹과 1세대 물류 근로자, 자녀 진로까지 연결한 한인 관점 분석이 살아있고, 기존 vs AI 기반 운영을 비교한 표가 시각화 요건을 충족합니다. 다만 도입 비용·시점·실제 사례 등 구체적 데이터가 부족해 originality가 분석 종합 수준에 머무는 점은 한계입니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-13-ai-in-warehousing-akash-gupta-s-vision-for-the-future.md"
-    },
-    {
-      "slug": "2026-06-13-anthropic-s-safety-warnings-may-have-just-backfired-the-government-has-pulled-th",
-      "score": 74,
-      "scores": {
-        "factuality": 14,
-        "source_diversity": 15,
         "ka_angle": 16,
         "originality": 13,
-        "structure": 16
+        "structure": 17
       },
-      "reasoning": "TechCrunch AI 단일 출처지만 주요 IT 매체이고 본문 주장과 링크가 추적 가능하며, 한인 자영업자(식당·세무사·학원)와 자녀 진로 측면의 구체적 한인 관점 분석이 포함되어 있습니다. 비교표 형식의 시각화가 주제에 맞게 들어가 있고 frontmatter와 구조도 완비되어 있으나, AI 규제·jailbreak 관련 구체 수치나 정부 기관명이 명확히 특정되지 않아 사실성·독창성에서 다소 감점했습니다.",
+      "reasoning": "TechCrunch 단일 출처지만 신뢰도 있는 매체이며 본문 주장과 추적 가능하게 연결돼 있고, 한인 IT 종사자·H-1B·자영업자·자녀 진로까지 구체적으로 한인 관점이 살아 있습니다. 비교표 형태의 시각화가 주제와 잘 맞아 구조 점수가 높으나, 독창적 분석은 사건 요약과 영향 정리 수준으로 더 깊은 편집자 해석이 부족합니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-13-anthropic-s-safety-warnings-may-have-just-backfired-the-government-has-pulled-th.md"
+      "promoted_to": "queue/2026-06-14-as-anthropic-suspends-access-to-new-models-india-debates-its-ai-future.md"
     },
     {
-      "slug": "2026-06-13-as-housing-costs-outpace-wages-lisc-ceo-calls-for-action-housingwire",
-      "score": 69,
+      "slug": "2026-06-14-cdc-outbreak-update-infant-botulism-linked-to-powdered-infant-formula",
+      "score": 87,
+      "scores": {
+        "factuality": 17,
+        "source_diversity": 16,
+        "ka_angle": 18,
+        "originality": 17,
+        "structure": 19
+      },
+      "reasoning": "CDC·FDA 1차 출처가 정확한 링크와 함께 인용되어 추적 가능하고, 라인 전체 사용 중단 권고의 의미를 편집자 관점에서 해석한 분석 문단이 살아있습니다. 한인 가정·자영업자·비자/영주권 가정 등 구체적 그룹별 실무 영향을 짚었고, 비교표·번호 체크리스트·증상 불릿 등 시각화 요소가 주제에 맞게 배치되어 자동 승격 기준을 충족합니다. 다만 단일 publisher 중심이라 교차 검증 점수는 만점에 미치지 못합니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-14-cdc-outbreak-update-infant-botulism-linked-to-powdered-infant-formula.md"
+    },
+    {
+      "slug": "2026-06-14-existing-home-sales-national-association-of-realtors",
+      "score": 68,
       "scores": {
         "factuality": 12,
-        "source_diversity": 11,
-        "ka_angle": 16,
+        "source_diversity": 9,
+        "ka_angle": 17,
         "originality": 13,
         "structure": 17
       },
-      "reasoning": "한인 세입자·자영업자·은퇴세대·신규 정착 가족별로 영향을 구체적으로 풀어낸 한인 관점과 비교표 시각화는 강점입니다. 다만 출처가 Google News 리다이렉트 링크 한 건이고 HousingWire 원문이나 LISC 공식 발표로 직접 연결되지 않아 LISC CEO 발언의 구체 수치·시점·정책 방향을 추적하기 어렵고, '행동 촉구' 외 인용된 사실의 검증 가능성이 약합니다.",
+      "reasoning": "한인 독자 유형별 활용법을 표와 체크리스트로 정리한 시각화와 한인 관점 분석은 강점이지만, 원문이 Google News 리다이렉트 링크 하나뿐이고 NAR 공식 데이터·구체 수치가 본문에 전혀 포함되지 않아 사실성과 출처 신뢰도가 약합니다. 지표의 실제 판매량·중간가·재고 같은 핵심 숫자 없이 '지표가 발표됐다'는 사실만으로 구성돼 독창성도 제한적입니다.",
       "action": "review",
       "promoted_to": null
     },
     {
-      "slug": "2026-06-13-fda-clears-first-over-the-counter-continuous-glucose-monitor-for-children",
-      "score": 79,
+      "slug": "2026-06-14-new-rules-expand-aca-insurance-choices-but-could-come-with-risks-the-washington",
+      "score": 89,
       "scores": {
         "factuality": 17,
-        "source_diversity": 15,
-        "ka_angle": 16,
-        "originality": 14,
-        "structure": 17
+        "source_diversity": 17,
+        "ka_angle": 19,
+        "originality": 17,
+        "structure": 19
       },
-      "reasoning": "FDA 공식 발표를 1차 출처로 인용하고 제품명·적응증·연령 기준 등 핵심 사실이 출처와 일치하며 추적 가능합니다. 한인 가정·유학생·자영업자·중장년 등 구체적 그룹별 의미와 보험·HSA/FSA 점검까지 실무적으로 풀어쓴 점, 그리고 기존 CGM 환경 대비 이번 결정을 한눈에 보여주는 비교표가 있어 시각화 요건도 충족합니다. 다만 출처가 FDA 1곳에 머물러 교차 검증 여지가 있고, 가격대·구매 채널·실제 보험 적용 사례 등 독창적 분석 깊이는 더 보강할 수 있습니다.",
+      "reasoning": "ACA 새 규정의 핵심 위험(보장 공백, 보조금 사각지대)을 한인 자영업자·신규 이민·유학생 보호자·부모 부양 가정 등 구체적 그룹별로 풀어쓴 한인 관점 분석이 강하고, HealthCare.gov 공식 페이지 다수를 정확히 인용해 출처 추적성도 우수합니다. 비교표와 8단계 체크리스트로 시각화 요건도 충실히 충족했으며, 다만 워싱턴포스트 원문 직접 링크 없이 Google News 래퍼 URL만 제공된 점은 약점입니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-13-fda-clears-first-over-the-counter-continuous-glucose-monitor-for-children.md"
+      "promoted_to": "queue/2026-06-14-new-rules-expand-aca-insurance-choices-but-could-come-with-risks-the-washington.md"
     },
     {
-      "slug": "2026-06-13-health-news-from-the-weekend-a-shooting-at-cdc-and-a-regulator-returns-to-fda-st",
-      "score": 82,
+      "slug": "2026-06-14-one-year-after-hhs-layoffs-a-department-in-disarray-healthcare-dive",
+      "score": 64,
       "scores": {
-        "factuality": 15,
-        "source_diversity": 16,
-        "ka_angle": 18,
-        "originality": 15,
-        "structure": 18
+        "factuality": 12,
+        "source_diversity": 9,
+        "ka_angle": 15,
+        "originality": 12,
+        "structure": 16
       },
-      "reasoning": "CDC·FDA 공식 페이지 다수와 원 출처가 정확한 링크로 인용돼 추적 가능성이 높고, 한인 부모·은퇴자·자영업자·유학생 그룹별 의미를 구체적으로 풀어낸 한인 관점 분석이 살아있습니다. 비교표와 번호 단계 체크리스트 등 시각적 구조도 갖췄으나, 총격 사건의 세부 경위·피해 규모 등 1차 사실관계가 원문에서 확인되지 않은 점이 다소 아쉽고 분석은 추론 성격이 강합니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-13-health-news-from-the-weekend-a-shooting-at-cdc-and-a-regulator-returns-to-fda-st.md"
+      "reasoning": "헤드라인 수준의 원문만 바탕으로 작성되어 구체 수치·부서별 영향·복구 일정 등 검증 가능한 사실이 부족하고, 출처가 Google News 래퍼 링크 단 1건으로 Healthcare Dive 원문 직접 링크가 아니어서 추적성이 떨어집니다. 다만 메디케어·ACA·메디케이드·FDA·CDC를 한인 그룹별 점검 포인트로 정리한 비교표와 한인 관점 분석 문단이 살아있고 frontmatter·구조는 완비되어 시각화 요건은 충족합니다.",
+      "action": "review",
+      "promoted_to": null
     },
     {
-      "slug": "2026-06-13-paramount-warner-brothers-merger-gets-justice-department-approval",
-      "score": 78,
+      "slug": "2026-06-14-visual-language-models-train-robots-to-read-human-emotions",
+      "score": 0,
+      "scores": {},
+      "reasoning": "",
+      "action": "discard_flag",
+      "promoted_to": null
+    },
+    {
+      "slug": "2026-06-14-windows-for-robots-edge-ai-expands-usability",
+      "score": 80,
       "scores": {
         "factuality": 16,
         "source_diversity": 15,
-        "ka_angle": 16,
-        "originality": 14,
+        "ka_angle": 17,
+        "originality": 15,
         "structure": 17
       },
-      "reasoning": "NPR 주요 언론사 1차 출처가 정확한 링크와 함께 인용되어 있고, 본문의 1100억 달러·법무부 판단 등 핵심 수치가 출처로 추적 가능합니다. 한인 가정의 스트리밍 구독, 자영업자의 상업용 케이블, 은퇴자 포트폴리오까지 한인 실무 관점이 구체적으로 풀려 있고 비교표 시각화도 주제에 맞게 배치되어 자동 승격 기준을 충족합니다. 다만 합병 후 가격·콘텐츠 변화는 아직 추정 수준이라 분석 깊이가 다소 일반론에 머무는 점은 약점입니다.",
+      "reasoning": "The Robot Report 원문의 핵심 비유('윈도우 순간', accessibility shift)를 정확히 인용하고 출처 링크로 추적 가능하며, 한인 자영업(식당·세탁소·네일살롱)과 자녀 진로, 이민자 노동자 자동화 압력까지 양면을 구체적으로 풀어쓴 한인 관점 분석이 살아 있습니다. 비교표가 윈도우 이전 시대와 엣지 AI 시대를 명확히 대조해 시각화 요건을 충족하고 frontmatter·핵심 요약·출처 섹션도 완비되어 있습니다. 다만 출처가 단일 매체이며 구체적 수치·기업·제품 사례가 부족해 사실성·독창성에서 만점은 어렵습니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-13-paramount-warner-brothers-merger-gets-justice-department-approval.md"
-    },
-    {
-      "slug": "2026-06-13-trump-s-new-green-card-policy-may-be-illegal-experts-say-american-community-medi",
-      "score": 75,
-      "scores": {
-        "factuality": 13,
-        "source_diversity": 12,
-        "ka_angle": 17,
-        "originality": 15,
-        "structure": 18
-      },
-      "reasoning": "이민/영주권이라는 GSC 고가치 주제를 한인 가정·자영업자·유학생 관점으로 구체적으로 풀어냈고, 비교표 형태의 시각화와 핵심 요약·출처 섹션 구조도 잘 갖춰져 있습니다. 다만 출처가 Google News 리디렉션 링크 한 건뿐이어서 원 보도매체(American Community Media)의 직접 링크 부재로 사실성·출처 신뢰도 점수가 제한되며, 정책의 구체적 조항이나 전문가 실명·소속 인용이 약한 점이 아쉽습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-13-trump-s-new-green-card-policy-may-be-illegal-experts-say-american-community-medi.md"
-    },
-    {
-      "slug": "2026-06-13-turkey-level-2-exercise-increased-caution",
-      "score": 82,
-      "scores": {
-        "factuality": 17,
-        "source_diversity": 15,
-        "ka_angle": 17,
-        "originality": 15,
-        "structure": 18
-      },
-      "reasoning": "국무부 여행경보를 정확히 인용하고 테러·자의적 구금·출국 금지 등 핵심 위험을 한인 가정·교회·자영업자·유학생 관점으로 구체적으로 풀어낸 점이 강점이며, 위험 요인별 비교표가 시각화 요건을 충족합니다. 출처는 국무부 1차 자료 1건으로 신뢰도는 높으나 교차 검증 매체가 없어 다양성 점수는 보수적으로 평가했고, 영주권·이민 진행 가족에 대한 실무 조언이 originality를 살렸습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-13-turkey-level-2-exercise-increased-caution.md"
+      "promoted_to": "queue/2026-06-14-windows-for-robots-edge-ai-expands-usability.md"
     }
   ]
 }
