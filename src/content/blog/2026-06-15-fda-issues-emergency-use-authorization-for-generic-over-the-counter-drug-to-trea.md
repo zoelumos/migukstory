@@ -5,7 +5,7 @@ pubDate: '2026-06-15'
 tags: ['FDA', '반려동물', '스크루웜', '긴급사용승인', '건강']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'FDA Press Announcements'
 sourceUrl: 'https://fda.gov/news-events/press-announcements/fda-issues-emergency-use-authorization-generic-over-counter-drug-treat-new-world-screwworm-dogs-and'
 ---

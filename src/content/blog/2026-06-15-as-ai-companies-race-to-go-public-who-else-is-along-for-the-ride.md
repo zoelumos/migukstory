@@ -5,7 +5,7 @@ pubDate: '2026-06-15'
 tags: ['AI', 'IPO', '투자', '은퇴계좌', '한인경제']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'TechCrunch AI'
 sourceUrl: 'https://techcrunch.com/2026/06/14/as-ai-companies-race-to-go-public-who-else-is-along-for-the-ride'
 ---

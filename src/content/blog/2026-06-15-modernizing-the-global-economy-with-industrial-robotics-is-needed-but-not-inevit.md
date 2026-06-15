@@ -5,7 +5,7 @@ pubDate: '2026-06-15'
 tags: ['산업용로봇', '자동화', '글로벌경제', '제조업', '한인경제']
 category: 'robotics'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'The Robot Report'
 sourceUrl: 'https://therobotreport.com/modernizing-global-economy-industrial-robotics-needed-not-inevitable'
 ---

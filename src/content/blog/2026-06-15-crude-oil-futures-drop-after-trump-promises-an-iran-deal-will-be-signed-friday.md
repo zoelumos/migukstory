@@ -5,7 +5,7 @@ pubDate: '2026-06-15'
 tags: ['국제유가', '이란', '트럼프', '호르무즈', '에너지']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/06/14/nx-s1-5858115/oil-prices-trump-iran-deal'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-06-15'
 tags: ['AI', '정리해고', '미국경제', '한인경제', '노동시장', 'H-1B']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'TechCrunch AI'
 sourceUrl: 'https://techcrunch.com/2026/06/15/the-ai-layoff-wave-is-becoming-a-powder-keg'
 ---
