@@ -1,106 +1,126 @@
 {
-  "generated_at": "2026-06-14T11:10:01.083060+00:00",
+  "generated_at": "2026-06-15T11:10:56.809417+00:00",
   "threshold_promote": 70,
   "threshold_review": 50,
   "counts": {
-    "total": 7,
-    "promoted": 4,
-    "review": 2,
-    "discard_flag": 1,
+    "total": 8,
+    "promoted": 5,
+    "review": 3,
+    "discard_flag": 0,
     "deferred": 0
   },
   "grades": [
     {
-      "slug": "2026-06-14-as-anthropic-suspends-access-to-new-models-india-debates-its-ai-future",
-      "score": 75,
+      "slug": "2026-06-15-as-ai-companies-race-to-go-public-who-else-is-along-for-the-ride",
+      "score": 78,
       "scores": {
         "factuality": 15,
-        "source_diversity": 14,
-        "ka_angle": 16,
-        "originality": 13,
+        "source_diversity": 15,
+        "ka_angle": 17,
+        "originality": 14,
         "structure": 17
       },
-      "reasoning": "TechCrunch 단일 출처지만 신뢰도 있는 매체이며 본문 주장과 추적 가능하게 연결돼 있고, 한인 IT 종사자·H-1B·자영업자·자녀 진로까지 구체적으로 한인 관점이 살아 있습니다. 비교표 형태의 시각화가 주제와 잘 맞아 구조 점수가 높으나, 독창적 분석은 사건 요약과 영향 정리 수준으로 더 깊은 편집자 해석이 부족합니다.",
+      "reasoning": "TechCrunch 단일 출처지만 주요 매체로 신뢰도가 확보되며, 본문 수치·인용이 출처와 일치합니다. 한인 은퇴계좌·교육자금·자녀 진로로 확장한 분석과 비교표가 시각화 요건을 충족하지만, 구체적 종목명·일정 등 1차 자료 보강이 부족해 독창성은 중간 수준입니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-14-as-anthropic-suspends-access-to-new-models-india-debates-its-ai-future.md"
+      "promoted_to": "queue/2026-06-15-as-ai-companies-race-to-go-public-who-else-is-along-for-the-ride.md"
     },
     {
-      "slug": "2026-06-14-cdc-outbreak-update-infant-botulism-linked-to-powdered-infant-formula",
-      "score": 87,
+      "slug": "2026-06-15-crude-oil-futures-drop-after-trump-promises-an-iran-deal-will-be-signed-friday",
+      "score": 78,
+      "scores": {
+        "factuality": 15,
+        "source_diversity": 15,
+        "ka_angle": 17,
+        "originality": 14,
+        "structure": 17
+      },
+      "reasoning": "NPR Business 원문 링크가 정확히 인용돼 있고, 호르무즈 해협·합의 서명 예고 등 핵심 사실이 출처로 추적 가능합니다. 한인 자영업·통근자·은퇴 계좌(401(k)/IRA) 관점이 구체적으로 풀려 있고 비교표가 시각화 요건을 충족하지만, 단일 출처라 교차검증이 약하고 합의 조건 세부가 빠진 점은 한계입니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-15-crude-oil-futures-drop-after-trump-promises-an-iran-deal-will-be-signed-friday.md"
+    },
+    {
+      "slug": "2026-06-15-fda-issues-emergency-use-authorization-for-generic-over-the-counter-drug-to-trea",
+      "score": 78,
       "scores": {
         "factuality": 17,
-        "source_diversity": 16,
-        "ka_angle": 18,
-        "originality": 17,
-        "structure": 19
+        "source_diversity": 15,
+        "ka_angle": 15,
+        "originality": 13,
+        "structure": 18
       },
-      "reasoning": "CDC·FDA 1차 출처가 정확한 링크와 함께 인용되어 추적 가능하고, 라인 전체 사용 중단 권고의 의미를 편집자 관점에서 해석한 분석 문단이 살아있습니다. 한인 가정·자영업자·비자/영주권 가정 등 구체적 그룹별 실무 영향을 짚었고, 비교표·번호 체크리스트·증상 불릿 등 시각화 요소가 주제에 맞게 배치되어 자동 승격 기준을 충족합니다. 다만 단일 publisher 중심이라 교차 검증 점수는 만점에 미치지 못합니다.",
+      "reasoning": "FDA 공식 발표를 1차 출처로 정확히 인용했고, 날짜·체중·연령 등 핵심 수치가 출처 링크로 추적 가능합니다. 한눈에 보는 비교표와 보호자 확인 순서 번호 목록 등 시각화가 적절히 구성되어 있고, 텍사스·플로리다 등 따뜻한 기후 지역 한인 가정과 펫샵·동물병원 자영업자 관점을 구체적으로 풀어쓴 점이 강점입니다. 다만 단일 출처(FDA 단독)로 교차 검증이 부족하고, 분석이 FDA 발표 요약 수준을 크게 넘어서지 못해 독창성은 평균적입니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-14-cdc-outbreak-update-infant-botulism-linked-to-powdered-infant-formula.md"
+      "promoted_to": "queue/2026-06-15-fda-issues-emergency-use-authorization-for-generic-over-the-counter-drug-to-trea.md"
     },
     {
-      "slug": "2026-06-14-existing-home-sales-national-association-of-realtors",
-      "score": 68,
+      "slug": "2026-06-15-is-it-safe-to-travel-to-dubai-right-now-everything-you-need-to-know-cond-nast-tr",
+      "score": 67,
       "scores": {
-        "factuality": 12,
+        "factuality": 13,
         "source_diversity": 9,
-        "ka_angle": 17,
+        "ka_angle": 16,
         "originality": 13,
-        "structure": 17
+        "structure": 16
       },
-      "reasoning": "한인 독자 유형별 활용법을 표와 체크리스트로 정리한 시각화와 한인 관점 분석은 강점이지만, 원문이 Google News 리다이렉트 링크 하나뿐이고 NAR 공식 데이터·구체 수치가 본문에 전혀 포함되지 않아 사실성과 출처 신뢰도가 약합니다. 지표의 실제 판매량·중간가·재고 같은 핵심 숫자 없이 '지표가 발표됐다'는 사실만으로 구성돼 독창성도 제한적입니다.",
+      "reasoning": "한인 환승·가족·비자 신분 관점에서 두바이 여행 결정 체크리스트를 단계별 표로 정리한 점은 강점이고, 구조와 시각화도 안내 성격에 잘 맞습니다. 다만 출처가 Google News 리다이렉트 링크 하나에만 의존해 Condé Nast Traveller 원문 URL이나 국무부·항공사 공식 채널 링크가 빠져 있어 출처 신뢰도와 사실 추적성이 약하고, 원문 자체에 구체 수치·운항 정보가 없다는 사실을 본문이 반복적으로 인정하고 있어 독창적 분석보다 일반 안내 수준에 머무릅니다.",
       "action": "review",
       "promoted_to": null
     },
     {
-      "slug": "2026-06-14-new-rules-expand-aca-insurance-choices-but-could-come-with-risks-the-washington",
-      "score": 89,
+      "slug": "2026-06-15-modernizing-the-global-economy-with-industrial-robotics-is-needed-but-not-inevit",
+      "score": 77,
+      "scores": {
+        "factuality": 15,
+        "source_diversity": 15,
+        "ka_angle": 16,
+        "originality": 14,
+        "structure": 17
+      },
+      "reasoning": "The Robot Report 칼럼 한 곳을 출처로 정확히 링크했고 본문 주장도 출처 범위 안에서 절제되어 있어 사실성과 출처 신뢰도가 양호합니다. 한인 자영업·제조업·엔지니어·은퇴계좌 투자자까지 연결한 한인 관점 분석과 서비스/산업 로봇 비교표가 잘 살아 있어 시각화 요건도 충족합니다. 다만 단일 출처 칼럼 기반이라 독창적 데이터·교차 검증은 부족하며, 분석이 일반론에 머무는 점은 한계입니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-15-modernizing-the-global-economy-with-industrial-robotics-is-needed-but-not-inevit.md"
+    },
+    {
+      "slug": "2026-06-15-the-ai-layoff-wave-is-becoming-a-powder-keg",
+      "score": 90,
       "scores": {
         "factuality": 17,
-        "source_diversity": 17,
+        "source_diversity": 18,
         "ka_angle": 19,
         "originality": 17,
         "structure": 19
       },
-      "reasoning": "ACA 새 규정의 핵심 위험(보장 공백, 보조금 사각지대)을 한인 자영업자·신규 이민·유학생 보호자·부모 부양 가정 등 구체적 그룹별로 풀어쓴 한인 관점 분석이 강하고, HealthCare.gov 공식 페이지 다수를 정확히 인용해 출처 추적성도 우수합니다. 비교표와 8단계 체크리스트로 시각화 요건도 충실히 충족했으며, 다만 워싱턴포스트 원문 직접 링크 없이 Google News 래퍼 URL만 제공된 점은 약점입니다.",
+      "reasoning": "TechCrunch AI 원문을 충실히 인용하면서 BLS JOLTS, Challenger, USCIS, HealthCare.gov 등 신뢰도 높은 1차 출처가 교차 인용돼 사실성과 출처 신뢰도가 모두 우수합니다. H-1B 60일 grace period, COBRA/ACA 전환, 401(k) 리밸런싱, 자영업 자동화, 자녀 진로까지 한인 그룹별 실무 분석이 구체적이고, 비교표와 7일 체크리스트로 시각적 구조도 충족합니다. 다만 '화약고' 비유가 일부 문단에서 반복되는 점은 사소한 약점입니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-14-new-rules-expand-aca-insurance-choices-but-could-come-with-risks-the-washington.md"
+      "promoted_to": "queue/2026-06-15-the-ai-layoff-wave-is-becoming-a-powder-keg.md"
     },
     {
-      "slug": "2026-06-14-one-year-after-hhs-layoffs-a-department-in-disarray-healthcare-dive",
-      "score": 64,
+      "slug": "2026-06-15-trump-tried-to-kill-solar-s-5-safe-harbor-a-federal-court-brought-it-back-electr",
+      "score": 63,
       "scores": {
-        "factuality": 12,
+        "factuality": 11,
         "source_diversity": 9,
         "ka_angle": 15,
         "originality": 12,
         "structure": 16
       },
-      "reasoning": "헤드라인 수준의 원문만 바탕으로 작성되어 구체 수치·부서별 영향·복구 일정 등 검증 가능한 사실이 부족하고, 출처가 Google News 래퍼 링크 단 1건으로 Healthcare Dive 원문 직접 링크가 아니어서 추적성이 떨어집니다. 다만 메디케어·ACA·메디케이드·FDA·CDC를 한인 그룹별 점검 포인트로 정리한 비교표와 한인 관점 분석 문단이 살아있고 frontmatter·구조는 완비되어 시각화 요건은 충족합니다.",
+      "reasoning": "세이프하버 부활이라는 핵심 사실은 다루지만 법원·판결 시점·구체적 규정 조항 등 추적 가능한 1차 정보가 빠져 있고, 출처도 Google News 리다이렉트 링크 한 개뿐이라 추적성이 약합니다. 한인 자영업자·주택주·청정에너지 종사자 영향을 명시적으로 풀고 비교표를 넣은 점은 강점이지만, IRS 공식 문서나 판결문 등 1차 출처 보강과 시행 시점·항소 일정 같은 사실 디테일이 부족해 자동 승격 기준에는 미달합니다.",
       "action": "review",
       "promoted_to": null
     },
     {
-      "slug": "2026-06-14-visual-language-models-train-robots-to-read-human-emotions",
-      "score": 0,
-      "scores": {},
-      "reasoning": "",
-      "action": "discard_flag",
-      "promoted_to": null
-    },
-    {
-      "slug": "2026-06-14-windows-for-robots-edge-ai-expands-usability",
-      "score": 80,
+      "slug": "2026-06-15-u-s-removes-reconsider-travel-advisory-for-destination-impacted-by-middle-east-c",
+      "score": 66,
       "scores": {
-        "factuality": 16,
-        "source_diversity": 15,
-        "ka_angle": 17,
-        "originality": 15,
+        "factuality": 11,
+        "source_diversity": 9,
+        "ka_angle": 16,
+        "originality": 13,
         "structure": 17
       },
-      "reasoning": "The Robot Report 원문의 핵심 비유('윈도우 순간', accessibility shift)를 정확히 인용하고 출처 링크로 추적 가능하며, 한인 자영업(식당·세탁소·네일살롱)과 자녀 진로, 이민자 노동자 자동화 압력까지 양면을 구체적으로 풀어쓴 한인 관점 분석이 살아 있습니다. 비교표가 윈도우 이전 시대와 엣지 AI 시대를 명확히 대조해 시각화 요건을 충족하고 frontmatter·핵심 요약·출처 섹션도 완비되어 있습니다. 다만 출처가 단일 매체이며 구체적 수치·기업·제품 사례가 부족해 사실성·독창성에서 만점은 어렵습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-14-windows-for-robots-edge-ai-expands-usability.md"
+      "reasoning": "한인 여행객·비자 수속자 관점의 실무적 분석과 비교표·체크리스트 등 시각적 구조는 강점입니다. 그러나 출처가 Google News RSS 리다이렉트 링크 하나뿐이고 AOL.com 원문 직링크나 국무부 공식 발표 링크가 없어 '어느 목적지'인지 특정되지 않은 채 사실관계 추적이 어렵습니다. 구체적 국가명·권고 해제 일자·국무부 공식 페이지가 누락돼 자동 승격 기준에는 못 미칩니다.",
+      "action": "review",
+      "promoted_to": null
     }
   ]
 }
