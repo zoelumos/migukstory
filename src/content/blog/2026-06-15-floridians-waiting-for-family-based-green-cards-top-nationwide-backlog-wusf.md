@@ -5,7 +5,7 @@ pubDate: '2026-06-15'
 tags: ['영주권', '가족초청', '플로리다', 'USCIS', '이민', '비자게시판']
 category: 'immigration'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — USCIS / Green Card Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMitAFBVV95cUxNWTBudVM5dlc3NlcwRUdncF9IOGlmQktzR2JmMDN4Y21FMzFucmRUcDdGNFUwc2QtTTEzeVNFY3NYUnh0Y1J6XzA2ZzAzME50cHdOSVdZQ05tSXpwM1o4eU1zTmN5aXc0WEJvTEtPNzhyMTh1dnltUkgtZWhUQU5Ja29RWEZNemloYV81dXBLSlZxaEcwQjFIMXFtVFhPelVTS2toeUZTelV1RVNwWXNvaДWdcyNm9oNXVoc?oc=5'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-06-15'
 tags: ['주택시장', '모기지', '중서부', '남부', '한인가정', '구입여력', '이주']
 category: 'real-estate'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Housing / Mortgage Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMirwFBVV95cUxQdVo2YnJyS2tqaURucXFXZU5vMkxYTkZOZmhtTk0yZXp4MHRNa054NHNvWWVNNWhiM0dwS3N1VVNSVVNBbWdIUmoyM3otbVg2cmFKNzZuTkk5bzVJYWlTUkdYLUtUb0V2a1ZsYVpITDAtckx5Z1dVTnBaRUNiVDlTdUFhcDhCdXJWRXRSXzh0N3dHdU1jSmVFM0ZUbC1sZWp1NEFkV3FVUzlZSEU4eFBR?oc=5'
 ---

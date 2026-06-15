@@ -5,7 +5,7 @@ pubDate: '2026-06-15'
 tags: ['건강보험', '오바마케어', 'ACA', '한인생활', '의료비', '자영업', 'PremiumTaxCredit']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiggFBVV95cUxOZjcxQTFPcnAxdGpjZDExY3hQdXlKc3N2dVlmR0JPSU5IWVkxRzgwYTdUUldfRTYxZGFfeGlUMm5RMEFVMkdHTUs3Y3BidVVCWlB3RUYzNGdFWElkZ1VadFllclJGSDJtNHBHbHI3LXBSTTc3dDdfbWJBc0MxcXh6UjRn?oc=5'
 ---
