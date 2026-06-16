@@ -7,7 +7,7 @@ category: 'real-estate'
 ageGroup: 'all'
 draft: true
 source: 'Google News — Housing / Mortgage Watch'
-sourceUrl: 'https://news.google.com/rss/articles/CBMivgFBVV95cUxQbi1FYVZBQjhob0V5ZzlORTFEZERUM1Zic3pteXNDeG5MY0tYb2JFd1pzRkxBcGl2QUR3Y3dwMTlRTTVtY0paZjNtMlliSTZqd1dwTTdXdGJNaDZSMmdTNWduTlZmcDZxSFBXajNCdFFySXhLM3p2N2J1ZUw2M241Vkw1TWd0VFZXemY1VUZzYVBBYmhaSGg4NDdnbE80N21hMHpldDVMSmF2RG9SUEpqcF9XQk5TaXh4YXh0RkxR?oc=5)
+sourceUrl: 'https://news.google.com/rss/articles/CBMivgFBVV95cUxQbi1FYVZBQjhob0V5ZzlORTFEZERUM1Zic3pteXNDeG5MY0tYb2JFd1pzRkxBcGl2QUR3Y3dwMTlRTTVtY0paZjNtMlliSTZqd1dwTTdXdGJNaDZSMmdTNWduTlZmcDZxSFBXajNCdFFySXhLM3p2N2J1ZUw2M241Vkw1TWd0VFZXemY1VUZzYVBBYmhaSGg4NDdnbE80N21hMHpldDVMSmF2RG9SUEpqcF9XQk5TaXh4YXh0RkxR?oc=5'
 ---
 
 # 주택 건설업체 체감지수 약세 지속, 주거비 부담 우려 커져
