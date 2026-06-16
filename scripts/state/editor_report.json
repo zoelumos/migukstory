@@ -1,45 +1,73 @@
 {
-  "generated_at": "2026-06-15T23:07:32.598446+00:00",
+  "generated_at": "2026-06-16T11:10:54.300030+00:00",
   "threshold_promote": 70,
   "threshold_review": 50,
   "counts": {
-    "total": 3,
-    "promoted": 3,
-    "review": 0,
+    "total": 7,
+    "promoted": 5,
+    "review": 2,
     "discard_flag": 0,
     "deferred": 0
   },
   "grades": [
     {
-      "slug": "2026-06-15-floridians-waiting-for-family-based-green-cards-top-nationwide-backlog-wusf",
-      "score": 86,
+      "slug": "2026-06-16-builder-sentiment-remains-weak-amid-affordability-concerns-national-association",
+      "score": 68,
       "scores": {
-        "factuality": 16,
-        "source_diversity": 17,
-        "ka_angle": 18,
-        "originality": 17,
-        "structure": 18
+        "factuality": 12,
+        "source_diversity": 9,
+        "ka_angle": 16,
+        "originality": 14,
+        "structure": 17
       },
-      "reasoning": "WUSF 보도를 기반으로 비자 게시판·USCIS·NVC 등 정부 1차 출처를 정확한 링크와 함께 인용해 사실성과 출처 신뢰도가 견고하고, 플로리다 한인 가정의 의사결정 항목을 구체적으로 풀어내 한인 관점이 살아있습니다. 카테고리별 점검 표와 7단계 자기 점검 체크리스트로 시각적 구조가 충실하며 편집자 분석 문단이 단순 번역을 넘어선 맥락을 더했습니다. 다만 원문 sourceUrl에 깨진 문자가 포함된 점은 경미한 약점입니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-15-floridians-waiting-for-family-based-green-cards-top-nationwide-backlog-wusf.md"
+      "reasoning": "한인 가구 그룹별 체크포인트와 비교표·번호 목록 등 시각적 구조가 잘 갖춰져 있고, 단기·중장기 양면 신호를 짚은 분석도 무난합니다. 다만 출처가 Google News 집계 링크 한 건뿐이고 NAHB 원 발표나 구체 수치·발표일이 본문에 명시되지 않아 사실성과 출처 신뢰도가 약하며, 추적 가능한 1차 자료(NAHB HMI 페이지) 인용이 빠져 자동 승격하기에는 보수적으로 평가합니다.",
+      "action": "review",
+      "promoted_to": null
     },
     {
-      "slug": "2026-06-15-housing-affordability-divide-widens-as-midwest-and-south-pull-ahead-national-mor",
-      "score": 88,
+      "slug": "2026-06-16-malaysia-s-ai-agent-powered-messaging-app-respond-io-raises-62-5m-eyes-acquisiti",
+      "score": 80,
       "scores": {
         "factuality": 16,
-        "source_diversity": 17,
-        "ka_angle": 19,
-        "originality": 17,
-        "structure": 19
+        "source_diversity": 15,
+        "ka_angle": 17,
+        "originality": 15,
+        "structure": 17
       },
-      "reasoning": "원 보도의 큰 방향성을 NAR Affordability 보고서와 Atlanta Fed HOAM 지수라는 신뢰도 높은 공식 지표로 교차 보강했고, 출처 링크가 정확히 추적 가능합니다. 한인 첫 집 부부·H-1B/영주권자·자영업자·은퇴 1세대까지 그룹별 의미를 구체적으로 풀었고, 비교표와 7단계 체크리스트로 시각적 구조도 충실합니다. 다만 원문에 구체 수치가 없어 사실성은 방향성 수준에서만 검증 가능하다는 한계가 있습니다.",
+      "reasoning": "TechCrunch AI 단일 출처지만 신뢰도 높은 1차 매체로 본문 수치(6,250만 달러, 대화당 과금, 북미·유럽 인수 계획)가 모두 추적 가능하고, 한인 자영업·청년 일자리 영향까지 구체적으로 풀어쓴 점이 강점입니다. 비교표로 기존 SaaS와 Respond.io 방식 차이를 시각화했고 핵심 요약·출처 섹션·frontmatter 모두 완비되어 구조도 양호합니다. 다만 단일 출처라 교차 검증이 부족하고, 한인 사업주가 당장 활용할 수 있는 구체적 다음 단계(대안 서비스 비교, 도입 체크리스트)가 빠진 점이 아쉽습니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-15-housing-affordability-divide-widens-as-midwest-and-south-pull-ahead-national-mor.md"
+      "promoted_to": "queue/2026-06-16-malaysia-s-ai-agent-powered-messaging-app-respond-io-raises-62-5m-eyes-acquisiti.md"
     },
     {
-      "slug": "2026-06-15-they-re-uninsured-after-obamacare-became-too-costly-and-they-re-far-from-alone-c",
+      "slug": "2026-06-16-middle-east-peace-deal-here-s-what-it-means-for-prices-air-travel-and-more-cruis",
+      "score": 65,
+      "scores": {
+        "factuality": 12,
+        "source_diversity": 9,
+        "ka_angle": 16,
+        "originality": 12,
+        "structure": 16
+      },
+      "reasoning": "한인 여행자·자영업자 관점에서 점검 체크리스트와 비교표·번호 단계 목록 등 시각화 구조는 잘 갖춰져 있고 한인 앵글도 구체적입니다. 다만 원문 자체가 Google News RSS의 짧은 헤드라인 수준이라 협정 당사국·발효일·가격 변동 폭 등 핵심 수치가 모두 미확인 상태이고, 출처가 Google News 집계 링크 1개뿐이어서 사실성과 출처 신뢰도가 약합니다. 추측성 함의 위주여서 자동 승격 기준에는 미달합니다.",
+      "action": "review",
+      "promoted_to": null
+    },
+    {
+      "slug": "2026-06-16-sundar-pichai-faces-boos-walkout-at-stanford-graduation-ceremony-over-google-s-i",
+      "score": 77,
+      "scores": {
+        "factuality": 14,
+        "source_diversity": 15,
+        "ka_angle": 17,
+        "originality": 14,
+        "structure": 17
+      },
+      "reasoning": "TechCrunch 단일 출처지만 주요 매체로 추적 가능성이 확보되어 있고, H-1B·영주권 한인 엔지니어와 자녀 진로까지 연결한 한인 관점 분석이 구체적입니다. 비교표 형태의 시각화가 주제에 잘 맞고 핵심 요약·출처 섹션도 정상이며, 원문 한계까지 솔직히 적시한 점이 신뢰도를 높입니다. 다만 구글의 공식 입장이나 시위 규모 등 1차 정보 보강이 부족해 독창성·사실성 측면에서 추가 보도 참조가 권장됩니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-16-sundar-pichai-faces-boos-walkout-at-stanford-graduation-ceremony-over-google-s-i.md"
+    },
+    {
+      "slug": "2026-06-16-visa-and-openai-integrate-visa-s-secure-global-payment-directly-into-chatgpt",
       "score": 88,
       "scores": {
         "factuality": 17,
@@ -48,9 +76,37 @@
         "originality": 17,
         "structure": 19
       },
-      "reasoning": "CBS 보도를 KFF·CMS·HHS 등 신뢰도 높은 1차/반-1차 출처로 교차 검증하고, ARPA·IRA 보조금 구조와 만료 시나리오까지 편집자 분석으로 풀어낸 점이 강점입니다. 미주 한인 자영업·가족·60~64세 은퇴 준비자 등 구체적 그룹별 영향과 다음 오픈 인롤먼트 전 체크리스트, 한눈에 보는 비교표까지 갖춰 시각화와 실무성 기준을 모두 충족합니다. 다만 '2025년 말 만료'라는 시점이 2026년 현재 시점에서 다소 모호하게 읽힐 수 있어 최신 입법 동향 한 줄 보강이 있으면 더 좋겠습니다.",
+      "reasoning": "NPR 원문과 CFPB·FTC 등 신뢰도 높은 정부 기관 출처를 함께 인용해 사실성과 출처 신뢰도가 탄탄하며, 한인 1세대·자영업자·은퇴자 각각에 대한 구체적 분석과 신용카드 분쟁권이라는 편집자 관점이 살아있다. 비교표·번호 체크리스트 등 시각화 요소가 주제와 잘 맞고 frontmatter도 완전하나, AI 결제 권한 위임에 대한 법적 책임 부분이 다소 일반론에 머문 점이 약점이다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-15-they-re-uninsured-after-obamacare-became-too-costly-and-they-re-far-from-alone-c.md"
+      "promoted_to": "queue/2026-06-16-visa-and-openai-integrate-visa-s-secure-global-payment-directly-into-chatgpt.md"
+    },
+    {
+      "slug": "2026-06-16-wells-fargo-ties-3d-printed-home-lending-to-housing-affordability-story-yahoo-fi",
+      "score": 71,
+      "scores": {
+        "factuality": 12,
+        "source_diversity": 9,
+        "ka_angle": 17,
+        "originality": 15,
+        "structure": 18
+      },
+      "reasoning": "웰스파고의 3D 프린팅 주택 대출 움직임을 한인 첫 주택 구매자·은퇴 세대·자영업 가정의 관점으로 풀어낸 분석과 LA·뉴저지·애틀랜타·댈러스 등 한인 밀집 지역 연결이 강점이며, 비교표 형태의 시각화도 적절히 갖춰져 있습니다. 다만 출처가 Google News 리다이렉트 링크 하나뿐이라 원문 야후 파이낸스 기사로의 직접 추적이 어렵고, 본문 수치·인용이 제한적이라 사실성과 출처 신뢰도는 보수적으로 평가했습니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-16-wells-fargo-ties-3d-printed-home-lending-to-housing-affordability-story-yahoo-fi.md"
+    },
+    {
+      "slug": "2026-06-16-why-do-south-koreans-love-ai-so-much",
+      "score": 76,
+      "scores": {
+        "factuality": 15,
+        "source_diversity": 14,
+        "ka_angle": 16,
+        "originality": 14,
+        "structure": 17
+      },
+      "reasoning": "MIT 테크놀로지 리뷰 원문에 명시된 무인 입국심사·지하철 장면 등 사실관계가 출처 링크로 추적 가능하며, 단일 출처지만 주요 매체라 신뢰도가 확보됩니다. 한인 방문객 생체정보, 1.5·2세 가정의 부모 동반, 한국 거래처 자영업·자녀 진로 등 한인 관점이 구체적으로 풀려 있고 비교표 형식의 시각화도 갖춰 자동 승격 기준을 충족합니다. 다만 원문이 도입부 위주라 분석 깊이가 제한적이고 추가 1차 통계가 빠져 독창성에서 감점되었습니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-16-why-do-south-koreans-love-ai-so-much.md"
     }
   ]
 }
