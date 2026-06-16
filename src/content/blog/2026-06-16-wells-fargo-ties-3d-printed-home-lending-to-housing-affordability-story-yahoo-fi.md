@@ -5,7 +5,7 @@ pubDate: '2026-06-16'
 tags: ['웰스파고', '3D프린팅주택', '주택구매', '모기지', '주거부담']
 category: 'real-estate'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Housing / Mortgage Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMilwFBVV95cUxQajBMLU4yeG1Pc0ZCRjl2b2R1bDg4Yk5qM0tfWU1VSnk4aXdxMEFvLXNpN29XY0RsZ0pwZ2JwN1BqOG94dEtCS2RobGY1ZGJLSVlQYnhfN08tTWtjRVZ6bDJNdElqUGhHeUF4dmcxYjRLbU1RMEV2QUlSQzFKTWs3OEFRLVRwbU55UXBjSm1CaXVWZERIYlJr?oc=5'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-06-16'
 tags: ['한국 AI', '자동화', '미주 한인', '일자리', 'MIT 테크리뷰']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'MIT Technology Review — AI'
 sourceUrl: 'https://technologyreview.com/2026/06/15/1138983/why-do-south-koreans-love-ai-so-much'
 ---

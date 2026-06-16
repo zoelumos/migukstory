@@ -5,7 +5,7 @@ pubDate: '2026-06-16'
 tags: ['구글', '피차이', 'AI윤리', '스탠퍼드', '군사계약']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'TechCrunch AI'
 sourceUrl: 'https://techcrunch.com/2026/06/15/sundar-pichai-faces-boos-walkout-at-stanford-graduation-ceremony-over-googles-israel-ice-ties'
 ---

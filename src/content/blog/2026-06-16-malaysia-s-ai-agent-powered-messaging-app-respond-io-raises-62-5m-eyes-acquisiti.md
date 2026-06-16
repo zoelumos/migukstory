@@ -5,7 +5,7 @@ pubDate: '2026-06-16'
 tags: ['AI에이전트', '고객응대자동화', '소상공인', '스타트업투자', '말레이시아']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'TechCrunch AI'
 sourceUrl: 'https://techcrunch.com/2026/06/15/malaysias-respond-io-raises-62-5m-eyes-acquisitions-in-north-america-and-europe'
 ---

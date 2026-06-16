@@ -5,7 +5,7 @@ pubDate: '2026-06-16'
 tags: ['AI 결제', 'Visa', 'OpenAI', 'ChatGPT', '한인 자영업', '한인 가정']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/06/16/nx-s1-5853914/visa-and-openai-integrate-visas-secure-global-payment-directly-into-chatgpt'
 ---
