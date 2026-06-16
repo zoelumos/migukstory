@@ -5,7 +5,7 @@ pubDate: '2026-06-16'
 tags: ['호르무즈해협', '해운', '에너지', '물가', '미주한인경제']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/06/16/nx-s1-5860650/shipping-exec-says-industry-needs-assurances-strait-of-hormuz-will-be-safe'
 ---

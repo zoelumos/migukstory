@@ -5,7 +5,7 @@ pubDate: '2026-06-16'
 tags: ['주택시장', '모기지', '싱글여성', '한인부동산', '내집마련', '싱글맘', '1인가구']
 category: 'real-estate'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Housing / Mortgage Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiqwFBVV95cUxOdThFQ0ktbWhHek5OZ0dyZHJWUEwzODh2eFF6U0dldW5MMGl3bUowWDFYbFdhalhubnh1SHV4WUZTWWxuVFJFVlRNb0h6bFdLejVhZ3J5bVVFUEdVNmZxN0J5LTIzeG40Zk10LU9ZaVhHbXpzQktxWHFZTVprU2ZBbW1VQW5EZ0pRVnltN2ZNdnlEZlNWcEZ4SmpXLUhKemJqaWZlcE5JVzN0MUk?oc=5'
 ---

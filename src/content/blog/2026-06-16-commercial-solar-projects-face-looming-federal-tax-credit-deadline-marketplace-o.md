@@ -5,7 +5,7 @@ pubDate: '2026-06-16'
 tags: ['세금', '태양광', '세액공제', '자영업', '에너지', 'IRS']
 category: 'tax'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — IRS / Tax Guidance Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMirAFBVV95cUxPSVc4QTFFXzlhUWd6dHo2OFVSRm5Nd0NFeGhGbkRTa2dNQndUNUg4bllzTzJMNFk4N2F3eXc0YVd2SmMtTTVaLUlIZl96c2lCWXNsNVo2bGZxNjE2Z2JJdVZ0cDl2Rml4WVFKV1ZHWUs4eUpkZUNjcl9NX3Zqa1JZM3NHX3byblJZM3NHX3FSM2N2MXVCRUl3Y2l2dlRZVngtMkp2MHNDMmtSZXR0TUpNM0VXdlJv?oc=5'
 ---

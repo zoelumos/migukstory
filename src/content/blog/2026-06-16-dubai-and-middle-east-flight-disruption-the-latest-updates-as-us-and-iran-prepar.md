@@ -5,7 +5,7 @@ pubDate: '2026-06-16'
 tags: ['중동', '항공편', '두바이', '여행', '미국이란', '환승', '여행경보']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Middle East Travel / Airline Disruption Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMi0gFBVV95cUxQYnVQVFNyeHFyanZRY2x6d1lJU1hIdF9LQWFVUzZkbDFTcWRyN09sb25PbVNpSF9oNWoxWlVyWUg3YVpRa0dEU1F4X3I4MklialVzTDFvTGhVdjg3TUdCMjZPazdia1RkZHREbmI1RmZ5OE5oX1FaY0liVWx0aEFVakJrUWpKN0ZKRGhGT2FyODItTUFWZ25LQVVYTnA5NEM1TTJXczl1LTBUNTFqVDg4UG1jY3I5cUJCVGt3Z1JNY0k0NWFudGJDZW1XbEtLdE5uZUE?oc=5'
 ---
