@@ -5,7 +5,7 @@ pubDate: '2026-06-17'
 tags: ['주택시장', '모기지', '부동산', '한인생활', 'lock-in effect']
 category: 'real-estate'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Housing / Mortgage Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMioAFBVV95cUxOV1ZrUlM0MEM3MWJPek4yS2o3M1VicldONUxDZXdTeHJyN0dUWGlEZGpXT0lmMGxFd2VtZ3V5RElVeFBwbFk2a0FuWURzSTFkUEZFaHlDOFJ1bzNhMFF3OFQ3MmVzMmZ6QTdvclZ0eE5HZXhCZVRFUHVCRUVXODlDWTliU3JyU3YwaEViZ29aY2hiWm5VOThfYWJkMmVIX1Fi?oc=5'
 ---

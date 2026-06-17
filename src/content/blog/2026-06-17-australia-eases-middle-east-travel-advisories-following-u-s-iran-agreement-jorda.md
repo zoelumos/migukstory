@@ -5,7 +5,7 @@ pubDate: '2026-06-17'
 tags: ['중동여행', '여행경보', '미국이란', '항공권', '한인커뮤니티']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Middle East Travel / Airline Disruption Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMivwFBVV95cUxQTFFYOTR1ME5kUTJuXzRiUTlSNFdJQ25zVjVOWS1aZExndzhVV0dCU2xNUk11bjktMGRSRmdKMDZlZ21tZjhMR1V1QUlGS21UTWxWR1BxampPQk5idG1lTklXbml3aUZCMFZNbjdzWmlEd0ttX2ctdGJyeHcwNllWaEsxd3UzZHl1RFR4WmM5d3BCc0NUOU1wV3ZyWm1nUlpkWG9jZmVreUpZQkZ1OFhXLUlsUUNNSzVzM0dVQnMyYw?oc=5'
 ---

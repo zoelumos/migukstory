@@ -5,7 +5,7 @@ pubDate: '2026-06-17'
 tags: ['비자불레틴', '영주권', '이민', 'USCIS', '국무부']
 category: 'immigration'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — USCIS / Green Card Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiV0FVX3lxTE5TY1BvLTY4OXVDVUJQdzJ1RmRpZ2dnelFzX0N1VXlXZDhUNWVtMkhKckM5aXgwcVQ2cU5UdlhyQU10RVpZTTRBaUNLNTl4aW1EWUJOTFRVQQ?oc=5'
 ---
