@@ -5,7 +5,7 @@ pubDate: '2026-06-17'
 tags: ['호주', '걸프', '중동항공사', '여행경보', '한인여행', '환승', '미국무부']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Middle East Travel / Airline Disruption Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiwAFBVV95cUxQWWJwRnV3bEdjWmlpdnVyTmlCU0duNEtnX2huUlJySnQtOUFDcHY0N3FjS21Zcm5VdTQzWms2UGFCV0ttNkExSG9hWlhEaGJXalo3REFrdHpPMjZoQUVJdlJqRG9pSVd6TkUwa3hRdFRodko1c2xJd3RVY1JWVVlCQW83R0ZnV1ZfVnpYQmZwRU1IdGpyT1g3dEF2eUtUclFRUFhvOTY5aGhSU3BwWFkxZm12Q1IwMXIwWVFkdWY4M2c?oc=5'
 ---

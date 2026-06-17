@@ -5,7 +5,7 @@ pubDate: '2026-06-17'
 tags: ['핀터레스트', 'AI쇼핑', '생성형AI']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'TechCrunch AI'
 sourceUrl: 'https://techcrunch.com/2026/06/17/pinterest-launches-an-experimental-ai-shopping-app-called-ask-pinterest'
 ---

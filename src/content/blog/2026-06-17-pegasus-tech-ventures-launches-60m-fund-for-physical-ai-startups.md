@@ -5,7 +5,7 @@ pubDate: '2026-06-17'
 tags: ['피지컬AI', '로봇투자', 'Pegasus', 'CYBERDYNE', '벤처펀드']
 category: 'robotics'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'The Robot Report'
 sourceUrl: 'https://therobotreport.com/pegasus-tech-ventures-launches-60m-fund-physical-ai-startups'
 ---

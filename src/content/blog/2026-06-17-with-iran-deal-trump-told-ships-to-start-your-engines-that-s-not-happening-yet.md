@@ -5,7 +5,7 @@ pubDate: '2026-06-17'
 tags: ['호르무즈해협', '이란', '유가', '국제정세', '경제']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/06/17/nx-s1-5860909/iran-ships-strait-of-hormuz-trump'
 ---

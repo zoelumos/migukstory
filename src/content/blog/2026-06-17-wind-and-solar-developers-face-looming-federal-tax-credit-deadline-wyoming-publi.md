@@ -5,7 +5,7 @@ pubDate: '2026-06-17'
 tags: ['세금', '청정에너지', '세액공제', '한인경제']
 category: 'tax'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — IRS / Tax Guidance Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMi0wFBVV95cUxOd2lZNUdQVlVuWC1mdzd1ZFdFSWlLUzl1VW5hT1R1aFA3NkZTRFNZVTZ5YTZqdEdRaDRHSDNxc2ZQeG5ha05CamJRaHEwd0JlMjVWLU55LUxMb3QybnpFa1hicmdpeHNZNzREbnh6YUxvanVTRXFRekxHX0dHV2pUdEVVTEpESWkzUnNocUppUEU2Wi1pVmlYWWNmVnphY2pfNHFTNEJ6VE9mSHVoSG9YdVRWdWp0cnlFaHh1NmhDZmI5cGs3T1VhWXhPbHRCYWNuWlRF?oc=5'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-06-17'
 tags: ['걸프여행', '여행경보', '중동정세', '환승', '한인커뮤니티']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Middle East Travel / Airline Disruption Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMirwFBVV95cUxPTnI5alBmYjd5LS1QNWg3QkxUWnQ4WGFfOXc3TU5DTGZUb2dncjEzRmhTbVJPNFJPampWa04yczVVaGpLcXRNX1UxT2c5N2tLZ2VOOFI2V3ZlWl9DdnF4Q1NYLWRjb1JZNHFkZ08yUlVTUEkzMmFZaVJEUTdVSEJNVXl6S3luT1NxWEVYU1BfMEpFUkZyWTRuRVBKYnFwaVdQRVRtUHhCRVZzS0dFN21j?oc=5'
 ---

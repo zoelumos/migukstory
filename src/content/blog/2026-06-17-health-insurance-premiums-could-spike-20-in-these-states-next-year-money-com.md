@@ -5,7 +5,7 @@ pubDate: '2026-06-17'
 tags: ['건강보험', '보험료인상', '미주한인', 'ACA', '의료비', '오픈인롤먼트']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiZ0FVX3lxTFB0SlpKMml1aXdUWmtYbkEtckJUSzNYZHM0a1NCQjZUc1A0ZEYwN0wyaXV5akdBb1JBZTdtekNXVk5DbW9hQzJLWk9lWk4tZlA2M3B2Yk9qWmR6YmcxcVhKRno2cWlVR1E?oc=5'
 ---
