@@ -1,112 +1,84 @@
 {
-  "generated_at": "2026-06-17T11:11:15.927303+00:00",
+  "generated_at": "2026-06-17T23:10:25.957319+00:00",
   "threshold_promote": 70,
   "threshold_review": 50,
   "counts": {
-    "total": 7,
-    "promoted": 7,
+    "total": 5,
+    "promoted": 5,
     "review": 0,
     "discard_flag": 0,
     "deferred": 0
   },
   "grades": [
     {
-      "slug": "2026-06-17-australia-downgrades-gulf-travel-advisories-as-us-and-iran-agree-to-a-deal-cond",
-      "score": 70,
-      "scores": {
-        "factuality": 13,
-        "source_diversity": 10,
-        "ka_angle": 16,
-        "originality": 14,
-        "structure": 17
-      },
-      "reasoning": "호주의 걸프 여행경보 하향 조정이라는 핵심 사실은 출처 링크와 일치하며, 두바이·도하 환승을 이용하는 한인 가족·자영업자·유학생 관점으로 풀어낸 분석이 살아 있고, 비교표와 번호 단계 점검 리스트가 시각화 요건을 충족합니다. 다만 출처가 Google News RSS 리다이렉트 1건뿐이라 원 보도(콩데 나스트 트래블러 미들이스트) 직접 링크가 없고, 미국 국무부 등 한인 독자에게 더 중요한 공식 정보원이 누락된 점이 약점입니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-17-australia-downgrades-gulf-travel-advisories-as-us-and-iran-agree-to-a-deal-cond.md"
-    },
-    {
-      "slug": "2026-06-17-australia-relaxes-gulf-travel-advice-in-boost-for-middle-eastern-airlines-reuter",
-      "score": 81,
-      "scores": {
-        "factuality": 14,
-        "source_diversity": 16,
-        "ka_angle": 17,
-        "originality": 16,
-        "structure": 18
-      },
-      "reasoning": "호주 정부 권고 완화라는 핵심 사실을 미 국무부 권고와 분리해 설명하고, 환승 한인 여행자·비자 일정·자영업 물류까지 한인 관점으로 폭넓게 풀어낸 점이 강점입니다. 비교표와 5단계 체크리스트로 시각화 요건도 충족했으나, 1차 출처가 Google News 리다이렉트 링크라 로이터 원문 직링크가 빠진 점과 호주 권고의 구체 단계(예: Level 2→1) 수치 인용이 없는 점은 사실성 점수를 일부 깎았습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-17-australia-relaxes-gulf-travel-advice-in-boost-for-middle-eastern-airlines-reuter.md"
-    },
-    {
-      "slug": "2026-06-17-health-insurance-premiums-could-spike-20-in-these-states-next-year-money-com",
-      "score": 82,
+      "slug": "2026-06-17-australia-eases-middle-east-travel-advisories-following-u-s-iran-agreement-jorda",
+      "score": 84,
       "scores": {
         "factuality": 15,
-        "source_diversity": 15,
+        "source_diversity": 16,
         "ka_angle": 18,
-        "originality": 16,
+        "originality": 17,
         "structure": 18
       },
-      "reasoning": "money.com 원 보도의 '최대 20%' 헤드라인 수치를 단정하지 않고 주별 보험감독국 승인과 보조금 제도의 변동 가능성을 함께 짚어 사실성을 보수적으로 다뤘고, KFF·HealthCare.gov·CMS 등 신뢰도 높은 1차/반-1차 출처를 정확한 링크로 인용해 추적 가능성이 양호합니다. ACA 자영업자·H-1B/OPT·메디케어 진입 전 은퇴세대 등 한인 그룹별 영향 분석과 비교표·8단계 체크리스트 시각화가 함께 들어가 한인 관점과 구조 점수가 높습니다. 다만 원문이 짧아 어느 주가 해당되는지 구체 데이터가 빠진 점, 출처가 사실상 보조 참고자료 위주라 교차 검증이 다소 약한 점이 아쉽습니다.",
+      "reasoning": "호주 경보 완화 원문이 구체 수치를 제시하지 않은 한계를 명시하면서, 미 국무부·DFAT·외교부 등 신뢰 가능한 1차 출처를 정확한 링크로 인용해 추적성을 확보했습니다. 재입국 리스크, 보험 면책, 화물 운임 등 한인 여행객·유학생·자영업자 관점의 분석이 구체적이며 비교표와 번호 단계 체크리스트로 시각화 요건도 충족합니다. 다만 호주 완화 폭의 구체 수치 부재로 사실성에서 만점은 어렵습니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-17-health-insurance-premiums-could-spike-20-in-these-states-next-year-money-com.md"
+      "promoted_to": "queue/2026-06-17-australia-eases-middle-east-travel-advisories-following-u-s-iran-agreement-jorda.md"
     },
     {
-      "slug": "2026-06-17-pegasus-tech-ventures-launches-60m-fund-for-physical-ai-startups",
-      "score": 80,
+      "slug": "2026-06-17-easing-housing-market-lock-in-47-of-homeowners-say-they-d-accept-up-to-6-mortgag",
+      "score": 88,
       "scores": {
-        "factuality": 16,
-        "source_diversity": 15,
-        "ka_angle": 17,
-        "originality": 15,
-        "structure": 17
+        "factuality": 17,
+        "source_diversity": 18,
+        "ka_angle": 18,
+        "originality": 17,
+        "structure": 18
       },
-      "reasoning": "The Robot Report라는 신뢰할 만한 업계 매체를 정확한 링크와 함께 인용했고, 펀드 규모·파트너·투자 5개 분야 등 본문 핵심 사실이 출처로 추적 가능합니다. 한인 자영업(세탁소·식당·네일살롱), 헬스케어 종사자, STEM 진로 학부모, 투자자까지 4개 그룹별 시사점을 구체적으로 분리해 풀어쓴 점이 강점이며, 비교표 형태의 시각화도 갖춰 자동승격 기준을 충족합니다. 다만 단일 출처라 교차 검증이 부족하고, 자동화 도입 시점·가격대에 대한 추가 데이터가 없어 분석 깊이는 평균 수준입니다.",
+      "reasoning": "Fast Company 설문 수치(47%, 6%)와 FHFA·Freddie Mac PMMS·NAR·IRS Section 121 등 신뢰도 높은 1차 출처 5곳이 본문 주장과 정확히 연결되며 추적 가능합니다. 한인 실수요·기존 자가·자영업·H-1B/영주권 진행자 등 그룹별 의미를 구체적으로 풀고, 비교표와 5단계 체크리스트로 시각화 요건도 충족했습니다. 다만 '심리적 임계점' 해석이 다소 단선적이고, 지역별 시장 편차에 대한 균형 추가 분석이 있었다면 더 좋았을 것입니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-17-pegasus-tech-ventures-launches-60m-fund-for-physical-ai-startups.md"
+      "promoted_to": "queue/2026-06-17-easing-housing-market-lock-in-47-of-homeowners-say-they-d-accept-up-to-6-mortgag.md"
     },
     {
-      "slug": "2026-06-17-pinterest-launches-an-experimental-ai-shopping-app-called-ask-pinterest",
-      "score": 79,
+      "slug": "2026-06-17-federal-reserve-issues-fomc-statement",
+      "score": 87,
       "scores": {
         "factuality": 17,
         "source_diversity": 15,
-        "ka_angle": 16,
-        "originality": 14,
-        "structure": 17
+        "ka_angle": 19,
+        "originality": 17,
+        "structure": 19
       },
-      "reasoning": "TechCrunch 단일 출처지만 신뢰할 만한 1차 매체이고, 본문 수치·인용이 출처와 추적 가능하며 '실험 단계'라는 한계를 명확히 명시한 점이 강점입니다. 한인 소비자(이중언어 가정)와 한인 소상공인(키워드→대화 의도 매칭) 양측 관점을 구체적으로 풀어냈고, 비교표가 변화의 핵심을 시각적으로 잘 정리했습니다. 다만 광고·수수료·한국어 지원 등 미확인 영역에 대한 독자적 분석 깊이는 다소 얕고, 단일 출처라 19점 이상은 부여하지 않았습니다.",
+      "reasoning": "연준 공식 보도자료를 1차 출처로 명확히 링크하고 검증 불가능한 수치는 명시적으로 제외해 사실성이 안정적이며, 모기지·SBA·401(k)·학자금 등 한인 독자 그룹별 영향을 표와 체크리스트로 구체화한 점이 강점입니다. 두 개의 비교표와 번호 단계 체크리스트로 시각화 요건을 충족하고, 편집자 분석 문단이 단순 요약을 넘어선 맥락을 더했습니다. 다만 성명 원문의 구체적 결정 내용을 인용하지 못해 정보 밀도가 다소 일반적이며, 출처가 모두 연준 단일 publisher라는 점이 source_diversity의 약점입니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-17-pinterest-launches-an-experimental-ai-shopping-app-called-ask-pinterest.md"
+      "promoted_to": "queue/2026-06-17-federal-reserve-issues-fomc-statement.md"
     },
     {
-      "slug": "2026-06-17-wind-and-solar-developers-face-looming-federal-tax-credit-deadline-wyoming-publi",
-      "score": 72,
+      "slug": "2026-06-17-july-2026-visa-bulletin-latest-update-boundless-immigration",
+      "score": 74,
       "scores": {
-        "factuality": 13,
+        "factuality": 14,
         "source_diversity": 12,
-        "ka_angle": 16,
+        "ka_angle": 17,
         "originality": 14,
         "structure": 17
       },
-      "reasoning": "와이오밍 퍼블릭 미디어 보도를 바탕으로 연방 풍력·태양광 세액공제 마감이 한인 자영업자·주택 소유자·은퇴계좌 투자자에게 미치는 영향을 구체적으로 풀어쓴 점이 강점이며, 마감 전후를 비교한 표가 시각적 차별점을 제공합니다. 다만 출처가 Google News 리디렉션 링크 1건뿐이라 원문 publisher와 구체 수치·일자가 본문에서 명시적으로 추적되지 않는 점, 세액공제의 실제 마감 시한·법적 근거(IRA 등) 인용이 빠진 점이 약점입니다.",
+      "reasoning": "바운드리스 원문 발췌에 구체 숫자가 없다는 한계를 솔직히 밝히고 국무부 원본 확인을 안내한 점은 사실성 면에서 안전하나, 출처가 Google News 리다이렉트 링크 한 건뿐이라 신뢰도 추적이 약합니다. F카테고리·EB-2/EB-3, 자녀 에이지아웃, 학자금·세금·은퇴 연계 등 한인 실무 관점이 잘 살아 있고, 비교표·번호 단계 체크리스트 시각화도 주제에 맞게 구성되어 자동승격 기준을 충족합니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-17-wind-and-solar-developers-face-looming-federal-tax-credit-deadline-wyoming-publi.md"
+      "promoted_to": "queue/2026-06-17-july-2026-visa-bulletin-latest-update-boundless-immigration.md"
     },
     {
-      "slug": "2026-06-17-with-iran-deal-trump-told-ships-to-start-your-engines-that-s-not-happening-yet",
+      "slug": "2026-06-17-trump-hints-at-an-end-to-military-action-in-iran-saying-u-s-will-leave-in-2-3-we",
       "score": 81,
       "scores": {
-        "factuality": 16,
+        "factuality": 14,
         "source_diversity": 15,
         "ka_angle": 18,
-        "originality": 15,
-        "structure": 17
+        "originality": 16,
+        "structure": 18
       },
-      "reasoning": "NPR 단일 출처지만 주요 언론사 1차 인용으로 추적 가능성이 확보됐고, 본문 수치·인용이 원문 범위를 넘지 않아 사실성도 안정적입니다. 한인 자영업·긱워크·1세대 부모·401(k) 관점이 구체적으로 풀려 있고 비교표가 합의 전후 변화를 깔끔히 시각화해 자동 승격 기준을 충족합니다. 다만 잠정 합의의 시점·범위 정보가 원문에서 제한적이라 분석 깊이가 더 확장될 여지가 있습니다.",
+      "reasoning": "트럼프 발언의 '시사' 단계임을 명확히 구분하고 한인 자영업·통근자·유학생·은퇴자별로 구체적인 영향과 체크리스트, 시나리오 비교표를 잘 정리했습니다. NPR과 EIA 등 신뢰 가능한 출처를 인용했고 한눈에 보는 변화 표와 5단계 체크리스트로 시각화 요건도 충족합니다. 다만 NPR 링크가 특정 기사가 아닌 섹션 페이지여서 인용 추적성이 다소 약하고, '2~3주' 발언의 정확한 출처 기사 URL이 없어 사실성·출처 신뢰도에서 만점은 어렵습니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-17-with-iran-deal-trump-told-ships-to-start-your-engines-that-s-not-happening-yet.md"
+      "promoted_to": "queue/2026-06-17-trump-hints-at-an-end-to-military-action-in-iran-saying-u-s-will-leave-in-2-3-we.md"
     }
   ]
 }
