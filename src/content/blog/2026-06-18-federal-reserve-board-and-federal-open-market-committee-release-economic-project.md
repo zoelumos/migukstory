@@ -5,7 +5,7 @@ pubDate: '2026-06-18'
 tags: ['연준', 'FOMC', '경제전망', '금리', '미주한인']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Federal Reserve — Monetary Policy'
 sourceUrl: 'https://federalreserve.gov/newsevents/pressreleases/monetary20260617b.htm'
 ---

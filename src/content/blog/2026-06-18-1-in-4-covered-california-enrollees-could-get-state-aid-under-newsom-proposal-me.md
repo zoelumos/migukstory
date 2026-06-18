@@ -5,7 +5,7 @@ pubDate: '2026-06-18'
 tags: ['Covered California', '건강보험', '뉴섬', '캘리포니아', '보조금']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiqwFBVV95cUxOWWdtaG1lM3d0Y3lXTGs4THh2NUxwNG8zaldIZ2loMTBpSlRRYmUtRUM3cG5pMUVUR1dKRHZkbGR4Vk1VcUZXNU1Nbnc2TUhzMzVpZXFCRGZQalcyc0oxX21UYjExaHdJZEM5al92ZnYybVFrekw3bzJZRC1QcW1salplT1VnLTNnNk1WeHZRenBFTjhNMUZRQWEzS0xWWEpJeDJzTEQ5Sjg2d2c?oc=5'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-06-18'
 tags: ['주택', '모기지', '소셜미디어', '주거비', '한인생활']
 category: 'real-estate'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Housing / Mortgage Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMingFBVV95cUxNSWpKNXhqcWJpNTR3N21DamI4Y3BTTDByeHhyck9xemRMTDVpRzhlLU0yRHBlajNYRHQ1S3VheURhSXRQUkdUT2NlU2VBanpVV3ltTmtOaGp4S2x3b3ZmaHNBV0J6V0FMWDRXam1zRnlUX3UzQjhJZXgzZ0M4cWtXQWVESUF3eUI4Zk1oQzZNUHJ3aFpObEhkZlF2UWliZw?oc=5'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-06-18'
 tags: ['연준', '기준금리', '인플레이션', '모기지', '한인경제', '은퇴자산']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/06/18/nx-s1-5862068/fed-holds-interest-rates-steady-and-hints-at-future-rate-hike'
 ---

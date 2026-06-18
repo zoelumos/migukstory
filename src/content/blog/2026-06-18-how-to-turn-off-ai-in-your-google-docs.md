@@ -5,7 +5,7 @@ pubDate: '2026-06-18'
 tags: ['구글독스', 'Gemini', 'AI설정', '생산성', '개인정보']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'TechCrunch AI'
 sourceUrl: 'https://techcrunch.com/2026/06/17/how-to-turn-off-ai-in-your-google-docs'
 ---

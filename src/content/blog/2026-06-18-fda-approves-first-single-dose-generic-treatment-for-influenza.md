@@ -5,7 +5,7 @@ pubDate: '2026-06-18'
 tags: ['FDA', '독감', '제네릭', '건강보험', '한인가정']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'FDA Press Announcements'
 sourceUrl: 'https://fda.gov/news-events/press-announcements/fda-approves-first-single-dose-generic-treatment-influenza'
 ---
