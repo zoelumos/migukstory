@@ -5,7 +5,7 @@ pubDate: '2026-06-18'
 tags: ['두바이', 'UAE', '여행경보', '중동', '여행자보험', '국무부']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Middle East Travel / Airline Disruption Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiWkFVX3lxTE9hQUl4VmNLLUtMRklUMmZPRWFIeGZOYnVXYWxEREJjc21nNnQ3TzhfOElEellCNkZ4VDFqU2pkNl9Kd1g0Vy1TRjl5NW5wZE1aNmFYc3VTbWxYZw?oc=5'
 ---

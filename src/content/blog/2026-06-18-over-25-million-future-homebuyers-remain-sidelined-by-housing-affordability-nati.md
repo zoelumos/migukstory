@@ -5,7 +5,7 @@ pubDate: '2026-06-18'
 tags: ['주택구매', '모기지', '한인생활', '주택가격', 'affordability']
 category: 'real-estate'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Housing / Mortgage Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiugFBVV95cUxNZE4yaE1PWnhnbkRnTzlLLVRKLUpIVU5yNUQxWC1BY2ZDWlRfUUNxbzlRdkZYRDRDZXY4dDRjTDJvdWl3LVp6SGE5TlVaQVRBeUZkOTVkdWdEZjR6VzRQOS1FaEFDX1hETG1VLXRCRUR3OXViSW10RDJvVl9oS21YdVBjRzJNblRSOEczQnB5ZWtwQnMtWmZ5bXUwSXdoVFpTQm1IRlo1OVA2dEQzaEFUT2ltT3pQWmd1Mmc?oc=5'
 ---

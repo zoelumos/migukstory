@@ -5,7 +5,7 @@ pubDate: '2026-06-18'
 tags: ['건강보험', '조기은퇴', '메디케어', 'ACA', 'COBRA', '한인생활']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMimAFBVV95cUxQQkh0cUpuQVZuYkoxbkdnLWUxc2lFWmZPYkxfTWtEMTQ2SGIxMXU1X25rWmZOOF9vNzBiMW1CS3dfakdaclB3eXo0T1h5Zml1MHYwbHotOW9DM0I4S3JSSG9hNHpoaV9yQjNnSTdORUZBQ2Z2djk0ZzFLUS1DX2hQSmNveUMtTzB3Z25ZOVY5TjUtWDM5VDEwMQ?oc=5'
 ---

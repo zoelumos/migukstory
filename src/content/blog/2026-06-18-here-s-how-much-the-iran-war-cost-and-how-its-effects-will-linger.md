@@ -5,7 +5,7 @@ pubDate: '2026-06-18'
 tags: ['이란전쟁', '유가', '세계경제']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'NPR Business'
 sourceUrl: 'https://npr.org/2026/06/17/nx-s1-5860739/iran-war-cost-oil-military-trade'
 ---
