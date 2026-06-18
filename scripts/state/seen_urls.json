@@ -14,6 +14,12 @@
       "title": "Defining Autonomy for Wellness Robots in Senior Care",
       "draft": "drafts/2026-06-12-defining-autonomy-for-wellness-robots-in-senior-care.md"
     },
+    "https://fda.gov/news-events/press-announcements/fda-approves-first-single-dose-generic-treatment-influenza": {
+      "first_seen": "2026-06-18",
+      "source": "FDA Press Announcements",
+      "title": "FDA Approves First Single-Dose Generic Treatment for Influenza",
+      "draft": "drafts/2026-06-18-fda-approves-first-single-dose-generic-treatment-for-influenza.md"
+    },
     "https://fda.gov/news-events/press-announcements/fda-approves-first-treatment-chronic-hepatitis-delta-virus-hdv-infection": {
       "first_seen": "2026-05-25",
       "source": "FDA Press Announcements",
@@ -145,6 +151,12 @@
       "source": "Federal Reserve — Monetary Policy",
       "title": "Federal Reserve issues FOMC statement",
       "draft": "drafts/2026-06-17-federal-reserve-issues-fomc-statement.md"
+    },
+    "https://federalreserve.gov/newsevents/pressreleases/monetary20260617b.htm": {
+      "first_seen": "2026-06-18",
+      "source": "Federal Reserve — Monetary Policy",
+      "title": "Federal Reserve Board and Federal Open Market Committee release economic projections from the June 16-17 FOMC meeting",
+      "draft": "drafts/2026-06-18-federal-reserve-board-and-federal-open-market-committee-release-economic-project.md"
     },
     "https://news.bloombergtax.com/daily-tax-report-international/south-korea-tax-agency-issues-2026-individual-income-tax-guide-for-nonresidents-in-english-korean": {
       "first_seen": "2026-05-18",
@@ -367,6 +379,12 @@
       "source": "Google News — CPI / Interest Rate Watch",
       "title": "EPIC EXPLAINER: CPI and PPI - The Economic Policy Innovation Center",
       "draft": "drafts/2026-05-23-epic-explainer-cpi-and-ppi-the-economic-policy-innovation-center-2.md"
+    },
+    "https://news.google.com/rss/articles/CBMie0FVX3lxTE5lWm5SYmVLTTFjd01oV0RHTFVZcjZFaW9BZmZGZW0xOXhtQk9vTXp2UkpHdUJubnpoOHBQakYwMXVyLWxpTmxkd1h2dW8wdGhpZ3FtdVZOVXBNeUtaVUdMV2pUM3NUZ0llS1dqeVRiVkZNVE9UV1ZpUFpmNA?oc=5": {
+      "first_seen": "2026-06-18",
+      "source": "Google News — IRS / Tax Guidance Watch",
+      "title": "“Happy” Tax Day to Taxpayers Abroad - National Taxpayers Union",
+      "draft": "drafts/2026-06-18-happy-tax-day-to-taxpayers-abroad-national-taxpayers-union.md"
     },
     "https://news.google.com/rss/articles/CBMiekFVX3lxTFBsX2I4dUJiMzVZTmZHZWtoTlBvSVFQbFdULTdkdHJoZmZtQVZ1M2hUUzBKVmNmUkQ0TXItMnF5bVRMZkVOSDNBelk5dGJ6a0MwX18yeS1MUFdRaTJKNWxYZ19yU3FNS3lhSkFheHFLbjhELWVmdDBvZGpR?oc=5": {
       "first_seen": "2026-06-13",
@@ -626,6 +644,12 @@
       "title": "ACA Enrollment Could Fall By 5 Million As Enhanced Health Insurance Subsidies Expire - Forbes",
       "draft": "drafts/2026-06-12-aca-enrollment-could-fall-by-5-million-as-enhanced-health-insurance-subsidies-ex.md"
     },
+    "https://news.google.com/rss/articles/CBMingFBVV95cUxNSWpKNXhqcWJpNTR3N21DamI4Y3BTTDByeHhyck9xemRMTDVpRzhlLU0yRHBlajNYRHQ1S3VheURhSXRQUkdUT2NlU2VBanpVV3ltTmtOaGp4S2x3b3ZmaHNBV0J6V0FMWDRXam1zRnlUX3UzQjhJZXgzZ0M4cWtXQWVESUF3eUI4Zk1oQzZNUHJ3aFpObEhkZlF2UWliZw?oc=5": {
+      "first_seen": "2026-06-18",
+      "source": "Google News — Housing / Mortgage Watch",
+      "title": "Why social media is driving the affordability crisis - National Mortgage News",
+      "draft": "drafts/2026-06-18-why-social-media-is-driving-the-affordability-crisis-national-mortgage-news.md"
+    },
     "https://news.google.com/rss/articles/CBMingFBVV95cUxNWEVJTV9YOXVDQk1hcTJqQTBSRmNYR1V4OTBmc1kzQ3VDZmU2T0txSVc2NjJZT25HM0h5anhpYnYycmF3b2NZRFlkSWMtMzRfVk1lVExyc2EwLTlqdDQ4NDVBYUdGVERDblNlRzRjQTJONW5zWnVfdHVENkw2a0dFUVZlTWJQOEJPcGdaT2FVb3p5elNQelMxclZFZWdmUQ?oc=5": {
       "first_seen": "2026-05-23",
       "source": "Google News — CPI / Interest Rate Watch",
@@ -793,6 +817,12 @@
       "source": "Google News — Middle East Travel / Airline Disruption Watch",
       "title": "Is it safe to travel to Egypt? Latest advice amid Middle East conflict - The Independent",
       "draft": "drafts/2026-06-09-is-it-safe-to-travel-to-egypt-latest-advice-amid-middle-east-conflict-the-indepe.md"
+    },
+    "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOWWdtaG1lM3d0Y3lXTGs4THh2NUxwNG8zaldIZ2loMTBpSlRRYmUtRUM3cG5pMUVUR1dKRHZkbGR4Vk1VcUZXNU1Nbnc2TUhzMzVpZXFCRGZQalcyc0oxX21UYjExaHdJZEM5al92ZnYybVFrekw3bzJZRC1QcW1salplT1VnLTNnNk1WeHZRenBFTjhNMUZRQWEzS0xWWEpJeDJzTEQ5Sjg2d2c?oc=5": {
+      "first_seen": "2026-06-18",
+      "source": "Google News — Health Insurance / Medicare Watch",
+      "title": "1 in 4 Covered California enrollees could get state aid under Newsom proposal - Medical Marketing and Media",
+      "draft": "drafts/2026-06-18-1-in-4-covered-california-enrollees-could-get-state-aid-under-newsom-proposal-me.md"
     },
     "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOdThFQ0ktbWhHek5OZ0dyZHJWUEwzODh2eFF6U0dldW5MMGl3bUowWDFYbFdhalhubnh1SHV4WUZTWWxuVFJFVlRNb0h6bFdLejVhZ3J5bVVFUEdVNmZxN0J5LTIzeG40Zk10LU9ZaVhHbXpzQktxWHFZTVprU2ZBbW1VQW5EZ0pRVnltN2ZNdnlEZlNWcEZ4SmpXLUhKemJqaWZlcE5JVzN0MUk?oc=5": {
       "first_seen": "2026-06-16",
@@ -1244,6 +1274,12 @@
       "title": "With Iran deal, Trump told ships to 'start your engines.' That's not happening yet",
       "draft": "drafts/2026-06-17-with-iran-deal-trump-told-ships-to-start-your-engines-that-s-not-happening-yet.md"
     },
+    "https://npr.org/2026/06/18/nx-s1-5862068/fed-holds-interest-rates-steady-and-hints-at-future-rate-hike": {
+      "first_seen": "2026-06-18",
+      "source": "NPR Business",
+      "title": "Fed holds interest rates steady and hints at future rate hike",
+      "draft": "drafts/2026-06-18-fed-holds-interest-rates-steady-and-hints-at-future-rate-hike.md"
+    },
     "https://npr.org/sections/planet-money/2026/05/19/g-s1-122695/the-missing-men-of-the-american-marriage-market": {
       "first_seen": "2026-05-19",
       "source": "NPR Business",
@@ -1405,6 +1441,12 @@
       "source": "TechCrunch AI",
       "title": "The AI layoff wave is becoming a powder keg",
       "draft": "drafts/2026-06-15-the-ai-layoff-wave-is-becoming-a-powder-keg.md"
+    },
+    "https://techcrunch.com/2026/06/17/how-to-turn-off-ai-in-your-google-docs": {
+      "first_seen": "2026-06-18",
+      "source": "TechCrunch AI",
+      "title": "How to turn off AI in your Google Docs",
+      "draft": "drafts/2026-06-18-how-to-turn-off-ai-in-your-google-docs.md"
     },
     "https://techcrunch.com/2026/06/17/pinterest-launches-an-experimental-ai-shopping-app-called-ask-pinterest": {
       "first_seen": "2026-06-17",
