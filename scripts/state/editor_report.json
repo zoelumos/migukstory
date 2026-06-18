@@ -1,112 +1,98 @@
 {
-  "generated_at": "2026-06-18T11:10:28.689325+00:00",
+  "generated_at": "2026-06-18T23:11:50.835474+00:00",
   "threshold_promote": 70,
   "threshold_review": 50,
   "counts": {
-    "total": 7,
+    "total": 6,
     "promoted": 6,
-    "review": 1,
+    "review": 0,
     "discard_flag": 0,
     "deferred": 0
   },
   "grades": [
     {
-      "slug": "2026-06-18-1-in-4-covered-california-enrollees-could-get-state-aid-under-newsom-proposal-me",
+      "slug": "2026-06-18-do-not-travel-advice-for-dubai-dropped-bbc",
+      "score": 86,
+      "scores": {
+        "factuality": 16,
+        "source_diversity": 17,
+        "ka_angle": 18,
+        "originality": 17,
+        "structure": 18
+      },
+      "reasoning": "영국 FCDO 권고 해제와 미 국무부 Level 3 유지라는 비대칭을 정확히 짚고, 미주 한인 자영업자·유학생·영주권 진행자·은퇴자 등 그룹별 실무 영향을 구체적으로 분석한 점이 강점입니다. 미 국무부·AOL 등 신뢰 가능한 1차/주요 매체 출처가 링크와 함께 인용됐고, 비교표·5단계 체크리스트·핵심 요약 등 시각화·구조 요소도 충실합니다. 다만 영국 권고 해제 '6월 18일' 같은 날짜와 미·이란 MOU 체결 정황은 출처 링크에서 직접 추적이 다소 모호해 약간의 검증 리스크가 남습니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-18-do-not-travel-advice-for-dubai-dropped-bbc.md"
+    },
+    {
+      "slug": "2026-06-18-here-s-how-much-the-iran-war-cost-and-how-its-effects-will-linger",
+      "score": 78,
+      "scores": {
+        "factuality": 13,
+        "source_diversity": 14,
+        "ka_angle": 18,
+        "originality": 15,
+        "structure": 18
+      },
+      "reasoning": "NPR 단일 출처지만 신뢰도 높은 1차 매체이고 인용 표현이 추적 가능하며, 유가·군사비·교역 3개 채널로 정리된 비교표와 시점 타임라인 등 시각화 요소가 살아있습니다. 한인 가정·자영업자·H-1B/유학생까지 구체적 그룹별 영향을 명확히 풀어낸 점이 강점이나, '3개월 경과'라는 핵심 시점 수치가 NPR 인용으로 명시 검증되지 않고 일반론적 권고로 마무리되는 점은 약점입니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-18-here-s-how-much-the-iran-war-cost-and-how-its-effects-will-linger.md"
+    },
+    {
+      "slug": "2026-06-18-my-life-starts-now-palm-springs-grad-held-by-ice-gets-green-card-the-desert-sun",
       "score": 71,
       "scores": {
         "factuality": 13,
-        "source_diversity": 12,
-        "ka_angle": 16,
-        "originality": 13,
-        "structure": 17
-      },
-      "reasoning": "캘리포니아 한인 자영업자·프리랜서·개인 가입 가정에 미치는 영향을 구체적으로 풀어쓴 한인 관점이 살아있고, 비교표와 번호 단계 목록으로 시각화 요건을 충족합니다. 다만 출처가 Google News 재인용 1건으로 원문 추적성이 약하고, 보조 금액·소득 기준 등 구체 수치가 빠져 사실성과 독창성에서 감점되었습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-18-1-in-4-covered-california-enrollees-could-get-state-aid-under-newsom-proposal-me.md"
-    },
-    {
-      "slug": "2026-06-18-fda-approves-first-single-dose-generic-treatment-for-influenza",
-      "score": 81,
-      "scores": {
-        "factuality": 17,
-        "source_diversity": 15,
+        "source_diversity": 10,
         "ka_angle": 17,
         "originality": 14,
-        "structure": 18
+        "structure": 17
       },
-      "reasoning": "FDA 공식 발표를 1차 출처로 명확히 인용했고 발록사비르 제네릭 승인의 핵심 사실(5세 이상, 단회 복용, 치료·예방)이 본문과 출처 링크로 추적 가능합니다. 한인 학부모·자영업자·유학생·신규 이민 가정 등 구체적 그룹을 짚은 분석 문단과 오리지널 대비 비교표·번호형 체크리스트 시각화가 갖춰져 자동 승격 기준을 충족합니다. 다만 출처가 FDA 단일 publisher라 교차 검증이 약하고, 실제 가격·보험 처방집 등재 시점에 대한 구체 데이터가 없어 독창성에서 추가 가산은 어려웠습니다.",
+      "reasoning": "USCIS/이민 주제로 한인 가정·유학생·DACA/TPS 케이스에 대한 실무적 시사점과 5단계 비교표 시각화가 잘 갖춰져 있어 자동승격 기준에 부합합니다. 다만 출처가 The Desert Sun 원문 링크가 아닌 Google News 리디렉션 1건뿐이라 추적성·신뢰도가 약하고, 구금 경위·구체적 영주권 취득 경로 등 핵심 사실이 헤드라인 수준에 머물러 사실성도 다소 보수적으로 평가했습니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-18-fda-approves-first-single-dose-generic-treatment-for-influenza.md"
+      "promoted_to": "queue/2026-06-18-my-life-starts-now-palm-springs-grad-held-by-ice-gets-green-card-the-desert-sun.md"
     },
     {
-      "slug": "2026-06-18-fed-holds-interest-rates-steady-and-hints-at-future-rate-hike",
-      "score": 90,
+      "slug": "2026-06-18-over-25-million-future-homebuyers-remain-sidelined-by-housing-affordability-nati",
+      "score": 86,
+      "scores": {
+        "factuality": 16,
+        "source_diversity": 17,
+        "ka_angle": 18,
+        "originality": 17,
+        "structure": 18
+      },
+      "reasoning": "주택 접근성 위기라는 핵심 주제를 한인 자영업자·첫 주택 구매자·부모 세대 증여 관점으로 구체적으로 풀어낸 점이 강점이며, NAR·FRED·CFPB 등 신뢰도 높은 1차/반-1차 출처가 정확히 인용되어 추적 가능합니다. 비교표와 7단계 체크리스트로 시각화 요건도 충족했고, 편집자 분석 문단이 단순 번역을 넘어선 종합·맥락을 제공합니다. 다만 2,500만 명 수치의 정확한 발표 기관·시점이 본문에서 다소 일반화되어 있어 사실성 만점에는 미치지 못합니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-18-over-25-million-future-homebuyers-remain-sidelined-by-housing-affordability-nati.md"
+    },
+    {
+      "slug": "2026-06-18-transcript-update-on-ebola-outbreak-in-the-democratic-republic-of-the-congo-and",
+      "score": 83,
+      "scores": {
+        "factuality": 16,
+        "source_diversity": 17,
+        "ka_angle": 17,
+        "originality": 15,
+        "structure": 18
+      },
+      "reasoning": "CDC·WHO·FIFA 공식 1차 출처가 정확한 링크와 함께 인용되어 있고, 월드컵 개최도시와 한인 밀집 상권(LA 코리아타운, 뉴저지, 애틀랜타 둘루스, 댈러스 캐롤턴)을 구체적으로 연결한 한인 관점 분석이 명확합니다. 비교표와 번호 체크리스트 형태의 시각화가 주제에 적절하며, 의료 자문이 아님을 명시한 점도 책임감 있습니다. 다만 원문 트랜스크립트의 구체 수치·일정을 직접 인용하지 못하고 일반론에 의존한 부분, 그리고 '이중 트랙' 시그널 분석 외에는 다른 매체와의 차별적 종합이 다소 약한 점이 한계입니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-18-transcript-update-on-ebola-outbreak-in-the-democratic-republic-of-the-congo-and.md"
+    },
+    {
+      "slug": "2026-06-18-your-guide-to-early-retirement-health-insurance-options-healthinsurance-org",
+      "score": 88,
       "scores": {
         "factuality": 17,
         "source_diversity": 18,
-        "ka_angle": 19,
+        "ka_angle": 18,
         "originality": 17,
-        "structure": 19
-      },
-      "reasoning": "연준 동결과 인상 시사라는 핵심 사실을 NPR·Fed·Freddie Mac·SBA 공식 링크로 추적 가능하게 인용했고, 모기지·자영업·은퇴·비자·유학생까지 한인 그룹별로 구체적 시사점을 풀어낸 점이 강점입니다. 비교표와 5단계 체크리스트로 시각화 요건도 충족했으며 편집자 분석 문단이 단순 번역을 넘어선 종합을 제공합니다. 다만 신임 의장의 실명·구체 발언 인용이 빠져 사실성에서 소폭 감점했습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-18-fed-holds-interest-rates-steady-and-hints-at-future-rate-hike.md"
-    },
-    {
-      "slug": "2026-06-18-federal-reserve-board-and-federal-open-market-committee-release-economic-project",
-      "score": 80,
-      "scores": {
-        "factuality": 16,
-        "source_diversity": 15,
-        "ka_angle": 17,
-        "originality": 14,
         "structure": 18
       },
-      "reasoning": "연준 공식 보도자료를 출처로 명시하고 발표 시점·자료 성격을 정확히 전달했으며, 모기지·자영업·은퇴·송금 등 미주 한인 가계 관점이 구체적으로 풀려 있습니다. 비교표와 체크리스트 등 시각화 요소가 잘 갖춰져 있어 구조 면에서도 우수하나, 구체적인 수치·점도표 분석이 부족하고 단일 출처에 의존한 점은 한계입니다.",
+      "reasoning": "HealthCare.gov, DOL, Medicare.gov, IRS 등 정부 1차 출처를 정확한 링크와 함께 인용해 사실성과 출처 신뢰도가 높고, 한인 자영업자가 자주 놓치는 세 가지(COBRA 함정, ACA 보조금 추정 오류, 메디케어 가입기간)를 구체적으로 짚어 한인 관점과 독창성이 살아 있습니다. 비교표·6단계 점검 리스트로 시각화 요건도 충족하나, COBRA 18개월 같은 기간 표기는 사유별 예외가 있으므로 단정적 표현을 약간 더 보수적으로 다듬으면 더 안전합니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-18-federal-reserve-board-and-federal-open-market-committee-release-economic-project.md"
-    },
-    {
-      "slug": "2026-06-18-happy-tax-day-to-taxpayers-abroad-national-taxpayers-union",
-      "score": 67,
-      "scores": {
-        "factuality": 12,
-        "source_diversity": 9,
-        "ka_angle": 16,
-        "originality": 13,
-        "structure": 17
-      },
-      "reasoning": "해외 거주 미국 납세자의 신고 의무를 한국 체류 시민권자·영주권자·파견 직장인·유학생 등 구체적 한인 사례로 풀어낸 점과 비교표를 통한 시각적 구조는 강점입니다. 다만 출처가 Google News 리다이렉트 링크 1건뿐이고 IRS·NTU 등 1차 출처 직링크가 없어 사실성·출처 신뢰도가 약하며, 6월 16일이라는 핵심 기한이 본문에서 명시적으로 설명·검증되지 않아 자동 승격에는 부족합니다.",
-      "action": "review",
-      "promoted_to": null
-    },
-    {
-      "slug": "2026-06-18-how-to-turn-off-ai-in-your-google-docs",
-      "score": 76,
-      "scores": {
-        "factuality": 15,
-        "source_diversity": 14,
-        "ka_angle": 17,
-        "originality": 13,
-        "structure": 17
-      },
-      "reasoning": "TechCrunch 원문을 출처로 명확히 인용했고, 한인 자영업자·유학생·비자 신청자·교회 등 구체적 한인 그룹별로 실용적 의미를 풀어쓴 점이 강점입니다. 비교표 형태의 시각화도 주제에 적절히 들어가 있어 구조 요건을 충족합니다. 다만 구글 독스 AI 끄는 구체적 설정 경로(메뉴 단계)가 본문에 없고 출처가 단일 매체라는 점은 아쉬운 부분입니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-18-how-to-turn-off-ai-in-your-google-docs.md"
-    },
-    {
-      "slug": "2026-06-18-why-social-media-is-driving-the-affordability-crisis-national-mortgage-news",
-      "score": 76,
-      "scores": {
-        "factuality": 13,
-        "source_diversity": 14,
-        "ka_angle": 17,
-        "originality": 15,
-        "structure": 17
-      },
-      "reasoning": "National Mortgage News 분석을 기반으로 한인 밀집 지역, 이민 신분, 자영업 변수와 연결한 한인 관점 분석이 구체적이고, 비교표와 체크리스트 등 시각화 요소가 잘 갖춰져 있어 자동 승격 기준에 부합합니다. 다만 출처가 Google News 리디렉션 링크 한 건이라 원문 직접 추적이 어렵고, 구체적 수치나 직접 인용이 부족해 사실성에서는 보수적으로 평가했습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-18-why-social-media-is-driving-the-affordability-crisis-national-mortgage-news.md"
+      "promoted_to": "queue/2026-06-18-your-guide-to-early-retirement-health-insurance-options-healthinsurance-org.md"
     }
   ]
 }
