@@ -5,7 +5,7 @@ pubDate: '2026-06-19'
 tags: ['AI', 'LLM', '스타트업', 'Subquadratic', '기술']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'MIT Technology Review — AI'
 sourceUrl: 'https://technologyreview.com/2026/06/19/1139313/a-startup-claims-it-broke-through-a-bottleneck-thats-holding-back-llms'
 ---

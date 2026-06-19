@@ -5,7 +5,7 @@ pubDate: '2026-06-19'
 tags: ['중동항공편', '미국이란MoU', '여행정보', '한인커뮤니티', '환승노선']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Middle East Travel / Airline Disruption Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMivgFBVV95cUxOdVVlMXA2bEZIOW4tWWtQb2d0UFFJTHpDZnFEN2JaUXRKczZ5VE1DVm5lc0hJY3FHU3B2dDFYRTJFZGVnOEx5QXp0c3I2MFV0d3BqTzUzTE5Md2ZKVHgzWExLNXZiM29hTlE1WEs3NEF5Zi10XzdFUkUwUENBVnJ5c2pZUUdySkY5THh2ZkNyV0pBWHFVN2w2MllHQnA3TGpnUVRjVC1wR2pYbmoyR2t1eTdZcFBPOWdtU3ZqUEFn?oc=5'
 ---

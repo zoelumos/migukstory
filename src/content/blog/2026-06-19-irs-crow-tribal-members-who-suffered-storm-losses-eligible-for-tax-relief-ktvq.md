@@ -5,7 +5,7 @@ pubDate: '2026-06-19'
 tags: ['IRS', '세금구제', '재해구제', '한인커뮤니티']
 category: 'tax'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — IRS / Tax Guidance Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMioAFBVV95cUxNNU1Eelp2YTZpdzQ5STNBcV9HUW1selFwSFRpamREMlVJMFl6NFpjV0ItVUQyTDk1bk5JY3VHbGd2a0c5RWVZNGI1QmFMRFA1VTlzVmQwdmRtb0p1cjdNTDNvWWI5Ykp0a0JFT0ozZzZqLWtQVXlKRzc0ZzhXbGN1ZmdoclRZTHF0VFRsVF9YOXRrV244RGVhVWRXazl1Rnh5?oc=5'
 ---

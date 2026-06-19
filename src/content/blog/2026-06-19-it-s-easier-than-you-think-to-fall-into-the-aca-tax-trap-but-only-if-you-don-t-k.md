@@ -5,7 +5,7 @@ pubDate: '2026-06-19'
 tags: ['ACA', '건강보험', '세금', '오바마케어', '보조금']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiwwFBVV95cUxNT0NzdUlvaFU2Qzc3dExkWXhsQWtXUHNvUnM5RS03c0RGeXZHZENvN1dLSWdKWUxxUVBEcViey9oRGhUWXhrRnRjd25FZUlHS1UwaWJ4MHJTZEhyeGN1dmQ1MHJBbXBrYmhqRjd4ZlpxeUgxTFUxMDV0a1AxTmEtOUpCRndFMUZMMUF5ZjhsdllmUWFJWW1mV2ZUUW9qOVlkWjh0Y3FiOVdmZDg5WkROaUw5bGJqby05SldfUzEwRk0wVGpV?oc=5'
 ---

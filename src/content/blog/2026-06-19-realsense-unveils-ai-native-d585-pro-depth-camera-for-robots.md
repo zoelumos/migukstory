@@ -5,7 +5,7 @@ pubDate: '2026-06-19'
 tags: ['리얼센스', '로봇비전', '자동화']
 category: 'robotics'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'The Robot Report'
 sourceUrl: 'https://therobotreport.com/realsense-unveils-ai-native-d585-pro-depth-camera-for-robots'
 ---

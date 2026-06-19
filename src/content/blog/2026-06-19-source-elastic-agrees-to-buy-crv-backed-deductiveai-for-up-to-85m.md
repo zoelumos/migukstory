@@ -5,7 +5,7 @@ pubDate: '2026-06-19'
 tags: ['엘라스틱', 'DeductiveAI', 'AI인수합병', 'AI개발도구', '실리콘밸리']
 category: 'ai'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'TechCrunch AI'
 sourceUrl: 'https://techcrunch.com/2026/06/18/source-elastic-agrees-to-buy-crv-backed-deductiveai-for-up-to-85m'
 ---

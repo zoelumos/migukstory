@@ -5,7 +5,7 @@ pubDate: '2026-06-19'
 tags: ['이란', '유가', '휘발유', '미주한인경제', '인플레이션']
 category: 'economy'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Iran / Israel / Hormuz Urgent Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiwAFBVV95cUxOcTlSYnBOVjJxX2FGTkhpM1lVZHpfc3dHSms2RDhVMUVaSHpMaTlhalVJc0QyUzR6QURMdmo3dTh1TWlZR19vWnJXLWZhUnhJQXYwOHVOM2M2UXBnMHBsT2tFMmZzVDlwWlljNUszaXhVNDN6Y2x0SVc4bUoyY1FheHF1MTU5LXRUcGRtOXJ5WDFRM25oZHRPQTF2dGxfdF8yb05sQWVRWjhFbmdUNFNMNWF6dlJzUHhfTWVFd2VvenA?oc=5'
 ---
