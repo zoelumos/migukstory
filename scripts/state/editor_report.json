@@ -1,98 +1,112 @@
 {
-  "generated_at": "2026-06-18T23:11:50.835474+00:00",
+  "generated_at": "2026-06-19T11:10:37.154591+00:00",
   "threshold_promote": 70,
   "threshold_review": 50,
   "counts": {
-    "total": 6,
-    "promoted": 6,
+    "total": 7,
+    "promoted": 7,
     "review": 0,
     "discard_flag": 0,
     "deferred": 0
   },
   "grades": [
     {
-      "slug": "2026-06-18-do-not-travel-advice-for-dubai-dropped-bbc",
-      "score": 86,
+      "slug": "2026-06-19-a-startup-claims-it-broke-through-a-bottleneck-that-s-holding-back-llms",
+      "score": 75,
       "scores": {
-        "factuality": 16,
-        "source_diversity": 17,
-        "ka_angle": 18,
-        "originality": 17,
-        "structure": 18
-      },
-      "reasoning": "영국 FCDO 권고 해제와 미 국무부 Level 3 유지라는 비대칭을 정확히 짚고, 미주 한인 자영업자·유학생·영주권 진행자·은퇴자 등 그룹별 실무 영향을 구체적으로 분석한 점이 강점입니다. 미 국무부·AOL 등 신뢰 가능한 1차/주요 매체 출처가 링크와 함께 인용됐고, 비교표·5단계 체크리스트·핵심 요약 등 시각화·구조 요소도 충실합니다. 다만 영국 권고 해제 '6월 18일' 같은 날짜와 미·이란 MOU 체결 정황은 출처 링크에서 직접 추적이 다소 모호해 약간의 검증 리스크가 남습니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-18-do-not-travel-advice-for-dubai-dropped-bbc.md"
-    },
-    {
-      "slug": "2026-06-18-here-s-how-much-the-iran-war-cost-and-how-its-effects-will-linger",
-      "score": 78,
-      "scores": {
-        "factuality": 13,
+        "factuality": 15,
         "source_diversity": 14,
-        "ka_angle": 18,
-        "originality": 15,
-        "structure": 18
+        "ka_angle": 16,
+        "originality": 13,
+        "structure": 17
       },
-      "reasoning": "NPR 단일 출처지만 신뢰도 높은 1차 매체이고 인용 표현이 추적 가능하며, 유가·군사비·교역 3개 채널로 정리된 비교표와 시점 타임라인 등 시각화 요소가 살아있습니다. 한인 가정·자영업자·H-1B/유학생까지 구체적 그룹별 영향을 명확히 풀어낸 점이 강점이나, '3개월 경과'라는 핵심 시점 수치가 NPR 인용으로 명시 검증되지 않고 일반론적 권고로 마무리되는 점은 약점입니다.",
+      "reasoning": "MIT Technology Review라는 신뢰도 높은 단일 출처가 정확한 링크와 함께 인용돼 있고, 본문 수치·주장이 출처 범위 내에서 추적 가능합니다. 한인 자영업자·엔지니어·학부모 관점이 구체적으로 풀려 있고, 시간 변화 비교표와 번호 체크리스트로 시각화 요건도 충족했습니다. 다만 보도 자체가 '주장 + 일부 자료 공개' 단계라 검증 한계가 있고, 독창적 분석보다는 맥락 정리 수준에 머무는 점은 약점입니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-18-here-s-how-much-the-iran-war-cost-and-how-its-effects-will-linger.md"
+      "promoted_to": "queue/2026-06-19-a-startup-claims-it-broke-through-a-bottleneck-that-s-holding-back-llms.md"
     },
     {
-      "slug": "2026-06-18-my-life-starts-now-palm-springs-grad-held-by-ice-gets-green-card-the-desert-sun",
-      "score": 71,
+      "slug": "2026-06-19-iran-deal-might-bring-some-relief-at-the-pump-but-pre-war-prices-won-t-return-ov",
+      "score": 72,
       "scores": {
         "factuality": 13,
-        "source_diversity": 10,
-        "ka_angle": 17,
+        "source_diversity": 12,
+        "ka_angle": 16,
         "originality": 14,
         "structure": 17
       },
-      "reasoning": "USCIS/이민 주제로 한인 가정·유학생·DACA/TPS 케이스에 대한 실무적 시사점과 5단계 비교표 시각화가 잘 갖춰져 있어 자동승격 기준에 부합합니다. 다만 출처가 The Desert Sun 원문 링크가 아닌 Google News 리디렉션 1건뿐이라 추적성·신뢰도가 약하고, 구금 경위·구체적 영주권 취득 경로 등 핵심 사실이 헤드라인 수준에 머물러 사실성도 다소 보수적으로 평가했습니다.",
+      "reasoning": "KFOX 보도의 핵심 메시지('전쟁 전 가격은 즉시 회복 안 됨')를 정확히 인용하고, LA·뉴욕·텍사스·조지아 한인 자영업자와 가계·은퇴계좌 관점으로 실무적 행동지침을 구체적으로 풀어낸 점이 강점이며, 단기/점진/회복 단계를 비교한 Markdown 표로 시각화 요건도 충족합니다. 다만 출처가 Google News 리디렉트 링크 1건뿐이라 KFOX 원문이나 EIA·AAA 같은 가격 통계 1차 출처 추적이 어렵고, 본문 내 구체 수치(현 평균 휘발유가, 합의 시나리오별 인하폭)가 없어 사실성·출처 신뢰도 점수가 제한됩니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-18-my-life-starts-now-palm-springs-grad-held-by-ice-gets-green-card-the-desert-sun.md"
+      "promoted_to": "queue/2026-06-19-iran-deal-might-bring-some-relief-at-the-pump-but-pre-war-prices-won-t-return-ov.md"
     },
     {
-      "slug": "2026-06-18-over-25-million-future-homebuyers-remain-sidelined-by-housing-affordability-nati",
-      "score": 86,
+      "slug": "2026-06-19-irs-crow-tribal-members-who-suffered-storm-losses-eligible-for-tax-relief-ktvq",
+      "score": 77,
       "scores": {
-        "factuality": 16,
-        "source_diversity": 17,
-        "ka_angle": 18,
-        "originality": 17,
-        "structure": 18
-      },
-      "reasoning": "주택 접근성 위기라는 핵심 주제를 한인 자영업자·첫 주택 구매자·부모 세대 증여 관점으로 구체적으로 풀어낸 점이 강점이며, NAR·FRED·CFPB 등 신뢰도 높은 1차/반-1차 출처가 정확히 인용되어 추적 가능합니다. 비교표와 7단계 체크리스트로 시각화 요건도 충족했고, 편집자 분석 문단이 단순 번역을 넘어선 종합·맥락을 제공합니다. 다만 2,500만 명 수치의 정확한 발표 기관·시점이 본문에서 다소 일반화되어 있어 사실성 만점에는 미치지 못합니다.",
-      "action": "promote",
-      "promoted_to": "queue/2026-06-18-over-25-million-future-homebuyers-remain-sidelined-by-housing-affordability-nati.md"
-    },
-    {
-      "slug": "2026-06-18-transcript-update-on-ebola-outbreak-in-the-democratic-republic-of-the-congo-and",
-      "score": 83,
-      "scores": {
-        "factuality": 16,
-        "source_diversity": 17,
+        "factuality": 14,
+        "source_diversity": 13,
         "ka_angle": 17,
         "originality": 15,
         "structure": 18
       },
-      "reasoning": "CDC·WHO·FIFA 공식 1차 출처가 정확한 링크와 함께 인용되어 있고, 월드컵 개최도시와 한인 밀집 상권(LA 코리아타운, 뉴저지, 애틀랜타 둘루스, 댈러스 캐롤턴)을 구체적으로 연결한 한인 관점 분석이 명확합니다. 비교표와 번호 체크리스트 형태의 시각화가 주제에 적절하며, 의료 자문이 아님을 명시한 점도 책임감 있습니다. 다만 원문 트랜스크립트의 구체 수치·일정을 직접 인용하지 못하고 일반론에 의존한 부분, 그리고 '이중 트랙' 시그널 분석 외에는 다른 매체와의 차별적 종합이 다소 약한 점이 한계입니다.",
+      "reasoning": "IRS 재해 세금 구제라는 한인 가정·소상공인 실무에 직결되는 각도를 명확히 풀어냈고, 비교표와 5단계 체크리스트로 시각적 구조도 충실합니다. 다만 출처가 Google News 리디렉션 링크 1건뿐이라 KTVQ 원문이나 IRS 공식 페이지 직접 인용이 빠진 점, 구체적 카운티명·마감일·구제 코드 같은 1차 사실 확인이 부족한 점이 약점입니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-18-transcript-update-on-ebola-outbreak-in-the-democratic-republic-of-the-congo-and.md"
+      "promoted_to": "queue/2026-06-19-irs-crow-tribal-members-who-suffered-storm-losses-eligible-for-tax-relief-ktvq.md"
     },
     {
-      "slug": "2026-06-18-your-guide-to-early-retirement-health-insurance-options-healthinsurance-org",
-      "score": 88,
+      "slug": "2026-06-19-it-s-easier-than-you-think-to-fall-into-the-aca-tax-trap-but-only-if-you-don-t-k",
+      "score": 72,
       "scores": {
-        "factuality": 17,
-        "source_diversity": 18,
-        "ka_angle": 18,
-        "originality": 17,
+        "factuality": 14,
+        "source_diversity": 12,
+        "ka_angle": 16,
+        "originality": 13,
+        "structure": 17
+      },
+      "reasoning": "ACA 보조금 환수 구조를 한인 자영업·긱 워커·영주권 신청 가정 관점에서 구체적으로 풀어쓴 점과 점검 항목 비교표가 시각화 요건을 충족한 것이 강점입니다. 다만 출처가 Google News 리디렉션 링크 한 곳뿐이고 원문 매체(Tri-State Alert)나 IRS·Healthcare.gov 같은 1차 근거 링크가 빠져 있어 사실성·출처 신뢰도가 제한적이며, 구체적 환수 한도 수치 등 실무 정보가 더 보강되면 좋겠습니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-19-it-s-easier-than-you-think-to-fall-into-the-aca-tax-trap-but-only-if-you-don-t-k.md"
+    },
+    {
+      "slug": "2026-06-19-realsense-unveils-ai-native-d585-pro-depth-camera-for-robots",
+      "score": 81,
+      "scores": {
+        "factuality": 16,
+        "source_diversity": 15,
+        "ka_angle": 17,
+        "originality": 15,
         "structure": 18
       },
-      "reasoning": "HealthCare.gov, DOL, Medicare.gov, IRS 등 정부 1차 출처를 정확한 링크와 함께 인용해 사실성과 출처 신뢰도가 높고, 한인 자영업자가 자주 놓치는 세 가지(COBRA 함정, ACA 보조금 추정 오류, 메디케어 가입기간)를 구체적으로 짚어 한인 관점과 독창성이 살아 있습니다. 비교표·6단계 점검 리스트로 시각화 요건도 충족하나, COBRA 18개월 같은 기간 표기는 사유별 예외가 있으므로 단정적 표현을 약간 더 보수적으로 다듬으면 더 안전합니다.",
+      "reasoning": "The Robot Report라는 신뢰 가능한 1차 출처가 명확히 인용되어 있고, 본문의 핵심 수치(5세대 SoC, 2배 향상)가 출처로 추적 가능합니다. 한인 자영업 자동화·자녀 STEM 진로·은퇴자산 분산이라는 세 갈래 한인 관점이 구체적으로 풀어져 있고, 비교표와 번호 단계 목록 등 시각화 요소도 갖춰져 자동승격 기준을 충족합니다. 다만 단일 출처라 교차검증이 부족하고, 가격·출시일 등 실무 판단에 도움 될 추가 사실이 부재한 점은 약점입니다.",
       "action": "promote",
-      "promoted_to": "queue/2026-06-18-your-guide-to-early-retirement-health-insurance-options-healthinsurance-org.md"
+      "promoted_to": "queue/2026-06-19-realsense-unveils-ai-native-d585-pro-depth-camera-for-robots.md"
+    },
+    {
+      "slug": "2026-06-19-source-elastic-agrees-to-buy-crv-backed-deductiveai-for-up-to-85m",
+      "score": 82,
+      "scores": {
+        "factuality": 17,
+        "source_diversity": 15,
+        "ka_angle": 17,
+        "originality": 15,
+        "structure": 18
+      },
+      "reasoning": "TechCrunch 원문 링크가 정확히 인용되어 수치·기관명이 추적 가능하고, 한인 엔지니어·학부모·창업자·취업비자 보유자 각각에 대한 구체적 한인 관점 분석이 살아있습니다. 한눈에 보는 변화 비교표와 번호 체크리스트로 시각화 요건도 충족했으며, AI/M&A 주제를 한인 일자리·진로·이민 이슈로 명확히 연결한 점이 강점입니다. 단일 출처라 교차검증이 부족하고 인수가의 한화 환산 등 일부 부가 수치는 원문 검증이 필요하다는 점이 약점입니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-19-source-elastic-agrees-to-buy-crv-backed-deductiveai-for-up-to-85m.md"
+    },
+    {
+      "slug": "2026-06-19-the-latest-update-on-middle-east-flights-as-us-iran-mou-is-signed-euronews-com",
+      "score": 82,
+      "scores": {
+        "factuality": 15,
+        "source_diversity": 15,
+        "ka_angle": 18,
+        "originality": 16,
+        "structure": 18
+      },
+      "reasoning": "Euronews 헤드라인을 사실로 명시하면서 구체 항공사·시각은 공식 공지로 확인하라고 안전하게 처리했고, 국무부·FAA·CBP 등 신뢰도 높은 공식 출처가 정확한 링크와 함께 인용돼 단일 원기사 구조의 한계를 보완합니다. 환승 한인·취업비자/학생비자 보유자·자영업자 관점의 분석과 출국 전 체크리스트, 9행 비교표가 시각화 요건을 충실히 만족하나, 원문 발췌가 부족해 항공사·노선·시각 등 구체 사실은 추가 검증이 필요한 점이 약점입니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-19-the-latest-update-on-middle-east-flights-as-us-iran-mou-is-signed-euronews-com.md"
     }
   ]
 }
