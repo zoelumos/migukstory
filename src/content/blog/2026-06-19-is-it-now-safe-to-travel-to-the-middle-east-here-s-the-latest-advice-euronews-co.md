@@ -1,11 +1,11 @@
 ---
 title: '중동 여행, 지금 안전한가요? 미주 한인 출발 전 점검 가이드'
 description: '중동 여행 안전 여부를 묻는 최신 보도가 나왔습니다. 미주 한인 가족·유학생·자영업자·영주권자가 출발 전 확인해야 할 국무부 권고, 항공편, 보험, 재입국 리스크를 정리했습니다.'
-pubDate: '2026-06-19'
+pubDate: '2026-06-21'
 tags: ['중동여행', '여행안전', '항공편', '미주한인', '국무부권고', '여행자보험']
 category: 'community'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Middle East Travel / Airline Disruption Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMixgFBVV95cUxOM0xmdDdyNXVwMmktZWl3Wjg2LWNKRmltSUFGZTJjYlhCNm9IR2dQaUphQmJhQWlPQS01SzQzeHl2LUNUZTNkWXhaQmdVMERXYkdpSDlqN2FuaDBZam5EM2ZUTTZXRVBHVVNfR0ZHV1JUYUtFdE9qLTJDTDVxSHpUbWtUT090WDNDSVBJbXJiendsMmV1dC1uZXYxcjFra1pIb2hBdzE2ajl6XzdJUXlDblBEaUp6VVlZLXEybk1mTkFqVnY3SFE?oc=5'
 ---

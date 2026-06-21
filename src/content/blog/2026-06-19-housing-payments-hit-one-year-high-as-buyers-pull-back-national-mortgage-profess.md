@@ -1,11 +1,11 @@
 ---
 title: '주택 월 납입금 1년 최고치, 한인 바이어 어떻게 대응해야 하나'
 description: '미국 주택 월 납입금이 1년 새 최고 수준에 도달하면서 바이어들이 매수를 미루고 있습니다. 한인 가정의 주택 구매·재정 전략을 단계별로 짚어봅니다.'
-pubDate: '2026-06-19'
+pubDate: '2026-06-21'
 tags: ['주택', '모기지', '부동산시장', '한인생활']
 category: 'real-estate'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Housing / Mortgage Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMingFBVV95cUxPb1BwZ04tdHVjUEhDQ3JwTmYxeUNzOE8zUWg5V0lQY3FTU0doNjd6RFJ6S2tXY3Bmd3BjMmNJUGdqVE44eVVkdEpUVlVnNTFNTkFQRTNaU1NydGk2NmhIaWw5ay1Rd3NrTWlUU29PSmxObDN6V295RmpyZEF2RkRVcFRjV2pucEIyT0xMOC1VOGdEclVNWDZWVjdFbDdTdw?oc=5'
 ---

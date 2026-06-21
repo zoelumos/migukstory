@@ -1,11 +1,11 @@
 ---
 title: 'FDA 가루 시나몬 리콜 확대… 납(lead) 오염 우려, 한인 가정 주방 즉시 점검'
 description: 'FDA가 가루 시나몬(ground cinnamon) 리콜을 확대했습니다. 납(Pb) 오염 검출이 핵심 이유로, 영유아·임산부가 있는 한인 가정과 베이커리·한식당 운영자가 지금 확인해야 할 사항을 정리했습니다.'
-pubDate: '2026-06-19'
+pubDate: '2026-06-21'
 tags: ['FDA', '리콜', '식품안전', '납오염', '한인가정', '시나몬']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Policy / Recall Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMiigFBVV95cUxPbzE5NmNjZW1FQXIyY1BvazBkQWN5R2JQbkw4YnNHZlZQSWdmSGZleS1ZS05PRVNtU1BFdHhYNzQ4RFJNNEFwSlQwQzQ2ZWVsUWV1R2RQd1lBN2REWG5acnlyNHN3T3B6bkE3OER1RFdpWjJMTjlSSGM1cW1FbF9ob3QxOExXM2FQemc?oc=5'
 ---
