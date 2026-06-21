@@ -5,8 +5,9 @@ description: |
   count = min(queue_size, 10) — draining the day's freshly-merged drafts in a
   single workflow run. That run handles publish → Cloudflare deploy → indexing
   in the SAME GitHub Actions run, so a successful Hermes execution means the
-  site is already updated. Steve's rule: publishing must be Claude-orchestrated,
-  never raw shell.
+  site is already updated. Emergency fallback: if Claude CLI authentication/API
+  fails, trigger the same daily-post.yml workflow directly once so queued posts
+  do not stall. The fallback does not edit content or touch secrets.
 enabled: true
 schedule: "30 12 * * *"         # 12:30 UTC = 8:30 AM ET EDT / 7:30 AM ET EST
 timezone: UTC
@@ -23,11 +24,32 @@ command: |
   # The live wrapper that actually runs on cron is
   # /Users/zoelumos/.hermes/scripts/migukstory-daily-publish.sh — keep these in
   # sync if either changes.
-  claude -p "$(cat ops/hermes/prompts/daily-publish.md)" \
+  if claude -p "$(cat ops/hermes/prompts/daily-publish.md)" \
     --permission-mode bypassPermissions \
     --output-format text \
-    --max-turns 40
-  echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] daily-publish done"
+    --max-turns 40; then
+    echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] daily-publish done via Claude"
+    exit 0
+  fi
+
+  echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Claude orchestration failed; running GitHub Actions fallback"
+  QUEUE_COUNT=$(git ls-tree -r --name-only origin/main queue/ | grep -E '\.md$' | wc -l | tr -d ' ')
+  if [ "${QUEUE_COUNT:-0}" -lt 1 ]; then
+    echo "✅ 대기열 비어 있음 — fallback publish skipped."
+    echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] daily-publish done: queue empty after Claude failure"
+    exit 0
+  fi
+  COUNT="$QUEUE_COUNT"
+  if [ "$COUNT" -gt 10 ]; then COUNT=10; fi
+  echo "⚠️ Claude 실패 fallback: Daily post from queue 실행 (count=$COUNT, queue=$QUEUE_COUNT)"
+  gh workflow run daily-post.yml --repo zoelumos/migukstory -f count="$COUNT"
+  sleep 10
+  RUN_ID=$(gh run list --repo zoelumos/migukstory --workflow daily-post.yml --event workflow_dispatch --limit 1 --json databaseId --jq '.[0].databaseId')
+  RUN_URL=$(gh run view "$RUN_ID" --repo zoelumos/migukstory --json url --jq '.url')
+  echo "Fallback publish run: $RUN_URL"
+  gh run watch "$RUN_ID" --repo zoelumos/migukstory --exit-status
+  gh run view "$RUN_ID" --repo zoelumos/migukstory --json status,conclusion,url
+  echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] daily-publish done via fallback"
 on_failure:
   notify: slack
   channel_or_recipient: "#migukstory-ops"
