@@ -7,7 +7,7 @@ category: 'real-estate'
 ageGroup: 'all'
 draft: true
 source: 'Google News — Housing / Mortgage Watch'
-sourceUrl: 'https://news.google.com/rss/articles/CBMingFBVV95cUxPb1BwZ04tdHVjUEhDQ3JwTmYxeUNzOE8zUWg5V0lQY3FTU0doNjd6RFJ6S2tXY3Bmd3BjMmNJUGdqVE44eVVkdEpUVlVnNTFNTkFQRTNaU1NydGk2NmhIaWw5ay1Rd3NrTWlUU29PSmxObDN6V295RmpyZEF2RkRVcFRjV2pucEIyT0xMOC1VOGdEclVNWDZWVjdFbDdTdw?oc=5)
+sourceUrl: 'https://news.google.com/rss/articles/CBMingFBVV95cUxPb1BwZ04tdHVjUEhDQ3JwTmYxeUNzOE8zUWg5V0lQY3FTU0doNjd6RFJ6S2tXY3Bmd3BjMmNJUGdqVE44eVVkdEpUVlVnNTFNTkFQRTNaU1NydGk2NmhIaWw5ay1Rd3NrTWlUU29PSmxObDN6V295RmpyZEF2RkRVcFRjV2pucEIyT0xMOC1VOGdEclVNWDZWVjdFbDdTdw?oc=5'
 ---
 
 # 주택 월 납입금 1년 최고치, 한인 바이어 어떻게 대응해야 하나
