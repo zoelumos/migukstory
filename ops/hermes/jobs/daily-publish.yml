@@ -33,7 +33,7 @@ command: |
   fi
 
   echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Claude orchestration failed; running GitHub Actions fallback"
-  QUEUE_COUNT=$(git ls-tree -r --name-only origin/main queue/ | grep -E '\.md$' | wc -l | tr -d ' ')
+  QUEUE_COUNT=$(git ls-tree -r --name-only origin/main queue/ | awk '/\.md$/ { count++ } END { print count + 0 }')
   if [ "${QUEUE_COUNT:-0}" -lt 1 ]; then
     echo "✅ 대기열 비어 있음 — fallback publish skipped."
     echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] daily-publish done: queue empty after Claude failure"
