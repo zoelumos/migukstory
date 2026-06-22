@@ -21,10 +21,11 @@ DRAFTS = REPO / "drafts"
 QUEUE = REPO / "queue"
 REPORT = REPO / "scripts" / "state" / "deterministic_fallback_report.json"
 
-ALLOWED_CATEGORIES = {"immigration", "health", "tax", "economy", "education", "retirement", "community"}
+ALLOWED_CATEGORIES = {"immigration", "health", "tax", "economy", "education", "retirement", "community", "real-estate"}
 HIGH_STAKES_TERMS = re.compile(
     r"USCIS|영주권|이민|비자|I-485|신분조정|가족초청|망명|추방|ICE|전쟁|분쟁|공습|휴전|"
-    r"우크라이나|가자|이스라엘|중국|북한|대만|CDC|FDA|리콜|경보|살모넬라|대법원|세금|IRS",
+    r"우크라이나|가자|이스라엘|중국|북한|대만|CDC|FDA|리콜|경보|살모넬라|대법원|세금|IRS|"
+    r"모기지|주택|mortgage|housing|interest rate|travel advisory|여행|중동|naloxone|Medicare|ACA|health insurance",
     re.I,
 )
 KOREAN_ANGLE_TERMS = re.compile(r"한인|미주|교민|유학생|이민자|자영업|가정|직장인|부모|시니어")

@@ -50,6 +50,7 @@ command: |
     --manifest "$MANIFEST" \
     --time-budget 240 \
     --cli-timeout 150 \
+    --deterministic-on-claude-fail \
     || echo "  (urgent draft script exited non-zero; continuing)"
 
   "$PY_VENV/bin/python" scripts/improve_drafts.py \

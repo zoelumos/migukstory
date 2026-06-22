@@ -14,11 +14,38 @@ command: |
   echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] daily-health starting"
   git fetch -q origin main
 
-  claude -p "$(cat ops/hermes/prompts/daily-health.md)" \
+  if claude -p "$(cat ops/hermes/prompts/daily-health.md)" \
     --output-format text \
-    --max-turns 12
+    --max-turns 12; then
+    echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] daily-health done via Claude"
+    exit 0
+  fi
 
-  echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] daily-health done"
+  echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Claude health failed; running deterministic health fallback"
+  python3 - <<'PY'
+  import json, subprocess, urllib.request, datetime
+  repo='zoelumos/migukstory'
+  def run(cmd):
+      return subprocess.check_output(cmd, text=True, stderr=subprocess.STDOUT).strip()
+  print('⚠️ Claude 실패 — deterministic health fallback 실행')
+  try:
+      runs=json.loads(run(['gh','run','list','--repo',repo,'--limit','8','--json','workflowName,displayTitle,status,conclusion,createdAt,url']))
+      bad=[r for r in runs if r.get('conclusion') in ('failure','cancelled','timed_out') or r.get('status')!='completed']
+      print(f'GitHub Actions 최근 8개: 문제/진행 {len(bad)}개')
+      for r in bad[:4]: print(f" - {r.get('workflowName')}: {r.get('conclusion') or r.get('status')} {r.get('url')}")
+  except Exception as e: print('GitHub Actions 확인 실패:', e)
+  try:
+      xml=urllib.request.urlopen(urllib.request.Request('https://migukstory.com/rss.xml',headers={'User-Agent':'Mozilla/5.0'}),timeout=25).read().decode('utf-8','ignore')
+      today=datetime.datetime.utcnow().strftime('%Y-%m-%d')
+      print(f'RSS: items={xml.count("<item>")} today_slugs={xml.count("/blog/"+today)}')
+  except Exception as e: print('RSS 확인 실패:', e)
+  try:
+      q=run(['bash','-lc','git ls-tree -r --name-only origin/main queue/ | awk \'/\\.md$/ {c++} END {print c+0}\''])
+      print(f'origin/main queue={q}')
+  except Exception as e: print('queue 확인 실패:', e)
+  print('상태: Claude 재인증 필요하지만 publish/index fallback은 동작 중')
+  PY
+  echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] daily-health done via fallback"
 on_failure:
   notify: slack
   channel_or_recipient: "#migukstory-ops"
