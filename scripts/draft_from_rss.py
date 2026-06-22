@@ -43,7 +43,7 @@ Options:
 Env vars:
   ANTHROPIC_API_KEY   Required unless --dry-run. Read from environment;
                       never logged. In CI, supply via GitHub Secrets.
-  ANTHROPIC_MODEL     Optional model override. Default: claude-sonnet-4-6.
+  ANTHROPIC_MODEL     Optional model override. Default: claude-opus-4-8 (Steve writing standard).
 """
 
 from __future__ import annotations
@@ -70,7 +70,7 @@ STATE = REPO / "scripts" / "state" / "seen_urls.json"
 DEFAULT_MAX_DRAFTS = 24
 DEFAULT_MAX_PER_CATEGORY = 3
 DEFAULT_MAX_ITEMS_PER_FEED = 6
-DEFAULT_MODEL = "claude-sonnet-4-6"
+DEFAULT_MODEL = "claude-opus-4-8"
 DEFAULT_CLI_TIMEOUT = 180  # per `claude -p` call, seconds
 
 VALID_CATEGORIES = {
@@ -511,7 +511,7 @@ def _build_user_prompt(item: FeedItem) -> str:
     )
 
 
-def _call_claude_via_cli(item: FeedItem, cli_timeout: int) -> str:
+def _call_claude_via_cli(item: FeedItem, model: str, cli_timeout: int) -> str:
     """Call `claude -p` (uses local Max-subscription auth, no API key)."""
     import subprocess
     user_prompt = _build_user_prompt(item)
@@ -523,7 +523,7 @@ def _call_claude_via_cli(item: FeedItem, cli_timeout: int) -> str:
     )
     try:
         result = subprocess.run(
-            ["claude", "-p", combined, "--output-format", "text"],
+            ["claude", "-p", combined, "--model", model, "--output-format", "text"],
             capture_output=True, text=True, check=True,
             timeout=cli_timeout, stdin=subprocess.DEVNULL,
         )
@@ -566,105 +566,8 @@ def call_claude(item: FeedItem, model: str, cli_timeout: int) -> str:
     Default: use Anthropic API (ANTHROPIC_API_KEY required).
     """
     if os.environ.get("CLAUDE_VIA_CLI", "").strip() == "1":
-        return _call_claude_via_cli(item, cli_timeout)
+        return _call_claude_via_cli(item, model, cli_timeout)
     return _call_claude_via_api(item, model)
-
-
-def deterministic_draft(item: FeedItem) -> str:
-    """Source-only emergency draft when Claude Code auth/API is unavailable.
-
-    This keeps Claude as the primary path, but prevents a total zero-post day
-    when Claude returns 401/timeout. The output is intentionally conservative:
-    it uses only the RSS title/summary/source URL, avoids invented facts, and
-    must still pass deterministic_queue_fallback.py before publication.
-    """
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    title_src = strip_html(item.title).strip() or "미국 생활 업데이트"
-    source_summary = strip_html(item.summary).strip()
-    if not source_summary:
-        source_summary = "원문 RSS에는 제목 중심의 짧은 알림만 제공됐습니다. 따라서 이 글은 원문에 확인된 제목·출처 정보와 공식 확인 경로 중심으로 정리합니다."
-    safe_summary = source_summary[:900]
-    korean_title = title_src
-    if not re.search(r"[가-힣]", korean_title):
-        category_prefix = {
-            "immigration": "이민 업데이트",
-            "tax": "세금 업데이트",
-            "health": "건강·안전 업데이트",
-            "real-estate": "주택·모기지 업데이트",
-            "retirement": "은퇴·복지 업데이트",
-            "community": "한인 생활 업데이트",
-            "economy": "경제 업데이트",
-            "ai": "AI·일자리 업데이트",
-            "robotics": "로봇·미래직업 업데이트",
-            "education": "교육 업데이트",
-        }.get(item.category, "미국 생활 업데이트")
-        korean_title = f"{category_prefix}: {title_src}"
-    desc = f"{title_src} 관련 소식입니다. 미주 한인 독자가 확인해야 할 영향, 체크포인트, 공식 확인 경로를 정리했습니다."
-    tags = [item.category, "미주한인", "체크리스트", "업데이트"]
-    if item.category == "tax":
-        tags.insert(0, "IRS")
-    if item.category == "immigration":
-        tags.insert(0, "USCIS")
-    if item.category == "health":
-        tags.insert(0, "FDA")
-    tags_yaml = ", ".join(repr(t) for t in tags[:6])
-    safe_title = korean_title.replace("'", "’")
-    safe_desc = desc.replace("'", "’")[:220]
-    safe_source = item.source_name.replace("'", "’")
-    table_title = title_src.replace("|", "/")
-    return f"""---
-title: '{safe_title}'
-description: '{safe_desc}'
-pubDate: '{today}'
-tags: [{tags_yaml}]
-category: '{item.category}'
-ageGroup: 'all'
-draft: false
-source: '{safe_source}'
-sourceUrl: '{item.canonical_url}'
----
-
-# {korean_title}
-
-{safe_summary}
-
-## 핵심 요약
-
-- 원문 이슈: {title_src}
-- 확인 경로: {item.source_name} 공식/원문 링크
-- 미주 한인 체크포인트: 본인 상황에 적용되는 날짜·지역·자격·상품명·여행지를 먼저 확인
-- 주의: RSS 요약만으로 세부 조건을 단정하지 말고 공식 링크에서 최신 내용을 확인
-
-이번 소식은 미주 한인 가정, 유학생, 직장인, 자영업자에게 바로 확인이 필요한 생활 정보입니다. 원문 RSS가 제공한 정보 범위가 제한적이기 때문에, 아래 내용은 확인된 제목·요약·출처를 바탕으로 **무엇을 확인해야 하는지** 중심으로 정리합니다. 법률·세금·의료 판단이 필요한 경우에는 전문가 상담을 권장합니다.
-
-## 한눈에 보는 체크포인트
-
-| 구분 | 지금 확인할 내용 | 한인 독자에게 중요한 이유 |
-|---|---|---|
-| 원문 이슈 | {table_title} | 생활비, 신분, 건강, 여행, 사업 운영에 영향을 줄 수 있습니다. |
-| 확인 대상 | 공식 발표·기관 안내·원문 업데이트 | RSS 요약만으로 세부 조건을 단정하면 위험합니다. |
-| 오늘 할 일 | 본인 상황에 해당하는 날짜·지역·자격·상품명을 대조 | 같은 뉴스라도 비자, 세금, 보험, 거주 주에 따라 영향이 달라집니다. |
-| 주의점 | SNS 요약보다 공식 링크 우선 확인 | 잘못된 정보로 신청·결제·여행 결정을 하면 손해가 커질 수 있습니다. |
-
-## 미주 한인이 봐야 할 영향
-
-첫째, 이 소식이 본인이나 가족에게 직접 적용되는지 확인해야 합니다. 이민·세금·건강·주택·여행 관련 뉴스는 제목은 단순해 보여도 실제 적용 대상, 날짜, 지역, 자격 조건이 따로 붙는 경우가 많습니다.
-
-둘째, 자영업자나 직장인은 업무상 영향도 함께 봐야 합니다. 직원 안내, 고객 공지, 회계·보험 서류, 여행 일정, 공급망 확인처럼 개인 생활을 넘어 사업 운영에 연결될 수 있습니다.
-
-셋째, 원문이 업데이트될 가능성을 열어두어야 합니다. 특히 정부기관, 법원, 보건·여행 경보, 세금 마감 관련 사안은 하루 사이에도 세부 안내가 바뀔 수 있습니다.
-
-## 오늘 확인 순서
-
-1. 원문 링크에서 최신 업데이트 시간을 확인합니다.
-2. 본인에게 해당하는 주(state), 비자/신분, 세금연도, 보험/상품명, 여행 목적지를 대조합니다.
-3. 마감일이나 시행일이 있는 경우 캘린더에 따로 표시합니다.
-4. 비용, 신분, 건강, 법률 판단이 걸리면 전문가 상담을 권장합니다.
-
-## 출처 (Sources)
-
-- {item.source_name}: {item.canonical_url}
-"""
 
 
 def write_manifest(path: Path, drafts: list[Path]) -> None:
@@ -722,9 +625,6 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--tier1-only", action="store_true",
                    help="Restrict candidate categories to "
                         f"{sorted(TIER1_CATEGORIES)}.")
-    p.add_argument("--deterministic-on-claude-fail", action="store_true",
-                   help="Emergency source-only draft fallback when Claude CLI/API fails. "
-                        "Drafts still require deterministic_queue_fallback.py before publication.")
     return p.parse_args()
 
 
@@ -866,13 +766,9 @@ def main() -> int:
         except SystemExit:
             raise
         except Exception as e:
-            if args.deterministic_on_claude_fail:
-                print(f"   ⚠️ Claude call failed, using deterministic emergency draft: {e}", file=sys.stderr)
-                md = deterministic_draft(item)
-            else:
-                print(f"   ❌ Claude call failed: {e}", file=sys.stderr)
-                failures.append((item, f"claude error: {e}"))
-                continue
+            print(f"   ❌ Claude call failed: {e}", file=sys.stderr)
+            failures.append((item, f"claude error: {e}"))
+            continue
 
         ok, reason = looks_like_valid_draft(md, item)
         if not ok:

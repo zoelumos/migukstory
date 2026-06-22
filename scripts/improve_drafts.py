@@ -35,7 +35,7 @@ from typing import Any
 REPO = Path(__file__).resolve().parent.parent
 DRAFTS = REPO / "drafts"
 DEFAULT_CLI_TIMEOUT = 180
-DEFAULT_MODEL = "claude-sonnet-4-6"
+DEFAULT_MODEL = "claude-opus-4-8"
 
 SOURCE_URL_RE = re.compile(r"^sourceUrl:\s*['\"]?([^'\"\n]+)['\"]?\s*$", re.MULTILINE)
 SOURCE_RE = re.compile(r"^source:\s*['\"]?([^'\"\n]+)['\"]?\s*$", re.MULTILINE)
@@ -155,8 +155,9 @@ def extract_meta(md: str) -> tuple[str, str]:
     return source_name or "(source missing)", source_url or "(sourceUrl missing)"
 
 
-def call_claude(path: Path, md: str, cli_timeout: int) -> str:
+def call_claude(path: Path, md: str, cli_timeout: int, model: str | None = None) -> str:
     source_name, source_url = extract_meta(md)
+    model = model or os.environ.get("ANTHROPIC_MODEL", DEFAULT_MODEL)
     prompt = SYSTEM_PROMPT + "\n\n" + USER_PROMPT_TEMPLATE.format(
         source_name=source_name,
         source_url=source_url,
@@ -164,6 +165,7 @@ def call_claude(path: Path, md: str, cli_timeout: int) -> str:
     )
     cmd = [
         "claude", "-p", prompt,
+        "--model", model,
         "--output-format", "text",
         "--max-turns", "8",
         "--allowedTools", "WebFetch,WebSearch",
@@ -243,7 +245,7 @@ def main() -> int:
         original = p.read_text(encoding="utf-8")
         print(f"\n🛠️  Improving: {p.name}")
         try:
-            new_md = call_claude(p, original, args.cli_timeout)
+            new_md = call_claude(p, original, args.cli_timeout, os.environ.get("ANTHROPIC_MODEL", DEFAULT_MODEL))
             ok, reason = valid_improved(new_md, original)
             if not ok:
                 raise RuntimeError(reason)

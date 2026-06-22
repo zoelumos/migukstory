@@ -45,7 +45,7 @@ Env:
   CLAUDE_VIA_CLI=1   Route grading through the local `claude -p` CLI
                      (Max-subscription auth, no API key). Default: Anthropic API.
   ANTHROPIC_API_KEY  Required for the API path (unless --dry-run).
-  ANTHROPIC_MODEL    Optional, default: claude-sonnet-4-6 (Haiku 4.5 also fine).
+  ANTHROPIC_MODEL    Optional, default: claude-opus-4-8 (Steve writing/editor standard).
 
 The script writes a report to scripts/state/editor_report.json and (when not
 dry-run) moves promoted drafts into queue/. Both the moves and the report are
@@ -71,7 +71,7 @@ DRAFTS = REPO / "drafts"
 QUEUE = REPO / "queue"
 REPORT = REPO / "scripts" / "state" / "editor_report.json"
 
-DEFAULT_MODEL = "claude-sonnet-4-6"
+DEFAULT_MODEL = "claude-opus-4-8"
 DEFAULT_THRESHOLD = 80
 REVIEW_THRESHOLD = 50      # below this = "likely discard"
 DEFAULT_MAX_DRAFTS = 8     # hard ceiling on drafts graded in one run
@@ -249,7 +249,7 @@ def _extract_first_json_object(raw: str) -> dict | None:
     return None
 
 
-def _editor_via_cli(slug: str, content: str, threshold: int, cli_timeout: int) -> tuple[dict, int]:
+def _editor_via_cli(slug: str, content: str, threshold: int, model: str, cli_timeout: int) -> tuple[dict, int]:
     import subprocess
     combined = (
         SYSTEM_PROMPT
@@ -258,7 +258,7 @@ def _editor_via_cli(slug: str, content: str, threshold: int, cli_timeout: int) -
     )
     try:
         result = subprocess.run(
-            ["claude", "-p", combined, "--output-format", "text"],
+            ["claude", "-p", combined, "--model", model, "--output-format", "text"],
             capture_output=True, text=True, check=True,
             timeout=cli_timeout, stdin=subprocess.DEVNULL,
         )
@@ -295,7 +295,7 @@ def call_claude(slug: str, content: str, model: str, threshold: int,
                 cli_timeout: int) -> tuple[dict, int]:
     """Route to API or CLI based on CLAUDE_VIA_CLI env var."""
     if os.environ.get("CLAUDE_VIA_CLI", "").strip() == "1":
-        return _editor_via_cli(slug, content, threshold, cli_timeout)
+        return _editor_via_cli(slug, content, threshold, model, cli_timeout)
     return _editor_via_api(slug, content, threshold, model)
 
 
