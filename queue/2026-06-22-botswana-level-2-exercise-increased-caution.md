@@ -14,6 +14,13 @@ sourceUrl: 'https://travel.state.gov/content/travel/en/traveladvisories/travelad
 
 There were no changes to the advisory level or risk indicators. Advisory summary was updated. Exercise increased caution in Botswana due to crime . Advisory Summary Crime Petty crime and crimes of opportunity, primarily the theft of money and personal property, are common in Botswana. Potentially violent crimes are also common, including home invasions, break-ins, muggings, and &#8220;smash and grabs&#8221; from vehicles. If you decide to travel to Botswana: Enroll in the Smart Traveler Enrollment Program (STEP) to get important updates and alerts from the U.S. embassy or consulate. Enrolling helps the U.S. embassy or consulate contact you or your emergency contact in an emergency. Review the Country Security Report for Botswana. Review our information on Crime Abroad and for Victims of Crime . Stay aware of your surroundings. Use caution when walking or driving at night. Do not physical
 
+## 핵심 요약
+
+- 원문 이슈: 한인 생활 업데이트: Botswana - Level 2: Exercise Increased Caution
+- 확인 경로: 원문 공식 링크와 최신 여행·안전 안내
+- 미주 한인 체크포인트: 출발 전 여행 경보, 보험, 약품, 현지 치안 정보를 재확인
+- 주의: RSS 요약만으로 세부 조건을 단정하지 말고 공식 링크에서 최신 내용을 확인
+
 이번 소식은 미주 한인 가정, 유학생, 직장인, 자영업자에게 바로 확인이 필요한 생활 정보입니다. 원문 RSS가 제공한 정보 범위가 제한적이기 때문에, 아래 내용은 확인된 제목·요약·출처를 바탕으로 **무엇을 확인해야 하는지** 중심으로 정리합니다. 법률·세금·의료 판단이 필요한 경우에는 전문가 상담을 권장합니다.
 
 ## 한눈에 보는 체크포인트

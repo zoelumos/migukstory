@@ -14,6 +14,13 @@ sourceUrl: 'https://travel.state.gov/content/travel/en/traveladvisories/travelad
 
 There was no change to the advisory level. The &#8220;Health&#8221; risk indicator was added. Advisory summary was updated. Exercise Increased Caution in Lesotho due to crime and health . Advisory summary Crime Crime is common in Lesotho. Armed robberies and carjackings happen from time to time. Local police may not have enough resources to respond quickly when crimes occur. Health Lesotho&#8217;s health infrastructure is inadequate. Health facilities, services, hygiene, and quality control do not meet U.S. standards of care. Pharmacies are neither well-regulated nor well stocked. Locally available medications may be unsafe. Travelers have the option to enter South Africa for health services. Make sure you have medical or travel insurance that includes medical evacuation. Bring enough prescription medications to last the entire duration of your trip. Review our information on Travel Insu
 
+## 핵심 요약
+
+- 원문 이슈: 한인 생활 업데이트: Lesotho - Level 2: Exercise Increased Caution
+- 확인 경로: 원문 공식 링크와 최신 여행·안전 안내
+- 미주 한인 체크포인트: 출발 전 여행 경보, 보험, 약품, 현지 치안 정보를 재확인
+- 주의: RSS 요약만으로 세부 조건을 단정하지 말고 공식 링크에서 최신 내용을 확인
+
 이번 소식은 미주 한인 가정, 유학생, 직장인, 자영업자에게 바로 확인이 필요한 생활 정보입니다. 원문 RSS가 제공한 정보 범위가 제한적이기 때문에, 아래 내용은 확인된 제목·요약·출처를 바탕으로 **무엇을 확인해야 하는지** 중심으로 정리합니다. 법률·세금·의료 판단이 필요한 경우에는 전문가 상담을 권장합니다.
 
 ## 한눈에 보는 체크포인트
