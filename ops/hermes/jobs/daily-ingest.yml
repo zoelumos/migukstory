@@ -51,7 +51,20 @@ command: |
   ensure_py_venv
   "$PY_VENV/bin/python" -m pip install -q -r scripts/requirements-draft.txt
 
+
   export CLAUDE_VIA_CLI=1
+  export ANTHROPIC_MODEL=claude-opus-4-8
+  CLAUDE_PREFLIGHT=$(claude -p "Reply OK only" --model "$ANTHROPIC_MODEL" --max-turns 1 --output-format json 2>&1 || true)
+  if printf '%s' "$CLAUDE_PREFLIGHT" | grep -q 'api_error_status.*401\|Invalid authentication credentials\|Failed to authenticate'; then
+    echo "🔴 Claude Opus 4.8 auth failed (401). Steve needs to re-login Claude Code; Migukstory will NOT publish fallback copy."
+    echo "$CLAUDE_PREFLIGHT" | head -5
+    exit 42
+  fi
+  if ! printf '%s' "$CLAUDE_PREFLIGHT" | grep -q 'OK'; then
+    echo "🔴 Claude Opus 4.8 preflight did not return OK; refusing to generate/publish content."
+    echo "$CLAUDE_PREFLIGHT" | head -10
+    exit 43
+  fi
   MANIFEST=$(mktemp)
   trap 'rm -f "$MANIFEST"' EXIT
 
