@@ -1,11 +1,11 @@
 ---
 title: '주택 건설업체 체감지수 약세 지속, 주거비 부담 우려 커져'
 description: '전미주택건설업협회(NAHB) 발표에 따르면 주택 건설업체 체감지수가 주거비 부담 우려 속에 약세를 이어가고 있습니다. 미주 한인 가정의 주택 구입과 임대 결정에 미치는 영향을 정리합니다.'
-pubDate: '2026-06-16'
+pubDate: '2026-06-25'
 tags: ['주택시장', 'NAHB', '주거비부담', '미국부동산', '한인생활']
 category: 'real-estate'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Housing / Mortgage Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMivgFBVV95cUxQbi1FYVZBQjhob0V5ZzlORTFEZERUM1Zic3pteXNDeG5MY0tYb2JFd1pzRkxBcGl2QUR3Y3dwMTlRTTVtY0paZjNtMlliSTZqd1dwTTdXdGJNaDZSMmdTNWduTlZmcDZxSFBXajNCdFFySXhLM3p2N2J1ZUw2M241Vkw1TWd0VFZXemY1VUZzYVBBYmhaSGg4NDdnbE80N21hMHpldDVMSmF2RG9SUEpqcF9XQk5TaXh4YXh0RkxR?oc=5'
 ---

@@ -1,11 +1,11 @@
 ---
 title: 'HSA 확대 논의 부상… 오바마케어 가입 감소·보험료 인상이 배경'
 description: '워싱턴 스탠드가 인용한 전문가들은 오바마케어 가입자 감소와 보험료 인상 흐름 속에서 의회가 건강저축계좌(HSA) 확대를 검토해야 한다고 주장합니다. 미주 한인 가계에 어떤 의미인지 정리합니다.'
-pubDate: '2026-06-10'
+pubDate: '2026-06-25'
 tags: ['건강보험', 'HSA', '오바마케어']
 category: 'health'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — Health Insurance / Medicare Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMi2AFBVV95cUxNTUU0S2VKUXI1ajhTQkJvN0ktbGRkRW1HOU9IXzVQUFp0SkJJU0YwQ3J2ZjNjalNGSnJQbWlIRlM4Rmhyd2lhZ0dNY3VGaVBXOFZBeVJhRVRzcGNGNUhWbzV0V3Rhd3F6RTVwVkxFODdKcmtaNkRXdVJoV0F2dUVhc3BUbm43SmdHS0FzNngyNEFfSEVjMFhvcFRlQ01DYlh2NEp4WWF0WnRvY3p1anV5djUzd3pPWWZXYkQ5c2pFdWNEOVBfV3E2anlCeXhTVmVacFhNd2NmUVQ?oc=5'
 ---

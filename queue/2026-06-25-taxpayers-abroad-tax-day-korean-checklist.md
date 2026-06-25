@@ -1,11 +1,11 @@
 ---
 title: '해외 거주 미국 시민권자 세금 신고일, 6월 16일에 주목하라'
 description: '해외 거주 미국인을 위한 자동 연장 신고 기한이 도래했습니다. 미주 한인 가족과 한국 체류 시민권자가 알아야 할 의무와 다음 단계를 정리했습니다.'
-pubDate: '2026-06-18'
+pubDate: '2026-06-25'
 tags: ['세금', '해외거주자', 'IRS', '한인커뮤니티', '신고기한']
 category: 'tax'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'Google News — IRS / Tax Guidance Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMie0FVX3lxTE5lWm5SYmVLTTFjd01oV0RHTFVZcjZFaW9BZmZGZW0xOXhtQk9vTXp2UkpHdUJubnpoOHBQakYwMXVyLWxpTmxkd1h2dW8wdGhpZ3FtdVZOVXBNeUtaVUdMV2pUM3NUZ0llS1dqeVRiVkZNVE9UV1ZpUFpmNA?oc=5'
 ---
