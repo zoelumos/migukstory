@@ -19,8 +19,8 @@ type Scope = 'national' | 'regional' | 'local';
 const HIGH_STAKES_TERMS = [
 	'uscis', '비자', '영주권', 'i-485', 'i-130', 'h-1b', 'h1b', 'f-1', 'opt', 'ice', '추방', '망명',
 	'green card', 'visa bulletin', 'citizenship', 'naturalization', '이민', '시민권',
-	'irs', '세금', 'tax', 'fbar', 'salt', 'fafsa', 'medicare', '보험', 'health', 'social security', 'ssa',
-	'금리', '모기지', 'mortgage', '주택', '학자금', 'college', '은퇴', '연금', '401k',
+	'irs', '세금', 'tax', 'fbar', 'salt', 'fafsa', 'medicare', 'medicaid', '보험', 'health', 'social security', 'ssa',
+	'금리', '모기지', 'mortgage', '주택', '학자금', 'college', '은퇴', '연금', '401k', 'mapt', 'trust', 'elder law', 'estate planning', 'probate', 'nursing home', 'long-term care',
 	'대법원', 'scotus', 'trump', '연방', 'deadline', '마감', '주의', '변경', 'cutoff', 'fee', 'increase',
 	'war', '전쟁', 'gaza', 'ukraine', 'north korea', '북핵', 'taiwan', '대만', '미중', '한미',
 	'iran', '이란', 'israel', '이스라엘', 'hormuz', '호르무즈', 'middle east', '중동',
@@ -144,6 +144,9 @@ export function splitHomepageStories<T extends BlogLike>(posts: T[]) {
 	return {
 		lead,
 		aboveFold: [...todayAboveFold, ...todayFallback, ...olderAboveFold, ...olderFallback].slice(0, 2),
-		continued: [...todayRest.sort(compareForHomepage), ...olderRest.sort(compareForHomepage)],
+		// "계속해서 읽기" must be a live-news rail, not another editorial-priority
+		// rail. Readers expect the newest published posts first here, even when an
+		// older USCIS/tax guide scores higher for headline placement.
+		continued: [...todayRest.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()), ...olderRest.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())],
 	};
 }

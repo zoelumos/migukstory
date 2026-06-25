@@ -11,7 +11,7 @@ export const CATEGORIES = {
 	'robotics':    { label: '로봇·미래직업',   slug: 'robotics',    color: '#C2410C' },
 	'health':      { label: '건강·보험',       slug: 'health',      color: '#047857' },
 	'education':   { label: '교육·자녀',       slug: 'education',   color: '#7C3AED' },
-	'retirement':  { label: '은퇴·연금',       slug: 'retirement',  color: '#B7791F' },
+	'retirement':  { label: '노후·상속·요양',   slug: 'retirement',  color: '#B7791F' },
 	'community':   { label: '한인 커뮤니티',   slug: 'community',   color: '#0E7490' },
 	'real-estate': { label: '부동산·주거',     slug: 'real-estate', color: '#9A3412' },
 } as const;

@@ -13,8 +13,10 @@ const all = await getCollection('blog');
 
 import { CATEGORIES } from '../content.config';
 
-// Score: same category +5, shared tag +2, recent +1
+// Score: same category +5, shared tag +2, recent +1. Tie-break by newest date
+// so the article-end rail does not look stale when a category has many old guides.
 const scored = all
+	.filter(p => !p.data.draft)
 	.filter(p => p.id !== current.id)
 	.map(p => {
 		let score = 0;
@@ -25,7 +27,7 @@ const scored = all
 		if (daysAgo < 7) score += 1;
 		return { post: p, score };
 	})
-	.sort((a, b) => b.score - a.score)
+	.sort((a, b) => (b.score - a.score) || (b.post.data.pubDate.valueOf() - a.post.data.pubDate.valueOf()))
 	.slice(0, limit)
 	.map(s => s.post);
 

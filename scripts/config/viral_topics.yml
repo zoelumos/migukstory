@@ -59,7 +59,7 @@ clusters:
   - name: social-security-retirement
     category: retirement
     relevance: 4
-    keywords: ['social security', '\bmedicare\b', '\bmedicaid\b', '\bcola\b', '401\(k\)', '\bira\b contribution']
+    keywords: ['social security', '\bmedicare\b', '\bmedicaid\b', '\bcola\b', '401\(k\)', '\bira\b contribution', 'elder law', 'estate planning', 'living trust', 'probate', 'power of attorney', 'nursing home', 'long-?term care', 'medicaid planning', '\bmapt\b', 'asset protection trust', 'spend-?down']
   - name: housing-mortgage
     category: real-estate
     relevance: 3

@@ -82,7 +82,7 @@ VALID_CATEGORIES = {
 # GSC-backed editorial focus (2026-05-29): Search Console showed real
 # impressions/clicks for USCIS/immigration pages. Daily ingest should spend
 # Claude time FIRST on Korean-American service journalism: immigration/USCIS,
-# tax/IRS, retirement/Social Security/Medicare-adjacent planning, housing,
+# tax/IRS, retirement/Social Security/Medicare/Medicaid/MAPT/elder-law planning, housing,
 # insurance/health coverage, and practical settlement/life guides.
 # Economy and AI/robotics must continue, but as a maintained secondary lane —
 # not as generic market/tech filler that crowds out high-intent service topics.
@@ -128,6 +128,10 @@ URGENT_TERMS = [
     # Health
     r"fda recall", r"\bmedicare\b", r"medicaid", r"\baca\b", r"obamacare",
     r"vaccine", r"outbreak", r"\bcdc\b advisory",
+    # Retirement / elder-law / long-term care planning
+    r"\bmapt\b", r"medicaid planning", r"elder law", r"estate planning",
+    r"living trust", r"asset protection trust", r"probate", r"power of attorney",
+    r"nursing home", r"long-?term care", r"spend-?down",
     # Economy / benefits / housing / insurance
     r"social security", r"\bcpi\b", r"interest rate",
     r"fed (?:raises|cuts|holds|hike|cut|funds rate)",
@@ -408,8 +412,9 @@ fluff. You write ONLY from the source material provided.
 Hard rules (non-negotiable):
 - Editorial focus for tomorrow and ongoing daily ingest, based on GSC evidence:
   USCIS/immigration pages are already earning impressions/clicks, so prioritize
-  immigration/USCIS, tax/IRS, retirement/Social Security, housing/mortgage,
-  insurance/Medicare/ACA, and practical Korean-American life-guide topics.
+  immigration/USCIS, tax/IRS, retirement/Social Security/Medicare/Medicaid/MAPT Trust/elder law, housing/mortgage,
+  insurance/Medicare/ACA, estate planning/probate/living trust/power of attorney,
+  nursing-home/long-term-care cost planning, and practical Korean-American life-guide topics.
   Economy and AI/robotics must CONTINUE as maintained lanes, especially when
   they affect jobs, small business, markets, or automation risk, but do not let
   generic economy/tech items crowd out high-intent service journalism.
@@ -470,9 +475,9 @@ sourceUrl: '{canonical_url}'
 [4~6문단의 한국어 본문. 한 문단당 2~4문장. 직접 인용은 25자 이내.
 숫자/날짜/이름은 원문에 있는 것만 사용.
 반드시 한 문단은 "미주 한인에게 왜 중요한가"를 구체적으로 다루세요:
-한인 자영업자, 유학생, 취업비자/영주권자, 은퇴자, 부모 세대, 한인 가정 중
+한인 자영업자, 유학생, 취업비자/영주권자, 은퇴자, 부모 세대, 상속·요양을 준비하는 자녀 세대, 한인 가정 중
 해당되는 독자 그룹을 골라 실제 의사결정·서류·세금·건강·생활비·커뮤니티
-영향을 설명하세요. AI/robotics 카테고리는 일자리, 소상공인 자동화, 자녀 교육·진로,
+영향을 설명하세요. retirement 카테고리에서 elder law, Medicaid planning, MAPT Trust, living trust, probate, power of attorney, nursing home/long-term care가 나오면 법률 조언처럼 단정하지 말고 "어떤 서류·자격·전문가 상담 포인트를 확인해야 하는지" 중심으로 설명하세요. AI/robotics 카테고리는 일자리, 소상공인 자동화, 자녀 교육·진로,
 투자 위험, 이민자 노동자, 한인 가정 영향 중 원문에서 논리적으로 이어지는 축으로
 풀어 쓰세요. 단, 원문에 없는 새로운 사실은 금지하고 원문 사실에서
 논리적으로 따라오는 영향 분석만 하세요.]
