@@ -5,7 +5,7 @@ pubDate: '2026-06-26'
 tags: ['리콜', '아동안전', 'CPSC']
 category: 'consumer'
 ageGroup: 'all'
-draft: true
+draft: false
 source: 'CPSC Product Recalls'
 sourceUrl: 'https://cpsc.gov/Recalls/2026/Kith-Retail-Recalls-Childrens-Loungewear-Sets-Due-to-Risk-of-Serious-Injury-from-Burn-Hazard-Violate-Mandatory-Standards-for-Childrens-Sleepwear'
 ---
