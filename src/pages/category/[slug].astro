@@ -64,6 +64,10 @@ const HUB_COPY = {
 		intent: '미국 학교, 대학, 장학금, 자녀 교육과 진로 선택에 필요한 정보를 한인 학부모 관점으로 정리합니다.',
 		queries: ['미국 학교', '대학 장학금', '자녀 교육', '입시'],
 	},
+	'consumer': {
+		intent: '사기, 개인정보 유출, 리콜, 부채추심, 신용보고서처럼 한인 가정과 시니어가 바로 확인해야 할 소비자보호 이슈를 정리합니다.',
+		queries: ['시니어 사기', '개인정보 유출', 'FTC 소비자보호', '제품 리콜', '신용보고서 오류'],
+	},
 };
 
 const hub = HUB_COPY[catMeta.slug as keyof typeof HUB_COPY];

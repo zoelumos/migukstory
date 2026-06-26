@@ -14,6 +14,7 @@ export const CATEGORIES = {
 	'retirement':  { label: '노후·상속·요양',   slug: 'retirement',  color: '#B7791F' },
 	'community':   { label: '한인 커뮤니티',   slug: 'community',   color: '#0E7490' },
 	'real-estate': { label: '부동산·주거',     slug: 'real-estate', color: '#9A3412' },
+	'consumer':    { label: '사기·소비자보호', slug: 'consumer',    color: '#BE185D' },
 } as const;
 
 export type CategoryKey = keyof typeof CATEGORIES;
@@ -31,7 +32,7 @@ const blog = defineCollection({
 			tags: z.array(z.string()).default([]),
 			category: z.enum([
 				'immigration', 'tax', 'economy', 'ai', 'robotics', 'health',
-				'education', 'retirement', 'community', 'real-estate',
+				'education', 'retirement', 'community', 'real-estate', 'consumer',
 			]),
 			ageGroup: z.enum(['20-35', '35-55', '55+', 'all']).default('all'),
 			// Homepage editorial controls. Narrow/local items can remain published but must not

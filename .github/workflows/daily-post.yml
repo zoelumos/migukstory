@@ -9,15 +9,14 @@ on:
   workflow_dispatch:
     inputs:
       count:
-        description: 'How many queued posts to publish this run (default: drain queue up to 10)'
+        description: 'How many queued posts to publish this run (default: drain queue up to 4)'
         required: false
-        default: '10'
+        default: '4'
 
 # Max posts a single run will publish, regardless of trigger. Protects against
-# an accidental 50-item queue draining all at once. Tune up if you need bigger
-# scheduled batches.
+# accidental queue bursts while still allowing a higher 2-4 post daily cadence.
 env:
-  POSTS_PER_RUN_CAP: '10'
+  POSTS_PER_RUN_CAP: '4'
 
 permissions:
   contents: write
@@ -50,10 +49,10 @@ jobs:
       - name: Determine batch size
         id: batch
         # On push (queue/** changed via merged PR): drain the queue up to the
-        # cap so we don't strand 9 freshly-merged drafts behind a count=1.
+        # cap so we don't strand freshly-merged drafts behind a count=1.
         # On workflow_dispatch: honor inputs.count, still capped.
         run: |
-          cap="${POSTS_PER_RUN_CAP:-10}"
+          cap="${POSTS_PER_RUN_CAP:-4}"
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             n="${{ github.event.inputs.count }}"
             [ -z "$n" ] && n="$cap"

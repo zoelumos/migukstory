@@ -29,6 +29,7 @@ VALID_CATEGORIES = {
     "retirement",
     "community",
     "real-estate",
+    "consumer",
 }
 
 

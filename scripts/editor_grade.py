@@ -101,7 +101,7 @@ USER_PROMPT_TEMPLATE = """다음은 사람 검토 전 AI가 작성한 한국어 
 편집장으로서 5개 축에 대해 각 0–20점으로 평가하고, 총점(0–100)과 짧은
 판단 근거를 한국어로 작성하세요. 결과는 JSON 한 개로만 출력하세요.
 
-중요: GSC 성과 기준으로 USCIS/이민 글이 실제 Google impressions/clicks를 만들고 있습니다. 자동 승격 판단 시 이민/USCIS, 세금/IRS, 연금/Social Security, 주택/모기지, 보험/Medicare/ACA, 한인 생활가이드처럼 검색 의도와 한인 실무성이 강한 초안에 더 높은 편집 가치를 두세요. 단, 경제와 AI/robotics는 계속 유지해야 하는 보조 카테고리입니다. 해당 글이 경제·AI·로보틱스라면 한인 일자리, 소상공인, 투자/은퇴계좌, 자동화 리스크, 자녀 진로와 명확히 연결될 때 좋은 글로 평가하세요.
+중요: GSC 성과 기준으로 USCIS/이민 글이 실제 Google impressions/clicks를 만들고 있습니다. 자동 승격 판단 시 이민/USCIS, 세금/IRS, 연금/Social Security, 주택/모기지, 보험/Medicare/ACA, 사기·소비자보호(FTC/CFPB/리콜/identity theft), 교육·학자금, 한인 생활가이드처럼 검색 의도와 한인 실무성이 강한 초안에 더 높은 편집 가치를 두세요. 단, 경제와 AI/robotics는 계속 유지해야 하는 보조 카테고리입니다. 해당 글이 경제·AI·로보틱스라면 한인 일자리, 소상공인, 투자/은퇴계좌, 자동화 리스크, 자녀 진로와 명확히 연결될 때 좋은 글로 평가하세요.
 
 중요: Migukstory의 차별점은 읽기 쉬운 시각적 구조입니다. Mermaid/flowchart/sequenceDiagram/gantt 코드블록은 사이트에서 깨져 보이므로 금지입니다. 글에는 주제에 맞는 Markdown 표, 번호 단계 목록, 체크리스트, 또는 짧은 타임라인이 있어야 자동 승격 대상입니다.
 

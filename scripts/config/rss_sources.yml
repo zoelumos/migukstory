@@ -199,6 +199,63 @@ sources:
     enabled: true
     max_items: 2
 
+  # ── Education / children — currently thin, so keep watches focused and low-volume ──
+  - name: Google News — FAFSA / Student Aid Watch
+    url: https://news.google.com/rss/search?q=FAFSA%20OR%20student%20aid%20OR%20college%20scholarship%20OR%20529%20plan&hl=en-US&gl=US&ceid=US:en
+    category: education
+    enabled: true
+    max_items: 3
+
+  - name: Google News — College Admissions / Student Visa Watch
+    url: https://news.google.com/rss/search?q=college%20admissions%20OR%20student%20visa%20OR%20international%20students%20OR%20tuition%20increase&hl=en-US&gl=US&ceid=US:en
+    category: education
+    enabled: true
+    max_items: 3
+
+  # ── Consumer protection — scams, fraud, recalls, credit, elder targeting ──
+  - name: FTC Consumer Alerts
+    url: https://consumer.ftc.gov/blog/feed
+    category: consumer
+    enabled: false  # disabled 2026-06-26: FTC public RSS candidates smoke-test bozo/0 entries
+    max_items: 4
+
+  - name: CFPB Newsroom / Consumer Finance Watch
+    url: https://www.consumerfinance.gov/about-us/newsroom/feed/
+    category: consumer
+    enabled: true
+    max_items: 3
+
+  - name: CPSC Product Recalls
+    url: https://www.cpsc.gov/Newsroom/CPSC-RSS-Feed/Recalls-RSS
+    category: consumer
+    enabled: true
+    max_items: 3
+
+  - name: Google News — Scams / Identity Theft Watch
+    url: https://news.google.com/rss/search?q=scam%20OR%20fraud%20OR%20identity%20theft%20OR%20data%20breach%20OR%20consumer%20protection&hl=en-US&gl=US&ceid=US:en
+    category: consumer
+    enabled: true
+    max_items: 3
+
+  # ── Existing-category coverage gaps — keep low-volume, editor-graded only ──
+  - name: Google News — Consular / DMV / Settlement Watch
+    url: https://news.google.com/rss/search?q=consulate%20OR%20passport%20renewal%20OR%20DMV%20OR%20driver%20license%20OR%20bank%20account%20immigrants&hl=en-US&gl=US&ceid=US:en
+    category: community
+    enabled: true
+    max_items: 3
+
+  - name: Google News — Property Tax / Rent / Home Insurance Watch
+    url: https://news.google.com/rss/search?q=property%20tax%20OR%20rent%20increase%20OR%20home%20insurance%20OR%20first-time%20homebuyer&hl=en-US&gl=US&ceid=US:en
+    category: real-estate
+    enabled: true
+    max_items: 3
+
+  - name: Google News — State Tax / Self-Employed Tax Watch
+    url: https://news.google.com/rss/search?q=state%20tax%20OR%20self-employed%20tax%20OR%20small%20business%20tax%20OR%20estimated%20tax&hl=en-US&gl=US&ceid=US:en
+    category: tax
+    enabled: true
+    max_items: 3
+
   # ── DISABLED: verified broken 2026-05-20. Do NOT re-enable without a new URL.
   - name: USCIS Newsroom            # feed/59 returns ZERO <item> elements — dead
     url: https://www.uscis.gov/news/rss-feed/59

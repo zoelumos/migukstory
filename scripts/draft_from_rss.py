@@ -75,7 +75,7 @@ DEFAULT_CLI_TIMEOUT = 180  # per `claude -p` call, seconds
 
 VALID_CATEGORIES = {
     "immigration", "tax", "health", "education",
-    "retirement", "community", "real-estate", "economy",
+    "retirement", "community", "real-estate", "consumer", "economy",
     "ai", "robotics",
 }
 
@@ -91,20 +91,21 @@ CATEGORY_PRIORITY = {
     "tax": 1,
     "retirement": 2,
     "real-estate": 3,
-    "health": 4,      # includes insurance / Medicare / ACA / public health
-    "community": 5,   # practical Korean-American life guides
-    "economy": 6,
-    "ai": 7,
-    "robotics": 8,
-    "education": 9,
+    "consumer": 4,    # scams, fraud, recalls, consumer protection
+    "health": 5,      # includes insurance / Medicare / ACA / public health
+    "education": 6,
+    "community": 7,   # practical Korean-American life guides
+    "economy": 8,
+    "ai": 9,
+    "robotics": 10,
 }
-PRIMARY_FOCUS_CATEGORIES = {"immigration", "tax", "retirement", "real-estate", "health", "community"}
+PRIMARY_FOCUS_CATEGORIES = {"immigration", "tax", "retirement", "real-estate", "consumer", "health", "education", "community"}
 SECONDARY_MAINTAIN_CATEGORIES = {"economy", "ai", "robotics"}
 
 # Tier-1 high-impact categories. The second daily "urgent" ingest restricts
 # itself to these so it catches things like USCIS adjustment-of-status policy
 # memos, IRS changes, health/insurance alerts, and rate/CPI shocks.
-TIER1_CATEGORIES = {"immigration", "tax", "health", "economy", "retirement", "real-estate", "community"}
+TIER1_CATEGORIES = {"immigration", "tax", "health", "economy", "retirement", "real-estate", "consumer", "education", "community"}
 
 # Patterns that mark an item as "urgent / high-impact" for Korean-American
 # readers. Matched case-insensitively against title + summary. Items that
@@ -138,6 +139,9 @@ URGENT_TERMS = [
     r"unemployment", r"\bfomc\b", r"recession", r"inflation report",
     r"mortgage", r"home insurance", r"health insurance", r"\baca\b",
     r"medicare premium", r"social security cola", r"\bssi\b",
+    # Consumer protection / scams / recalls
+    r"scam", r"fraud", r"identity theft", r"data breach", r"consumer protection",
+    r"ftc", r"cfpb", r"recall", r"class action",
     # Geopolitical / energy / travel shocks that hit Korean-American households
     r"\biran\b", r"\bisrael\b", r"\bhormuz\b", r"strait of hormuz",
     r"middle east", r"missile", r"drone attack", r"airstrike", r"ceasefire",
@@ -211,6 +215,12 @@ CATEGORY_RELEVANCE_TERMS = {
     "robotics": re.compile(
         r"robot|robotics|automation|warehouse|factory|labor|jobs?|care|health|"
         r"restaurant|small business|humanoid|physical ai",
+        re.IGNORECASE,
+    ),
+    "consumer": re.compile(
+        r"scam|fraud|identity theft|data breach|consumer protection|ftc|cfpb|"
+        r"recall|class action|refund|debt collection|credit report|elder fraud|"
+        r"phone scam|text scam|zelle|venmo|bank account|social security scam",
         re.IGNORECASE,
     ),
 }
