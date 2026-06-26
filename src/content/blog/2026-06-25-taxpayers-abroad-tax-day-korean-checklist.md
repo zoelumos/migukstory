@@ -1,6 +1,6 @@
 ---
-title: '해외 거주 미국 시민권자 세금 신고일, 6월 16일에 주목하라'
-description: '해외 거주 미국인을 위한 자동 연장 신고 기한이 도래했습니다. 미주 한인 가족과 한국 체류 시민권자가 알아야 할 의무와 다음 단계를 정리했습니다.'
+title: '해외 거주 미국 시민권자, 세금 신고 의무와 기한을 다시 점검하세요'
+description: '해외 거주 미국인을 위한 세금 신고 의무를 점검합니다. 미주 한인 가족과 한국 체류 시민권자가 알아야 할 신고·해외계좌 확인 포인트를 정리했습니다.'
 pubDate: '2026-06-25'
 tags: ['세금', '해외거주자', 'IRS', '한인커뮤니티', '신고기한']
 category: 'tax'
@@ -10,7 +10,7 @@ source: 'Google News — IRS / Tax Guidance Watch'
 sourceUrl: 'https://news.google.com/rss/articles/CBMie0FVX3lxTE5lWm5SYmVLTTFjd01oV0RHTFVZcjZFaW9BZmZGZW0xOXhtQk9vTXp2UkpHdUJubnpoOHBQakYwMXVyLWxpTmxkd1h2dW8wdGhpZ3FtdVZOVXBNeUtaVUdMV2pUM3NUZ0llS1dqeVRiVkZNVE9UV1ZpUFpmNA?oc=5'
 ---
 
-# 해외 거주 미국 시민권자 세금 신고일, 6월 16일에 주목하라
+# 해외 거주 미국 시민권자, 세금 신고 의무와 기한을 다시 점검하세요
 
 National Taxpayers Union이 해외 거주 납세자(Taxpayers Abroad)를 향해 “Happy” Tax Day라는 다소 씁쓸한 인사를 건넸습니다. 미국 본토의 4월 세금 신고일이 지난 뒤에도, 해외 거주자에게는 별도의 신고 기한이 따로 존재한다는 사실을 환기시키는 보도입니다.
 

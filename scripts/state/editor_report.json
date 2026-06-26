@@ -1,76 +1,96 @@
 {
-  "generated_at": "2026-06-22T14:41:07.390837+00:00",
-  "threshold_promote": 70,
+  "generated_at": "2026-06-26T15:34:44.517728+00:00",
+  "threshold_promote": 80,
   "threshold_review": 50,
   "counts": {
-    "total": 8,
-    "promoted": 0,
-    "review": 8,
+    "total": 6,
+    "promoted": 1,
+    "review": 5,
     "discard_flag": 0,
-    "deferred": 2
+    "deferred": 0
   },
   "grades": [
     {
-      "slug": "2026-06-22-a-former-scientific-leader-at-cdc-died-at-94-statnews-com",
-      "score": 0,
-      "scores": {},
-      "reasoning": "grading error: claude -p failed (exit 1): ",
+      "slug": "2026-06-26-as-u-s-israeli-war-with-iran-intensifies-trump-says-it-is-very-far-ahead-of-sche",
+      "score": 59,
+      "scores": {
+        "factuality": 12,
+        "source_diversity": 8,
+        "ka_angle": 13,
+        "originality": 10,
+        "structure": 16
+      },
+      "reasoning": "프론트매터가 완전하고 핵심 요약·비교표·번호 체크리스트 등 시각적 구조와 한인 자영업자·시니어 관점 분석이 살아있어 구조와 한인 각도는 양호합니다. 그러나 유일한 출처가 실제 발행처(CBS)로 직접 연결되지 않는 Google News RSS 리디렉션 링크라 추적성·신뢰도가 약하고, 본문 스스로 '발췌에 구체적 수치·지역·사상자 없음'을 반복할 만큼 검증 가능한 사실이 빈약합니다. 유가·물가 영향도 데이터 없는 추측 수준이라 독창성도 제한적이어서 자동 승격 기준(80점) 미만으로 평가합니다.",
       "action": "review",
       "promoted_to": null
     },
     {
-      "slug": "2026-06-22-best-and-worst-markets-for-single-parent-homeownership-national-mortgage-profess",
-      "score": 0,
-      "scores": {},
-      "reasoning": "grading error: claude -p failed (exit 1): ",
+      "slug": "2026-06-26-ask-stacy-do-i-need-long-term-care-insurance-money-talks-news",
+      "score": 61,
+      "scores": {
+        "factuality": 11,
+        "source_diversity": 7,
+        "ka_angle": 15,
+        "originality": 12,
+        "structure": 16
+      },
+      "reasoning": "한인 관점 문단(1.5·2세 자녀의 약관 검토, 메디케이드 spend-down, MAPT 신탁·위임장)이 구체적이고, 선택지 비교표와 점검 체크리스트 등 시각적 구조도 잘 갖춰져 있어 구성은 강점입니다. 그러나 출처가 publisher가 불분명한 Google News RSS 단일 리다이렉트 링크인 데다 「출처」 섹션의 URL이 프런트매터와 달리 중간에 깨진 문자가 끼어 추적 가능성이 떨어지고, 원문 자체가 수치·제도 없는 짧은 Q&A라 사실성·뉴스성이 약합니다. 따라서 자동 승격 기준 미만으로 판단합니다.",
       "action": "review",
       "promoted_to": null
     },
     {
-      "slug": "2026-06-22-business-tax-deadlines-2026-full-tax-calendar-nerdwallet",
-      "score": 0,
-      "scores": {},
-      "reasoning": "grading error: claude -p failed (exit 1): ",
+      "slug": "2026-06-26-bipartisan-support-grows-for-housing-affordability-policies-national-mortgage-pr",
+      "score": 58,
+      "scores": {
+        "factuality": 12,
+        "source_diversity": 8,
+        "ka_angle": 13,
+        "originality": 9,
+        "structure": 16
+      },
+      "reasoning": "frontmatter가 완전하고 「핵심 요약」·비교표·출처 섹션을 갖춘 구조와 한인 그룹별(첫 집·재융자·임대·은퇴) 점검 포인트를 명시한 점은 강점입니다. 그러나 원문 자체가 '초당적 지지가 커진다'는 분위기만 전하고 법안명·시행일·대상 등 검증 가능한 구체 사실이 없어 사실성과 독창성이 약하며, 유일한 출처가 직접 추적이 어려운 Google News RSS 리디렉트 링크여서 출처 신뢰도도 낮습니다. 시각화는 있으나 알맹이 있는 정책 정보가 부족해 자동 승격 기준에는 미달합니다.",
       "action": "review",
       "promoted_to": null
     },
     {
-      "slug": "2026-06-22-fda-broadens-access-to-over-the-counter-naloxone-nasal-spray-for-opioid-overdose",
-      "score": 0,
-      "scores": {},
-      "reasoning": "grading error: claude -p failed (exit 1): ",
+      "slug": "2026-06-26-syracuse-estate-planning-attorney-frederick-p-davies-outlines-when-a-living-trus",
+      "score": 88,
+      "scores": {
+        "factuality": 17,
+        "source_diversity": 18,
+        "ka_angle": 18,
+        "originality": 17,
+        "structure": 18
+      },
+      "reasoning": "프로베이트·약식절차 등 핵심 사실이 NY Courts 공식 링크 2건으로 추적 가능하고, 철회가능/철회불가 신탁 구분과 'funding the trust' 함정 등 편집자 차원의 종합과 오해 교정이 살아 있어 단순 번역을 넘어섭니다. 한·미 양국 자산, 은퇴자 언어장벽 등 한인 실무 관점이 명시적이고 점검 체크표·오해 바로잡기 비교표 등 주제에 맞는 시각화가 충실합니다. 다만 1차 출처가 변호사 원문 기사 대신 Google News 리다이렉트 링크라 해당 변호사 발언의 직접 검증 추적성이 약간 떨어지는 점은 아쉽습니다.",
+      "action": "promote",
+      "promoted_to": "queue/2026-06-26-syracuse-estate-planning-attorney-frederick-p-davies-outlines-when-a-living-trus.md"
+    },
+    {
+      "slug": "2026-06-26-us-millions-lost-health-insurance-when-subsidies-expired-human-rights-watch",
+      "score": 54,
+      "scores": {
+        "factuality": 8,
+        "source_diversity": 7,
+        "ka_angle": 14,
+        "originality": 9,
+        "structure": 16
+      },
+      "reasoning": "구조 면에서는 frontmatter가 완전하고 핵심 요약·점검표(체크리스트형 표)·출처 섹션을 갖춰 시각화 요건은 충족하며, 한인 자영업자·마켓플레이스 가입자·부모 부양 가정으로 연결한 관점 문단도 명확합니다. 그러나 본문이 'HRW가 수백만 명이 보험을 잃었다고 밝혔다'는 단일 주장만 모호하게 반복할 뿐 구체적 수치·날짜·보고서명이 전혀 없고, 유일한 출처가 직접 추적 불가능한 Google News RSS 리다이렉트 링크라 사실성과 출처 신뢰도가 크게 떨어집니다. 원 보고서나 정부·언론 1차 링크 없이는 검증이 불가능해 자동 승격 기준에 미달합니다.",
       "action": "review",
       "promoted_to": null
     },
     {
-      "slug": "2026-06-22-lesotho-level-2-exercise-increased-caution",
-      "score": 0,
-      "scores": {},
-      "reasoning": "grading error: claude -p failed (exit 1): ",
-      "action": "review",
-      "promoted_to": null
-    },
-    {
-      "slug": "2026-06-22-the-magic-mortgage-rate-that-could-make-homes-affordable-again-thestreet-com",
-      "score": 0,
-      "scores": {},
-      "reasoning": "grading error: claude -p failed (exit 1): ",
-      "action": "review",
-      "promoted_to": null
-    },
-    {
-      "slug": "2026-06-22-video-friday-do-robots-even-need-legs",
-      "score": 0,
-      "scores": {},
-      "reasoning": "grading error: claude -p failed (exit 1): ",
-      "action": "review",
-      "promoted_to": null
-    },
-    {
-      "slug": "2026-06-22-when-the-trump-administration-cracks-down-on-anthropic-who-benefits",
-      "score": 0,
-      "scores": {},
-      "reasoning": "grading error: claude -p failed (exit 1): ",
+      "slug": "2026-06-26-westchester-county-elder-law-attorney-anthony-j-enea-highlights-key-consideratio",
+      "score": 53,
+      "scores": {
+        "factuality": 10,
+        "source_diversity": 8,
+        "ka_angle": 13,
+        "originality": 8,
+        "structure": 14
+      },
+      "reasoning": "한인 부모·자녀 세대를 향한 관점 문단과 점검용 비교표(시각화)는 갖춰져 있어 구조와 한인 앵글은 무난합니다. 그러나 본문이 '변호사가 핵심 사항을 짚었다'는 보도자료 헤드라인을 되풀이할 뿐 실제 수치·방식·세금/자격 세부 내용이 전혀 없는 콘텐츠 공백 상태이고, 표 항목도 일반론에 그쳐 독창성과 사실성이 약합니다. 게다가 유일한 출처가 ACCESS Newswire(보도자료성)로 연결되는 Google News RSS 난독화 링크라 추적성·신뢰도가 낮아 자동 승격 기준에는 미달합니다.",
       "action": "review",
       "promoted_to": null
     }

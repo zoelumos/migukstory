@@ -12,6 +12,8 @@ Env vars (optional):
     POSTS_PER_RUN — int (default: 1)
 """
 
+from __future__ import annotations
+
 import os
 import re
 from datetime import datetime, timezone
