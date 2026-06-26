@@ -136,14 +136,21 @@ export function splitHomepageStories<T extends BlogLike>(posts: T[]) {
 	const todayFallback = todayRest
 		.filter(post => inferHeadlineScope(post) !== 'local' && !todayAboveFold.includes(post))
 		.sort(compareForHomepage);
-	const olderAboveFold = olderRest.filter(isLeadEligible).sort(compareForHomepage);
-	const olderFallback = olderRest
-		.filter(post => inferHeadlineScope(post) !== 'local' && !olderAboveFold.includes(post))
-		.sort(compareForHomepage);
+	// Above-fold cards are labeled "오늘 꼭 읽어야 할 뉴스", so they must feel
+	// current. Fill from the newest publication date first; if there are fewer
+	// than two remaining posts from that date, backfill only from the next-most-
+	// recent date in chronological order. Never let old evergreen high-priority
+	// guides jump into this slot just because they score well editorially.
+	const newestOlderDate = olderRest[0] ? dateKey(olderRest[0]) : '';
+	const recentOlderRest = newestOlderDate
+		? olderRest.filter(post => dateKey(post) === newestOlderDate && inferHeadlineScope(post) !== 'local')
+		: [];
+	const recentOlderByDate = recentOlderRest.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+	const aboveFold = [...todayAboveFold, ...todayFallback, ...recentOlderByDate].slice(0, 2);
 
 	return {
 		lead,
-		aboveFold: [...todayAboveFold, ...todayFallback, ...olderAboveFold, ...olderFallback].slice(0, 2),
+		aboveFold,
 		// "계속해서 읽기" must be a live-news rail, not another editorial-priority
 		// rail. Readers expect the newest published posts first here, even when an
 		// older USCIS/tax guide scores higher for headline placement.
