@@ -4,7 +4,7 @@ description: '7월 4일 공휴일로 소셜시큐리티 지급일이 앞당겨�
 pubDate: '2026-06-27'
 tags: ['소셜시큐리티', '7월지급일', 'COLA2026', 'SECURE2.0', '한인은퇴', 'Medicare', 'RMD']
 category: 'retirement'
-ageGroup: 'senior'
+ageGroup: '55+'
 draft: false
 author: 'steve-song'
 editorNote: '한인 커뮤니티에서 소셜시큐리티 지급일 변동을 모르고 7월 초 통장이 비어 당황하는 경우가 반복됩니다. 특히 올해는 7월 4일 독립기념일이 토요일이라 금요일 대체 공휴일이 생기면서 일부 수급자의 지급일이 이틀이나 앞당겨집니다. 아울러 2026년부터 SECURE 2.0 캐치업 규정 변경이 실제로 적용되기 시작하므로, 은퇴 준비 중인 한인 가정도 함께 점검이 필요합니다.'
