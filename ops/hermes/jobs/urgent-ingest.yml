@@ -55,6 +55,12 @@ command: |
   MANIFEST=$(mktemp)
   trap 'rm -f "$MANIFEST"' EXIT
 
+  # Refresh the news-cycle / viral signal before the urgent pass so a story that
+  # broke since the morning ingest (e.g. an evening strike) is treated as breaking
+  # and can claim the headline. Non-fatal on failure.
+  "$PY_VENV/bin/python" scripts/discover_viral_topics.py --top 4 --timeout 10 \
+    || echo "  (viral discovery exited non-zero; continuing without headline boost)"
+
   "$PY_VENV/bin/python" scripts/draft_from_rss.py \
     --tier1-only \
     --urgent-only \
@@ -84,7 +90,8 @@ command: |
   gh label create automated --repo zoelumos/migukstory --color 1d76db --description 'Automated PR' 2>/dev/null || true
   gh label create urgent-watch --repo zoelumos/migukstory --color d93f0b --description 'Tier-1 urgent ingest' 2>/dev/null || true
 
-  for path in drafts queue scripts/state/seen_urls.json scripts/state/editor_report.json; do
+  for path in drafts queue scripts/state/seen_urls.json scripts/state/editor_report.json \
+              scripts/state/viral_boost_terms.json scripts/state/viral_topics_history.json; do
     if [ -e "$path" ]; then
       git add "$path"
     fi

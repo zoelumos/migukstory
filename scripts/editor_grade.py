@@ -70,12 +70,23 @@ REPO = Path(__file__).resolve().parent.parent
 DRAFTS = REPO / "drafts"
 QUEUE = REPO / "queue"
 REPORT = REPO / "scripts" / "state" / "editor_report.json"
+VIRAL_BOOST_FILE = REPO / "scripts" / "state" / "viral_boost_terms.json"
+VIRAL_BOOST_MAX_AGE_HOURS = 36
 
 DEFAULT_MODEL = "claude-opus-4-8"
 DEFAULT_THRESHOLD = 80
 REVIEW_THRESHOLD = 50      # below this = "likely discard"
 DEFAULT_MAX_DRAFTS = 8     # hard ceiling on drafts graded in one run
 DEFAULT_CLI_TIMEOUT = 120  # per `claude -p` call, seconds
+
+# Headline placement. The editor judges how strongly a draft aligns with what
+# is leading ALL of today's news (the viral report) and writes the result into
+# the promoted draft's frontmatter, where src/utils/headlinePriority.ts turns
+# it into the homepage lead/featured slot. The editor can only ELEVATE a post
+# to headline status — never bury one — so good evergreen guides are never
+# demoted by this path.
+HEADLINE_STRENGTH_MIN_TO_WRITE = 4   # only persist strength when genuinely headline-worthy
+HEADLINE_STRENGTH_MAX = 5
 
 
 @dataclass
@@ -86,6 +97,9 @@ class Grade:
     reasoning: str                  # 2-3 sentences from the editor
     action: str                     # promote | review | discard_flag
     promoted_to: str | None = None  # destination path if promoted
+    headline_strength: int = 0      # editor's 1-5 headline judgment (0 = not assessed)
+    is_breaking_lead: bool = False  # editor says this is TODAY's top story
+    viral_match: str | None = None  # name of the breaking cluster it matched, if any
 
 
 SYSTEM_PROMPT = """You are the editor-in-chief of migukstory.com, a Korean-American
@@ -104,6 +118,8 @@ USER_PROMPT_TEMPLATE = """다음은 사람 검토 전 AI가 작성한 한국어 
 중요: GSC 성과 기준으로 USCIS/이민 글이 실제 Google impressions/clicks를 만들고 있습니다. 자동 승격 판단 시 이민/USCIS, 세금/IRS, 연금/Social Security, 주택/모기지, 보험/Medicare/ACA, 사기·소비자보호(FTC/CFPB/리콜/identity theft), 교육·학자금, 한인 생활가이드처럼 검색 의도와 한인 실무성이 강한 초안에 더 높은 편집 가치를 두세요. 단, 경제와 AI/robotics는 계속 유지해야 하는 보조 카테고리입니다. 해당 글이 경제·AI·로보틱스라면 한인 일자리, 소상공인, 투자/은퇴계좌, 자동화 리스크, 자녀 진로와 명확히 연결될 때 좋은 글로 평가하세요.
 
 중요: Migukstory의 차별점은 읽기 쉬운 시각적 구조입니다. Mermaid/flowchart/sequenceDiagram/gantt 코드블록은 사이트에서 깨져 보이므로 금지입니다. 글에는 주제에 맞는 Markdown 표, 번호 단계 목록, 체크리스트, 또는 짧은 타임라인이 있어야 자동 승격 대상입니다.
+
+{viral_block}
 
 ## 평가 축 (각 0–20점)
 
@@ -164,18 +180,24 @@ USER_PROMPT_TEMPLATE = """다음은 사람 검토 전 AI가 작성한 한국어 
     "structure": <0-20>
   }},
   "total": <합계 0-100>,
+  "headline_strength": <1-5, 위 '오늘의 뉴스 사이클' 규칙에 따른 헤드라인 적합도>,
+  "is_breaking_lead": <true/false, 이 글이 오늘의 속보 헤드라인이어야 하면 true>,
   "reasoning": "<한국어로 2-3문장. 강점과 약점을 모두 언급할 것.>"
 }}
 """
 
 
-def _editor_user_prompt(slug: str, content: str, threshold: int) -> str:
+def _editor_user_prompt(slug: str, content: str, threshold: int,
+                        viral: ViralContext | None = None) -> str:
     truncated = content if len(content) < 12000 else content[:12000] + "\n…(잘림)"
+    viral_block = _viral_prompt_block(viral) if viral is not None else _viral_prompt_block(
+        ViralContext(briefing="", breaking_re=None, breaking_names=[], has_viral=False))
     return USER_PROMPT_TEMPLATE.format(
         slug=slug,
         content=truncated,
         threshold=threshold,
         below_threshold=max(0, threshold - 1),
+        viral_block=viral_block,
     )
 
 
@@ -208,6 +230,161 @@ def _has_visual_explanation(content: str) -> bool:
         return True
     # Markdown table heuristic: header row + separator row.
     return bool(re.search(r"^\|.+\|\s*\n\|\s*:?-{3,}:?\s*(?:\|\s*:?-{3,}:?\s*)+\|", content, re.MULTILINE))
+
+
+# --------------------------------------------------------------------------
+# Viral headline alignment — connects discover_viral_topics.py → the editor →
+# headline frontmatter → src/utils/headlinePriority.ts homepage lead slot.
+# --------------------------------------------------------------------------
+
+@dataclass
+class ViralContext:
+    briefing: str                   # Korean prompt block describing today's hot topics
+    breaking_re: re.Pattern | None  # OR of all "breaking"-tier cluster terms
+    breaking_names: list[str]       # cluster names at breaking tier
+    has_viral: bool                 # any qualifying cluster at all
+
+
+def load_viral_context() -> ViralContext:
+    """Read scripts/state/viral_boost_terms.json into an editor briefing.
+
+    The file is written by scripts/discover_viral_topics.py each ingest run and
+    measures what the WHOLE news cycle is leading with right now. A missing or
+    stale (>36h) file means "no special hot topics today" — the editor then
+    grades on evergreen service-journalism merit, exactly as before.
+    """
+    empty = ViralContext(briefing="", breaking_re=None, breaking_names=[], has_viral=False)
+    if not VIRAL_BOOST_FILE.exists():
+        return empty
+    try:
+        data = json.loads(VIRAL_BOOST_FILE.read_text(encoding="utf-8"))
+        generated = datetime.fromisoformat(data["generated_at"])
+        age_h = (datetime.now(timezone.utc) - generated).total_seconds() / 3600
+        if age_h > VIRAL_BOOST_MAX_AGE_HOURS:
+            print(f"↩️  viral report is {age_h:.0f}h old — grading without headline boost",
+                  file=sys.stderr)
+            return empty
+        clusters = data.get("clusters") or []
+    except (json.JSONDecodeError, KeyError, ValueError) as e:
+        print(f"⚠️  ignoring broken viral report: {e}", file=sys.stderr)
+        return empty
+
+    if not clusters:
+        return empty
+
+    breaking = [c for c in clusters if c.get("tier") == "breaking"]
+    hot = [c for c in clusters if c.get("tier") != "breaking"]
+
+    breaking_terms = [t for c in breaking for t in c.get("terms", [])]
+    try:
+        breaking_re = re.compile("|".join(breaking_terms), re.IGNORECASE) if breaking_terms else None
+    except re.error:
+        breaking_re = None
+
+    lines: list[str] = []
+    if breaking:
+        lines.append("🚨 지금 미국 전체 뉴스가 1면으로 다루는 속보(breaking) 토픽:")
+        for c in breaking:
+            lines.append(f"   - {c['name']} ({c.get('category','')}) — 예: {c.get('sample','') or 'n/a'}")
+    if hot:
+        lines.append("🔥 강하게 떠오르는 핫토픽(hot):")
+        for c in hot:
+            lines.append(f"   - {c['name']} ({c.get('category','')}) — 예: {c.get('sample','') or 'n/a'}")
+
+    briefing = "\n".join(lines)
+    return ViralContext(
+        briefing=briefing,
+        breaking_re=breaking_re,
+        breaking_names=[c["name"] for c in breaking],
+        has_viral=True,
+    )
+
+
+def _viral_prompt_block(vc: ViralContext) -> str:
+    """The headline-alignment instructions injected into the editor prompt."""
+    if not vc.has_viral:
+        return (
+            "## 오늘의 뉴스 사이클 (헤드라인 정렬)\n\n"
+            "오늘은 미국 전체 뉴스에서 압도적으로 터지는 속보성 핫이슈가 감지되지 않았습니다.\n"
+            "따라서 이 글은 평소 기준(이민/세금/은퇴 등 한인 서비스 저널리즘 가치)으로 채점하고,\n"
+            "headline_strength는 보수적으로 1–3을 주세요. is_breaking_lead는 false로 두세요.\n"
+        )
+    return (
+        "## 오늘의 뉴스 사이클 (헤드라인 정렬 — 매우 중요)\n\n"
+        "아래는 지금 미국 전체 뉴스의 헤드라인을 측정한 결과입니다. 이 초안이 아래 토픽 중\n"
+        "하나를 실제로 다루는지 확인하세요.\n\n"
+        f"{vc.briefing}\n\n"
+        "판단 규칙:\n"
+        "- 이 초안이 위 **속보(breaking)** 토픽 중 하나를 다루고, 한인 독자에게 의미가 있으며,\n"
+        "  품질이 통과 수준이면 → 이 글은 사이트 헤드라인이 되어야 합니다.\n"
+        "  headline_strength=5, is_breaking_lead=true 로 표시하세요.\n"
+        "- 위 **핫토픽(hot)** 을 다루면 headline_strength=4 정도, is_breaking_lead=false.\n"
+        "- 위 토픽과 무관한 평범한 상록(evergreen) 서비스 기사라면 headline_strength=1–3,\n"
+        "  is_breaking_lead=false. 좋은 글이어도 오늘의 속보가 아니면 헤드라인이 아닙니다.\n"
+        "- 속보가 아닌 글을 절대 is_breaking_lead=true로 만들지 마세요. 헤드라인은 '지금 가장\n"
+        "  큰 뉴스'에만 줍니다.\n"
+    )
+
+
+# --------------------------------------------------------------------------
+# Frontmatter surgery — write headline levers without disturbing other fields.
+# We do line-level set/insert (never a full YAML round-trip) so Korean text,
+# quoting, and field order in the draft are preserved byte-for-byte.
+# --------------------------------------------------------------------------
+
+def _split_frontmatter(text: str) -> tuple[list[str], str] | None:
+    """Return (frontmatter_lines, body) or None if no leading --- block."""
+    if not text.startswith("---"):
+        return None
+    lines = text.splitlines(keepends=True)
+    if not lines or lines[0].rstrip("\n") != "---":
+        return None
+    for i in range(1, len(lines)):
+        if lines[i].rstrip("\n") == "---":
+            return lines[1:i], "".join(lines[i:])
+    return None
+
+
+def set_headline_frontmatter(path: Path, headline_strength: int | None,
+                             featured: bool) -> bool:
+    """Set headlineStrength / featured in a draft's frontmatter. Returns True
+    if the file was changed. Only ADDS or RAISES headline prominence."""
+    text = path.read_text(encoding="utf-8")
+    split = _split_frontmatter(text)
+    if split is None:
+        print(f"      ⚠️  no frontmatter block in {path.name}; skipping headline write",
+              file=sys.stderr)
+        return False
+    fm_lines, rest = split
+    head = "".join(text.splitlines(keepends=True)[:1])  # opening '---\n'
+
+    def upsert(lines: list[str], key: str, value: str) -> list[str]:
+        pat = re.compile(rf"^{re.escape(key)}\s*:")
+        for idx, ln in enumerate(lines):
+            if pat.match(ln):
+                lines[idx] = f"{key}: {value}\n"
+                return lines
+        # insert at end of frontmatter, preserving trailing newline convention
+        suffix = "\n" if (lines and not lines[-1].endswith("\n")) else ""
+        lines.append(f"{suffix}{key}: {value}\n")
+        return lines
+
+    changed = False
+    if headline_strength and headline_strength >= HEADLINE_STRENGTH_MIN_TO_WRITE:
+        s = max(1, min(HEADLINE_STRENGTH_MAX, int(headline_strength)))
+        fm_lines = upsert(fm_lines, "headlineStrength", str(s))
+        changed = True
+    if featured:
+        fm_lines = upsert(fm_lines, "featured", "true")
+        changed = True
+
+    if not changed:
+        return False
+
+    # `rest` already begins with the closing '---' line, so just concatenate.
+    new_text = head + "".join(fm_lines) + rest
+    path.write_text(new_text, encoding="utf-8")
+    return True
 
 
 def _parse_editor_output(raw: str, slug: str) -> tuple[dict, int]:
@@ -249,12 +426,13 @@ def _extract_first_json_object(raw: str) -> dict | None:
     return None
 
 
-def _editor_via_cli(slug: str, content: str, threshold: int, model: str, cli_timeout: int) -> tuple[dict, int]:
+def _editor_via_cli(slug: str, content: str, threshold: int, model: str, cli_timeout: int,
+                    viral: ViralContext | None = None) -> tuple[dict, int]:
     import subprocess
     combined = (
         SYSTEM_PROMPT
         + "\n\nRespond with the JSON object only — no code fences, no preamble. Do NOT use any tools.\n\n"
-        + _editor_user_prompt(slug, content, threshold)
+        + _editor_user_prompt(slug, content, threshold, viral)
     )
     try:
         result = subprocess.run(
@@ -271,7 +449,8 @@ def _editor_via_cli(slug: str, content: str, threshold: int, model: str, cli_tim
     return _parse_editor_output(result.stdout.strip(), slug)
 
 
-def _editor_via_api(slug: str, content: str, threshold: int, model: str) -> tuple[dict, int]:
+def _editor_via_api(slug: str, content: str, threshold: int, model: str,
+                    viral: ViralContext | None = None) -> tuple[dict, int]:
     try:
         from anthropic import Anthropic
     except ImportError:
@@ -285,24 +464,25 @@ def _editor_via_api(slug: str, content: str, threshold: int, model: str) -> tupl
         model=model,
         max_tokens=900,
         system=SYSTEM_PROMPT,
-        messages=[{"role": "user", "content": _editor_user_prompt(slug, content, threshold)}],
+        messages=[{"role": "user", "content": _editor_user_prompt(slug, content, threshold, viral)}],
     )
     raw = "".join(b.text for b in msg.content if getattr(b, "type", None) == "text").strip()
     return _parse_editor_output(raw, slug)
 
 
 def call_claude(slug: str, content: str, model: str, threshold: int,
-                cli_timeout: int) -> tuple[dict, int]:
+                cli_timeout: int, viral: ViralContext | None = None) -> tuple[dict, int]:
     """Route to API or CLI based on CLAUDE_VIA_CLI env var."""
     if os.environ.get("CLAUDE_VIA_CLI", "").strip() == "1":
-        return _editor_via_cli(slug, content, threshold, model, cli_timeout)
-    return _editor_via_api(slug, content, threshold, model)
+        return _editor_via_cli(slug, content, threshold, model, cli_timeout, viral)
+    return _editor_via_api(slug, content, threshold, model, viral)
 
 
 def grade_one(path: Path, model: str, dry_run: bool, threshold: int,
-              cli_timeout: int) -> Grade:
+              cli_timeout: int, viral: ViralContext | None = None) -> Grade:
     slug = path.stem
     content = path.read_text(encoding="utf-8")
+    viral = viral or ViralContext(briefing="", breaking_re=None, breaking_names=[], has_viral=False)
 
     if dry_run:
         # Heuristic stub so we can smoke-test workflow plumbing without API spend.
@@ -310,6 +490,8 @@ def grade_one(path: Path, model: str, dry_run: bool, threshold: int,
         score = 60 + min(20, sources * 3)  # crude proxy
         if not _has_visual_explanation(content):
             score = min(score, threshold - 1)
+        # Heuristic headline guess: only "breaking" if it matches a breaking cluster.
+        hs = 4 if (viral.breaking_re and viral.breaking_re.search(content)) else 2
         return Grade(
             slug=slug,
             score=score,
@@ -317,12 +499,13 @@ def grade_one(path: Path, model: str, dry_run: bool, threshold: int,
                     "originality": 12, "structure": 12 if _has_visual_explanation(content) else 6},
             reasoning="dry-run heuristic: not a real evaluation" + ("; visual gate missing" if not _has_visual_explanation(content) else ""),
             action="promote" if score >= threshold else "review",
+            headline_strength=hs,
         )
 
     try:
         parsed, total = call_claude(
             slug, content, model=model, threshold=threshold,
-            cli_timeout=cli_timeout,
+            cli_timeout=cli_timeout, viral=viral,
         )
     except Exception as e:
         # A single bad/slow/refused draft is recorded as "review" — never fatal.
@@ -350,12 +533,43 @@ def grade_one(path: Path, model: str, dry_run: bool, threshold: int,
     else:
         action = "discard_flag"
 
+    # --- Headline alignment, with a deterministic guard on the model -------
+    # The model proposes headline_strength (1-5) and is_breaking_lead. We trust
+    # the strength number, but a draft may only claim the *featured/lead* slot
+    # if its text ACTUALLY matches a breaking-tier cluster's terms today. This
+    # stops the model from ever featuring, say, an evergreen retirement guide as
+    # "breaking news" — the homepage headline is reserved for the real top story.
+    try:
+        headline_strength = int(parsed.get("headline_strength") or 0)
+    except (TypeError, ValueError):
+        headline_strength = 0
+    headline_strength = max(0, min(HEADLINE_STRENGTH_MAX, headline_strength))
+
+    model_breaking = bool(parsed.get("is_breaking_lead"))
+    matches_breaking = bool(viral.breaking_re and viral.breaking_re.search(content))
+    is_breaking_lead = model_breaking and matches_breaking
+    viral_match = None
+    if model_breaking and not matches_breaking:
+        print(f"      ↩️  editor marked {slug} as breaking-lead, but it matches no "
+              f"breaking-tier cluster today — not featuring.", file=sys.stderr)
+    if is_breaking_lead:
+        headline_strength = HEADLINE_STRENGTH_MAX  # a true lead is always max strength
+        viral_match = ", ".join(viral.breaking_names) or "breaking"
+    else:
+        # Top strength (5) is reserved for a confirmed breaking lead. Without a
+        # real breaking-cluster match, the model can rate a piece "hot" (≤4) but
+        # not crown it the absolute headline.
+        headline_strength = min(headline_strength, HEADLINE_STRENGTH_MAX - 1)
+
     return Grade(
         slug=slug,
         score=total,
         scores={k: int(v) for k, v in parsed.get("scores", {}).items()},
         reasoning=parsed.get("reasoning", "").strip(),
         action=action,
+        headline_strength=headline_strength,
+        is_breaking_lead=is_breaking_lead,
+        viral_match=viral_match,
     )
 
 
@@ -382,6 +596,7 @@ def write_report(grades: list[Grade], threshold: int, deferred: int = 0) -> None
             "review": sum(1 for g in grades if g.action == "review"),
             "discard_flag": sum(1 for g in grades if g.action == "discard_flag"),
             "deferred": deferred,
+            "featured_lead": sum(1 for g in grades if g.is_breaking_lead),
         },
         "grades": [asdict(g) for g in grades],
     }
@@ -494,6 +709,17 @@ def main() -> int:
     model = os.environ.get("ANTHROPIC_MODEL", DEFAULT_MODEL)
     threshold = args.threshold
 
+    # Today's news-cycle context — what the WHOLE news cycle is leading with.
+    # Drives the editor's headline judgment (and the homepage lead slot).
+    viral = load_viral_context()
+    if viral.has_viral:
+        print("🔥 오늘의 뉴스 사이클 브리핑 (헤드라인 정렬에 반영):")
+        print("\n".join(f"   {ln}" for ln in viral.briefing.splitlines()))
+        if viral.breaking_names:
+            print(f"   🚨 속보 등급 클러스터: {', '.join(viral.breaking_names)}")
+    else:
+        print("🟢 오늘은 압도적 속보 토픽 없음 — 평소 서비스 저널리즘 기준으로 채점.")
+
     targets, deferred, mode = resolve_targets(args)
 
     if not targets:
@@ -524,10 +750,13 @@ def main() -> int:
             break
         print(f"\n   📝 {path.name}")
         g = grade_one(path, model=model, dry_run=args.dry_run,
-                      threshold=threshold, cli_timeout=args.cli_timeout)
+                      threshold=threshold, cli_timeout=args.cli_timeout, viral=viral)
         print(f"      score: {g.score}/100  → {g.action}")
         if g.scores:
             print("      breakdown: " + "  ".join(f"{k}={v}" for k, v in g.scores.items()))
+        if g.headline_strength:
+            lead = " 🚨오늘의 헤드라인(featured)" if g.is_breaking_lead else ""
+            print(f"      headline: strength={g.headline_strength}/5{lead}")
         if g.reasoning:
             print(f"      reasoning: {g.reasoning[:160]}")
         if g.action == "promote" and not args.dry_run:
@@ -535,6 +764,15 @@ def main() -> int:
                 dest = promote(path)
                 g.promoted_to = str(dest.relative_to(REPO))
                 print(f"      ✅ promoted → {g.promoted_to}")
+                # Persist the headline decision into the queued draft's
+                # frontmatter so src/utils/headlinePriority.ts can lead with it.
+                if set_headline_frontmatter(dest, g.headline_strength, g.is_breaking_lead):
+                    bits = []
+                    if g.headline_strength >= HEADLINE_STRENGTH_MIN_TO_WRITE:
+                        bits.append(f"headlineStrength={g.headline_strength}")
+                    if g.is_breaking_lead:
+                        bits.append("featured=true")
+                    print(f"      🗞  headline frontmatter set: {', '.join(bits)}")
             except Exception as e:
                 print(f"      ❌ promotion failed: {e}", file=sys.stderr)
                 g.action = "review"

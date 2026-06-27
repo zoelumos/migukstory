@@ -91,7 +91,7 @@ jobs:
           #   scripts/state/seen_urls.json  — dedupe store
           #   scripts/state/editor_report.json — last grading report
           # Anything else (src/, package.json, etc.) is a bug — fail loudly.
-          ALLOWED='^(drafts/|queue/|scripts/state/(seen_urls|editor_report)\.json$)'
+          ALLOWED='^(drafts/|queue/|scripts/state/(seen_urls|editor_report|viral_boost_terms|viral_topics_history)\.json$)'
           OUT_OF_SCOPE=$(git status --porcelain | awk '{print $2}' | grep -vE "$ALLOWED" || true)
           if [ -n "$OUT_OF_SCOPE" ]; then
             echo "::error::workflow modified out-of-scope files — refusing to PR:"
@@ -99,7 +99,7 @@ jobs:
             git --no-pager diff
             exit 1
           fi
-          git add drafts/ queue/ scripts/state/seen_urls.json scripts/state/editor_report.json
+          git add drafts/ queue/ scripts/state/seen_urls.json scripts/state/editor_report.json scripts/state/viral_boost_terms.json scripts/state/viral_topics_history.json
           if git diff --staged --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No new drafts or promotions; nothing to PR."

@@ -60,6 +60,24 @@ BURST_WEIGHT = 2.0
 BURST_CAP = 5.0
 KOREAN_BONUS = 2.0
 
+# Severity tiers. A "breaking" cluster is one the whole news cycle is leading
+# with right now (e.g. an Iran/Israel strike) — it is everywhere AND spiking
+# vs its own baseline. These are the only topics allowed to claim the site's
+# headline/featured slot. "hot" clusters still get drafting priority but do not
+# auto-claim the headline. editor_grade.py reads this tier to decide whether a
+# matching, quality-passing draft becomes the lead story.
+BREAKING_MIN_BREADTH = 5     # mentioned across 5+ distinct feeds today
+BREAKING_MIN_BURST = 2.0     # at least 2x its 7-day baseline
+BREAKING_MIN_SCORE = 18.0    # or simply scoring very high overall
+
+
+def classify_tier(breadth: int, burst: float, score: float) -> str:
+    """breaking | hot — assumes the cluster already cleared the viral gate."""
+    if (breadth >= BREAKING_MIN_BREADTH and burst >= BREAKING_MIN_BURST) \
+            or score >= BREAKING_MIN_SCORE:
+        return "breaking"
+    return "hot"
+
 
 def load_yaml(path: Path) -> dict:
     try:
@@ -211,6 +229,7 @@ def main() -> int:
             "burst_ratio": round(burst, 2),
             "korean_angle": korean_flag[cname],
             "score": round(score, 2),
+            "tier": classify_tier(breadth, burst, score),
             "samples": sample_headlines[cname],
         })
     scored.sort(key=lambda r: r["score"], reverse=True)
@@ -221,14 +240,16 @@ def main() -> int:
 
     print(f"\n🔥 바이럴 토픽 리포트 ({today}, 피드 {fetched_ok}/{len(feeds)}개 수집)")
     for r in scored:
-        marker = "🔥" if r in viral else "  "
+        marker = "🚨" if (r in viral and r["tier"] == "breaking") else "🔥" if r in viral else "  "
         print(f" {marker} {r['name']:<28} score={r['score']:>6}  "
               f"hits={r['hits']:>3} feeds={r['breadth']:>2} "
-              f"burst=x{r['burst_ratio']:<5} {'🇰🇷' if r['korean_angle'] else ''}")
+              f"burst=x{r['burst_ratio']:<5} tier={r['tier']:<8} "
+              f"{'🇰🇷' if r['korean_angle'] else ''}")
     if viral:
         print("\n   오늘 드래프트에서 우선순위를 받는 클러스터:")
         for r in viral:
-            print(f"   - {r['name']} ({r['category']}) — 예시: {r['samples'][0] if r['samples'] else 'n/a'}")
+            tier_ko = "🚨속보(헤드라인 후보)" if r["tier"] == "breaking" else "🔥핫토픽"
+            print(f"   - [{tier_ko}] {r['name']} ({r['category']}) — 예시: {r['samples'][0] if r['samples'] else 'n/a'}")
     else:
         print("\n   임계값을 넘는 바이럴 토픽 없음 — 부스트 파일은 비워둡니다.")
 
@@ -250,6 +271,15 @@ def main() -> int:
                 "name": r["name"],
                 "category": r["category"],
                 "score": r["score"],
+                # tier drives editor headline decisions; "breaking" clusters are
+                # the only ones allowed to claim the site's featured/lead slot.
+                "tier": r["tier"],
+                "breadth": r["breadth"],
+                "burst_ratio": r["burst_ratio"],
+                "korean_angle": r["korean_angle"],
+                # one sample headline so the editor (and humans reading the
+                # report) can see WHAT the cluster is about today.
+                "sample": r["samples"][0] if r["samples"] else "",
                 "terms": cluster_meta[r["name"]]["keywords"],
             }
             for r in viral

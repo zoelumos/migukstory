@@ -68,6 +68,15 @@ command: |
   MANIFEST=$(mktemp)
   trap 'rm -f "$MANIFEST"' EXIT
 
+  # STEP 0 — Measure what the WHOLE news cycle is leading with right now
+  # (Google News top stories + our feeds). Writes scripts/state/viral_boost_terms.json
+  # with per-cluster tiers (breaking | hot). NO Claude / API key needed. This file
+  # drives BOTH draft selection priority AND the editor's headline decision, so a
+  # genuine top story (e.g. an Iran/Israel strike) becomes the site headline the
+  # same day. A failure here is non-fatal: ingest falls back to evergreen priority.
+  "$PY_VENV/bin/python" scripts/discover_viral_topics.py --top 4 --timeout 10 \
+    || echo "  (viral discovery exited non-zero; continuing without headline boost)"
+
   # Keep the full ingest under the Hermes scheduler wall-clock limit, but never
   # trade quality for speed: only editor_grade.py may promote drafts to queue/.
   "$PY_VENV/bin/python" scripts/draft_from_rss.py \
@@ -100,7 +109,8 @@ command: |
   gh label create draft --repo zoelumos/migukstory --color 0e8a16 --description 'AI draft automation' 2>/dev/null || true
   gh label create automated --repo zoelumos/migukstory --color 1d76db --description 'Automated PR' 2>/dev/null || true
 
-  for path in drafts queue scripts/state/seen_urls.json scripts/state/editor_report.json; do
+  for path in drafts queue scripts/state/seen_urls.json scripts/state/editor_report.json \
+              scripts/state/viral_boost_terms.json scripts/state/viral_topics_history.json; do
     if [ -e "$path" ]; then
       git add "$path"
     fi
