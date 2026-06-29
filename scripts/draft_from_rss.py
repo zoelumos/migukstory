@@ -440,10 +440,12 @@ Hard rules (non-negotiable):
   concrete implications for Korean-American readers instead of merely
   translating/summarizing the source.
 - Visualization is Migukstory's core differentiation. Every draft must include
-  at least one useful visual explanation: Mermaid flowchart for processes/
-  eligibility paths, timeline/stage list for date-driven changes, or Markdown
-  comparison table for old-vs-new/options/risks. The visual must be accurate,
-  mobile-readable, and not decorative filler.
+  at least one useful visual explanation: a numbered step-by-step checklist for
+  processes/eligibility paths, a timeline/stage list for date-driven changes, or
+  a Markdown comparison table for old-vs-new/options/risks. The visual must be
+  accurate, mobile-readable, and not decorative filler. NEVER use Mermaid,
+  flowchart/graph, sequenceDiagram, or gantt code blocks — they break on the
+  site. Use plain Markdown lists/tables only.
 - Always include a final "## 출처 (Sources)" section with the source name
   and the canonical URL given to you. Do not invent additional sources.
 - Never give legal, tax, or medical advice. Where the topic touches

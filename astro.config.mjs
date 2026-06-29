@@ -5,6 +5,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 import stripLeadingBlogH1 from './plugins/remark-strip-leading-h1.js';
+import remarkMermaidMobile from './plugins/remark-mermaid-mobile.js';
 
 // Architecture: 100% static Astro build → Cloudflare Pages.
 // Auth endpoints live in /functions/ (Cloudflare Pages Functions) and auto-deploy
@@ -66,6 +67,6 @@ export default defineConfig({
 	],
 	markdown: {
 		shikiConfig: { theme: 'github-light', wrap: true },
-		remarkPlugins: [stripLeadingBlogH1],
+		remarkPlugins: [stripLeadingBlogH1, remarkMermaidMobile],
 	},
 });

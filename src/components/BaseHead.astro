@@ -237,40 +237,13 @@ const howToSchema = howTo ? {
   }
 </style>
 
-<!-- Mermaid diagram loader (lazy, only when post has diagrams) -->
-<script type="module" is:inline>
-  // Astro uses Shiki which wraps mermaid in <pre data-language="mermaid"> with span tokens
-  const shikiBlocks = document.querySelectorAll('pre[data-language="mermaid"]');
-  if (shikiBlocks.length > 0) {
-    shikiBlocks.forEach((pre) => {
-      const code = pre.textContent || '';
-      const wrapper = document.createElement('div');
-      wrapper.className = 'mermaid-wrapper';
-      const mermaidPre = document.createElement('pre');
-      mermaidPre.className = 'mermaid';
-      mermaidPre.textContent = code;
-      wrapper.appendChild(mermaidPre);
-      pre.replaceWith(wrapper);
-    });
-    const { default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: 'base',
-      securityLevel: 'loose',
-      fontFamily: 'Pretendard Variable, Pretendard, sans-serif',
-      themeVariables: {
-        primaryColor: '#FAF8F3',
-        primaryTextColor: '#1B1815',
-        primaryBorderColor: '#7E2B2B',
-        lineColor: '#5C544B',
-        secondaryColor: '#F2E9D5',
-        tertiaryColor: '#E8DCC0',
-        background: '#FAF8F3',
-      },
-    });
-    await mermaid.run({ querySelector: 'pre.mermaid' });
-  }
-</script>
+<!--
+  Mermaid is intentionally NOT rendered client-side anymore. The old CDN-loaded
+  mermaid@11 runtime was the source of broken/empty diagrams (parse failures,
+  CDN/JS flakiness, invisible to search/AI crawlers, layout shift). Diagrams are
+  now converted to static mobile-readable lists at build time by
+  plugins/remark-mermaid-mobile.js, so no client runtime is needed.
+-->
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURLString} />
