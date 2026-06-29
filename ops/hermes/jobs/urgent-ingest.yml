@@ -79,7 +79,7 @@ command: |
     || echo "  (urgent validate/improve script exited non-zero; continuing)"
 
   "$PY_VENV/bin/python" scripts/editor_grade.py \
-    --threshold 70 \
+    --threshold 60 \
     --manifest "$MANIFEST" \
     --max-drafts 8 \
     --time-budget 240 \

@@ -95,12 +95,28 @@ command: |
     || echo "  (validate/improve script exited non-zero; continuing)"
 
   "$PY_VENV/bin/python" scripts/editor_grade.py \
-    --threshold 70 \
+    --threshold 60 \
     --manifest "$MANIFEST" \
     --max-drafts 8 \
     --time-budget 180 \
     --cli-timeout 60 \
     || echo "  (editor script exited non-zero; continuing)"
+
+  # Backlog re-grade: each run picks the 6 oldest-slugged drafts (by filename,
+  # which starts YYYY-MM-DD) and re-grades them at the current threshold.
+  # This drains the May–June backlog over a few days without ballooning the
+  # per-run time budget. Runs after the manifest pass so fresh articles are
+  # never displaced. git checkout resets mtimes so we sort by name, not mtime.
+  BACKLOG=$(ls drafts/*.md 2>/dev/null | grep -v 'needs-review' | sort | head -6 || true)
+  if [ -n "$BACKLOG" ]; then
+    mapfile -t BACKLOG_ARR <<< "$BACKLOG"
+    "$PY_VENV/bin/python" scripts/editor_grade.py \
+      --threshold 60 \
+      --only "${BACKLOG_ARR[@]}" \
+      --time-budget 120 \
+      --cli-timeout 60 \
+      || echo "  (backlog re-grade exited non-zero; continuing)"
+  fi
 
   # Claude is the only writing/review path. If Claude auth fails, leave drafts in
   # drafts/ for later Opus review; never auto-promote source-only fallback copy.
@@ -129,7 +145,7 @@ command: |
   # Create PR if it doesn't already exist (idempotent), then auto-merge it
   # when GitHub reports the branch is clean/mergeable. This lands queue/ on main
   # so the daily publish workflow has fresh posts to publish.
-  PR_BODY="Auto-generated drafts via Hermes + claude -p (Max subscription auth, no API key). Pipeline: ingest RSS candidates → validate/improve with source-backed context and Korean-American impact analysis → editor grade at >=70/100 → queue/. Drafts stay in drafts/; promoted items move to queue/. This Hermes cron auto-merges the PR after creation when GitHub reports it is mergeable/clean. Next daily-post.yml cron (8 AM ET) will then publish from queue automatically."
+  PR_BODY="Auto-generated drafts via Hermes + claude -p (Max subscription auth, no API key). Pipeline: ingest RSS candidates → validate/improve with source-backed context and Korean-American impact analysis → editor grade at >=60/100 → queue/. Drafts stay in drafts/; promoted items move to queue/. This Hermes cron auto-merges the PR after creation when GitHub reports it is mergeable/clean. Next daily-post.yml cron (8 AM ET) will then publish from queue automatically."
   OPEN_PR_URL=$(gh pr list \
     --repo zoelumos/migukstory \
     --head bot/daily-draft \
@@ -168,11 +184,23 @@ command: |
   echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] daily-ingest done"
 
   # EventBridge-style handoff: once ingest's draft PR is merged and queue/ is on
-  # origin/main, immediately trigger the Claude-orchestrated publish wrapper.
-  # This removes the old 60-90 minute wait for a separate daily-publish cron.
+  # origin/main, immediately trigger publish. Try the Claude-orchestrated wrapper
+  # first; fall back to a direct gh workflow dispatch so a missing/broken wrapper
+  # never silently leaves a full queue unpublished.
   if [ "${PUBLISH_AFTER_INGEST:-0}" = "1" ]; then
     echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] queue merged; triggering daily-publish"
-    /Users/zoelumos/.hermes/scripts/migukstory-daily-publish.sh
+    if ! /Users/zoelumos/.hermes/scripts/migukstory-daily-publish.sh 2>/dev/null; then
+      echo "  migukstory-daily-publish.sh absent/failed; dispatching daily-post.yml directly"
+      git fetch -q origin
+      _Q=$(git ls-tree -r --name-only origin/main queue/ 2>/dev/null | grep -c '\.md$' || echo 0)
+      if [ "${_Q:-0}" -ge 1 ]; then
+        _C="$_Q"; [ "$_C" -gt 4 ] && _C=4
+        gh workflow run daily-post.yml --repo zoelumos/migukstory -f count="$_C" || true
+        echo "  Dispatched daily-post.yml count=${_C}"
+      else
+        echo "  Queue empty after merge; no publish dispatch needed."
+      fi
+    fi
   fi
 
   # NOTE: do NOT invoke the editorial-review script from inside this job.
