@@ -4,7 +4,7 @@ description: '2026년 6월 23일 연방대법원이 6대 3으로 "영주권자 �
 pubDate: 2026-06-29
 tags: ['영주권', '대법원', '재입국', 'CBP', '이민법']
 category: 'immigration'
-ageGroup: '전체'
+ageGroup: 'all'
 author: 'steve-song'
 editorNote: '이 판결은 자기 전과 기록이 "해결됐다"고 생각하는 영주권자도 예외 없이 적용됩니다. 해외 출국 전 반드시 이민 변호사 검토를 받으십시오. 체류 기간이 길거나 전과 기록이 있는 경우 특히 긴급합니다.'
 faq:
