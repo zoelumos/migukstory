@@ -25,7 +25,7 @@ const ADS = {
 		headline: '한인 비즈니스 웹사이트, 전환되도록 만듭니다',
 		blurb:
 			'바이링궐(한/영) 웹사이트 · Shopify · SEO · 로컬 검색 최적화. 식당·뷰티·이커머스·의료까지, 2019년부터 150여 건. 6주 만에 검색 노출 5배 사례.',
-		cta: '무료 견적 받기',
+		cta: '한인 비즈니스 웹사이트 제작 — Zoe Lumos',
 		href: 'https://zoelumos.com',
 	},
 	kona: {
@@ -34,7 +34,7 @@ const ADS = {
 		headline: '와이키키에서 100% 코나 커피 & 모찌 도넛',
 		blurb:
 			'와이키키 비치 도보 5분. 호놀룰루 100% 코나 커피와 매일 굽는 모찌 도넛·말라사다·빙수. 하와이 여행이라면 아침은 여기서.',
-		cta: '메뉴·위치 보기',
+		cta: '와이키키 코나 커피 카페 — Kona Coffee Donut',
 		href: 'https://konacoffeedonut.com',
 	},
 } as const;
@@ -49,7 +49,9 @@ const ad = ADS[site];
 	</header>
 	<div class="house-ad-body">
 		<p class="house-ad-vendor">{ad.vendor}</p>
-		<h4 class="house-ad-headline">{ad.headline}</h4>
+		<h4 class="house-ad-headline">
+			<a href={ad.href} target="_blank" rel="noopener">{ad.headline}</a>
+		</h4>
 		<p class="house-ad-blurb">{ad.blurb}</p>
 	</div>
 	<a class="house-ad-cta" href={ad.href} target="_blank" rel="noopener">{ad.cta} →</a>
@@ -95,10 +97,14 @@ const ad = ADS[site];
 		font-family: var(--font-display);
 		font-size: 1.35rem;
 		margin: 0 0 0.5em;
-		color: var(--ink);
 		letter-spacing: -0.01em;
 		line-height: 1.3;
 	}
+	.house-ad-headline a {
+		color: var(--ink);
+		text-decoration: none;
+	}
+	.house-ad-headline a:hover { color: var(--brick); text-decoration: underline; }
 	.house-ad-blurb {
 		font-size: 0.92rem;
 		color: var(--ink-medium);
