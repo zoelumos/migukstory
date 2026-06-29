@@ -39,7 +39,13 @@ const isActive = (href: string) =>
 <header class="masthead">
 	<div class="utility-strip">
 		<div class="container utility-inner">
-			<a href="mailto:editor@migukstory.com" class="utility-cta">✉ 문의·제보 — editor@migukstory.com</a>
+			<a href="mailto:editor@migukstory.com" class="utility-cta utility-email">✉ 문의·제보 — editor@migukstory.com</a>
+			<a
+				href="https://zoelumos.com"
+				class="utility-cta utility-promo"
+				target="_blank"
+				rel="noopener"
+			>🌐 한인 비즈니스 웹사이트 제작 — <strong>Zoe&nbsp;Lumos</strong> →</a>
 		</div>
 	</div>
 
@@ -130,7 +136,7 @@ const isActive = (href: string) =>
 	}
 	.utility-inner {
 		display: flex;
-		justify-content: center;
+		justify-content: space-between;
 		align-items: center;
 		gap: 0.7em;
 		flex-wrap: wrap;
@@ -142,6 +148,8 @@ const isActive = (href: string) =>
 		letter-spacing: 0.04em;
 	}
 	.utility-cta:hover { color: var(--brick-soft); }
+	.utility-promo strong { color: var(--brick-soft); font-weight: 700; }
+	.utility-promo:hover strong { color: var(--paper); }
 	.tagline {
 		font-family: var(--font-body);
 		font-size: 0.78rem;
@@ -282,9 +290,12 @@ const isActive = (href: string) =>
 			overflow-x: hidden;
 		}
 
-		/* Mobile: utility-strip hidden, brand row tightened, nav collapses
-		   into a hamburger drawer. Header lands ~64px so H1 stays above fold. */
-		.utility-strip { display: none; }
+		/* Mobile: keep the top strip but show only the Zoe Lumos promo (drop the
+		   editor email to save height), brand row tightened, nav collapses into a
+		   hamburger drawer. Header lands ~64px so H1 stays above fold. */
+		.utility-email { display: none; }
+		.utility-inner { justify-content: center; }
+		.utility-promo { font-size: 0.68rem; }
 		.masthead-inner {
 			grid-template-columns: auto 1fr auto;
 			text-align: left;
