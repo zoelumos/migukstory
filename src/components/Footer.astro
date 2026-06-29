@@ -66,28 +66,6 @@ const today = new Date();
 		</div>
 	</div>
 
-	<div class="container family-sites">
-		<span class="family-label">ZOE STUDIO 패밀리 사이트</span>
-		<div class="family-cards">
-			<a class="family-card" href="https://zoelumos.com" target="_blank" rel="noopener">
-				<span class="family-emoji" aria-hidden="true">🌐</span>
-				<span class="family-text">
-					<strong>Zoe Lumos</strong>
-					<small>한인 비즈니스 바이링궐 웹사이트 제작 — 전환되도록 만듭니다</small>
-				</span>
-				<span class="family-arrow" aria-hidden="true">→</span>
-			</a>
-			<a class="family-card" href="https://konacoffeedonut.com" target="_blank" rel="noopener">
-				<span class="family-emoji" aria-hidden="true">☕🍩</span>
-				<span class="family-text">
-					<strong>Kona Coffee Donut</strong>
-					<small>와이키키 100% 코나 커피 · 모찌 도넛 · 말라사다 — 매일 신선하게</small>
-				</span>
-				<span class="family-arrow" aria-hidden="true">→</span>
-			</a>
-		</div>
-	</div>
-
 	<div class="container colophon">
 		<span>© {today.getFullYear()} 미국 스토리. All rights reserved.</span>
 		<span class="published">PUBLISHED IN THE UNITED STATES · 미국에서 발행</span>
@@ -168,44 +146,6 @@ const today = new Date();
 		margin: 0;
 	}
 
-	.family-sites {
-		padding: var(--s-3) 0 0;
-		border-bottom: 1px solid var(--rule);
-		padding-bottom: var(--s-3);
-	}
-	.family-label {
-		display: block;
-		font-family: var(--font-body);
-		font-size: var(--text-xs);
-		font-weight: 700;
-		text-transform: uppercase;
-		letter-spacing: 0.18em;
-		color: var(--brick);
-		margin-bottom: var(--s-2);
-	}
-	.family-cards {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: var(--s-2);
-	}
-	.family-card {
-		display: flex;
-		align-items: center;
-		gap: 0.7em;
-		padding: 0.75em 0.9em;
-		background: var(--paper-soft, var(--paper));
-		border: 1px solid var(--rule);
-		border-left: 3px solid var(--brick);
-		text-decoration: none;
-		transition: border-color var(--duration) var(--ease-out), background var(--duration) var(--ease-out);
-	}
-	.family-card:hover { background: var(--paper); border-left-color: var(--brick-deep, var(--brick)); }
-	.family-emoji { font-size: 1.2rem; line-height: 1; flex-shrink: 0; }
-	.family-text { display: flex; flex-direction: column; gap: 0.15em; min-width: 0; }
-	.family-text strong { color: var(--ink); font-size: 0.95rem; font-weight: 700; }
-	.family-text small { color: var(--ink-medium); font-size: 0.74rem; line-height: 1.45; }
-	.family-arrow { margin-left: auto; color: var(--brick); font-weight: 700; flex-shrink: 0; }
-
 	.colophon {
 		display: flex;
 		justify-content: space-between;
@@ -228,9 +168,6 @@ const today = new Date();
 
 	@media (max-width: 1100px) {
 		.footer-grid { grid-template-columns: 1fr 1fr; gap: var(--s-3); }
-	}
-	@media (max-width: 720px) {
-		.family-cards { grid-template-columns: 1fr; }
 	}
 	@media (max-width: 540px) {
 		.footer-grid { grid-template-columns: 1fr; }

@@ -4,6 +4,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import HouseAd from '../components/HouseAd.astro';
 import { SITE_DESCRIPTION, SITE_TAGLINE, SITE_TITLE } from '../consts';
 import { CATEGORIES, type CategoryKey } from '../content.config';
 import { compareForHomepage, splitHomepageStories } from '../utils/headlinePriority';
@@ -133,6 +134,11 @@ const ageLabel = (age: string) => ({
 			)}
 
 			<div class="container divider-mark"></div>
+
+			<!-- ── Homepage house ad — Zoe Lumos (prominent, above the fold-ish) ─ -->
+			<div class="container">
+				<HouseAd site="zoelumos" variant="banner" />
+			</div>
 
 			<!-- "CONTINUED" — magazine-style listing -->
 			{cont.length > 0 && (
