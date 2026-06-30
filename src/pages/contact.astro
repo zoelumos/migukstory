@@ -40,7 +40,7 @@ import { SITE_TITLE } from '../consts';
 				<section class="form-section">
 					<h2 class="section-h">메시지 보내기</h2>
 					<p class="section-sub">이메일이 불편하시면 아래 양식으로 문의해 주세요. 입력하신 이메일로 답변드립니다.</p>
-					<form class="contact-form" id="contact-form" action="mailto:editor@migukstory.com" method="post" enctype="text/plain" onsubmit="return openMailto(event)">
+					<form class="contact-form" id="contact-form" action="mailto:editor@migukstory.com" method="post" enctype="text/plain">
 						<div class="row">
 							<div class="field">
 								<label for="name">이름 *</label>
@@ -85,24 +85,8 @@ import { SITE_TITLE } from '../consts';
 						</p>
 					</form>
 
-					<script is:inline>
-						function openMailto(e) {
-							e.preventDefault();
-							const f = e.target;
-							// Honeypot — bots fill hidden 'website' field; humans don't see it
-							if (f.website && f.website.value) return false;
-							const subject = encodeURIComponent('[' + f.type.value + '] ' + f.subject.value);
-							const body = encodeURIComponent(
-								'보낸 사람: ' + f.name.value + '\n' +
-								'답신 이메일: ' + f.email.value + '\n' +
-								'문의 유형: ' + f.type.value + '\n\n' +
-								'────────\n\n' +
-								f.message.value
-							);
-							window.location.href = 'mailto:editor@migukstory.com?subject=' + subject + '&body=' + body;
-							return false;
-						}
-					</script>
+					<!-- External (CSP) — see public/js/contact-form.js -->
+					<script src="/js/contact-form.js" defer></script>
 				</section>
 
 				<!-- Publisher info — required for AdSense + FTC transparency -->

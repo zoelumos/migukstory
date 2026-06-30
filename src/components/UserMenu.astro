@@ -16,46 +16,8 @@
 	</div>
 </div>
 
-<script>
-	const root = document.querySelector('.user-menu') as HTMLElement | null;
-	if (root) {
-		const skeleton = root.querySelector('.skeleton') as HTMLElement | null;
-		const loginLink = root.querySelector('.login-link') as HTMLAnchorElement | null;
-		const pill = root.querySelector('.user-pill') as HTMLElement | null;
-		const avatar = root.querySelector('.avatar') as HTMLImageElement | null;
-		const nameEl = root.querySelector('.display-name') as HTMLElement | null;
-		const adminChip = root.querySelector('.admin-chip') as HTMLAnchorElement | null;
-
-		const renderLoggedOut = () => {
-			root.dataset.state = 'logged-out';
-			if (skeleton) skeleton.hidden = true;
-			if (loginLink) loginLink.hidden = false;
-			if (pill) pill.hidden = true;
-		};
-		const renderLoggedIn = (user: any) => {
-			root.dataset.state = 'logged-in';
-			if (skeleton) skeleton.hidden = true;
-			if (loginLink) loginLink.hidden = true;
-			if (pill) pill.hidden = false;
-			if (nameEl) nameEl.textContent = user.name;
-			if (avatar) {
-				if (user.avatar_url) { avatar.src = user.avatar_url; avatar.hidden = false; }
-				else { avatar.hidden = true; }
-			}
-			if (adminChip) {
-				adminChip.hidden = !user.is_admin;
-			}
-		};
-
-		fetch('/api/auth/session', { credentials: 'same-origin' })
-			.then((r) => r.json())
-			.then((data) => {
-				if (data.authenticated && data.user) renderLoggedIn(data.user);
-				else renderLoggedOut();
-			})
-			.catch(() => renderLoggedOut());
-	}
-</script>
+<!-- External (not inline) so it passes the strict CSP — see public/js/user-menu.js -->
+<script src="/js/user-menu.js" defer></script>
 
 <style>
 	.user-menu {

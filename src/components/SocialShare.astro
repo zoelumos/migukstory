@@ -107,25 +107,8 @@ const buttons = [
 	</div>
 </div>
 
-<script is:inline>
-	document.querySelectorAll('.btn.copy').forEach((btn) => {
-		btn.addEventListener('click', async () => {
-			const url = btn.getAttribute('data-url');
-			const label = btn.querySelector('.btn-label');
-			if (!label) return;
-			try {
-				await navigator.clipboard.writeText(url);
-				const orig = label.textContent;
-				label.textContent = '복사됨 ✓';
-				btn.classList.add('copied');
-				setTimeout(() => {
-					label.textContent = orig;
-					btn.classList.remove('copied');
-				}, 1500);
-			} catch (e) { /* noop */ }
-		});
-	});
-</script>
+<!-- External (CSP) — see public/js/social-share.js -->
+<script src="/js/social-share.js" defer></script>
 
 <style>
 	.share {
