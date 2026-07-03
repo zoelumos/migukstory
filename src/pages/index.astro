@@ -653,19 +653,7 @@ const ageLabel = (age: string) => ({
 
 			/* ── Responsive ──────────────────────────────────────── */
 			@media (max-width: 900px) {
-				.two-col {
-					display: grid;
-					grid-auto-flow: column;
-					grid-auto-columns: minmax(82%, 1fr);
-					grid-template-columns: none;
-					gap: var(--s-3);
-					overflow-x: auto;
-					scroll-snap-type: x mandatory;
-					-webkit-overflow-scrolling: touch;
-					padding: 0 var(--s-2) var(--s-2);
-					scrollbar-width: thin;
-				}
-				.story { scroll-snap-align: start; }
+				.two-col { grid-template-columns: 1fr; }
 				.cat-grid { grid-template-columns: repeat(2, 1fr); }
 				.section-title::before, .section-title::after { display: none; }
 			}
@@ -673,7 +661,6 @@ const ageLabel = (age: string) => ({
 				.lead { padding: var(--s-4) 0 var(--s-3); }
 				.lead-title { font-size: clamp(2.05rem, 12vw, 3rem); }
 				.must-read-head { padding-inline: var(--s-2); }
-				.two-col { grid-auto-columns: 88%; }
 				.story { padding: var(--s-3) var(--s-2); }
 				.story-rank { font-size: 1.55rem; }
 				.cat-grid { grid-template-columns: 1fr; }
