@@ -256,6 +256,31 @@ sources:
     enabled: true
     max_items: 3
 
+  # ── Tier: NY/NJ regional lane (2026-07-03) ─────────────────────────────
+  # Strategic focus: the tri-state area (Fort Lee, Palisades Park, Flushing,
+  # Bayside…) is the East Coast's largest Korean-American population center
+  # and migukstory's home turf. Regional service journalism ("뉴저지 재산세",
+  # "NJ Transit", "뉴욕 한인 상권") is the long-tail geographic layer that
+  # national policy coverage can't reach. All three feeds smoke-tested live
+  # on 2026-07-03 (100 / 80 / 66 items respectively).
+  - name: Google News KR — 뉴욕·뉴저지 한인 소식
+    url: https://news.google.com/rss/search?q=%EB%89%B4%EC%A0%80%EC%A7%80+%ED%95%9C%EC%9D%B8+OR+%EB%89%B4%EC%9A%95+%ED%95%9C%EC%9D%B8&hl=ko&gl=KR&ceid=KR:ko
+    category: community
+    enabled: true
+    max_items: 3
+
+  - name: Google News — NY/NJ Korean Community Watch
+    url: https://news.google.com/rss/search?q=%22New+Jersey%22+OR+%22New+York%22+Korean+immigrant+OR+%22Fort+Lee%22+OR+%22Palisades+Park%22&hl=en-US&gl=US&ceid=US:en
+    category: community
+    enabled: true
+    max_items: 3
+
+  - name: Google News — NJ Resident Policy Watch (tax / transit / DMV)
+    url: https://news.google.com/rss/search?q=%22New+Jersey%22+property+tax+OR+ANCHOR+rebate+OR+NJ+Transit+OR+driver+license&hl=en-US&gl=US&ceid=US:en
+    category: community
+    enabled: true
+    max_items: 2
+
   # ── DISABLED: verified broken 2026-05-20. Do NOT re-enable without a new URL.
   - name: USCIS Newsroom            # feed/59 returns ZERO <item> elements — dead
     url: https://www.uscis.gov/news/rss-feed/59

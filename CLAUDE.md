@@ -59,28 +59,60 @@ Search Console data checked on 2026-05-29 showed that USCIS/immigration articles
 
 **Do not drop the other lanes.** Economy and AI/robotics must continue every day/week as maintained categories, especially when they affect jobs, small business, markets, retirement accounts, automation risk, immigration workers, or children's education/careers. The rule is priority, not exclusion: service journalism first; economy and AI/robotics still active.
 
+**NY/NJ regional lane (Steve's directive, 2026-07-03).** The tri-state area
+(Fort Lee, Palisades Park, Bergen County, Flushing, Bayside…) is the priority
+region. When a story concerns New York or New Jersey, write it for the
+tri-state Korean community specifically — name affected towns, local offices,
+and deadlines — and tag it '뉴저지' and/or '뉴욕' in frontmatter so regional
+pages can aggregate. Dedicated NY/NJ RSS feeds live in
+`scripts/config/rss_sources.yml`.
+
+## Non-negotiable gate: no duplicate topics
+
+Never publish a second article on a story the site already ran (the 6/29+6/30
+Medicare GLP-1 pair is the precedent — SEO cannibalization). Before adding ANY
+new article to `src/content/blog/`, run:
+
+```bash
+python3 -c "
+import sys; sys.path.insert(0, 'scripts')
+from topic_dedupe import find_topic_duplicate
+print(find_topic_duplicate('<새 기사 제목>', '<new-slug>'))"
+```
+
+If it returns a match, **update the existing article instead** (refresh its
+content and `updatedDate`) — do not create a new file. `editor_grade.py`
+blocks auto-promotion of duplicates and `publish_from_queue.py` hard-fails
+them, but any Claude session committing articles directly must run this check
+itself.
+
 ## Non-negotiable editorial rule: visualization first
 
 Migukstory articles must not be plain text news rewrites. The core product difference is **visual explanation**.
 
 When drafting, editing, auditing, or reviewing any Migukstory post, Claude must treat visualization as a required quality gate:
 
-- If the topic includes a process, deadline, visa path, benefit path, policy rollout, court/policy sequence, or eligibility decision, include a **flowchart**.
-- If the topic includes dates or staged changes, include a **timeline**.
+- If the topic includes a process, deadline, visa path, benefit path, policy rollout, court/policy sequence, or eligibility decision, include a **step-by-step decision guide** (numbered steps or "조건 → 결과" nested bullets).
+- If the topic includes dates or staged changes, include a **timeline** (numbered stage list).
 - If the topic compares old vs new rules, agencies, visa/status types, options, risks, or reader choices, include a **comparison table**.
 - Immigration articles, especially H-1B, PERM, I-140, I-485, visa bulletin, DACA/TPS/asylum, green card, and USCIS/DOL/State Department updates, must include at least one visual element unless there is a documented reason it would be misleading.
-- Claude audits must explicitly answer: `Does this post have the right flowchart/timeline/table? If not, FAIL the review.`
+- Claude audits must explicitly answer: `Does this post have the right decision guide/timeline/table? If not, FAIL the review.`
 
 Steve's instruction: **"플로우 차트도 중요해. 여기 뉴스의 가장 핵심 포인트는 시각화."**
 
-## Preferred visual formats
+## Preferred visual formats — static Markdown ONLY, never Mermaid
 
-Use whichever format best fits the article:
+**HARD RULE: never emit ```mermaid / flowchart / graph / sequenceDiagram / gantt
+code blocks in any article.** They rendered broken on the live site for weeks;
+the pipeline gates (`editor_grade.py`, `publish_from_queue.py`) reject them and
+a build-time transform (`plugins/remark-mermaid-mobile.js`) exists only as a
+last-resort safety net. Express every "flowchart" as static Markdown:
 
-1. Mermaid flowchart for step-by-step legal/benefit/immigration processes.
-2. Mermaid timeline or ordered stage cards for date-driven updates.
-3. Markdown comparison tables for old/new, option A/B, and eligibility/risk comparisons.
-4. Short Korean labels; mobile-readable; avoid giant diagrams that wrap badly.
+1. Numbered step list for step-by-step legal/benefit/immigration processes.
+2. "조건 → 결과" nested bullet list for decision trees / eligibility branches.
+3. Numbered stage list or short timeline for date-driven updates.
+4. Markdown comparison tables for old/new, option A/B, and eligibility/risk comparisons.
+5. Short Korean labels; mobile-readable; ✅/⚠️/❌ markers are encouraged.
 
 ## Review checklist for every article or pipeline change
 

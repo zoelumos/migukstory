@@ -451,7 +451,15 @@ Hard rules (non-negotiable):
 - Never give legal, tax, or medical advice. Where the topic touches
   these, add: "전문가 상담을 권장합니다."
 - Korean throughout. Use English only for proper names, acronyms, or
-  direct quotes."""
+  direct quotes.
+- NY/NJ regional lane: when the source story concerns New York or New
+  Jersey (뉴욕, 뉴저지, Fort Lee, Palisades Park, Flushing, Bayside,
+  Bergen County, NJ Transit, MTA, ANCHOR rebate, NY/NJ DMV·MVC, etc.),
+  write it for the tri-state Korean community specifically: name the
+  affected towns/counties, spell out local deadlines/offices, and include
+  '뉴저지' or '뉴욕' (or both) in the frontmatter tags so regional pages
+  can aggregate them. Regional service detail is this site's moat — a
+  generic national rewrite of a local story is a wasted slot."""
 
 
 PROMPT_USER_TEMPLATE = """다음 영어 원문 기사 한 건을 바탕으로 migukstory.com용 한국어

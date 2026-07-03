@@ -66,6 +66,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from topic_dedupe import find_topic_duplicate
+
 REPO = Path(__file__).resolve().parent.parent
 DRAFTS = REPO / "drafts"
 QUEUE = REPO / "queue"
@@ -514,6 +516,16 @@ def grade_one(path: Path, model: str, dry_run: bool, threshold: int,
             slug=slug, score=0, scores={}, reasoning=f"grading error: {e}",
             action="review",
         )
+
+    # Deterministic duplicate-topic gate — a re-run of a story the site already
+    # published (e.g. the 6/29+6/30 GLP-1 pair) must never auto-promote.
+    title_m = re.search(r"^title:\s*['\"]?(.+?)['\"]?\s*$", content[:2000], re.MULTILINE)
+    dup = find_topic_duplicate(title_m.group(1) if title_m else slug, slug, exclude_slug=slug)
+    if dup is not None:
+        total = min(total, REVIEW_THRESHOLD - 1 if dup[1] >= 0.7 else threshold - 1)
+        parsed["total"] = total
+        parsed["reasoning"] = (parsed.get("reasoning", "").rstrip() +
+            f" 기존 발행 기사와 주제 중복(유사도 {dup[1]:.2f}: {dup[0]}) — 새 글 대신 기존 글 업데이트가 맞는지 사람 검토 필요.").strip()
 
     if _has_forbidden_visual(content):
         total = min(total, threshold - 1)

@@ -19,6 +19,7 @@ import re
 from datetime import datetime, timezone
 from pathlib import Path
 
+from topic_dedupe import find_topic_duplicate
 from validate_markdown_frontmatter import validate_file as validate_frontmatter_file
 
 REPO = Path(__file__).resolve().parent.parent
@@ -60,6 +61,14 @@ def validate_publishable(content: str, src: Path) -> None:
             failures.append(f"missing required section: {marker}")
     if not re.search(r"^sourceUrl:\s*['\"]?https?://", content, flags=re.MULTILINE):
         failures.append("missing sourceUrl")
+    # Duplicate-topic gate: never publish a second article on a story the site
+    # already ran (SEO cannibalization; the 6/29+6/30 GLP-1 pair is the
+    # precedent). The editor gate flags this earlier; this is the last
+    # deterministic stop before RSS/sitemap exposure.
+    title_m = re.search(r"^title:\s*['\"]?(.+?)['\"]?\s*$", content[:2000], re.MULTILINE)
+    dup = find_topic_duplicate(title_m.group(1) if title_m else src.stem, src.stem, exclude_slug=src.stem)
+    if dup is not None:
+        failures.append(f"duplicate topic of published post '{dup[0]}' (similarity {dup[1]:.2f}) — update that post instead")
     if failures:
         raise ValueError(f"publish safety gate failed for {src.name}: " + "; ".join(failures))
 
