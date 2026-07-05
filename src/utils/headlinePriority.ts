@@ -139,16 +139,19 @@ export function splitHomepageStories<T extends BlogLike>(posts: T[]) {
 		.filter(post => inferHeadlineScope(post) !== 'local' && !todayAboveFold.includes(post))
 		.sort(compareForHomepage);
 	// Above-fold cards are labeled "오늘 꼭 읽어야 할 뉴스", so they must feel
-	// current. Fill from the newest publication date first; if there are fewer
-	// than two remaining posts from that date, backfill only from the next-most-
-	// recent date in chronological order. Never let old evergreen high-priority
-	// guides jump into this slot just because they score well editorially.
-	const newestOlderDate = olderRest[0] ? dateKey(olderRest[0]) : '';
-	const recentOlderRest = newestOlderDate
-		? olderRest.filter(post => dateKey(post) === newestOlderDate && inferHeadlineScope(post) !== 'local')
-		: [];
-	const recentOlderByDate = recentOlderRest.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-	const aboveFold = [...todayAboveFold, ...todayFallback, ...recentOlderByDate].slice(0, 2);
+	// current. Fill from the newest publication date first; if still under two
+	// cards, keep walking back through older dates until we have 2. Never let
+	// the section render with 0 or 1 cards because a single day only had 1 post.
+	const aboveFoldPool = [...todayAboveFold, ...todayFallback];
+	if (aboveFoldPool.length < 2) {
+		const needed = 2 - aboveFoldPool.length;
+		const olderFill = olderRest
+			.filter(post => inferHeadlineScope(post) !== 'local')
+			.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+			.slice(0, needed);
+		aboveFoldPool.push(...olderFill);
+	}
+	const aboveFold = aboveFoldPool.slice(0, 2);
 
 	return {
 		lead,
