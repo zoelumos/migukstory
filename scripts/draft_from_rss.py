@@ -102,6 +102,45 @@ CATEGORY_PRIORITY = {
 PRIMARY_FOCUS_CATEGORIES = {"immigration", "tax", "retirement", "real-estate", "consumer", "health", "education", "community"}
 SECONDARY_MAINTAIN_CATEGORIES = {"economy", "ai", "robotics"}
 
+# Starvation guard for the maintained lanes. When publish volume dropped to
+# ~1 post/day (late June 2026), strict CATEGORY_PRIORITY order meant the
+# single daily slot always went to a service category and economy went 8+
+# days without a story — violating CLAUDE.md's "maintained lanes must
+# continue" rule. If a maintained category has had no published post within
+# its window, it jumps to the FRONT of this run's planning order.
+STARVATION_WINDOW_DAYS = {"economy": 3, "ai": 6, "robotics": 10}
+
+
+def _starved_categories(blog_dir: Path | None = None) -> set[str]:
+    """Maintained categories whose newest published pubDate is older than
+    their window (or that have no posts at all)."""
+    blog = blog_dir or (Path(__file__).resolve().parent.parent / "src" / "content" / "blog")
+    if not blog.exists():
+        return set()
+    latest: dict[str, datetime] = {}
+    for path in blog.glob("*.md"):
+        try:
+            head = path.read_text(encoding="utf-8", errors="ignore")[:2000]
+        except OSError:
+            continue
+        cat_m = re.search(r"^category:\s*['\"]?([a-z-]+)", head, re.MULTILINE)
+        date_m = re.search(r"^pubDate:\s*['\"]?(\d{4}-\d{2}-\d{2})", head, re.MULTILINE)
+        if not cat_m or not date_m or cat_m.group(1) not in STARVATION_WINDOW_DAYS:
+            continue
+        try:
+            d = datetime.strptime(date_m.group(1), "%Y-%m-%d").replace(tzinfo=timezone.utc)
+        except ValueError:
+            continue
+        if cat_m.group(1) not in latest or d > latest[cat_m.group(1)]:
+            latest[cat_m.group(1)] = d
+    now = datetime.now(timezone.utc)
+    starved = set()
+    for cat, window in STARVATION_WINDOW_DAYS.items():
+        last = latest.get(cat)
+        if last is None or (now - last).days >= window:
+            starved.add(cat)
+    return starved
+
 # Tier-1 high-impact categories. The second daily "urgent" ingest restricts
 # itself to these so it catches things like USCIS adjustment-of-status policy
 # memos, IRS changes, health/insurance alerts, and rate/CPI shocks.
@@ -718,21 +757,40 @@ def main() -> int:
             urgent_picks.append(c)
         else:
             remaining.append(c)
+    # Starvation guard (part 1): reserve slots for maintained lanes that have
+    # gone stale, so urgent service items can't consume every slot. One slot is
+    # reserved per starved category that actually has a candidate this run.
+    starved = _starved_categories()
+    starved_with_candidates = {
+        c for c in starved
+        if any(it.category == c for it in remaining) or any(it.category == c for it in urgent_picks)
+    }
+    urgent_cap = max(1, max_drafts - len(starved_with_candidates))
+    if starved:
+        print(f"⏰ Starvation guard: {sorted(starved)} stale; "
+              f"reserving {len(starved_with_candidates)} slot(s), urgent cap {urgent_cap}")
+
     urgent_by_source: dict[str, list[FeedItem]] = {}
     for it in urgent_picks:
         urgent_by_source.setdefault(it.source_name, []).append(it)
-    while len(selected) < max_drafts and any(urgent_by_source.values()):
+    while len(selected) < urgent_cap and any(urgent_by_source.values()):
         for name in sorted(urgent_by_source):
             bucket = urgent_by_source[name]
             if not bucket:
                 continue
             selected.append(bucket.pop(0))
-            if len(selected) >= max_drafts:
+            if len(selected) >= urgent_cap:
                 break
+    # Unpicked urgent items rejoin the round-robin pool so they can still win
+    # non-reserved slots on category priority.
+    for bucket in urgent_by_source.values():
+        remaining.extend(bucket)
 
     # Round-robin the rest by category, respecting max_per_category. Categories
     # are ordered by the GSC-backed editorial focus: high-intent service topics
-    # first, economy/AI/robotics maintained afterward.
+    # first, economy/AI/robotics maintained afterward — EXCEPT that a starved
+    # maintained lane jumps to the front so it can never be crowded out
+    # indefinitely (starvation guard part 2).
     by_category_source: dict[str, dict[str, list[FeedItem]]] = {}
     for c in remaining:
         by_category_source.setdefault(c.category, {}).setdefault(c.source_name, []).append(c)
@@ -740,16 +798,20 @@ def main() -> int:
     for it in selected:
         category_quota_used[it.category] = category_quota_used.get(it.category, 0) + 1
 
-    for category in sorted(by_category_source, key=lambda c: (CATEGORY_PRIORITY.get(c, 99), c)):
+    for category in sorted(by_category_source, key=lambda c: (-1 if c in starved else CATEGORY_PRIORITY.get(c, 99), c)):
         picked_for_category = category_quota_used.get(category, 0)
         by_source = by_category_source[category]
-        while picked_for_category < max_per_category and len(selected) < max_drafts and any(by_source.values()):
+        # A starved lane only needs ONE post to reset its freshness clock —
+        # cap it at 1 so multiple starved lanes share the reserved slots
+        # instead of the alphabetically-first one taking them all.
+        category_cap = 1 if category in starved else max_per_category
+        while picked_for_category < category_cap and len(selected) < max_drafts and any(by_source.values()):
             for name in sorted(by_source):
                 if not by_source[name]:
                     continue
                 selected.append(by_source[name].pop(0))
                 picked_for_category += 1
-                if picked_for_category >= max_per_category or len(selected) >= max_drafts:
+                if picked_for_category >= category_cap or len(selected) >= max_drafts:
                     break
 
     urgent_in_selected = sum(1 for s in selected if is_urgent(s))

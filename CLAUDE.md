@@ -59,6 +59,15 @@ Search Console data checked on 2026-05-29 showed that USCIS/immigration articles
 
 **Do not drop the other lanes.** Economy and AI/robotics must continue every day/week as maintained categories, especially when they affect jobs, small business, markets, retirement accounts, automation risk, immigration workers, or children's education/careers. The rule is priority, not exclusion: service journalism first; economy and AI/robotics still active.
 
+**Lane starvation guard (added 2026-07-06 after economy went 8 days without a
+story).** Hard freshness windows: economy ≤ 3 days, ai ≤ 6 days, robotics ≤ 10
+days between published posts. `draft_from_rss.py::_starved_categories` boosts a
+stale lane to the front of the planning order automatically. Any Claude session
+choosing "today's article" directly must apply the same rule: check the newest
+`pubDate` per category in `src/content/blog/` first, and if a maintained lane
+is past its window, today's pick comes from that lane (framed for Korean-American
+households: 물가/금리/환율/401k/소상공인 for economy).
+
 **NY/NJ regional lane (Steve's directive, 2026-07-03).** The tri-state area
 (Fort Lee, Palisades Park, Bergen County, Flushing, Bayside…) is the priority
 region. When a story concerns New York or New Jersey, write it for the
