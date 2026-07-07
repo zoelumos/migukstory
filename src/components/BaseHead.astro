@@ -37,11 +37,16 @@ const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID?.trim();
 // the passed-in image (or the fallback). This is what makes a KakaoTalk /
 // social share of an article look intentional instead of broken.
 const blogMatch = Astro.url.pathname.match(/^\/blog\/([^/]+)\/?$/);
+// Pages that don't pass an explicit image get the branded site card
+// (/og/site.png, see src/pages/og/site.png.ts) instead of a stock placeholder.
+const usesBrandCard = !blogMatch && image === FallbackImage;
 const ogImage = blogMatch
 	? new URL(`/og/${blogMatch[1]}.png`, Astro.site).toString()
-	: new URL(image.src, Astro.url).toString();
+	: usesBrandCard
+		? new URL('/og/site.png', Astro.site).toString()
+		: new URL(image.src, Astro.url).toString();
 
-const articleImage = blogMatch
+const articleImage = blogMatch || usesBrandCard
 	? { url: ogImage, width: 1200, height: 630 }
 	: { url: new URL(image.src, Astro.url).toString(), width: image.width, height: image.height };
 
@@ -274,12 +279,12 @@ const howToSchema = howTo ? {
 	</>
 )}
 
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={canonicalURLString} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={ogImage} />
+<!-- Twitter — spec requires name= (not property=); property= cards are ignored by X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURLString} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
 
 <!-- JSON-LD structured data — Organization + WebSite + Breadcrumbs + Article + FAQ + HowTo -->
 <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
@@ -296,11 +301,6 @@ const howToSchema = howTo ? {
 {howToSchema && (
 	<script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />
 )}
-
-<!-- AdSense (uncomment after approval — replace with your publisher ID) -->
-<!--
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
--->
 
 <!-- Reading progress bar (external for CSP — see public/js/reading-progress.js) -->
 <script src="/js/reading-progress.js" defer></script>

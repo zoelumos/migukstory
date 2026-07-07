@@ -118,7 +118,10 @@ def publish_one() -> Path | None:
         today_compact = datetime.now(timezone.utc).strftime("%m%d")
         dest = BLOG / f"{src.stem}-{today_compact}.md"
 
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    # Full ISO timestamp, not a bare date: date-only pubDate coerces to
+    # midnight UTC, which burns up to a day of the Google News sitemap's 48h
+    # window and weakens datePublished freshness signals for a news site.
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     content = src.read_text(encoding="utf-8")
     frontmatter_failures = validate_frontmatter_file(src, strict_publish=True)
     if frontmatter_failures:

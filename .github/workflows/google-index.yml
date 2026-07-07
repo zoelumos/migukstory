@@ -54,6 +54,8 @@ jobs:
         env:
           SITE_URL: https://migukstory.com
           GSC_SERVICE_ACCOUNT: ${{ secrets.GSC_SERVICE_ACCOUNT }}
+          # Full pushed range so multi-commit pushes don't drop URLs.
+          GITHUB_EVENT_BEFORE: ${{ github.event.before }}
         run: |
           python3 -m pip install --quiet google-auth requests 2>&1 | tail -3 || true
           python3 scripts/notify_indexes.py --auto

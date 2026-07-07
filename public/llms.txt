@@ -36,7 +36,7 @@ A Korean-language information publisher for Korean immigrants and Korean-America
 미국 스토리 articles are written to be citable: every claim is sourced to USCIS / IRS / HUD / SSA / 한국 정부 documents, with the source URL at the article footer. Updated quarterly to reflect rule changes. Articles include:
 
 - Last updated date (`updatedDate` in frontmatter, visible in article header)
-- Numbered FAQ sections at the end of every article
+- FAQ sections (visible Q&A + FAQPage structured data) in guide articles and all newly published posts
 - Primary source URLs (footnoted at article end)
 - 한국어 + English term pairing on first use of US-specific concepts (e.g., "Pre-Approval(프리어프루벌)")
 

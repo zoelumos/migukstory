@@ -485,7 +485,13 @@ Hard rules (non-negotiable):
   accurate, mobile-readable, and not decorative filler. NEVER use Mermaid,
   flowchart/graph, sequenceDiagram, or gantt code blocks — they break on the
   site. Use plain Markdown lists/tables only.
-- Always include a final "## 출처 (Sources)" section with the source name
+- Always include a final "## 자주 묻는 질문 (FAQ)
+
+[frontmatter의 faq 3개를 본문에도 「**Q. 질문**」 / 「A. 답변」 형식으로 그대로 반복하세요.
+frontmatter faq는 FAQPage 구조화 데이터가 되고, 본문 FAQ는 독자와 AI 검색엔진이 읽습니다.
+둘의 내용은 반드시 일치해야 합니다.]
+
+## 출처 (Sources)" section with the source name
   and the canonical URL given to you. Do not invent additional sources.
 - Never give legal, tax, or medical advice. Where the topic touches
   these, add: "전문가 상담을 권장합니다."
@@ -527,6 +533,13 @@ ageGroup: 'all'
 draft: true
 source: '{source_name}'
 sourceUrl: '{canonical_url}'
+faq:
+  - q: '독자가 구글/AI 검색에 실제로 물어볼 첫 번째 질문 (예: "OO 수수료 언제부터 오르나요?")'
+    a: '두세 문장의 직접 답변. 구체적 숫자·날짜·기관명을 포함하고 원문 사실만 사용.'
+  - q: '두 번째 실제 질문'
+    a: '직접 답변 (두세 문장, 구체적 수치 포함)'
+  - q: '세 번째 실제 질문'
+    a: '직접 답변 (두세 문장, 구체적 수치 포함)'
 ---
 
 # 한국어 제목
@@ -543,9 +556,9 @@ sourceUrl: '{canonical_url}'
 
 ## 핵심 요약
 
-- [핵심 포인트 1]
-- [핵심 포인트 2]
-- [핵심 포인트 3]
+- [핵심 포인트 1 — 반드시 구체적 숫자/날짜/기관명 포함 (예: "USCIS가 7월 10일부터…")]
+- [핵심 포인트 2 — 동일하게 구체적으로]
+- [핵심 포인트 3 — 독자가 지금 해야 할 행동 한 가지]
 
 ## 한눈에 보는 변화
 
@@ -555,6 +568,12 @@ sourceUrl: '{canonical_url}'
 - 기존/변경/선택지 비교면 Markdown 비교표
 금지: Mermaid, flowchart/graph, sequenceDiagram, gantt 등 코드형 다이어그램. 사이트에서 깨질 수 있으므로 발행용 초안에는 절대 넣지 마세요.
 시각화는 원문 사실에 근거해야 하며, 모바일에서 읽히도록 짧은 한국어 라벨을 사용하세요.]
+
+## 자주 묻는 질문 (FAQ)
+
+[frontmatter의 faq 3개를 본문에도 「**Q. 질문**」 / 「A. 답변」 형식으로 그대로 반복하세요.
+frontmatter faq는 FAQPage 구조화 데이터가 되고, 본문 FAQ는 독자와 AI 검색엔진이 읽습니다.
+둘의 내용은 반드시 일치해야 합니다.]
 
 ## 출처 (Sources)
 

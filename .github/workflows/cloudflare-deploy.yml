@@ -102,6 +102,8 @@ jobs:
         env:
           SITE_URL: https://migukstory.com
           GSC_SERVICE_ACCOUNT: ${{ secrets.GSC_SERVICE_ACCOUNT }}
+          # Full pushed range so multi-commit pushes don't drop URLs.
+          GITHUB_EVENT_BEFORE: ${{ github.event.before }}
         run: |
           # google-auth is a soft dependency — script falls back to IndexNow only
           # when import fails. Install is fast (~5s) so always attempt it.
