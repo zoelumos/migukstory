@@ -31,6 +31,10 @@ VALID_CATEGORIES = {
     "real-estate",
     "consumer",
 }
+# Must mirror the ageGroup enum in src/content.config.ts — an out-of-enum value
+# ("전체", "30-60", …) passes YAML parsing but fails `astro check` at deploy
+# time, killing the whole build. Broke deploys on 6/29 and 7/6.
+VALID_AGE_GROUPS = {"20-35", "35-55", "55+", "all"}
 
 
 def iter_markdown(paths: list[Path]) -> list[Path]:
@@ -128,6 +132,12 @@ def validate_file(path: Path, strict_publish: bool) -> list[str]:
     category = unquote(fields.get("category", ""))
     if category and category not in VALID_CATEGORIES:
         errors.append(f"{rel}: invalid category '{category}'")
+
+    age_group = unquote(fields.get("ageGroup", ""))
+    if age_group and age_group not in VALID_AGE_GROUPS:
+        errors.append(
+            f"{rel}: invalid ageGroup '{age_group}' (must be one of {sorted(VALID_AGE_GROUPS)})"
+        )
 
     for field in URL_FIELDS:
         if field not in fields:
