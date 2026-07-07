@@ -7,12 +7,12 @@ Pipelines:
                  Covers: Bing, Yandex, Yep, Seznam, Naver (some).
                  No auth; uses key file at /<key>.txt for domain verification.
                  Free, no quota.
-  2. Google Indexing API — POST to https://indexing.googleapis.com/v3/urlNotifications:publish
-                 Officially supported for JobPosting / BroadcastEvent only;
-                 we use it for NewsArticle (works in practice; not contractual).
-                 Requires service-account JSON with Search Console Owner role.
-                 Optional — runs only if a service-account secret is set
-                 (GSC_SERVICE_ACCOUNT or GOOGLE_SERVICE_ACCOUNT_JSON).
+  2. Google Indexing API — DISABLED for articles (2026-07-06).
+                 The API is documented for JobPosting / BroadcastEvent only.
+                 Since 2025 Google runs explicit spam detection on submissions
+                 and revokes access for off-label use — a trust risk this young
+                 domain cannot afford. Google discovery relies on honest sitemap
+                 lastmod + GSC sitemap submit (google_index.mjs) instead.
 
 URL discovery:
   Run with explicit URLs:   notify_indexes.py https://… https://…
@@ -76,15 +76,34 @@ def discover_indexnow_key() -> str | None:
 
 
 def git_added_blog_urls(site_url: str) -> list[str]:
-    """Files added to src/content/blog/ in the last commit."""
-    try:
-        out = subprocess.check_output(
-            ["git", "diff", "--name-status", "--diff-filter=A", "HEAD~1", "HEAD", "--", "src/content/blog/"],
+    """Files added to src/content/blog/ in the pushed range.
+
+    Uses GITHUB_EVENT_BEFORE..GITHUB_SHA when the workflow provides them, so
+    multi-commit pushes and merges don't silently drop URLs; falls back to
+    HEAD~1..HEAD for local runs.
+    """
+    before = os.environ.get("GITHUB_EVENT_BEFORE", "").strip()
+    after = os.environ.get("GITHUB_SHA", "").strip()
+    # Force-push / new-branch events report `before` as all zeros — not diffable.
+    if not before or not after or set(before) == {"0"}:
+        before, after = "HEAD~1", "HEAD"
+    def diff(rev_a: str, rev_b: str) -> str:
+        return subprocess.check_output(
+            ["git", "diff", "--name-status", "--diff-filter=A", rev_a, rev_b, "--", "src/content/blog/"],
             cwd=REPO, text=True,
         )
-    except subprocess.CalledProcessError as e:
-        print(f"⚠️  git diff failed: {e}", file=sys.stderr)
-        return []
+
+    try:
+        out = diff(before, after)
+    except subprocess.CalledProcessError:
+        # Shallow checkouts may not contain `before` — degrade to last commit.
+        try:
+            out = diff("HEAD~1", "HEAD")
+            print(f"⚠️  range {before}..{after} not diffable (shallow clone?); "
+                  "fell back to HEAD~1..HEAD", file=sys.stderr)
+        except subprocess.CalledProcessError as e:
+            print(f"⚠️  git diff failed: {e}", file=sys.stderr)
+            return []
     urls: list[str] = []
     for line in out.strip().splitlines():
         parts = line.split("\t", 1)
@@ -244,18 +263,12 @@ def main() -> int:
         if not ok:
             any_failure = True
 
-    # Google Indexing API (optional)
-    sa = resolve_google_sa()
-    if not sa:
-        print("\nℹ️  Google Indexing API: no service-account secret set "
-              "(GSC_SERVICE_ACCOUNT / GOOGLE_SERVICE_ACCOUNT_JSON) — skipping.")
-    else:
-        print("\n🔔 Google Indexing API:")
-        results = submit_google_indexing(urls, sa)
-        for u, ok, msg in results:
-            print(f"   {'✅' if ok else '❌'} {u} — {msg}")
-            if not ok:
-                any_failure = True
+    # Google Indexing API: intentionally NOT called for articles — the API is
+    # documented for JobPosting/BroadcastEvent only, and Google's 2025+ spam
+    # detection flags off-label submissions (access revocation risk).
+    # submit_google_indexing() is retained for documented use-cases only.
+    print("\nℹ️  Google Indexing API: skipped by policy (news articles are an "
+          "unsupported content type; IndexNow + sitemap submit cover discovery).")
 
     return 2 if any_failure else 0
 

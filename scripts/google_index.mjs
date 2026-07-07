@@ -155,11 +155,17 @@ async function cmdAuth() {
 
 async function cmdSitemap() {
 	const tok = await getToken('https://www.googleapis.com/auth/webmasters');
-	const r = await fetch(
-		`https://searchconsole.googleapis.com/webmasters/v3/sites/${encodeURIComponent(SITE)}/sitemaps/${encodeURIComponent(SITEMAP)}`,
-		{ method: 'PUT', headers: { Authorization: `Bearer ${tok}` } }
-	);
-	console.log('Sitemap submit:', r.status, r.ok ? '✅' : await r.text());
+	// News sitemap is submitted separately: with Publisher Center applications
+	// closed (2024+), the news sitemap is the primary Google News discovery
+	// channel and robots.txt-only discovery is too passive for a young site.
+	const sitemaps = [SITEMAP, 'https://migukstory.com/sitemap-news.xml'];
+	for (const sm of sitemaps) {
+		const r = await fetch(
+			`https://searchconsole.googleapis.com/webmasters/v3/sites/${encodeURIComponent(SITE)}/sitemaps/${encodeURIComponent(sm)}`,
+			{ method: 'PUT', headers: { Authorization: `Bearer ${tok}` } }
+		);
+		console.log(`Sitemap submit (${sm}):`, r.status, r.ok ? '✅' : await r.text());
+	}
 }
 
 async function cmdStatus() {

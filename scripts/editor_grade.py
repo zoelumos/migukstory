@@ -147,8 +147,10 @@ USER_PROMPT_TEMPLATE = """다음은 사람 검토 전 AI가 작성한 한국어 
    요약만 있고 분석이 없으면 8점 이하.
 
 5. **structure (구조 + 시각화)**: YAML frontmatter가 완전한가(title, description,
-   pubDate, tags, category, ageGroup)? 본문이 3문단 이상이고 「## 핵심 요약」
-   불릿 리스트와 「## 출처 (Sources)」 섹션이 있는가? 깨진 마크다운이 없는가?
+   pubDate, tags, category, ageGroup, 그리고 faq 3개 이상)? 본문이 3문단 이상이고 「## 핵심 요약」
+   불릿 리스트, 「## 자주 묻는 질문 (FAQ)」 섹션, 「## 출처 (Sources)」 섹션이 있는가?
+   frontmatter faq와 본문 FAQ 내용이 일치하는가? 깨진 마크다운이 없는가?
+   faq frontmatter가 없거나 본문 FAQ와 불일치하면 structure는 최대 12점입니다.
    또한 주제에 맞는 시각화가 있는가? 절차/자격/신청/이민/혜택/정책 변경 글은
    Markdown 비교표, 번호 단계 목록, 체크리스트, 또는 짧은 타임라인 중 하나가 있어야
    합니다. 시각화가 없거나 장식용이면 structure는 최대 10점, 총점은 자동승격

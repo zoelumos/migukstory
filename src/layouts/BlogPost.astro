@@ -127,7 +127,9 @@ const breadcrumbs = [
 
 						{tags.length > 0 && (
 							<div class="header-tags">
-								{tags.slice(0, 8).map((t: string) => <span class="tag-chip">#{t}</span>)}
+								{tags.slice(0, 8).map((t: string) => (
+									<a class="tag-chip" href={`/blog?tag=${encodeURIComponent(t)}`}>#{t}</a>
+								))}
 							</div>
 						)}
 					</div>
@@ -135,7 +137,7 @@ const breadcrumbs = [
 
 				{heroImage && (
 					<figure class="hero">
-						<Image width={1200} height={630} src={heroImage} alt="" />
+						<Image width={1200} height={630} src={heroImage} alt={title} />
 					</figure>
 				)}
 
@@ -311,7 +313,10 @@ const breadcrumbs = [
 				padding: 0.2em 0.7em;
 				border-radius: 999px;
 				font-weight: 500;
+				text-decoration: none;
+				transition: all var(--duration) var(--ease-out);
 			}
+			.tag-chip:hover { color: var(--brick); border-color: var(--brick); }
 
 			.hero {
 				margin: 0;
