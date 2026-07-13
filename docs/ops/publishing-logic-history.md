@@ -1,8 +1,13 @@
 # Migukstory publishing logic history
 
-_Last updated: 2026-06-26_
+_Last updated: 2026-06-27_
 
-This document records how Migukstory posts were generated, reviewed, queued, published, deployed, and indexed before Steve asked to turn off the cron automation from 2026-06-27 onward.
+This document records how Migukstory posts were generated, reviewed, queued, published, deployed, and indexed.
+
+- **Part 1 — Legacy local Hermes cron pipeline** (paused 2026-06-27): the staged RSS → draft → editor-gate → queue → capped-publish system. This is everything from "Current automation status" down to "How to restart safely later." It is paused, not deleted; the design lessons still apply.
+- **Part 2 — Cloud routine automation** (active from 2026-06-27): see the new section ["2026-06-27 — Cloud routine automation"](#2026-06-27--cloud-routine-automation-replaces-local-hermes-cron) below. This is what actually runs now.
+
+> ⚠️ The two systems use **different safety models**. The legacy pipeline gated every post behind `editor_grade.py` (≥70/100), a `drafts/`→`queue/` separation, and a per-run publish cap. The new cloud writer routine publishes directly to `main` from a single session with only in-prompt guardrails. The reconciliation work is tracked in the new section.
 
 ## Current automation status
 
@@ -24,7 +29,68 @@ Paused jobs:
 | `Migukstory deploy failure Claude fallback` | Watch failed deploys and ask Claude to diagnose | `migukstory-deploy-failure-claude-fallback.sh` |
 | `migukstory-drafts-backlog-grade` | Re-grade existing drafts backlog and promote only passing drafts | `migukstory-drafts-backlog-grade.sh` |
 
-No Migukstory automation should run tomorrow unless these jobs are explicitly resumed.
+No **legacy Hermes** automation should run unless these jobs are explicitly resumed. Note that this no longer means "nothing runs" — the cloud routines in Part 2 below are now the active automation.
+
+## 2026-06-27 — Cloud routine automation (replaces local Hermes cron)
+
+From 2026-06-27, automation moved off the local macOS/Hermes cron jobs onto **claude.ai cloud routines** (managed via the `RemoteTrigger` API / <https://claude.ai/code/routines>). These run in Anthropic-hosted sandboxes on a UTC cron, independent of Steve's machine being on. Each routine clones the repo, runs one Claude session, and exits.
+
+Shared config: environment `Zoe` (`env_01MxfKHroyfCdxNo9BbvmFFA`), model `claude-sonnet-4-6`, source `github.com/zoelumos/migukstory` (auditors also clone their own client repos).
+
+### Active routines
+
+| Time (ET) | Cron (UTC) | Routine | Repo writes? | Routine ID |
+| --- | --- | --- | --- | --- |
+| 06:00 | `0 10 * * *` | **migukstory — write + publish + index** | **Yes — pushes to `main`** | `trig_013HQUHq5Z2Db27SvjtuUAjm` |
+| 09:00 | `0 13 * * *` | migukstory — SEO/content audit report | No (report only) | `trig_012SYNr3iKFiFD7LQjVUTP1D` |
+| 09:10 | `10 13 * * *` | zoelumos.com — SEO/GEO/conversion audit | No | `trig_01Cu7qFyHfT9HLGeLEoNkt7V` |
+| 09:20 | `20 13 * * *` | konacoffeedonut.com — local SEO audit | No | `trig_01F5WL5xFV9cGGnLAJNztCvN` |
+| 09:30 | `30 13 * * *` | vitospizzaandristorante.com — restaurant/local SEO | No | `trig_01Hz1Tf9hDj9oTVDsdeV27QB` |
+| 09:40 | `40 13 * * *` | tjflowersandevents.com — e-commerce/seasonal SEO | No | `trig_01GexNJritC689J8y3rTNGKU` |
+
+Only the **06:00 writer** mutates the repo. The five audit routines are read-only and emit a Korean report into the routine's session log (no commits).
+
+> Cron is fixed UTC. The ET times above hold during EDT (UTC−4). Under EST (Nov–Mar) every routine shifts one hour earlier (writer → 05:00 ET, etc.). Adjust the cron minute/hour if a year-round local time is required.
+
+### Writer routine — how it publishes & indexes
+
+```text
+06:00 ET cloud session
+  -> date + read existing src/content/blog (dedupe titles/slugs)
+  -> pick topic (Korean-American search demand + timeliness)
+  -> research official sources (IRS / USCIS / travel.state.gov / SSA / Fed) via WebSearch/WebFetch
+  -> write 1 post to src/content/blog/<slug>.md in house frontmatter format
+  -> best-effort `npm run build` schema check
+  -> git push origin main
+       ├─ Cloudflare Pages auto-deploys (live publish)
+       └─ .github/workflows/google-index.yml triggers on src/content/** push
+            -> notify_indexes.py --auto submits the new URL to Google Indexing API + IndexNow
+  -> verify via `gh run list --workflow="Google Indexing"`; manual dispatch if not triggered
+```
+
+Indexing prerequisites (verified present 2026-06-27): repo secret `GSC_SERVICE_ACCOUNT` set, "Google Indexing" workflow active, `gh` authed as `zoelumos`. The cloud writer never handles the service-account key itself — indexing auth stays inside GitHub Actions.
+
+### ⚠️ Design gap vs the legacy pipeline (open reconciliation item)
+
+The cloud writer was set up in **direct-to-`main`, fully-automatic** mode at Steve's request. It does **not** yet reproduce the legacy safety model, and this contradicts several documented lessons below:
+
+| Safety control | Legacy Hermes pipeline | Current cloud writer |
+| --- | --- | --- |
+| Editor gate | `editor_grade.py` ≥ 70/100 before promotion | **None** — only in-prompt guardrails |
+| Draft/queue separation | `drafts/` → `queue/` → publish; "drafts must not publish directly" | **None** — writes straight into `src/content/blog` and pushes |
+| Per-run / per-day cap | `POSTS_PER_RUN_CAP=4` (reduced from 10 to avoid thin-content bursts) | 1 post/run by prompt only |
+| Improve pass | `improve_drafts.py` | None |
+| Writing model | `claude-opus-4-8` | `claude-sonnet-4-6` |
+| Claude-auth hard stop | "no auth → no fallback copy → no publish" | N/A (managed session) |
+
+This is acceptable as a deliberate trade-off but should be revisited. Recommended hardening, cheapest first:
+
+1. **In-session editor gate** — have the writer run `scripts/editor_grade.py` (or inline the rubric) on its own draft and *abort the push* if it scores < 70. Smallest change, keeps direct-publish.
+2. **Route through `queue/` + `daily-post.yml`** — writer drops the file in `queue/`; the existing capped, validated publish workflow promotes it. Restores the full legacy gate with the new cloud author.
+3. **PR mode** — writer opens a PR instead of pushing to `main`; Steve merges = publish. Strongest human gate for YMYL content.
+4. Consider `claude-opus-4-8` for writing if quality on `sonnet-4-6` is insufficient.
+
+Until one of these lands, **the daily output should be spot-checked manually** (see Known risks #1, #2, #7).
 
 ## High-level pipeline
 
