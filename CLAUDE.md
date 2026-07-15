@@ -68,6 +68,22 @@ choosing "today's article" directly must apply the same rule: check the newest
 is past its window, today's pick comes from that lane (framed for Korean-American
 households: 물가/금리/환율/401k/소상공인 for economy).
 
+**Daily volume quota (Steve's directive, 2026-07-15: "더 많이 기사좀내자").**
+The daily publishing session must produce **2–3 articles per day, not 1**:
+
+1. Article 1 — today's strongest service-journalism story (immigration/tax/
+   health/retirement/housing), viral-aligned when possible.
+2. Article 2 — a different lane: the most-starved maintained lane (economy/
+   ai/robotics per the windows above) or an NY/NJ regional story.
+3. Article 3 (when material warrants) — evergreen service guide or a second
+   high-intent story; skip rather than pad with thin content.
+
+Every article must still pass ALL gates (editor grade ≥ threshold, topic-dedupe
+check, no Mermaid, exact frontmatter enums, visualization present). Quality
+gates are never relaxed to hit the quota — if only one story genuinely clears
+the bar that day, publish one and note why in the commit message. Do NOT exceed
+4/day (Google mass-content risk).
+
 **NY/NJ regional lane (Steve's directive, 2026-07-03).** The tri-state area
 (Fort Lee, Palisades Park, Bergen County, Flushing, Bayside…) is the priority
 region. When a story concerns New York or New Jersey, write it for the
