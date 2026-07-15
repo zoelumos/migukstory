@@ -135,6 +135,7 @@ Before approving, publishing, or reporting success, verify:
 - [ ] Official sources are cited.
 - [ ] Build passes.
 - [ ] Published posts are `draft: false`.
+- [ ] Frontmatter enums are EXACT — `ageGroup` must be one of `20-35` | `35-55` | `55+` | `all` (never invent values like '전체', '30-60', 'senior' — each of those killed a day's deploy), `category` must be one of the keys in `src/content.config.ts`. `scripts/validate_markdown_frontmatter.py` fails the deploy otherwise.
 - [ ] Live URL returns 200.
 - [ ] RSS includes new posts.
 - [ ] Sitemap includes new canonical URLs.

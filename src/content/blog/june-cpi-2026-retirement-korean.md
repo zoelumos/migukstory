@@ -4,7 +4,7 @@ description: '7월 14일 발표된 2026년 6월 CPI는 전년 대비 3.5%로 5�
 pubDate: '2026-07-15'
 tags: ['CPI', '소셜시큐리티', 'COLA', '401k', '은퇴', '연준금리', '인플레이션', '시니어']
 category: 'retirement'
-ageGroup: 'senior'
+ageGroup: '55+'
 author: 'steve-song'
 editorNote: '7월 14일 BLS가 발표한 실제 숫자를 기반으로 작성했습니다. 2027 COLA는 아직 공식 확정이 아닌 예측치이며, 10월 SSA 공식 발표 전까지 변동될 수 있습니다. 오늘 당장 해야 할 행동과 기다려야 할 결정을 구분하는 것이 핵심입니다.'
 faq:
