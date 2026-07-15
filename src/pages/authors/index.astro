@@ -1,0 +1,83 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE, AUTHORS } from '../../consts';
+
+// /authors/ used to 404 (only [slug].astro existed) — a trust/E-E-A-T gap
+// flagged in the 2026-07-15 audit. List every editorial byline.
+const authors = Object.entries(AUTHORS);
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead
+			title={`편집진 소개 — ${SITE_TITLE}`}
+			description="미국 스토리의 편집진을 소개합니다. 모든 기사는 명시된 저자와 편집실의 검수를 거쳐 발행됩니다."
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="container narrow">
+				<header class="head">
+					<p class="eyebrow">AUTHORS · 편집진</p>
+					<h1>편집진 소개</h1>
+					<p class="sub">모든 기사는 명시된 저자 책임 아래 1차 출처를 검증해 발행합니다. <a href="/methodology">취재·검증 방법 →</a></p>
+				</header>
+
+				<ul class="author-list">
+					{authors.map(([slug, info]) => (
+						<li class="author-card">
+							<a href={`/authors/${slug}/`} class="author-link">
+								<span class="author-name">{info.name}</span>
+								{info.nameEn && <span class="author-name-en">{info.nameEn}</span>}
+							</a>
+							<p class="author-title">{info.jobTitle}</p>
+							<p class="author-bio">{info.bio}</p>
+						</li>
+					))}
+				</ul>
+			</div>
+		</main>
+		<Footer />
+
+		<style>
+			.narrow { max-width: 720px; margin: 0 auto; }
+			.head {
+				text-align: center;
+				padding: var(--s-6) 0 var(--s-3);
+				border-bottom: 1px solid var(--ink);
+				margin-bottom: var(--s-4);
+			}
+			.eyebrow { margin: 0 0 var(--s-2); }
+			.head h1 {
+				font-family: var(--font-display);
+				font-size: clamp(2rem, 4.5vw, 2.75rem);
+				margin: 0 0 var(--s-1);
+				letter-spacing: -0.02em;
+			}
+			.sub { font-size: 0.9rem; color: var(--ink-medium); margin: 0; }
+			.sub a { color: var(--brick); text-decoration: none; }
+			.author-list { list-style: none; margin: 0 0 var(--s-6); padding: 0; display: grid; gap: var(--s-3); }
+			.author-card {
+				padding: var(--s-3);
+				border: 1px solid var(--rule);
+				border-left: 3px solid var(--brick);
+				background: var(--paper-soft);
+			}
+			.author-link { text-decoration: none; display: inline-flex; align-items: baseline; gap: 0.6em; }
+			.author-name {
+				font-family: var(--font-display);
+				font-size: 1.3rem;
+				font-weight: 700;
+				color: var(--ink);
+			}
+			.author-link:hover .author-name { color: var(--brick); }
+			.author-name-en { font-size: 0.8rem; color: var(--ink-light); letter-spacing: 0.06em; }
+			.author-title { font-size: 0.8rem; font-weight: 700; color: var(--brick); margin: 0.4em 0; text-transform: uppercase; letter-spacing: 0.08em; }
+			.author-bio { font-size: 0.92rem; color: var(--ink-medium); line-height: 1.7; margin: 0; }
+		</style>
+	</body>
+</html>

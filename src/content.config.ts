@@ -51,20 +51,14 @@ const blog = defineCollection({
 			// top of the article body, above the main prose — the named editor's local
 			// Korean-American framing for the piece.
 			editorNote: z.string().optional(),
-			// Optional structured-data fields. Posts that include `faq` will emit
-			// FAQPage JSON-LD; `howTo` emits HowTo JSON-LD. Both improve AI/search citability.
+			// Optional structured data. Posts that include `faq` emit FAQPage
+			// JSON-LD AND render a visible FAQ section (AI/search citability).
+			// howTo was removed 2026-07-15 — Google dropped HowTo rich results
+			// in Sept 2023; steps belong in the visible body as numbered lists.
 			faq: z.array(z.object({
 				q: z.string(),
 				a: z.string(),
 			})).optional(),
-			howTo: z.object({
-				name: z.string(),
-				totalTime: z.string().optional(), // ISO 8601, e.g., "PT30D" = 30 days
-				steps: z.array(z.object({
-					name: z.string(),
-					text: z.string(),
-				})),
-			}).optional(),
 		}),
 });
 

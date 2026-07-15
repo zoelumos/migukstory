@@ -16,17 +16,12 @@ interface Props {
 	};
 	breadcrumbs?: { name: string; url: string }[];
 	faq?: { q: string; a: string }[];
-	howTo?: {
-		name: string;
-		totalTime?: string;
-		steps: { name: string; text: string }[];
-	};
 	noindex?: boolean;   // utility pages (login, auth, 404) — keep out of the index
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const canonicalURLString = canonicalURL.toString();
-const { title, description, image = FallbackImage, article, breadcrumbs, faq, howTo, noindex } = Astro.props;
+const { title, description, image = FallbackImage, article, breadcrumbs, faq, noindex } = Astro.props;
 const robotsContent = noindex
 	? 'noindex, nofollow'
 	: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
@@ -69,7 +64,8 @@ const orgSchema = {
 	"actionableFeedbackPolicy": `${SITE_URL}/contact`,
 	"correctionsPolicy": `${SITE_URL}/disclosure`,
 	"foundingDate": "2026-01-01",
-	"sameAs": ORG_SAME_AS,
+	// Emit sameAs only when real profiles exist — an empty array is noise.
+	...(ORG_SAME_AS.length > 0 ? { "sameAs": ORG_SAME_AS } : {}),
 };
 
 // WebSite schema — enables the sitelinks search box (Pagefind search at /search/)
@@ -166,18 +162,9 @@ const faqSchema = faq && faq.length > 0 ? {
 	})),
 } : null;
 
-const howToSchema = howTo ? {
-	"@context": "https://schema.org",
-	"@type": "HowTo",
-	"name": howTo.name,
-	"totalTime": howTo.totalTime,
-	"step": howTo.steps.map((s, i) => ({
-		"@type": "HowToStep",
-		"position": i + 1,
-		"name": s.name,
-		"text": s.text,
-	})),
-} : null;
+// HowTo schema removed 2026-07-15: Google dropped HowTo rich results in Sept
+// 2023, and the markup carried an invalid ISO-8601 duration (PT45D). Steps
+// belong in the visible body as numbered lists per the visualization rule.
 ---
 
 <!-- Global Metadata -->
@@ -217,7 +204,9 @@ const howToSchema = howTo ? {
   System Korean fonts (Apple SD Gothic Neo / Malgun Gothic) render first.
 -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-<link rel="preload" href="/fonts/gowun-batang-400.woff2" as="font" type="font/woff2" crossorigin />
+<!-- Preload the 700 weight: h1/h2 (the LCP text on imageless article pages)
+     render in Gowun Batang bold, so 700 is the weight on the critical path. -->
+<link rel="preload" href="/fonts/gowun-batang-700.woff2" as="font" type="font/woff2" crossorigin />
 <!-- Plain stylesheet link (no media=print + onload swap): the strict CSP blocks
      inline event handlers, which left this CSS stuck on media="print" and the
      Pretendard font never applied. preconnect above keeps the fetch fast. -->
@@ -297,9 +286,6 @@ const howToSchema = howTo ? {
 )}
 {faqSchema && (
 	<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-)}
-{howToSchema && (
-	<script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />
 )}
 
 <!-- Reading progress bar (external for CSP — see public/js/reading-progress.js) -->

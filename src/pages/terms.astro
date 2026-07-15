@@ -1,0 +1,126 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+const lastUpdated = '2026-07-15';
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead
+			title={`이용약관 — ${SITE_TITLE}`}
+			description="미국 스토리 웹사이트 이용약관 — 콘텐츠의 성격, 책임의 한계, 지식재산권, 광고·제휴 고지에 대해 안내합니다."
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="container narrow">
+				<header class="head">
+					<p class="eyebrow">TERMS OF SERVICE · 이용약관</p>
+					<h1>이용약관</h1>
+					<p class="updated">최종 업데이트: {lastUpdated}</p>
+				</header>
+
+				<section class="prose">
+					<p>
+						미국 스토리(Miguk Story, migukstory.com, 이하 "본 사이트")를 이용해 주셔서 감사합니다.
+						본 사이트에 접속하거나 콘텐츠를 이용하시면 아래 약관에 동의하신 것으로 간주됩니다.
+					</p>
+
+					<h2>1. 서비스의 성격</h2>
+					<p>
+						본 사이트는 한국계 미국인 독자를 위한 <strong>일반 정보 제공 목적의 뉴스·가이드 매체</strong>입니다.
+						운영: ZOE STUDIO LLC (미국 뉴저지). 콘텐츠는 공식 출처를 바탕으로 편집실이 작성·검수하며,
+						작성 과정과 검증 기준은 <a href="/methodology">취재·검증 방법</a> 페이지에 공개돼 있습니다.
+					</p>
+
+					<h2>2. 전문 자문이 아님 (중요)</h2>
+					<p>
+						본 사이트의 모든 콘텐츠는 <strong>법률·세무·의료·투자 자문이 아닙니다.</strong>
+						이민, 세금, 건강보험, 연금, 부동산 등은 개인 상황에 따라 결론이 달라지며,
+						구체적 사안은 반드시 면허를 보유한 전문가(변호사, CPA, 보험 에이전트 등)와 상담하시기 바랍니다.
+						콘텐츠를 근거로 한 의사결정의 결과에 대해 본 사이트는 법적 책임을 지지 않습니다.
+					</p>
+
+					<h2>3. 정보의 정확성과 업데이트</h2>
+					<ul>
+						<li>정책·수치·마감일은 발행 시점 기준이며 이후 변경될 수 있습니다. 각 글의 발행일·업데이트일을 확인하세요.</li>
+						<li>오류를 발견하시면 <a href="/contact">문의 페이지</a> 또는 editor@migukstory.com으로 알려주세요. 정정 내역은 <a href="/corrections">정정·업데이트</a> 페이지에 기록합니다.</li>
+					</ul>
+
+					<h2>4. 지식재산권</h2>
+					<p>
+						본 사이트의 글·표·그래픽은 저작권법의 보호를 받습니다. 출처(미국 스토리, migukstory.com 링크)를
+						명시한 부분 인용은 환영하지만, 전문 복제·재게시는 사전 서면 동의가 필요합니다.
+					</p>
+
+					<h2>5. 광고·제휴 고지</h2>
+					<p>
+						본 사이트는 광고와 스폰서 콘텐츠를 게재할 수 있으며, 해당 콘텐츠에는 "광고 · Sponsored" 표기가 붙습니다.
+						자세한 내용은 <a href="/disclosure">광고·제휴 고지</a>를 참고하세요.
+					</p>
+
+					<h2>6. 이용자의 의무</h2>
+					<ul>
+						<li>본 사이트를 불법적 목적, 서비스 방해(스크래핑 남용, 자동화 공격 등)에 이용할 수 없습니다.</li>
+						<li>댓글·기고 등 이용자가 제출하는 콘텐츠는 타인의 권리를 침해하지 않아야 하며, 운영진은 부적절한 콘텐츠를 삭제할 수 있습니다.</li>
+					</ul>
+
+					<h2>7. 책임의 한계</h2>
+					<p>
+						본 사이트는 "있는 그대로(as is)" 제공됩니다. 관련 법이 허용하는 최대 범위에서,
+						본 사이트 이용 또는 이용 불능으로 발생하는 직접·간접 손해에 대해 ZOE STUDIO LLC는 책임을 지지 않습니다.
+						외부 링크 사이트의 콘텐츠·정책은 해당 운영자의 책임입니다.
+					</p>
+
+					<h2>8. 준거법 및 변경</h2>
+					<p>
+						본 약관은 미국 뉴저지주 법률의 적용을 받습니다. 약관은 사전 고지 없이 개정될 수 있으며,
+						개정 시 본 페이지의 "최종 업데이트" 날짜를 갱신합니다.
+					</p>
+
+					<h2>9. 문의</h2>
+					<address>
+						ZOE STUDIO LLC · 미국 스토리 편집실<br />
+						이메일: <a href="mailto:editor@migukstory.com">editor@migukstory.com</a><br />
+						<a href="/contact">문의 페이지 →</a>
+					</address>
+				</section>
+			</div>
+		</main>
+		<Footer />
+
+		<style>
+			.narrow { max-width: 720px; margin: 0 auto; }
+			.head {
+				text-align: center;
+				padding: var(--s-6) 0 var(--s-3);
+				border-bottom: 1px solid var(--ink);
+				margin-bottom: var(--s-4);
+			}
+			.eyebrow { margin: 0 0 var(--s-2); }
+			.head h1 {
+				font-family: var(--font-display);
+				font-size: clamp(2rem, 4.5vw, 2.75rem);
+				margin: 0 0 var(--s-1);
+				letter-spacing: -0.02em;
+			}
+			.updated { font-size: 0.85rem; color: var(--ink-light); margin: 0; }
+			.prose { padding: var(--s-2) 0 var(--s-6); line-height: 1.85; }
+			.prose h2 {
+				font-family: var(--font-display);
+				font-size: 1.35rem;
+				margin: var(--s-4) 0 var(--s-1);
+				color: var(--ink);
+			}
+			.prose ul { padding-left: 1.5em; }
+			.prose li { margin-bottom: 0.5em; }
+			.prose a { color: var(--brick); border-bottom: 1px solid var(--brick-soft); text-decoration: none; }
+			.prose a:hover { color: var(--brick-deep); }
+			address { font-style: normal; line-height: 1.7; color: var(--ink-medium); padding: var(--s-2); background: var(--paper-soft); border-radius: 4px; }
+		</style>
+	</body>
+</html>

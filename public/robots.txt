@@ -1,57 +1,37 @@
 # 미국 스토리 / Miguk Story — robots.txt
 # Open access to AI search and generative crawlers so we can be cited.
+#
+# All named bots share ONE group: per the robots protocol a bot that matches
+# a specific User-agent group ignores the * group entirely, so the utility-path
+# Disallows must live here too (2026-07-15 audit fix). Anthropic tokens updated
+# to the current set (ClaudeBot / Claude-User / Claude-SearchBot).
 
 User-agent: GPTBot
-Allow: /
-
 User-agent: OAI-SearchBot
-Allow: /
-
 User-agent: ChatGPT-User
-Allow: /
-
 User-agent: ClaudeBot
-Allow: /
-
-User-agent: Claude-Web
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
+User-agent: Claude-User
+User-agent: Claude-SearchBot
 User-agent: PerplexityBot
-Allow: /
-
 User-agent: Perplexity-User
-Allow: /
-
 User-agent: Google-Extended
-Allow: /
-
 User-agent: Applebot-Extended
-Allow: /
-
 User-agent: Bingbot
-Allow: /
-
 User-agent: CCBot
-Allow: /
-
 User-agent: Bytespider
-Allow: /
-
 User-agent: Amazonbot
-Allow: /
-
-# Korean search portals
 User-agent: Yeti
-Allow: /
-
 User-agent: Daum
-Allow: /
-
 User-agent: Daumoa
 Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /auth
+Disallow: /auth/
+Disallow: /login
+Disallow: /login/
+Disallow: /api
+Disallow: /api/
 
 # Default
 User-agent: *

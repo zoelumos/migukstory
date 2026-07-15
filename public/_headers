@@ -12,6 +12,21 @@
   Cross-Origin-Resource-Policy: same-site
   Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://accounts.google.com https://*.supabase.co https://static.cloudflareinsights.com https://www.googletagmanager.com; script-src-elem 'self' https://cdn.jsdelivr.net https://accounts.google.com https://*.supabase.co https://static.cloudflareinsights.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: https: blob:; media-src 'self'; worker-src 'self' blob:; manifest-src 'self'; connect-src 'self' https://*.supabase.co https://accounts.google.com https://cloudflareinsights.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; frame-src https://accounts.google.com https://*.supabase.co; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://accounts.google.com https://*.supabase.co; object-src 'none'; upgrade-insecure-requests
 
+# ── Cache-Control (perf audit 2026-07-15: CF Pages default is only 4h
+# must-revalidate; 906KB of fonts + content-hashed CSS were revalidating
+# every 4 hours). /_astro/* filenames are content-hashed → safe immutable.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/js/*
+  Cache-Control: public, max-age=86400
+
+/og/*
+  Cache-Control: public, max-age=86400
+
 /ads.txt
   Content-Type: text/plain; charset=utf-8
 

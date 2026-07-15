@@ -215,6 +215,5 @@ COLA 계산에 들어가는 7월·8월·9월 CPI-W 데이터가 아직 나오지
 - [The Senior Citizens League — COLA Watch](https://seniorsleague.org/cola-watch/)
 - [Social Security Administration — Cost-of-Living Adjustment (COLA) Information](https://www.ssa.gov/cola/)
 - [Federal Reserve — FOMC Meeting Calendars and Information](https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm)
-- [Federal Reserve — FOMC Meeting Calendars and Information](https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm)
 - [Social Security Administration — my Social Security](https://www.ssa.gov/myaccount/)
 - [CNBC — Social Security COLA in 2027 estimate drops after June inflation data (July 14, 2026)](https://www.cnbc.com/2026/07/14/social-security-cola-in-2027-cooling-inflation-lowers-estimate.html)

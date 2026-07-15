@@ -32,7 +32,6 @@ const {
 	category,
 	entry,
 	faq,
-	howTo,
 	author,
 	editorNote,
 } = Astro.props as any;
@@ -55,11 +54,19 @@ const all = await getCollection('blog');
 const currentEntry = entry || all.find(p => p.data.title === title);
 const readingMinutes = currentEntry ? estimateReadingTime(currentEntry.body || '') : 5;
 
+// GEO audit 2026-07-15: FAQ frontmatter used to exist ONLY as FAQPage JSON-LD —
+// invisible on-page. Google requires structured data to reflect visible content,
+// and AI answer engines extract rendered text, not JSON-LD. Render the FAQ
+// visibly — but skip when the markdown body already contains its own FAQ
+// section (84 posts do), to avoid a duplicate block.
+const bodyHasFaq = /##\s*자주 묻는 질문/.test(currentEntry?.body || '');
+const visibleFaq = !bodyHasFaq && Array.isArray(faq) && faq.length > 0 ? faq : null;
+
 const shareUrl = new URL(Astro.url.pathname, SITE_URL).toString();
 
 const breadcrumbs = [
 	{ name: '홈', url: '/' },
-	...(catMeta ? [{ name: catMeta.label, url: `/category/${catMeta.slug}` }] : [{ name: '블로그', url: '/blog' }]),
+	...(catMeta ? [{ name: catMeta.label, url: `/category/${catMeta.slug}/` }] : [{ name: '블로그', url: '/blog/' }]),
 	{ name: title, url: Astro.url.pathname },
 ];
 ---
@@ -72,7 +79,6 @@ const breadcrumbs = [
 			article={{ pubDate, updatedDate, tags, author: authorSlug }}
 			breadcrumbs={breadcrumbs}
 			faq={faq}
-			howTo={howTo}
 		/>
 	</head>
 
@@ -165,6 +171,21 @@ const breadcrumbs = [
 						<slot />
 					</div>
 				</div>
+
+				<!-- ── Visible FAQ (from frontmatter; matches FAQPage JSON-LD) ── -->
+				{visibleFaq && (
+					<div class="container">
+						<section class="faq-block prose" aria-label="자주 묻는 질문">
+							<h2>자주 묻는 질문 (FAQ)</h2>
+							{visibleFaq.map((item: { q: string; a: string }) => (
+								<>
+									<h3 class="faq-q">{item.q}</h3>
+									<p class="faq-a">{item.a}</p>
+								</>
+							))}
+						</section>
+					</div>
+				)}
 
 				<!-- ── Inline newsletter (highest conversion mid-content spot) -->
 				<NewsletterSignup />
@@ -332,6 +353,20 @@ const breadcrumbs = [
 			}
 
 			/* ── Editor's note (E-E-A-T) ───────────────────────────────── */
+			.faq-block {
+				margin-top: var(--s-4);
+				padding-top: var(--s-3);
+				border-top: 1px solid var(--rule);
+			}
+			.faq-block :global(.faq-q) {
+				font-size: 1.05rem;
+				margin-bottom: 0.4em;
+			}
+			.faq-block :global(.faq-a) {
+				color: var(--ink-medium);
+				margin-top: 0;
+			}
+
 			.editor-note {
 				max-width: var(--reading-width);
 				margin: var(--s-4) auto var(--s-2);
