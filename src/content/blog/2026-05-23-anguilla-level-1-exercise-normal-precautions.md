@@ -5,7 +5,7 @@ pubDate: '2026-05-25'
 tags: ['여행경보', '앵귈라', '국무부', '카리브해', '한인여행자']
 category: 'community'
 ageGroup: 'all'
-draft: false
+draft: true
 source: 'State Department Travel Advisories'
 sourceUrl: 'https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/anguilla-travel-advisory.html'
 ---

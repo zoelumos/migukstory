@@ -5,7 +5,7 @@ pubDate: '2026-06-09'
 tags: ['튀르키예', '여행경보', '국무부', '미주한인', '해외여행']
 category: 'community'
 ageGroup: 'all'
-draft: false
+draft: true
 source: 'State Department Travel Advisories'
 sourceUrl: 'https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/turkey-travel-advisory.html'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-05-26'
 tags: ['CDC', 'Title 42', '공중보건', '에볼라', '영주권', '여행제한']
 category: 'health'
 ageGroup: 'all'
-draft: false
+draft: true
 source: 'CDC Newsroom'
 sourceUrl: 'https://tools.cdc.gov/api/embed/downloader/download.asp?c=765618&m=132608'
 ---

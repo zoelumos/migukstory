@@ -5,7 +5,7 @@ pubDate: '2026-06-16'
 tags: ['여행경보', '파키스탄', '국무부', '안전', '한인커뮤니티']
 category: 'community'
 ageGroup: 'all'
-draft: false
+draft: true
 source: 'State Department Travel Advisories'
 sourceUrl: 'https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.pak.html'
 ---

@@ -5,7 +5,7 @@ pubDate: '2026-06-18'
 tags: ['CDC', '에볼라', '월드컵2026', '공중보건', '한인커뮤니티']
 category: 'health'
 ageGroup: 'all'
-draft: false
+draft: true
 source: 'CDC Newsroom'
 sourceUrl: 'https://tools.cdc.gov/api/embed/downloader/download.asp?c=765872&m=132608'
 ---
