@@ -1,0 +1,144 @@
+name: YouTube Short from article
+
+# Turns a published Migukstory article into a vertical Korean Short and (when
+# credentials are present) uploads it to YouTube. Fully automated per the repo
+# prime directive; see docs/YOUTUBE-AUTOMATION.md for one-time OAuth setup.
+#
+# Triggers:
+#   • workflow_dispatch — pick a slug (or leave blank for the newest post)
+#   • called by daily-post.yml after a publish (workflow_call), best-effort
+#
+# The job is a no-op-safe: without YouTube OAuth secrets it still renders the
+# MP4 and uploads it as a build artifact, so the visual pipeline is verifiable
+# before the channel is connected.
+
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Blog slug (blank = newest published post)'
+        required: false
+        default: ''
+      privacy:
+        description: 'YouTube privacy for this upload'
+        required: false
+        default: 'private'
+        type: choice
+        options: ['private', 'unlisted', 'public']
+      upload:
+        description: 'Upload to YouTube (needs OAuth secrets)'
+        required: false
+        default: true
+        type: boolean
+  workflow_call:
+    inputs:
+      slug:
+        required: false
+        type: string
+        default: ''
+      privacy:
+        required: false
+        type: string
+        default: 'private'
+    secrets:
+      YT_CLIENT_ID: { required: false }
+      YT_CLIENT_SECRET: { required: false }
+      YT_REFRESH_TOKEN: { required: false }
+
+permissions:
+  contents: read
+
+concurrency:
+  group: youtube-short-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install system deps (ffmpeg, chromium, Korean fonts)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            ffmpeg chromium-browser fonts-nanum fonts-noto-cjk
+          sudo fc-cache -f
+
+      - name: Install Python deps
+        run: pip install -r scripts/youtube/requirements.txt
+
+      - name: Build the Short
+        id: build
+        env:
+          # edge-tts needs no key; Chromium is on PATH after apt install.
+          CHROMIUM_BIN: /usr/bin/chromium-browser
+          SITE_URL: https://migukstory.com
+          # Optional Claude narration polish if the key exists.
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          SLUG='${{ inputs.slug }}'
+          CLAUDE_FLAG=''
+          if [ -n "$ANTHROPIC_API_KEY" ]; then CLAUDE_FLAG='--claude'; fi
+          if [ -z "$SLUG" ]; then
+            python -m scripts.youtube.make_video --latest $CLAUDE_FLAG
+          else
+            python -m scripts.youtube.make_video "$SLUG" $CLAUDE_FLAG
+          fi
+
+      - name: Upload MP4 as build artifact (always, for verification)
+        uses: actions/upload-artifact@v4
+        with:
+          name: migukstory-short
+          path: build/youtube/**/*.mp4
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Check YouTube OAuth secrets
+        id: yt-secrets
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: |
+          if [ -n "$YT_CLIENT_ID" ] && [ -n "$YT_REFRESH_TOKEN" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::YouTube upload skipped — add YT_CLIENT_ID / YT_CLIENT_SECRET / YT_REFRESH_TOKEN secrets (see docs/YOUTUBE-AUTOMATION.md)."
+          fi
+
+      - name: Upload to YouTube
+        if: >-
+          steps.yt-secrets.outputs.ready == 'true' &&
+          (github.event_name != 'workflow_dispatch' || inputs.upload)
+        id: youtube
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: |
+          MP4=$(ls build/youtube/*/*.mp4 | head -1)
+          SCRIPT="$(dirname "$MP4")/script.json"
+          python -m scripts.youtube.upload_youtube "$MP4" \
+            --script "$SCRIPT" --privacy '${{ inputs.privacy }}'
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "### 🎬 YouTube Short"
+            MP4=$(ls build/youtube/*/*.mp4 2>/dev/null | head -1 || true)
+            if [ -n "$MP4" ]; then
+              echo "- Built: \`$MP4\` ($(du -h "$MP4" | cut -f1))"
+            fi
+            if [ "${{ steps.yt-secrets.outputs.ready }}" = "true" ]; then
+              echo "- Upload: ${{ steps.youtube.outputs.youtube_url || 'attempted' }}"
+            else
+              echo "- Upload: skipped (no OAuth secrets) — MP4 attached as artifact."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

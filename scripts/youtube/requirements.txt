@@ -1,0 +1,21 @@
+# Dependencies for the Migukstory YouTube pipeline (scripts/youtube/*).
+# Install: pip install -r scripts/youtube/requirements.txt
+#
+# Slides need a Chromium binary + Korean fonts (fonts-nanum / fonts-noto-cjk),
+# installed at the OS level in CI — not pip-installable.
+
+PyYAML>=6.0.2
+
+# Korean text-to-speech (free, no API key). Streams from Microsoft Edge TTS.
+edge-tts>=6.1.0
+
+# Bundled static ffmpeg fallback when the OS has no ffmpeg on PATH.
+imageio-ffmpeg>=0.5.1
+
+# YouTube Data API v3 upload (only needed when --upload is used).
+google-api-python-client>=2.100.0
+google-auth>=2.30.0
+google-auth-httplib2>=0.2.0
+
+# Optional: Claude narration polish when ANTHROPIC_API_KEY is set (--claude).
+# anthropic>=0.40.0

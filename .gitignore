@@ -2,6 +2,9 @@
 dist/
 .astro/
 
+# YouTube pipeline render artifacts (slides, audio, mp4)
+build/youtube/
+
 # dependencies
 node_modules/
 
