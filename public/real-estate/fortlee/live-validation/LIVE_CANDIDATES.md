@@ -53,5 +53,5 @@
 ## Artifacts
 
 - JSON: `/real-estate/fortlee/live-validation/redfin-live-candidates-scored.json`
-- CSV: `/real-estate/fortlee/live-validation/redfin-live-candidates-scored.csv`
+- CSV: `/real-estate/fortlee/live-validation/redfin-live-candidates-scored.csv.txt.txt`
 - Raw JSON: `/real-estate/fortlee/live-validation/redfin-live-candidates-raw.json`
