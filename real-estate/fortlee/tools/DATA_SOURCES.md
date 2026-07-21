@@ -14,7 +14,26 @@ Zillow·Redfin·Realtor **웹페이지 스니펫은 캐시가 낡아** 이미 �
 | Realtor.com (RapidAPI / Apify) | 일 단위·sold/pending/active/rent | 불필요 | 무료 티어→유료 | Apify "Real Estate MCP" | 필터 풍부, ToS 주의 |
 | Zillow MCP (`sap156`, `EmilyThaHuman`) | 비공식·불안정 | 불필요 | 무료/스크레이핑 | 있음 | Zillow 공식 API 없음(회색지대) |
 | Redfin gis-csv (본 레포 `fetch_listings.py`) | Active만·무료 | 불필요 | 무료 | 본 레포 | Active만 반환 → 매각/계약중 자동 제외(장점), 비공식 |
+| **Bridge Interactive (Zillow Group)** ✅형이 키 보유 | **MLS 원본·StandardStatus·DOM·ListingId** | 데이터셋별 MLS 승인 | 계정에 따라 | 본 레포 `bridge_listings.py` | RESO Web API. **NJMLS 데이터셋 승인 여부가 관건** |
 | **NJMLS 실시간 (RESO Web API / RETS)** — SimplyRETS·Bridge(Rets.ly)·MLS Grid·Trestle | **진짜 실시간·가장 정확** | **에이전트/브로커 필요** | 유료 | 직접 연동 | 미국 MLS ~93% RESO 인증. 법적으로 라이선스 전문가용 |
+
+## 🔵 Bridge Interactive (형이 방금 준 키 = 이것, Zillow Group 소유)
+
+Client ID/Secret + **Server Token** + Browser Token 형식은 Bridge 고유. Bridge는 RESO Web API로
+MLS 데이터를 준다. **핵심: 데이터셋(=MLS)별로 승인**돼 있어야 그 지역 매물이 나온다.
+
+```bash
+# 🔐 토큰은 절대 코드/레포에 넣지 말 것. 환경변수로만:
+export BRIDGE_SERVER_TOKEN="<Server Token>"
+cd real-estate/fortlee/tools
+python3 bridge_listings.py --datasets        # ① 내 토큰이 접근 가능한 데이터셋 목록
+export BRIDGE_DATASET="<NJMLS 데이터셋 이름>"  # ② 위 목록에서 NJMLS/버건 것 선택
+python3 bridge_listings.py "Fort Lee"         # ③ Active 멀티패밀리(status·DOM·MLS#)
+```
+
+- 결과 0건이면: 그 토큰 데이터셋에 **NJMLS가 없을 가능성**이 큼(Zestimate 등 다른 데이터만 승인).
+  → `--datasets`로 확인하고, 없으면 NJMLS를 Bridge에 신청하거나 RentCast로 대체.
+- Browser Token은 클라이언트(웹)용, Server Token은 서버/스크립트용 — 이 툴은 Server Token 사용.
 
 ## 추천 경로
 

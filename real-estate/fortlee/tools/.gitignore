@@ -1,4 +1,7 @@
 __pycache__/
 *.pyc
+.env
+*_listings.csv
+*_listings.json
 listings.csv
 listings.json

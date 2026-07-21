@@ -27,6 +27,10 @@ try:
     import rentcast_listings as RC  # RentCast(status 포함) — 키 있으면 사용
 except Exception:
     RC = None
+try:
+    import bridge_listings as BR  # Bridge/Zillow(RESO MLS) — 토큰+데이터셋 있으면 사용
+except Exception:
+    BR = None
 
 mcp = FastMCP("realestate")
 
@@ -75,6 +79,35 @@ def rentcast_active(city: str, state: str = "NJ") -> str:
     return json.dumps({"city": city, "state": state, "source": "rentcast",
                        "count": len(rows), "listings": rows},
                       ensure_ascii=False, indent=2)
+
+
+@mcp.tool()
+def bridge_active(city: str) -> str:
+    """Bridge Interactive(Zillow Group)의 RESO MLS로 Active 멀티패밀리 조회.
+    가장 MLS 원본에 가까움(StandardStatus·DaysOnMarket·ListingId). 환경변수 필요:
+    BRIDGE_SERVER_TOKEN, BRIDGE_DATASET(NJMLS 데이터셋 이름). 데이터셋 모르면
+    bridge_datasets()를 먼저 호출."""
+    if BR is None or not BR.TOKEN:
+        return json.dumps({"error": "BRIDGE_SERVER_TOKEN 미설정"}, ensure_ascii=False)
+    if not BR.DATASET:
+        return json.dumps({"error": "BRIDGE_DATASET 미설정 — bridge_datasets() 먼저"},
+                          ensure_ascii=False)
+    rows = [BR.norm(x, city) for x in BR.fetch_town(city)]
+    return json.dumps({"city": city, "source": "bridge/zillow",
+                       "dataset": BR.DATASET, "count": len(rows),
+                       "listings": rows}, ensure_ascii=False, indent=2)
+
+
+@mcp.tool()
+def bridge_datasets() -> str:
+    """Bridge 토큰이 접근 가능한 데이터셋(=MLS) 목록. 여기서 NJMLS 이름을 찾아
+    BRIDGE_DATASET로 설정한다."""
+    if BR is None or not BR.TOKEN:
+        return json.dumps({"error": "BRIDGE_SERVER_TOKEN 미설정"}, ensure_ascii=False)
+    try:
+        return json.dumps(BR.list_datasets(), ensure_ascii=False, indent=2)[:6000]
+    except Exception as e:
+        return json.dumps({"error": str(e)}, ensure_ascii=False)
 
 
 if __name__ == "__main__":
