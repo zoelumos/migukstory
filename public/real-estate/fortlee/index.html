@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+
+<div style="position:sticky;top:0;z-index:9999;background:#7f1d1d;color:#fff;padding:14px 18px;border-bottom:3px solid #fecaca;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;box-shadow:0 6px 20px rgba(0,0,0,.18)">
+  <strong>LIVE VALIDATION WARNING · 2026-07-21</strong><br>
+  이 리포트의 재무모델/시각화는 배포됐지만, <strong>개별 매물 리스트는 outdated 가능성이 가장 큰 리스크</strong>입니다. Claude artifact/웹 스니펫/Redfin·Zillow 캐시는 sold·pending 매물이 active처럼 섞일 수 있습니다. 최종 후보는 반드시 <strong>NJMLS/Bridge RESO/RentCast Active status + DOM + MLS#</strong>로 재검증하세요. 현재 RentCast GitHub workflow는 <code>RENTCAST_API_KEY</code> secret 미설정/비활성 구독 때문에 라이브 검증이 막힌 상태입니다.
+</div>
+<title>포트리 온누리교회 도보권 멀티패밀리 매입·순수익 심층 분석</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{
+    --paper:#EDF1EF; --card:#FFFFFF; --card2:#F6F8F7;
+    --ink:#15211D; --muted:#5C6B66; --line:#DAE1DD; --line-strong:#C3CDC8;
+    --accent:#0E6E56; --accent-ink:#0A4E3D; --accent-soft:#DDECE6;
+    --loc:#3B5B8C; --loc-soft:#E1E8F2;
+    --pos:#1B8A57; --pos-soft:#DBF0E4;
+    --neg:#BE4238; --neg-soft:#F6E0DD;
+    --warn:#B5811F; --warn-soft:#F4E9CF;
+    --shadow:0 1px 2px rgba(20,40,34,.06),0 8px 28px rgba(20,40,34,.08);
+    --mono:"SF Mono","JetBrains Mono","Roboto Mono",ui-monospace,Menlo,Consolas,monospace;
+    --sans:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --paper:#0D1512; --card:#141F1B; --card2:#111A17;
+      --ink:#E9F0EC; --muted:#93A39D; --line:#233029; --line-strong:#2E3D36;
+      --accent:#42B694; --accent-ink:#8FD8C3; --accent-soft:#16302880;
+      --loc:#82A6D6; --loc-soft:#1A263880;
+      --pos:#54C288; --pos-soft:#16301f80; --neg:#E6786D; --neg-soft:#33191680;
+      --warn:#DCAE4E; --warn-soft:#302716a0;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#EDF1EF; --card:#FFFFFF; --card2:#F6F8F7; --ink:#15211D; --muted:#5C6B66;
+    --line:#DAE1DD; --line-strong:#C3CDC8; --accent:#0E6E56; --accent-ink:#0A4E3D;
+    --accent-soft:#DDECE6; --loc:#3B5B8C; --loc-soft:#E1E8F2; --pos:#1B8A57; --pos-soft:#DBF0E4;
+    --neg:#BE4238; --neg-soft:#F6E0DD; --warn:#B5811F; --warn-soft:#F4E9CF;
+    --shadow:0 1px 2px rgba(20,40,34,.06),0 8px 28px rgba(20,40,34,.08);
+  }
+  :root[data-theme="dark"]{
+    --paper:#0D1512; --card:#141F1B; --card2:#111A17; --ink:#E9F0EC; --muted:#93A39D;
+    --line:#233029; --line-strong:#2E3D36; --accent:#42B694; --accent-ink:#8FD8C3;
+    --accent-soft:#16302880; --loc:#82A6D6; --loc-soft:#1A263880; --pos:#54C288; --pos-soft:#16301f80;
+    --neg:#E6786D; --neg-soft:#33191680; --warn:#DCAE4E; --warn-soft:#302716a0;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px 96px}
+  section{margin-top:58px;scroll-margin-top:16px}
+  h2{font-size:clamp(20px,3.4vw,27px);font-weight:800;letter-spacing:-.02em;margin:0 0 6px;text-wrap:balance}
+  h3{font-size:16px;font-weight:750;margin:0 0 4px;letter-spacing:-.01em}
+  p{margin:0 0 12px}
+  .lead{color:var(--muted)}
+  .eyebrow{font-size:12px;font-weight:750;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+  a{color:var(--accent);text-underline-offset:3px}
+  b{font-weight:700}
+
+  header.hero{background:radial-gradient(120% 140% at 85% -20%,var(--accent-soft),transparent 55%),linear-gradient(180deg,var(--card),var(--card2));border-bottom:1px solid var(--line);position:relative}
+  .hero-in{max-width:960px;margin:0 auto;padding:44px 20px 38px}
+  .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--accent-ink);background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);padding:5px 12px;border-radius:999px;margin-bottom:18px}
+  .hero h1{font-size:clamp(26px,5.4vw,43px);line-height:1.13;font-weight:850;letter-spacing:-.03em;margin:0 0 14px;text-wrap:balance;max-width:24ch}
+  .hero h1 em{font-style:normal;color:var(--accent);white-space:nowrap}
+  .hero .sub{font-size:clamp(15px,2.2vw,17px);color:var(--muted);max-width:62ch;margin:0}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+  .chip{display:flex;align-items:center;gap:7px;background:var(--card);border:1px solid var(--line);border-radius:11px;padding:9px 13px;font-size:13px;box-shadow:var(--shadow)}
+  .chip .dot{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
+  .theme-btn{position:absolute;top:16px;right:16px;background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:7px 11px;font-size:12.5px;cursor:pointer;font-family:inherit}
+
+  .verdict{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;background:var(--card);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow);margin-top:26px}
+  .verdict .big{font-family:var(--mono);font-size:clamp(26px,6vw,40px);font-weight:700;line-height:1;color:var(--pos)}
+  .verdict .cap{font-size:12px;color:var(--muted);margin-top:6px;font-weight:600;max-width:11ch}
+  .verdict p{margin:0 0 8px;font-size:14.5px}
+  .verdict p:last-child{margin:0}
+  @media(max-width:600px){.verdict{grid-template-columns:1fr;gap:10px}.verdict .cap{max-width:none}}
+
+  .grid{display:grid;gap:14px}
+  .g2{grid-template-columns:1fr 1fr}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+  @media(max-width:760px){.g2,.g3{grid-template-columns:1fr}}
+
+  .map{display:grid;grid-template-columns:60px 1fr;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+  .ave{position:relative;background:repeating-linear-gradient(180deg,transparent 0 20px,color-mix(in srgb,var(--line) 70%,transparent) 20px 24px),var(--card2);border-right:1px solid var(--line)}
+  .ave::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:6px;transform:translateX(-50%);background:color-mix(in srgb,var(--line-strong) 80%,transparent)}
+  .ave-label{position:absolute;top:8px;left:50%;transform:translateX(-50%);font-size:9px;color:var(--muted);white-space:nowrap;font-weight:700;letter-spacing:.06em}
+  .stops{padding:6px 0}
+  .stop{display:grid;grid-template-columns:14px 1fr auto;gap:12px;align-items:center;padding:11px 16px 11px 12px;border-bottom:1px dashed var(--line)}
+  .stop:last-child{border-bottom:0}
+  .stop .pin{width:14px;height:14px;border-radius:50%;border:3px solid var(--card);box-shadow:0 0 0 1.5px currentColor}
+  .stop .info b{font-size:14px}
+  .stop .info span{display:block;font-size:12px;color:var(--muted)}
+  .stop .walk{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:right;white-space:nowrap}
+  .stop.church{background:var(--loc-soft)}
+  .stop.church .info b{color:var(--loc)}
+
+  .tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);-webkit-overflow-scrolling:touch}
+  table{border-collapse:collapse;width:100%;min-width:680px;background:var(--card);font-size:13px}
+  th,td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{background:var(--card2);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:750;white-space:nowrap}
+  tbody tr:last-child td{border-bottom:0}
+  tr.hl{background:var(--pos-soft)}
+  tr.dim{opacity:.6}
+  .tag{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:999px;white-space:nowrap}
+  .tag.best{background:var(--pos-soft);color:var(--pos)}
+  .tag.warn{background:var(--warn-soft);color:var(--warn)}
+  .tag.over{background:var(--neg-soft);color:var(--neg)}
+  .tag.info{background:var(--loc-soft);color:var(--loc)}
+  .yes{color:var(--pos);font-weight:750}
+  .no{color:var(--neg);font-weight:750}
+  .maybe{color:var(--warn);font-weight:750}
+
+  /* property cards */
+  .pcard{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+  .pcard .top{padding:15px 16px 12px;border-bottom:1px solid var(--line)}
+  .pcard .addr{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .pcard .addr b{font-size:15px}
+  .pcard .addr .price{font-family:var(--mono);font-weight:750;font-size:14px}
+  .pcard .meta{font-size:12px;color:var(--muted);margin-top:4px}
+  .pcard .body{padding:14px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .pcard .net{font-family:var(--mono);font-size:24px;font-weight:750;line-height:1}
+  .pcard .net.pos{color:var(--pos)} .pcard .net.mid{color:var(--warn)}
+  .pcard .nlabel{font-size:11.5px;color:var(--muted);margin-top:-2px}
+  .pcard ul{margin:4px 0 0;padding-left:16px;font-size:12.5px;color:var(--muted)}
+  .pcard ul li{margin-bottom:3px}
+  .pcard .foot{margin-top:auto;padding-top:8px;font-size:11.5px}
+
+  /* calculator */
+  .calc{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+  .calc-grid{display:grid;grid-template-columns:1.05fr .95fr}
+  @media(max-width:760px){.calc-grid{grid-template-columns:1fr}}
+  .calc-inputs{padding:20px 22px;border-right:1px solid var(--line)}
+  @media(max-width:760px){.calc-inputs{border-right:0;border-bottom:1px solid var(--line)}}
+  .field{margin-bottom:15px}
+  .field:last-child{margin-bottom:0}
+  .field label{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;font-weight:650;margin-bottom:6px}
+  .field label .val{font-family:var(--mono);font-size:13.5px;color:var(--accent);font-weight:700}
+  input[type=range]{width:100%;accent-color:var(--accent);height:22px;cursor:pointer}
+  .seg{display:flex;gap:6px}
+  .seg button{flex:1;padding:8px;border:1px solid var(--line);background:var(--card2);color:var(--muted);border-radius:9px;font-family:inherit;font-size:12px;font-weight:650;cursor:pointer}
+  .seg button[aria-pressed=true]{background:var(--accent-soft);color:var(--accent-ink);border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+  .hint{font-size:11.5px;color:var(--muted);margin-top:5px}
+  .calc-out{padding:20px 22px;background:var(--card2);display:flex;flex-direction:column;gap:13px}
+  .result{border-radius:13px;padding:15px 18px;text-align:center;border:1px solid var(--line)}
+  .result .lbl{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;opacity:.85}
+  .result .amt{font-family:var(--mono);font-size:clamp(30px,7vw,42px);font-weight:750;line-height:1.05;margin:4px 0 2px}
+  .result .mo{font-size:12px;opacity:.85}
+  .result.good{background:var(--pos-soft);border-color:color-mix(in srgb,var(--pos) 35%,transparent);color:var(--pos)}
+  .result.bad{background:var(--neg-soft);border-color:color-mix(in srgb,var(--neg) 35%,transparent);color:var(--neg)}
+  .target{font-size:12px;color:var(--muted);text-align:center;margin-top:-3px}
+  .ledger{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:11px;overflow:hidden}
+  .row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:var(--card);padding:9px 14px;font-size:12.5px}
+  .row .k{display:flex;align-items:center;gap:9px}
+  .row .k .sw{width:9px;height:9px;border-radius:3px;flex:0 0 auto}
+  .row .v{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:650}
+  .row.in .v{color:var(--pos)}
+  .row.total{background:var(--card2);font-weight:800}
+  .row.total .v{font-size:15px}
+  .bar{height:14px;display:flex;border-radius:7px;overflow:hidden;border:1px solid var(--line)}
+  .bar span{display:block;height:100%}
+
+  .ben{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+  .ben .amt{font-family:var(--mono);font-weight:750;font-size:20px;color:var(--accent);white-space:nowrap}
+  .ben h3{margin-bottom:2px}
+  .ben p{font-size:13px;color:var(--muted);margin:0}
+  .note{background:var(--warn-soft);border:1px solid color-mix(in srgb,var(--warn) 35%,transparent);border-radius:12px;padding:13px 15px;font-size:13px;color:var(--ink);display:grid;grid-template-columns:auto 1fr;gap:11px}
+  .note.good{background:var(--pos-soft);border-color:color-mix(in srgb,var(--pos) 35%,transparent)}
+  .note.info{background:var(--loc-soft);border-color:color-mix(in srgb,var(--loc) 30%,transparent)}
+  .note .i{font-size:16px;line-height:1.3}
+
+  .consider{display:grid;gap:11px}
+  .ci{display:grid;grid-template-columns:auto 1fr;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:14px 16px;box-shadow:var(--shadow)}
+  .ci .n{font-family:var(--mono);font-size:13px;font-weight:750;color:var(--accent);width:30px;height:30px;display:grid;place-items:center;background:var(--accent-soft);border-radius:9px;flex:0 0 auto}
+  .ci h3{font-size:14px}
+  .ci p{font-size:12.5px;color:var(--muted);margin:2px 0 0}
+  .ci .impact{display:inline-block;margin-top:7px;font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px}
+  .impact.money{background:var(--neg-soft);color:var(--neg)}
+  .impact.plus{background:var(--pos-soft);color:var(--pos)}
+  .impact.check{background:var(--loc-soft);color:var(--loc)}
+
+  .check{display:grid;gap:9px;padding:0;margin:0}
+  .check li{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:11px;padding:12px 15px;font-size:13.5px}
+  .check .box{width:19px;height:19px;border:2px solid var(--accent);border-radius:6px;margin-top:2px;flex:0 0 auto}
+
+  footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+  footer a{word-break:break-all}
+  .src{display:grid;gap:4px;margin-top:8px}
+  .disc{margin-top:18px;font-size:11.5px;line-height:1.5}
+  .sec-head{margin-bottom:18px}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:9999;background:#7f1d1d;color:#fff;padding:14px 18px;border-bottom:3px solid #fecaca;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;box-shadow:0 6px 20px rgba(0,0,0,.18)">
+  <strong>LIVE VALIDATION WARNING · 2026-07-21</strong><br>
+  이 리포트의 재무모델/시각화는 배포됐지만, <strong>개별 매물 리스트는 outdated 가능성이 가장 큰 리스크</strong>입니다. Claude artifact/웹 스니펫/Redfin·Zillow 캐시는 sold·pending 매물이 active처럼 섞일 수 있습니다. 최종 후보는 반드시 <strong>NJMLS/Bridge RESO/RentCast Active status + DOM + MLS#</strong>로 재검증하세요. 현재 RentCast GitHub workflow는 <code>RENTCAST_API_KEY</code> secret 미설정/비활성 구독 때문에 라이브 검증이 막힌 상태입니다.
+</div>
+
+<header class="hero">
+  <button class="theme-btn" id="themeBtn">◐ 테마</button>
+  <div class="hero-in">
+    <div class="kicker">🏠 뉴저지 포트리 · 온누리교회 도보권 · 멀티패밀리 매입 심층 분석 v2</div>
+    <h1>부모님 노후 <em>월 순수익 $1,000+</em>,<br>핵심은 <em>작은 모기지</em>입니다.</h1>
+    <p class="sub">전수 조사 결과 좋은 소식과 냉정한 현실이 함께 나왔습니다. <b>재산세는 예상보다 낮고(~$12k), 렌트는 타워 시세보다 낮습니다.</b> 그리고 교회 도보권의 진짜 2가구 매물은 지금 사실상 두 곳뿐입니다.</p>
+    <div class="chips">
+      <div class="chip"><span class="dot" style="background:var(--pos)"></span>재산세 실제 <b>~$12,506/년</b> (예상 ↓)</div>
+      <div class="chip"><span class="dot" style="background:var(--warn)"></span>2가구 렌트 <b>2BR $2,700·3BR $3,200</b></div>
+      <div class="chip"><span class="dot" style="background:var(--loc)"></span>맨션세 <b>이제 셀러 부담</b></div>
+      <div class="chip"><span class="dot" style="background:var(--accent)"></span>모기지 <b>6.5%</b> · 현금 $750k</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="verdict">
+    <div>
+      <div class="big num" id="vBig">+$1,379</div>
+      <div class="cap">도보권 2가구(모델) 월 순수익 · 실물 확인필요</div>
+    </div>
+    <div>
+      <h3>결론 먼저 — 3가지</h3>
+      <p><b>① 좋은 소식:</b> 포트리 재산세는 실제 <b>연 ~$12,000</b>대(예상한 $21k 아님)라 순수익 여력이 큽니다. 다만 <b>렌트는 타워($4,000)가 아니라 2가구 한 층 실거래 $2,700~3,200</b>이 정답입니다.</p>
+      <p><b>② 진짜 관문은 모기지 크기.</b> 현금이 $750k로 묶여 있어, 매입가가 오를수록 모기지가 커지고 그게 순수익을 깎습니다. <b>매입가 ≤ ~$88만(모기지 ≤ $13만)</b>이 $1,000/월의 분기점입니다.</p>
+      <p><b>③ 냉정한 현실(2026-07 재확인):</b> 1154는 <b>이미 매각</b>됐고, "교회 도보권 + $1M 미만 + 진짜 2가구 + 지금 활성"은 사실상 <b>1612 Anderson 하나</b>(그나마 AS-IS 수리필요·15개월째). 가장 신선한 2026 신규 2가구는 <b>439 Bergen(팰팍, 도보불가)</b>. 재고가 극히 얇아 <b>대기·알림 등록이 전략의 일부</b>여야 합니다.</p>
+    </div>
+  </div>
+
+  <div class="note" style="margin-top:16px;background:var(--neg-soft);border-color:color-mix(in srgb,var(--neg) 35%,transparent)"><div class="i">⛔</div><div><b>개별 매물은 전부 "리드"입니다 — 저는 라이브 상태를 검증할 수 없습니다.</b> 이 환경은 NJMLS·Zillow·Redfin을 <b>정책상 차단</b>해, 아래 주소·가격·"활성" 표시는 <b>과거 스니펫 기준</b>이며 <b>이미 팔렸거나 계약중일 수 있습니다.</b> 확인된 사례: <b>1612 Anderson = 매각</b>(형 확인 · 공개 스니펫은 아직도 "판매중"으로 표시=낡음의 증거), <b>244 Lincoln = 계약중</b>(2025.6~), <b>1154 Anderson = 매각</b>(2025.10). 최신 status를 얻는 방법은 <b>① RentCast API(무료·status 필드) ② 맥미니 툴킷 ③ 에이전트 NJMLS</b>뿐입니다 — 상세는 레포 <code>tools/DATA_SOURCES.md</code>. <b>이 리포트의 확실한 가치는 개별 매물이 아니라 → 계산 모델·실거래 렌트/세금·시니어 혜택·규제·전략</b>입니다. 매물은 반드시 MLS#로 라이브 재확인하세요.</div></div>
+
+  <!-- 01 LOCATION -->
+  <section id="loc">
+    <div class="sec-head"><div class="eyebrow">01 · 위치 &amp; 도보권</div>
+      <h2>교회가 있는 그 거리, Anderson Ave</h2>
+      <p class="lead">뉴저지 온누리교회 <b>1449 Anderson Ave</b> 기준. Anderson Ave는 Walk Score 86("매우 도보친화"). 도보권(≈0.6mi/12분) 안의 진짜 2가구 매물은 희소합니다.</p>
+    </div>
+    <div class="map">
+      <div class="ave"><div class="ave-label">ANDERSON&nbsp;AVE</div></div>
+      <div class="stops">
+        <div class="stop"><span class="pin" style="color:var(--neg)"></span><div class="info"><b>1612 Anderson Ave · ❌매각</b><span>2가구 · $850,000 리스팅(MLS 25011859)이었으나 매각(형 확인)</span></div><div class="walk">↑ 도보 4분<br>~0.2mi</div></div>
+        <div class="stop"><span class="pin" style="color:var(--muted)"></span><div class="info"><b>1207 Anderson Ave</b><span>혼합용도(C-2) 2유닛 · $1,650,000 · 주거전용 아님</span></div><div class="walk">↑ 도보 6분<br>~0.3mi</div></div>
+        <div class="stop church"><span class="pin" style="color:var(--loc)"></span><div class="info"><b>⛪ 뉴저지 온누리교회</b><span>1449 Anderson Ave · 주일 7:30 / 9:30 / 11:30</span></div><div class="walk">기준점</div></div>
+        <div class="stop"><span class="pin" style="color:var(--neg)"></span><div class="info"><b>1154 Anderson Ave · ❌매각됨</b><span>2가구·1919년 · 2025.10 ~$805k 매각 · 한 세대 월 $3,500 임대(렌트 실증)</span></div><div class="walk">↓ 도보 6분<br>~0.3mi</div></div>
+        <div class="stop"><span class="pin" style="color:var(--muted)"></span><div class="info"><b>1097 / 1102 / 1506 Anderson</b><span>단독주택으로 분류 (2가구 아님)</span></div><div class="walk">↓ 7–9분</div></div>
+      </div>
+    </div>
+    <div class="note info" style="margin-top:14px"><div class="i">📍</div><div><b>도보권 밖 대안:</b> 확실한 sub-$1M 2가구는 <b>439 Bergen Blvd, 팰리세이즈파크 $925k</b>(2가구 5bd/3ba)와 <b>2425 Hammett Ave, 포트리 $1.079M</b>(2가구 6bd/3ba, 교회 ~22분). 팰팍·클리프사이드는 한인 밀집이지만 온누리교회까지 <b>도보는 어렵고 차량 이동</b>이 필요합니다.</div></div>
+  </section>
+
+  <!-- 02 CENSUS -->
+  <section id="census">
+    <div class="sec-head"><div class="eyebrow">02 · 매물 전수 조사</div>
+      <h2>포트리 + 팰팍 + 클리프사이드 2가구↑ 전수</h2>
+      <p class="lead">2026년 7월 <b>상태 재확인본</b>. 초록 = 도보권·예산권·진짜 2가구·활성. 상태·MLS·년도 접두(25=2025년/26=2026년)를 함께 표기 — 라이선스 에이전트가 MLS 번호로 최종 확인해야 합니다.</p>
+    </div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>주소 / 동네</th><th>호가</th><th>세대</th><th>상태 (2026-07)</th><th>MLS# (년)</th><th>교회 도보</th><th>$1M↓</th></tr></thead>
+      <tbody>
+        <tr class="dim"><td><b>1612 Anderson</b> · 포트리</td><td class="num">$850,000</td><td class="maybe">2~3?</td><td class="no">❌ 매각(형 확인)</td><td class="num">25011859 (25)</td><td class="yes">4분</td><td class="yes">✓</td></tr>
+        <tr class="hl"><td><b>439 Bergen Blvd</b> · 팰팍</td><td class="num">$925,000</td><td>2</td><td class="yes">✅ 활성 · 2026 신규</td><td class="num">26012987 (26)</td><td class="no">28분</td><td class="yes">✓</td></tr>
+        <tr class="dim"><td><b>1154 Anderson</b> · 포트리</td><td class="num">~$805,000</td><td>2</td><td class="no">❌ 매각 (2025.10)</td><td class="num">25035880 (25)</td><td class="yes">6분</td><td class="yes">✓</td></tr>
+        <tr><td>2425 Hammett · 포트리</td><td class="num">$1,079,000</td><td>2</td><td class="maybe">미확인</td><td class="num">unknown</td><td class="no">22분</td><td class="no">약간초과</td></tr>
+        <tr><td>515 St Pauls · 클리프사이드</td><td class="num">$1,179,000</td><td>3</td><td class="maybe">미확인 (24접두?)</td><td class="num">unconfirmed</td><td class="no">36분</td><td class="no">✗</td></tr>
+        <tr><td>519 St Pauls · 클리프사이드</td><td class="num">$799,000</td><td>1</td><td class="yes">활성 · 2026 (단독 3bd)</td><td class="num">26010732 (26)</td><td class="no">36분</td><td class="yes">✓</td></tr>
+        <tr><td>290 Columbia · 포트리</td><td class="num">$1,595,000</td><td>2</td><td class="maybe">미확인</td><td class="num">unknown</td><td class="maybe">14분</td><td class="no">✗</td></tr>
+        <tr><td>2410 3rd St · 포트리</td><td class="num">$1,649,999</td><td>2</td><td class="maybe">미확인</td><td class="num">unknown</td><td class="no">20분</td><td class="no">✗</td></tr>
+        <tr class="dim"><td>1207 Anderson · 포트리</td><td class="num">$1,650,000</td><td>2</td><td class="no">혼합용도 C-2 (상가)</td><td class="num">—</td><td class="yes">6분</td><td class="no">✗</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note" style="margin-top:14px"><div class="i">📊</div><div><b>시장 규모(중반 2026 스냅샷):</b> 포트리 멀티패밀리 <b>~6건 활성</b>·중간가 ~$1.25M($999,999–$3.8M). 팰팍 <b>~7건</b>($859k–$2.8M). 클리프사이드 <b>~12건</b>($770k–$1.8M). <b>도보권·sub-$1M·진짜 2가구</b> 교집합은 거의 비어 있어(현재 1612만) 실질적으로 <b>알림 등록 후 대기</b>가 필요합니다. ＊403 차단으로 스니펫 기반 — MLS# 라이브 확인 전제.</div></div>
+  </section>
+
+  <!-- 02b BROAD SCAN -->
+  <section id="scan">
+    <div class="sec-head"><div class="eyebrow">02＋ · 광역 스캔 (2026-07 최신)</div>
+      <h2>팰팍·클리프사이드·리지필드·레오니아·에지워터까지</h2>
+      <p class="lead">교회 도보권(포트리 07024)에 진짜 2가구 신규가 사실상 없어, <b>차량 5~12분</b> 한인 밀집 동네로 넓혀 <b>2026 신규(MLS 26접두)</b> 위주로 다시 스캔했습니다. <b>가장 신선한 재고는 팰리세이즈파크</b>, <b>교회 최단(~1.5mi)은 클리프사이드파크</b>입니다.</p>
+    </div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>주소 / 동네</th><th>호가</th><th>세대</th><th>구성</th><th>MLS#(년)</th><th>상태 / DOM</th><th>교회거리</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td><b>439 Bergen Blvd</b> · 팰팍</td><td class="num">$925,000</td><td>2</td><td>5bd/3ba 벽돌·차고</td><td class="num">26012987 (26)</td><td class="yes">활성(2026.6 교차확인)</td><td class="maybe">~1.2mi·차5분</td></tr>
+        <tr><td>209 5th St "B" · 팰팍</td><td class="num">$920,000</td><td class="maybe">2?</td><td>3bd/4ba</td><td class="num">26025112 (26)</td><td class="maybe">리드·미확인</td><td class="maybe">~1.5mi</td></tr>
+        <tr><td>주소미공개 듀플렉스 · 팰팍</td><td class="num maybe">미확인</td><td>2</td><td>3bd/unit</td><td class="num">26026795 (26)</td><td class="maybe">리드·7/17 표기</td><td class="maybe">~1.3mi</td></tr>
+        <tr><td>1043 Edgewater Ave · 리지필드</td><td class="num">$590,000</td><td>2</td><td>4bd/2ba</td><td class="num">미확인</td><td class="maybe">리드·미확인</td><td class="no">~3mi·차10분</td></tr>
+        <tr><td>120 E Edsall Blvd · 팰팍</td><td class="num">$1,450,000</td><td>2</td><td>6bd/6ba</td><td class="num">26012105 (26)</td><td class="maybe">리드·미확인</td><td class="no">~1.6mi</td></tr>
+        <tr><td>25 Russell Ave · 에지워터</td><td class="num">$1,700,000</td><td class="yes">3</td><td>8bd/3ba·1895리노</td><td class="num">25008116 (25)</td><td class="maybe">리드·장기·미확인</td><td class="no">~4mi</td></tr>
+        <tr class="dim"><td><b>244 Lincoln Ave</b> · 클리프사이드</td><td class="num">$699,000</td><td>2</td><td>5bd/2ba</td><td class="num">25020544 (25)</td><td class="no">❌ 계약중(2025.6~)</td><td class="no">—</td></tr>
+        <tr class="dim"><td>180 Cottage Pl · 클리프사이드</td><td class="num">$749,000</td><td>2</td><td>6bd/3ba</td><td class="num">25033774 (25)</td><td class="no">오래됨·미확인</td><td class="no">~1.5mi</td></tr>
+        <tr class="dim"><td>519 Broad Ave · 팰팍</td><td class="num">$1,701,000</td><td>2</td><td>—</td><td class="num">26008246 (26)</td><td class="no">❌매각 5/22</td><td class="no">—</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note" style="margin-top:14px"><div class="i">🧭</div><div><b>스캔 결론(정정):</b> ① 라이브 교차확인이 되는 유일한 매물은 <b>439 Bergen(팰팍 2026 신규, 2026.6 활성)</b> — 그래도 매수 전 재확인 필수. ② 저렴했던 <b>244 Lincoln은 이미 계약중</b>(제가 잘못 올렸음, 제외). ③ <b>3가구 sub-$1.3M 확인 매물 0.</b> ④ <b>도보권(포트리) 신규 0</b> — 나머지 표는 전부 "리드"로, 상태는 미확인입니다. <b>결론: 특정 매물을 믿지 말고, 아래 툴킷/에이전트로 그날그날 라이브 조회하세요.</b></div></div>
+    <div class="note info" style="margin-top:12px"><div class="i">🛰️</div><div><b>최신 status를 얻는 진짜 방법(레포 <code>tools/</code> 동봉):</b> ① <b>RentCast API</b>(무료 50건/월·라이선스 불필요·<b>status·DOM·MLS# 필드</b>) → <code>rentcast_listings.py "Fort Lee"</code> 하면 <b>Active만</b> 나와 계약중/매각 자동 제외. ② 무료·키 없이 <code>fetch_listings.py</code>(Redfin Active). ③ <code>claude mcp add</code>로 맥미니 로컬 Claude에 붙이면 "매물 뽑아줘"로 호출. ④ 완벽한 실시간은 에이전트의 NJMLS. 소스 비교=<code>tools/DATA_SOURCES.md</code>.</div></div>
+  </section>
+
+  <!-- 03 PROPERTY DEEP DIVE -->
+  <section id="deep">
+    <div class="sec-head"><div class="eyebrow">03 · 후보 심층 (실제 순수익)</div>
+      <h2>도보권 두 후보 + 대안, 실제 숫자로</h2>
+      <p class="lead">실제 세금 고지서·실거래 렌트로 계산한 월 순현금흐름(시니어 혜택 적용, 공실 5%). 부모님 거주비 절약은 여기 포함 안 된 <b>추가</b> 이득입니다.</p>
+    </div>
+    <div class="grid g2">
+      <div class="pcard">
+        <div class="top"><div class="addr"><b>1612 Anderson · ❌매각</b><span class="price">$850,000</span></div>
+          <div class="meta">매각됨(형 확인). 아래 숫자는 "도보권 $850k 2가구"의 <b>모델 예시</b>일 뿐, 이 매물 매수 불가</div></div>
+        <div class="body">
+          <div><span class="net pos">+$1,379</span><span class="tag warn" style="margin-left:8px">모델(현물 아님)</span></div>
+          <div class="nlabel">$850k 2가구 · 3BR 한 층 $3,200 · 모기지 $100k · 시니어 — 참고용 계산</div>
+          <ul>
+            <li>도보권 이런 스펙이 <b>다시 나오면</b> 이 정도 순수익 기대</li>
+            <li>3가구면 두 층 렌트 → <b>+$3,400</b>대</li>
+            <li>도보권 2가구는 <b>극히 희소·빨리 소진</b> → 알림 필수</li>
+          </ul>
+          <div class="foot"><span class="maybe">교훈:</span> 특정 매물 믿지 말고 RentCast/에이전트로 그날 status 확인</div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="top"><div class="addr"><b>439 Bergen Blvd · ✅활성·2026</b><span class="price">$925,000</span></div>
+          <div class="meta">MLS 26012987 · 팰리세이즈파크 · 2가구 확정 · 5bd/3ba · all-brick · 2-car 차고 · 교회 ~28분(비도보)</div></div>
+        <div class="body">
+          <div><span class="net mid">+$883</span><span class="tag best" style="margin-left:8px">가장 신선·최고신뢰</span></div>
+          <div class="nlabel">3BR 한 층 $3,200 렌트 · 모기지 $175k · 시니어 혜택</div>
+          <ul>
+            <li><b>확인 신뢰도 최고</b>(2026 신규·활성 라벨·벽돌+차고)</li>
+            <li>모기지 $175k가 순수익을 목표 살짝 아래로 → <b>$88만↓ 협상</b> 시 달성</li>
+            <li>온누리교회는 차량 이동(도보 조건 미충족)</li>
+          </ul>
+          <div class="foot"><span class="plus" style="color:var(--pos);font-weight:750">✅ 지금 실사 1순위(현재 확실히 존재)</span></div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="top"><div class="addr"><b>1154 Anderson Ave · ❌매각</b><span class="price">~$805,000</span></div>
+          <div class="meta">2025.10 매각(MLS 25035880) · 2가구·1919년 · 도보 6분 — <b>매수 불가, 렌트 실증용</b></div></div>
+        <div class="body">
+          <div><span class="net" style="color:var(--loc)">$3,500/월</span><span class="tag info" style="margin-left:8px">렌트 실거래 증거</span></div>
+          <div class="nlabel">매각 후 한 세대가 월 $3,500에 임대(2025.12, MLS 25042512)</div>
+          <ul>
+            <li>Anderson Ave 실제 2가구 한 세대 = <b>$3,500</b> → 3BR $3,200 가정이 타당</li>
+            <li>2가구 시세 앵커: 이 집이 ~$805k에 팔림</li>
+            <li>도보권 매물은 이렇게 <b>빨리 소진</b>됨 → 대기·알림 필요</li>
+          </ul>
+          <div class="foot"><span class="maybe">참고:</span> 후보 아님. 시세·렌트 기준점으로만 사용</div>
+        </div>
+      </div>
+      <div class="pcard" style="border-style:dashed">
+        <div class="top"><div class="addr"><b>💡 "싼 2가구 전액현금" 전략</b><span class="price">모델</span></div>
+          <div class="meta">특정 매물 아님 — <b>~$700k대 2가구</b>를 현금으로 잡는 시나리오 (예: 244 Lincoln은 이미 계약중이라 제외)</div></div>
+        <div class="body">
+          <div><span class="net pos">+$1,700대</span><span class="tag info" style="margin-left:8px">전략(현물 아님)</span></div>
+          <div class="nlabel">~$700k 2가구 전액현금($0 모기지·버퍼 $50k) · 2BR $2,800 · 시니어</div>
+          <ul>
+            <li>가격이 낮을수록 <b>모기지 0</b> → 현금흐름 최강</li>
+            <li>이런 매물이 <b>나오면</b> 최우선 — 단 <b>먼저 팔리는 편</b>이니 알림 필수</li>
+            <li>비도보(클리프사이드/에지워터)일 가능성 큼</li>
+          </ul>
+          <div class="foot"><span class="maybe">⚠️ 실물은 반드시 툴킷/에이전트로 "계약중 아닌지" 라이브 확인</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="note good" style="margin-top:14px"><div class="i">💡</div><div><b>정리(2026-07 현재):</b> 라이브로 그나마 교차확인되는 리드는 <b>439 Bergen(팰팍·2026 신규)</b> 하나, <b>1612 Anderson</b>은 도보권 유일 리드지만 AS-IS·상태 확인 필요. <b>둘 다 매수 전 "계약중 아닌지" 라이브 재확인 필수.</b> 도보권 진짜 2가구는 재고가 거의 없어(1154·244 등 계속 소진) <b>알림 등록 + 툴킷 주기적 조회</b>가 실질 전략입니다.</div></div>
+  </section>
+
+  <!-- 04 RENT COMPS -->
+  <section id="rent">
+    <div class="sec-head"><div class="eyebrow">04 · 렌트 시세 검증 (실거래)</div>
+      <h2>"한 층 렌트, 얼마 받나" — 실거래로 확정</h2>
+      <p class="lead">핵심 오해 정정: 흔히 인용되는 "2BR $4,000"은 <b>고급 타워</b> 시세입니다. 2가구 <b>한 층</b>은 그 60~70% 수준. 아래는 포트리·팰팍·클리프사이드 실제 하우스 층 렌트 표본입니다.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card"><div style="font-size:12px;color:var(--muted);font-weight:700">1BR 한 층</div><div class="num" style="font-size:26px;font-weight:750;color:var(--accent);margin:4px 0">~$2,100</div><div style="font-size:12px;color:var(--muted)">범위 $1,900–2,300 · 표본 적음(검증요)</div></div>
+      <div class="card"><div style="font-size:12px;color:var(--muted);font-weight:700">2BR 한 층 <span class="tag best">기준</span></div><div class="num" style="font-size:26px;font-weight:750;color:var(--accent);margin:4px 0">~$2,700</div><div style="font-size:12px;color:var(--muted)">범위 $2,500–2,800 · 실거래 4건</div></div>
+      <div class="card"><div style="font-size:12px;color:var(--muted);font-weight:700">3BR 한 층 <span class="tag best">기준</span></div><div class="num" style="font-size:26px;font-weight:750;color:var(--accent);margin:4px 0">~$3,200</div><div style="font-size:12px;color:var(--muted)">범위 $3,000–3,500 · 실거래 8건</div></div>
+    </div>
+    <div class="tbl-wrap" style="margin-top:14px"><table>
+      <thead><tr><th>주소 / 동네</th><th>침실</th><th>월 렌트</th><th>비고</th></tr></thead>
+      <tbody>
+        <tr><td>1010 / 1014 Ponsi St · 포트리</td><td>2bd</td><td class="num">$2,500 / $2,790</td><td>2가구 층 (포트리 2BR 기준 앵커)</td></tr>
+        <tr><td>2430 6th St 2층 · 포트리</td><td>2bd</td><td class="num">$2,650</td><td>세탁기·주차 포함</td></tr>
+        <tr><td>480 North Ave 2층 · 포트리</td><td>2bd</td><td class="num">$2,800</td><td>2층</td></tr>
+        <tr class="hl"><td><b>1154 Anderson 한 세대</b> · 포트리</td><td>3bd급</td><td class="num">$3,500</td><td>매각(2025.10) 후 한 세대 임대(2025.12) — <b>교회 그 거리 실증</b></td></tr>
+        <tr><td>222 Myrtle Ave 2층 · 포트리</td><td>3bd</td><td class="num">$3,000</td><td>1,100sf, 2가구 2층 (3BR 최빈값)</td></tr>
+        <tr><td>447 10th St 2층 · 팰팍</td><td>3bd/2ba</td><td class="num">$3,500</td><td>세탁기·주차·식기세척 (상위)</td></tr>
+        <tr><td>421 North Ave 2층 · 포트리</td><td>3bd/2ba</td><td class="num">$4,200</td><td>2욕실·상위 아웃라이어</td></tr>
+        <tr><td>305 Palisade Ave · 클리프사이드</td><td>3bd/3ba</td><td class="num">$4,400</td><td>리노베이션·펫OK (최상위, 기준 아님)</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note" style="margin-top:14px"><div class="i">🎯</div><div><b>가격 책정 규칙:</b> 세 동네 모두 스펙 같으면 렌트 거의 동일. 렌트를 올리는 건 <b>주차·인유닛 세탁기·풀바스 개수·난방/온수 포함</b> 여부. <b>2BR = $2,700, 3BR = $3,200</b>을 기본으로 잡고, 2욕실+주차+세탁기가 있어야 $3,500+ 도전. $4,000 이상은 타워/특수 케이스로 가정 금지.</div></div>
+  </section>
+
+  <!-- 05 CALCULATOR -->
+  <section id="calc">
+    <div class="sec-head"><div class="eyebrow">05 · 인터랙티브 계산기</div>
+      <h2>직접 조정하는 월 순수익 계산기</h2>
+      <p class="lead">실거래 기본값으로 세팅됨. 세금은 <b>%가 아니라 실제 고지서 금액($)</b>으로 입력합니다(포트리는 과세표준이 시세보다 낮아 %추정이 과대). 현금 최대 $750k, 나머지 모기지.</p>
+    </div>
+    <div class="calc"><div class="calc-grid">
+      <div class="calc-inputs">
+        <div class="field"><label>매입가 (협상 후) <span class="val" id="lPrice">$850,000</span></label><input type="range" id="price" min="700000" max="1200000" step="10000" value="850000"><div class="hint" id="mansionHint">$1M 미만 = 맨션세 면제(면제 시에도 이젠 셀러 부담).</div></div>
+        <div class="field"><label>현금 다운 (최대 $750k) <span class="val" id="lDown">$750,000</span></label><input type="range" id="down" min="0" max="750000" step="10000" value="750000"><div class="hint" id="mortHint">모기지 원금: <b class="num">$100,000</b></div></div>
+        <div class="field"><label>월 렌트 수입 (임대 세대 합계) <span class="val" id="lRent">$3,200</span></label><input type="range" id="rent" min="2400" max="6000" step="50" value="3200"><div class="hint">2가구 한 층: 2BR ~$2,700 · 3BR ~$3,200. 3가구로 두 층 렌트면 합산(예 $5,400).</div></div>
+        <div class="field"><label>재산세 (연간, 실제 고지서) <span class="val" id="lTax">$12,000</span></label><input type="range" id="tax" min="8000" max="22000" step="500" value="12000"><div class="hint">인근 실제 고지서 $11,345–$13,155 · 평균 $12,506. 재평가 시 상승 가능.</div></div>
+        <div class="field"><label>모기지 금리 (30년 고정) <span class="val" id="lRate">6.50%</span></label><input type="range" id="rate" min="5.5" max="7.5" step="0.05" value="6.5"></div>
+        <div class="field"><label>65세+ 시니어 세금 혜택</label><div class="seg" id="seniorSeg"><button data-v="1" aria-pressed="true">적용 (2년차~)</button><button data-v="0" aria-pressed="false">미적용 (1년차)</button></div><div class="hint">StayNJ 최대 $6,500 + ANCHOR $1,250 = 연 최대 $7,750 감면</div></div>
+      </div>
+      <div class="calc-out">
+        <div class="result good" id="resultBox"><div class="lbl">월 순현금흐름</div><div class="amt num" id="resAmt">+$1,379</div><div class="mo">렌트수입 − 총 보유비용 (부모님 거주비 별도 절약)</div></div>
+        <div class="target" id="targetLine"></div>
+        <div class="bar" id="bar"></div>
+        <div class="ledger" id="ledger"></div>
+        <div class="hint" style="text-align:center">＊ 공실 5% · 보험 $2,600 · 수도/하수 $1,200 · 수선충당 $3,800/년 반영(오래된 집은 수선↑).</div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 06 SCENARIOS -->
+  <section id="scen">
+    <div class="sec-head"><div class="eyebrow">06 · 순수익 $1,000+ 시나리오 총정리</div>
+      <h2>목표를 넘는 조합 vs 못 넘는 조합</h2>
+      <p class="lead">"어떤 경우에 월 $1,000이 나오나"를 전부 계산했습니다. 공통 규칙: <b>모기지를 작게(≤~$13만), 렌트를 현실적으로($2,700–3,200), 시니어 혜택 적용.</b></p>
+    </div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>시나리오</th><th>매입가</th><th>모기지</th><th>렌트</th><th>시니어</th><th>월 순수익</th><th>판정</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>1612 2가구 · 3BR <span class="tag info">활성</span></td><td class="num">$850k</td><td class="num">$100k</td><td class="num">$3,200</td><td class="yes">O</td><td class="num yes">+$1,379</td><td><span class="tag best">✅ 달성</span></td></tr>
+        <tr class="hl"><td>1612 리걸 3가구면 · 두 층</td><td class="num">$850k</td><td class="num">$100k</td><td class="num">$5,600</td><td class="yes">O</td><td class="num yes">+$3,658</td><td><span class="tag best">✅ 최대</span></td></tr>
+        <tr class="hl"><td>2가구 전액현금 (예 ~$800k)</td><td class="num">$800k</td><td class="num">$50k</td><td class="num">$3,200</td><td class="yes">O</td><td class="num yes">+$1,736</td><td><span class="tag best">✅ 최고</span></td></tr>
+        <tr><td>3가구 · 두 세대 렌트</td><td class="num">$1.18M</td><td class="num">$429k</td><td class="num">$5,400</td><td class="yes">O</td><td class="num yes">+$1,240</td><td><span class="tag best">✅ 달성</span></td></tr>
+        <tr><td>439 Bergen (팰팍·2026신규)</td><td class="num">$925k</td><td class="num">$175k</td><td class="num">$3,200</td><td class="yes">O</td><td class="num maybe">+$883</td><td><span class="tag warn">△·비도보</span></td></tr>
+        <tr><td>1612 · 1년차(혜택 전)</td><td class="num">$850k</td><td class="num">$100k</td><td class="num">$3,200</td><td class="no">X</td><td class="num">+$774</td><td><span class="tag warn">△ 2년차OK</span></td></tr>
+        <tr><td>풀 예산 소진</td><td class="num">$1.0M</td><td class="num">$250k</td><td class="num">$3,200</td><td class="yes">O</td><td class="num neg">+$430</td><td><span class="tag over">✗ 미달</span></td></tr>
+      </tbody>
+    </table></div>
+    <div class="note good" style="margin-top:14px"><div class="i">📈</div><div><b>패턴이 분명합니다:</b> $750k 현금을 최대한 <b>다운(=모기지 최소화)</b>할수록 순수익이 커집니다. 풀 예산($1M)을 쓰면 모기지 $250k 상환($1,580/월)이 순수익을 목표 아래로 눌러버립니다. <b>세대 수가 많으면(3가구) 모기지가 커도 렌트가 이깁니다.</b></div></div>
+    <div class="card" style="margin-top:14px"><div id="curve"></div></div>
+  </section>
+
+  <!-- 07 SENIOR -->
+  <section id="senior">
+    <div class="sec-head"><div class="eyebrow">07 · 시니어 혜택</div>
+      <h2>65세+ 부모님 명의 — 연 최대 $7,750 절세</h2>
+      <p class="lead">세 프로그램이 하나의 신청서(PAS-1)로 중첩. 소득 $200,000 이하면 대부분 해당. 순수익 목표의 결정적 지렛대.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card ben"><div class="amt">$6,500</div><div><h3>Stay NJ</h3><p>65세+, 재산세 50%(최대 $13,000까지) 환급 → 최대 <b>$6,500/년</b>. 소득 $200k 이하.</p></div></div>
+      <div class="card ben"><div class="amt">$1,250</div><div><h3>ANCHOR</h3><p>주택 소유주 환급. 시니어 가산 포함 <b>$1,000~1,750/년</b>.</p></div></div>
+      <div class="card ben"><div class="amt">동결</div><div><h3>Senior Freeze</h3><p>재산세 <b>인상분</b> 동결·환급. 소득 ~$172k 이하 · 거주/소유 연차 요건.</p></div></div>
+    </div>
+    <div class="note" style="margin-top:14px"><div class="i">⏱️</div><div><b>타이밍:</b> StayNJ·Senior Freeze는 "직전 1년 전체 소유·거주"가 첫 조건 → <b>매입 1년차는 혜택 없이</b> 버티고 2년차부터 감면. 계산기 "1년차" 버튼으로 확인하세요. 또한 <b>렌트 수입이 소득에 잡혀</b> Senior Freeze 소득한도에 영향 줄 수 있으니, 명의·소득 구성은 <b>회계사와 설계</b>.</div></div>
+  </section>
+
+  <!-- 08 TAX & RULES -->
+  <section id="rules">
+    <div class="sec-head"><div class="eyebrow">08 · 세금 &amp; 규제 (정확히)</div>
+      <h2>숫자와 법규, 오해 없이</h2>
+      <p class="lead">조사 중 몇 가지 통념이 틀렸음을 확인했습니다. 협상·계약 전 이 정정본을 기준으로 삼으세요.</p>
+    </div>
+    <div class="grid g2">
+      <div class="card"><h3>재산세 — 생각보다 낮다</h3><p style="font-size:13px;color:var(--muted);margin:0">공칭세율 <b>2.607%</b>, 실효세율 <b>1.891%</b>(2024 확정). 하지만 과세표준이 시세보다 낮아 <b>실제 고지서는 $11,345~$13,155</b>(평균 $12,506). $21k 추정은 과대였습니다. 단, <b>매입 후 재평가</b>로 오를 여지는 상존.</p></div>
+      <div class="card"><h3>맨션세 — 이제 셀러 부담</h3><p style="font-size:13px;color:var(--muted);margin:0">2025.7.10부터 1% 맨션세는 <b>매수자가 아니라 셀러</b>가 냅니다. $1M–2M 1%, $2M–2.5M 2%, …$3.5M+ 3.5% 누진(전액 기준). <b>$1M 미만은 완전 면제</b> — 매수자 부담은 사라졌지만, 셀러도 $1M 넘기기 싫어해 <b>협상 지렛대</b>가 됩니다.</p></div>
+      <div class="card"><h3>렌트컨트롤 (Ch. 324)</h3><p style="font-size:13px;color:var(--muted);margin:0">2가구는 규제 대상 → 연 인상 <b>최대 5%</b>, <b>시니어 세입자는 3.5%</b> 상한. 단독·콘도는 공실 시 규제 해제(시세 재설정 가능). 즉 렌트 인상 속도에 상한이 있으니 <b>초기 렌트를 시세로 잘 맞추는 게 중요</b>.</p></div>
+      <div class="card"><h3>임대 시작 요건 (Ch. 182)</h3><p style="font-size:13px;color:var(--muted);margin:0">세입자 교체·매매·이사마다 <b>거주적합증(COC) + 검사</b> 필요(신청료 $100). 임대인은 임차 시작 <b>60일 내 등록</b>. 즉 세입자 바뀔 때마다 시청 검사 일정을 감안하세요.</p></div>
+    </div>
+  </section>
+
+  <!-- 09 CONSIDER -->
+  <section id="more">
+    <div class="sec-head"><div class="eyebrow">09 · 더 생각할 점 &amp; 리스크</div>
+      <h2>계약 전 반드시 확인할 것</h2>
+    </div>
+    <div class="consider">
+      <div class="ci"><div class="n">1</div><div><h3>세대 수 확정이 최우선</h3><p>1612가 2가구냐 3가구냐로 순수익이 <b>+$1,310 vs +$3,000</b>로 갈립니다. "리걸(합법) 세대 수"를 시청 등본·CO로 반드시 확인.</p><span class="impact plus">순수익 최강 레버</span></div></div>
+      <div class="ci"><div class="n">2</div><div><h3>년식·유지보수 (1905~1919 주의)</h3><p>도보권 후보 둘 다 100년 안팎. 지붕·보일러·전기(knob-and-tube)·배관 리스크. <b>인스펙션 필수</b>, 수선충당 월 $400+로 상향.</p><span class="impact money">인스펙션 필수</span></div></div>
+      <div class="ci"><div class="n">3</div><div><h3>전액현금 vs 유동성</h3><p>1154 전액현금이 순수익 최고지만 현금 $750k 全소진. 응급·수리 대비 <b>버퍼 $50–100k</b>는 남기는 게 안전(순수익 소폭 감소 감수).</p><span class="impact check">유동성 계획</span></div></div>
+      <div class="ci"><div class="n">4</div><div><h3>재평가 리스크</h3><p>낮은 현 세금($12k)은 낮은 과세표준 덕. 매입 후 재평가되면 상승 가능. 계산기 세금값을 $15–16k로 올려 <b>보수 시나리오</b>도 확인하세요.</p><span class="impact money">보수 시나리오</span></div></div>
+      <div class="ci"><div class="n">5</div><div><h3>실거주 1세대 = 유리한 모기지</h3><p>2가구 중 1세대 실거주 → <b>주거용 모기지</b>(투자용보다 금리·다운 유리), 렌트 예상수입으로 대출 심사 소득 보강 가능.</p><span class="impact plus">금리 유리</span></div></div>
+      <div class="ci"><div class="n">6</div><div><h3>감가상각 절세</h3><p>임대 부분은 감가상각·경비로 소득세 절감(현금흐름 외 실이득). 매각 시 환수(recapture) 유의 — 회계사 설계.</p><span class="impact plus">세금 환급 여지</span></div></div>
+      <div class="ci"><div class="n">7</div><div><h3>도보 조건의 값</h3><p>도보권(1154·1612)은 희소·노후. 도보를 조금 양보(차량 5–10분)하면 팰팍·클리프사이드에서 <b>더 새 집·3가구</b> 선택지가 열립니다. 부모님 우선순위(도보 vs 현금흐름) 확인.</p><span class="impact check">우선순위 결정</span></div></div>
+      <div class="ci"><div class="n">8</div><div><h3>주차·공실·세입자</h3><p>2가구는 세대별 주차가 관건(렌트 $ 좌우). 공실 5~8% 항상 반영. 우량 세입자 확보가 노후 현금흐름의 핵심.</p><span class="impact check">주차·세입자</span></div></div>
+    </div>
+  </section>
+
+  <!-- 10 CHECKLIST -->
+  <section id="next">
+    <div class="sec-head"><div class="eyebrow">10 · 다음 단계</div><h2>바로 실행 체크리스트</h2></div>
+    <ul class="check">
+      <li><span class="box"></span><div><b>지금 실사 2곳:</b> <b>439 Bergen(팰팍·활성·MLS 26012987)</b>과 <b>1612 Anderson(도보권·활성·MLS 25011859)</b> — 계약중 아닌지·현재가 라이브 확인부터.</div></li>
+      <li><span class="box"></span><div><b>1612 세대수·수리비 확정:</b> "리걸 2 vs 3가구"(수익 최대 변수) + AS-IS 수리 견적 + 인스펙션.</div></li>
+      <li><span class="box"></span><div><b>협상 타깃:</b> 순수익 목표 위해 <b>모기지 ≤ $13만</b> → 매입가 ≤ ~$88만(현금 최대 투입).</div></li>
+      <li><span class="box"></span><div><b>알림 등록:</b> 도보권 2가구는 <b>빨리 소진</b>(1154 사례) → 에이전트에 신규 매물 즉시 알림 설정.</div></li>
+      <li><span class="box"></span><div><b>렌트 검증:</b> 해당 스펙(침실·욕실·주차) 라이브 렌트 3~5건으로 $2,700/$3,200 재확인.</div></li>
+      <li><span class="box"></span><div><b>시니어 혜택:</b> 부모님 명의 + <b>PAS-1</b> 일정(2025년분 마감 2026-11-02), 1년차 공백 자금계획.</div></li>
+      <li><span class="box"></span><div><b>대출·시청·회계사:</b> 주거용 2가구 사전승인 · 렌트컨트롤/COC 확인 · 감가상각·소득한도 설계.</div></li>
+    </ul>
+  </section>
+
+  <footer>
+    <div><b>출처 (2026년 7월 조회):</b></div>
+    <div class="src">
+      <a href="http://vision.onnuri.org/nj/">뉴저지 온누리교회 (1449 Anderson Ave)</a>
+      <a href="https://www.redfin.com/city/6283/NJ/Fort-Lee/multi-family-homes-for-sale">Redfin · Fort Lee 멀티패밀리</a>
+      <a href="https://njpropertyrecords.com/property/0219_1251_9">njpropertyrecords · Anderson Ave 세금/평가</a>
+      <a href="https://www.nj.gov/treasury/taxation/pdf/lpt/gtr/2024taxrates.pdf">NJ 2024 확정 세율 (Fort Lee)</a>
+      <a href="https://ecode360.com/10069189">Fort Lee 렌트컨트롤 Ch.324</a>
+      <a href="https://ecode360.com/10067065">Fort Lee 거주적합증 Ch.182</a>
+      <a href="https://www.morganlewis.com/pubs/2025/07/new-jersey-mansion-tax-changes-impose-higher-transaction-costs-on-commercial-and-residential-real-estate-sales">NJ 맨션세 2025 개정 (셀러 부담)</a>
+      <a href="https://www.nj.gov/treasury/taxation/staynj/index.shtml">NJ · Stay NJ</a>
+      <a href="https://www.nj.gov/treasury/taxation/ptr/eligibility.shtml">NJ · Senior Freeze</a>
+      <a href="https://www.zillow.com/fort-lee-nj/rentals/">Zillow · Fort Lee 렌트 실거래</a>
+      <a href="https://www.nerdwallet.com/mortgages/mortgage-rates">모기지 금리 (2026-07)</a>
+    </div>
+    <p class="disc">＊ 공개 웹 데이터 기반 <b>추정 모델</b>이며, 상당수 매물 페이지가 자동조회를 차단(403)해 검색 스니펫에 의존했습니다. 매물의 세대수·가격·상태·세금·년식은 매물별로 다를 수 있고 매각완료분이 섞였을 수 있으니, 최종 판단 전 <b>부동산 에이전트(MLS)·모기지 브로커·회계사·홈 인스펙터·시청</b> 확인이 필요합니다. 렌트·세금은 조사 시점 표본이며 실제와 차이가 있을 수 있습니다.</p>
+  </footer>
+</div>
+
+<script>
+(function(){"use strict";
+var $=function(id){return document.getElementById(id)};
+var fmt=function(n){return "$"+Math.round(n).toLocaleString("en-US")};
+var sgn=function(n){return (n>=0?"+":"−")+"$"+Math.abs(Math.round(n)).toLocaleString("en-US")};
+$("themeBtn").addEventListener("click",function(){var r=document.documentElement;var c=r.getAttribute("data-theme");if(!c){c=matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";}r.setAttribute("data-theme",c==="dark"?"light":"dark");});
+
+var INS=2600, WATER=1200, MAINT=3800, VAC=0.05, N=360, TARGET=1000, senior=1;
+function pmt(P,a){if(P<=0)return 0;var r=a/100/12;return P*r*Math.pow(1+r,N)/(Math.pow(1+r,N)-1);}
+function relief(tax){if(!senior)return 0;return Math.min(tax*0.5,6500)+1250;}
+function model(price,down,rent,rate,taxBill){
+  down=Math.min(down,price);
+  var mort=Math.max(0,price-down);
+  var pi=pmt(mort,rate);
+  var tax=(taxBill-relief(taxBill))/12;
+  var rentEff=rent*(1-VAC);
+  var out=pi+tax+INS/12+WATER/12+MAINT/12;
+  return {mort:mort,pi:pi,tax:tax,ins:INS/12,water:WATER/12,maint:MAINT/12,rentEff:rentEff,out:out,net:rentEff-out,leftover:Math.max(0,750000-price>0?(750000-down):0)};
+}
+var el={price:$("price"),down:$("down"),rent:$("rent"),rate:$("rate"),tax:$("tax")};
+
+function render(){
+  var price=+el.price.value, down=Math.min(+el.down.value,price), rent=+el.rent.value, rate=+el.rate.value, taxB=+el.tax.value;
+  $("lPrice").textContent=fmt(price); $("lDown").textContent=fmt(down); $("lRent").textContent=fmt(rent);
+  $("lRate").textContent=rate.toFixed(2)+"%"; $("lTax").textContent=fmt(taxB);
+  var m=model(price,down,rent,rate,taxB);
+  var extra=(down<price)?"":(750000>price?" · 여유현금 "+fmt(750000-price):"");
+  $("mortHint").innerHTML="모기지 원금: <b class='num'>"+fmt(m.mort)+"</b>"+(m.mort===0?" (전액현금)":"")+extra;
+  $("mansionHint").innerHTML=price>=1000000?"⚠️ $1M 이상 → 맨션세 "+fmt(price*0.01)+" (2025.7~ <b>셀러</b> 부담, 협상 지렛대)":"✅ $1M 미만 → 맨션세 면제";
+  var good=m.net>=TARGET;
+  $("resultBox").className="result "+(good?"good":"bad");
+  $("resAmt").textContent=sgn(m.net);
+  var d=m.net-TARGET;
+  $("targetLine").innerHTML=good?"🎯 목표 $1,000/월 대비 <b class='num'>"+sgn(d)+"</b> 초과":"⚠️ 목표까지 <b class='num'>"+fmt(Math.abs(d))+"</b> 부족 — 모기지↓(매입가↓) 또는 렌트↑";
+  var rows=[["in","렌트 수입 (공실 5%)","var(--pos)","+"+fmt(m.rentEff)],
+    ["out","모기지 원리금","var(--accent)","−"+fmt(m.pi)],
+    ["out","재산세"+(senior?" (혜택 후)":""),"var(--warn)","−"+fmt(m.tax)],
+    ["out","보험","var(--loc)","−"+fmt(m.ins)],
+    ["out","수도·하수","#8aa","−"+fmt(m.water)],
+    ["out","수선 충당","#b98","−"+fmt(m.maint)]];
+  var h="";rows.forEach(function(r){h+="<div class='row "+r[0]+"'><div class='k'><span class='sw' style='background:"+r[2]+"'></span>"+r[1]+"</div><div class='v'>"+r[3]+"</div></div>";});
+  h+="<div class='row total'><div class='k'>월 순수익</div><div class='v' style='color:"+(good?"var(--pos)":"var(--neg)")+"'>"+sgn(m.net)+"</div></div>";
+  $("ledger").innerHTML=h;
+  var parts=[["var(--accent)",m.pi],["var(--warn)",m.tax],["var(--loc)",m.ins],["#8aa",m.water],["#b98",m.maint]];
+  var tot=m.out||1,b="";parts.forEach(function(p){b+="<span style='background:"+p[0]+";width:"+(p[1]/tot*100)+"%'></span>";});
+  $("bar").innerHTML=b;
+  $("vBig").textContent=sgn(model(850000,750000,3200,6.5,12000).net);
+}
+Array.prototype.forEach.call($("seniorSeg").children,function(btn){btn.addEventListener("click",function(){senior=+btn.getAttribute("data-v");Array.prototype.forEach.call($("seniorSeg").children,function(x){x.setAttribute("aria-pressed",x===btn?"true":"false");});render();drawCurve();});});
+["price","down","rent","rate","tax"].forEach(function(k){el[k].addEventListener("input",render);});
+
+function drawCurve(){
+  var W=780,H=240,pad=48,pMin=750000,pMax=1150000;
+  var s='<svg viewBox="0 0 '+W+' '+H+'" width="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="매입가별 월 순수익(현금 $750k 고정)">';
+  var pts=[],vals=[];
+  for(var p=pMin;p<=pMax;p+=20000){var sv=senior;senior=1;var m=model(p,750000,3200,6.5,12000);senior=sv;pts.push([p,m.net]);vals.push(m.net);}
+  var yMin=Math.min.apply(null,vals)-150,yMax=Math.max.apply(null,vals)+180;
+  var X=function(p){return pad+(p-pMin)/(pMax-pMin)*(W-pad-20)};
+  var Y=function(v){return H-pad-(v-yMin)/(yMax-yMin)*(H-pad-26)};
+  var yt=Y(TARGET);
+  s+='<line x1="'+pad+'" y1="'+yt+'" x2="'+(W-20)+'" y2="'+yt+'" stroke="var(--pos)" stroke-dasharray="5 5" stroke-width="1.5" opacity=".7"/><text x="'+(W-24)+'" y="'+(yt-7)+'" text-anchor="end" font-size="11" fill="var(--pos)" font-weight="700">목표 $1,000/월</text>';
+  var d="";pts.forEach(function(pt,i){d+=(i?"L":"M")+X(pt[0]).toFixed(1)+" "+Y(pt[1]).toFixed(1)+" ";});
+  var area="M"+X(pMin)+" "+(H-pad)+" "+pts.map(function(pt){return "L"+X(pt[0]).toFixed(1)+" "+Y(pt[1]).toFixed(1);}).join(" ")+" L"+X(pMax)+" "+(H-pad)+" Z";
+  s+='<path d="'+area+'" fill="var(--accent)" opacity=".10"/><path d="'+d+'" fill="none" stroke="var(--accent)" stroke-width="2.6" stroke-linecap="round"/>';
+  [[750000,"$750k"],[880000,"$880k"],[1000000,"$1.0M"]].forEach(function(mk){var sv=senior;senior=1;var m=model(mk[0],750000,3200,6.5,12000);senior=sv;var x=X(mk[0]),y=Y(m.net),g=m.net>=TARGET;s+='<circle cx="'+x+'" cy="'+y+'" r="4.5" fill="'+(g?"var(--pos)":"var(--neg)")+'" stroke="var(--card)" stroke-width="2"/><text x="'+x+'" y="'+(y-11)+'" text-anchor="middle" font-size="11" font-weight="750" fill="'+(g?"var(--pos)":"var(--neg)")+'">'+sgn(m.net)+'</text><text x="'+x+'" y="'+(H-pad+17)+'" text-anchor="middle" font-size="11" fill="var(--muted)">'+mk[1]+'</text>';});
+  s+='<text x="'+pad+'" y="16" font-size="11" fill="var(--muted)">월 순수익 vs 매입가 (현금 $750k 고정·렌트 $3,200·세금 $12k·시니어) — 오를수록 모기지가 갉아먹음</text></svg>';
+  $("curve").innerHTML=s;
+}
+render();drawCurve();
+})();
+</script>
+
+</body>
+</html>
