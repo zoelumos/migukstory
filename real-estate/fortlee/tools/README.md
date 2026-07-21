@@ -4,9 +4,19 @@
 Cliffside Park·Ridgefield·Leonia·Edgewater 의 **현재 활성 멀티패밀리(2·3가구)** 매물을
 MLS#·DOM·상태와 함께 라이브로 가져온다.
 
+## ⭐ 최신 status(활성/계약중/매각)가 중요하면 → RentCast 먼저
+
+Zillow/Redfin **스니펫은 캐시가 낡아** 팔린 매물이 '판매중'으로 섞인다(우리가 244·1612에서
+당한 문제). **status 필드가 있는 API = RentCast**를 써라. 무료 키(50건/월)면 된다:
+```bash
+export RENTCAST_API_KEY="키"   # https://www.rentcast.io/api
+python3 rentcast_listings.py "Fort Lee"     # Active만 → 계약중/매각 자동 제외
+```
+소스 전체 비교·추천은 **`DATA_SOURCES.md`** 참고. (아래 A/B는 무료·키 없는 Redfin 방식)
+
 ## 왜 맥미니에서 돌려야 하나
 
-이 툴을 만든 Claude의 클라우드 세션은 **정책 프록시가 redfin.com을 차단(403)**해서
+이 툴을 만든 Claude의 클라우드 세션은 **정책 프록시가 부동산 사이트를 차단(403)**해서
 거기선 못 돈다. 형 **맥미니(집 네트워크)**엔 그 차단이 없으니 **로컬에서 정상 동작**한다.
 그래서 "네가 다 만들어서 맥미니에서 돌게 해줘"를 이렇게 실현했다: 코드는 여기 다 있고,
 형은 맥미니에서 명령 한 줄만 실행하면 된다.

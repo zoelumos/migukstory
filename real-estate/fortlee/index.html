@@ -215,7 +215,7 @@
     </div>
   </div>
 
-  <div class="note" style="margin-top:16px;background:var(--neg-soft);border-color:color-mix(in srgb,var(--neg) 35%,transparent)"><div class="i">⛔</div><div><b>개별 매물은 전부 "리드"입니다 — 저는 라이브 상태를 검증할 수 없습니다.</b> 이 환경은 NJMLS·Zillow·Redfin을 <b>정책상 차단</b>해, 아래 주소·가격·"활성" 표시는 <b>과거 스니펫 기준</b>이며 <b>이미 팔렸거나 계약중일 수 있습니다.</b> 확인된 오류: <b>244 Lincoln = 계약중</b>(MLS 25020544, 2025.6~ under contract), <b>1154 Anderson = 매각</b>(2025.10 ~$805k). 유일하게 라이브로 조회하는 방법은 <b>맥미니 툴킷(<code>tools/fetch_listings.py</code>) 또는 라이선스 에이전트의 NJMLS</b>입니다. <b>이 리포트의 확실한 가치는 개별 매물이 아니라 → 계산 모델·실거래 렌트/세금·시니어 혜택·규제·전략</b>입니다. 매물은 반드시 MLS#로 라이브 재확인하세요.</div></div>
+  <div class="note" style="margin-top:16px;background:var(--neg-soft);border-color:color-mix(in srgb,var(--neg) 35%,transparent)"><div class="i">⛔</div><div><b>개별 매물은 전부 "리드"입니다 — 저는 라이브 상태를 검증할 수 없습니다.</b> 이 환경은 NJMLS·Zillow·Redfin을 <b>정책상 차단</b>해, 아래 주소·가격·"활성" 표시는 <b>과거 스니펫 기준</b>이며 <b>이미 팔렸거나 계약중일 수 있습니다.</b> 확인된 사례: <b>1612 Anderson = 매각</b>(형 확인 · 공개 스니펫은 아직도 "판매중"으로 표시=낡음의 증거), <b>244 Lincoln = 계약중</b>(2025.6~), <b>1154 Anderson = 매각</b>(2025.10). 최신 status를 얻는 방법은 <b>① RentCast API(무료·status 필드) ② 맥미니 툴킷 ③ 에이전트 NJMLS</b>뿐입니다 — 상세는 레포 <code>tools/DATA_SOURCES.md</code>. <b>이 리포트의 확실한 가치는 개별 매물이 아니라 → 계산 모델·실거래 렌트/세금·시니어 혜택·규제·전략</b>입니다. 매물은 반드시 MLS#로 라이브 재확인하세요.</div></div>
 
   <!-- 01 LOCATION -->
   <section id="loc">
@@ -226,7 +226,7 @@
     <div class="map">
       <div class="ave"><div class="ave-label">ANDERSON&nbsp;AVE</div></div>
       <div class="stops">
-        <div class="stop"><span class="pin" style="color:var(--warn)"></span><div class="info"><b>1612 Anderson Ave · ⚠️리드</b><span>2가구(3가구?) · 4bd/2ba · $850,000 · MLS 25011859 · AS-IS · 상태 확인필요</span></div><div class="walk">↑ 도보 4분<br>~0.2mi</div></div>
+        <div class="stop"><span class="pin" style="color:var(--neg)"></span><div class="info"><b>1612 Anderson Ave · ❌매각</b><span>2가구 · $850,000 리스팅(MLS 25011859)이었으나 매각(형 확인)</span></div><div class="walk">↑ 도보 4분<br>~0.2mi</div></div>
         <div class="stop"><span class="pin" style="color:var(--muted)"></span><div class="info"><b>1207 Anderson Ave</b><span>혼합용도(C-2) 2유닛 · $1,650,000 · 주거전용 아님</span></div><div class="walk">↑ 도보 6분<br>~0.3mi</div></div>
         <div class="stop church"><span class="pin" style="color:var(--loc)"></span><div class="info"><b>⛪ 뉴저지 온누리교회</b><span>1449 Anderson Ave · 주일 7:30 / 9:30 / 11:30</span></div><div class="walk">기준점</div></div>
         <div class="stop"><span class="pin" style="color:var(--neg)"></span><div class="info"><b>1154 Anderson Ave · ❌매각됨</b><span>2가구·1919년 · 2025.10 ~$805k 매각 · 한 세대 월 $3,500 임대(렌트 실증)</span></div><div class="walk">↓ 도보 6분<br>~0.3mi</div></div>
@@ -245,7 +245,7 @@
     <div class="tbl-wrap"><table>
       <thead><tr><th>주소 / 동네</th><th>호가</th><th>세대</th><th>상태 (2026-07)</th><th>MLS# (년)</th><th>교회 도보</th><th>$1M↓</th></tr></thead>
       <tbody>
-        <tr class="hl"><td><b>1612 Anderson</b> · 포트리</td><td class="num">$850,000</td><td class="maybe">2~3?</td><td class="maybe">리드·AS-IS·확인필요</td><td class="num">25011859 (25)</td><td class="yes">4분 ✅</td><td class="yes">✓</td></tr>
+        <tr class="dim"><td><b>1612 Anderson</b> · 포트리</td><td class="num">$850,000</td><td class="maybe">2~3?</td><td class="no">❌ 매각(형 확인)</td><td class="num">25011859 (25)</td><td class="yes">4분</td><td class="yes">✓</td></tr>
         <tr class="hl"><td><b>439 Bergen Blvd</b> · 팰팍</td><td class="num">$925,000</td><td>2</td><td class="yes">✅ 활성 · 2026 신규</td><td class="num">26012987 (26)</td><td class="no">28분</td><td class="yes">✓</td></tr>
         <tr class="dim"><td><b>1154 Anderson</b> · 포트리</td><td class="num">~$805,000</td><td>2</td><td class="no">❌ 매각 (2025.10)</td><td class="num">25035880 (25)</td><td class="yes">6분</td><td class="yes">✓</td></tr>
         <tr><td>2425 Hammett · 포트리</td><td class="num">$1,079,000</td><td>2</td><td class="maybe">미확인</td><td class="num">unknown</td><td class="no">22분</td><td class="no">약간초과</td></tr>
@@ -280,7 +280,7 @@
       </tbody>
     </table></div>
     <div class="note" style="margin-top:14px"><div class="i">🧭</div><div><b>스캔 결론(정정):</b> ① 라이브 교차확인이 되는 유일한 매물은 <b>439 Bergen(팰팍 2026 신규, 2026.6 활성)</b> — 그래도 매수 전 재확인 필수. ② 저렴했던 <b>244 Lincoln은 이미 계약중</b>(제가 잘못 올렸음, 제외). ③ <b>3가구 sub-$1.3M 확인 매물 0.</b> ④ <b>도보권(포트리) 신규 0</b> — 나머지 표는 전부 "리드"로, 상태는 미확인입니다. <b>결론: 특정 매물을 믿지 말고, 아래 툴킷/에이전트로 그날그날 라이브 조회하세요.</b></div></div>
-    <div class="note info" style="margin-top:12px"><div class="i">🛰️</div><div><b>라이브 데이터 툴킷(맥미니용) 동봉:</b> 공개 웹이 이 환경에선 정책상 차단돼 실시간 조회가 막힙니다. 그래서 형 맥미니에서 바로 도는 수집기를 레포에 넣었습니다 → <code>real-estate/fortlee/tools/</code>. <code>python3 fetch_listings.py</code> 한 줄이면 위 동네들의 <b>현재 활성 2·3가구</b>를 MLS#·DOM·상태와 함께 뽑고, <code>claude mcp add</code>로 로컬 Claude에 부동산 MCP로 붙일 수도 있습니다(설명서 포함).</div></div>
+    <div class="note info" style="margin-top:12px"><div class="i">🛰️</div><div><b>최신 status를 얻는 진짜 방법(레포 <code>tools/</code> 동봉):</b> ① <b>RentCast API</b>(무료 50건/월·라이선스 불필요·<b>status·DOM·MLS# 필드</b>) → <code>rentcast_listings.py "Fort Lee"</code> 하면 <b>Active만</b> 나와 계약중/매각 자동 제외. ② 무료·키 없이 <code>fetch_listings.py</code>(Redfin Active). ③ <code>claude mcp add</code>로 맥미니 로컬 Claude에 붙이면 "매물 뽑아줘"로 호출. ④ 완벽한 실시간은 에이전트의 NJMLS. 소스 비교=<code>tools/DATA_SOURCES.md</code>.</div></div>
   </section>
 
   <!-- 03 PROPERTY DEEP DIVE -->
@@ -291,17 +291,17 @@
     </div>
     <div class="grid g2">
       <div class="pcard">
-        <div class="top"><div class="addr"><b>1612 Anderson Ave · ⚠️리드</b><span class="price">$850,000</span></div>
-          <div class="meta">MLS 25011859 (2025) · 2가구(3가구?) · ~1905? · 4bd/2ba · 도보 4분 · AS-IS 수리필요 · 상태 확인필요</div></div>
+        <div class="top"><div class="addr"><b>1612 Anderson · ❌매각</b><span class="price">$850,000</span></div>
+          <div class="meta">매각됨(형 확인). 아래 숫자는 "도보권 $850k 2가구"의 <b>모델 예시</b>일 뿐, 이 매물 매수 불가</div></div>
         <div class="body">
-          <div><span class="net pos">+$1,379</span><span class="tag warn" style="margin-left:8px">도보권 유일 리드</span></div>
-          <div class="nlabel">2가구 가정 · 3BR 한 층 $3,200 렌트 · 모기지 $100k · 시니어 혜택</div>
+          <div><span class="net pos">+$1,379</span><span class="tag warn" style="margin-left:8px">모델(현물 아님)</span></div>
+          <div class="nlabel">$850k 2가구 · 3BR 한 층 $3,200 · 모기지 $100k · 시니어 — 참고용 계산</div>
           <ul>
-            <li><b>리걸 3가구면</b> 두 층 렌트 → <b>+$3,400</b> 가능(세대수 확정 필수)</li>
-            <li>1년차(혜택 전): <b>+$774</b></li>
-            <li>2025.4 리스팅·약 15개월 → <b>가격 협상 여지 큼</b>, 단 <b>리모델링 예산 별도</b></li>
+            <li>도보권 이런 스펙이 <b>다시 나오면</b> 이 정도 순수익 기대</li>
+            <li>3가구면 두 층 렌트 → <b>+$3,400</b>대</li>
+            <li>도보권 2가구는 <b>극히 희소·빨리 소진</b> → 알림 필수</li>
           </ul>
-          <div class="foot"><span class="maybe">⚠️ 확인:</span> 계약중 아닌지·리걸 세대수·수리비 견적 → MLS/시청/인스펙터</div>
+          <div class="foot"><span class="maybe">교훈:</span> 특정 매물 믿지 말고 RentCast/에이전트로 그날 status 확인</div>
         </div>
       </div>
       <div class="pcard">

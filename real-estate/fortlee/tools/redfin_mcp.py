@@ -22,7 +22,11 @@ try:
 except Exception as e:
     raise SystemExit("먼저 설치: pip3 install 'mcp[cli]'  ("+str(e)+")")
 
-import fetch_listings as F  # 같은 폴더의 수집 로직 재사용
+import fetch_listings as F  # Redfin(Active만) 수집 로직 재사용
+try:
+    import rentcast_listings as RC  # RentCast(status 포함) — 키 있으면 사용
+except Exception:
+    RC = None
 
 mcp = FastMCP("realestate")
 
@@ -55,6 +59,22 @@ def search_town(town: str, uipt: str = "4") -> str:
     rows = _pull(town, uipt)
     return json.dumps({"town": town, "uipt": uipt, "count": len(rows),
                        "listings": rows}, ensure_ascii=False, indent=2)
+
+
+@mcp.tool()
+def rentcast_active(city: str, state: str = "NJ") -> str:
+    """RentCast로 Active 멀티패밀리 조회 — status·daysOnMarket·mlsNumber 포함(최신 신뢰).
+    RENTCAST_API_KEY 환경변수 필요(https://www.rentcast.io/api 무료 키). Active만 반환하므로
+    계약중/매각은 자동 제외된다. 최신 status가 필요할 때 Redfin/스니펫 대신 이걸 써라."""
+    if RC is None or not RC.KEY:
+        return json.dumps({"error": "RENTCAST_API_KEY 미설정. "
+                           "https://www.rentcast.io/api 무료 키 발급 후 export.",
+                           "city": city}, ensure_ascii=False)
+    data = RC.fetch(city, state)
+    rows = [RC.norm(x, city) for x in (data or [])]
+    return json.dumps({"city": city, "state": state, "source": "rentcast",
+                       "count": len(rows), "listings": rows},
+                      ensure_ascii=False, indent=2)
 
 
 if __name__ == "__main__":
