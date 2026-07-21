@@ -271,14 +271,19 @@ def build_script(slug_or_path: str) -> dict:
                 "min_display": 7.5,
             })
 
-    # 6) CTA — always last.
+    # 6) CTA — always last. Sensitive lanes (immigration/tax/health) append a
+    # "general info, consult a professional" disclaimer — a YouTube
+    # monetization requirement for legal/medical/financial topics.
     url = f"{SITE_URL}/blog/{slug}/"
+    cta_narration = "자세한 내용과 출처는 미국스토리 닷컴에서 확인하세요. 구독하고 최신 소식 받아보세요."
+    if category in ("immigration", "tax", "health"):
+        cta_narration += " 이 영상은 일반 정보이며, 개인 상황은 전문가 상담을 권장합니다."
     scenes.append({
         "id": "cta",
         "kind": "cta",
         "headline": "전체 내용은",
         "sub": "migukstory.com",
-        "narration": "자세한 내용과 출처는 미국스토리 닷컴에서 확인하세요. 구독하고 최신 소식 받아보세요.",
+        "narration": cta_narration,
         "min_display": 4.5,
     })
 

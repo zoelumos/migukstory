@@ -25,11 +25,11 @@ from pathlib import Path
 
 if __package__:
     from .config import BUILD_DIR, BLOG_DIR
-    from . import article_to_script, render_slides, synth_tts, assemble_video
+    from . import article_to_script, render_slides, synth_tts, assemble_video, compliance
 else:  # pragma: no cover
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     from config import BUILD_DIR, BLOG_DIR  # type: ignore
-    import article_to_script, render_slides, synth_tts, assemble_video  # type: ignore
+    import article_to_script, render_slides, synth_tts, assemble_video, compliance  # type: ignore
 
 
 def _latest_slug() -> str:
@@ -56,7 +56,7 @@ def _latest_slug() -> str:
 
 def make(slug: str, *, upload: bool = False, privacy: str | None = None,
          use_claude: bool = False, allow_silent: bool = False,
-         music: Path | None = None) -> dict:
+         music: Path | None = None, allow_noncompliant: bool = False) -> dict:
     print(f"\n━━ Building Short for: {slug} ━━")
     workdir = BUILD_DIR / slug
     workdir.mkdir(parents=True, exist_ok=True)
@@ -68,6 +68,18 @@ def make(slug: str, *, upload: bool = False, privacy: str | None = None,
         script = article_to_script.enhance_with_claude(script)
     script_path.write_text(json.dumps(script, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"   {len(script['scenes'])} scenes | category={script['category']}")
+
+    print("①b Monetization compliance gate")
+    try:
+        src_body = article_to_script.load_article(slug)[1]
+    except Exception:
+        src_body = None
+    report = compliance.check_compliance(script, src_body)
+    print("   " + compliance.format_report(report).replace("\n", "\n   "))
+    if not report["ok"] and not allow_noncompliant:
+        raise SystemExit(
+            "❌ 컴플라이언스 치명 위반으로 중단. --allow-noncompliant로 강제 진행 가능."
+        )
 
     print("② Rendering slides")
     render_slides.render_slides(script, workdir / "slides")
@@ -115,6 +127,8 @@ def main() -> None:
     ap.add_argument("--claude", action="store_true", help="Polish narration via Claude if key set")
     ap.add_argument("--allow-silent-fallback", action="store_true",
                     help="Silent audio if TTS endpoint is blocked (sandboxes)")
+    ap.add_argument("--allow-noncompliant", action="store_true",
+                    help="Proceed even if the monetization compliance gate fails")
     ap.add_argument("--music", help="Optional bed music file")
     args = ap.parse_args()
 
@@ -123,6 +137,7 @@ def main() -> None:
         slug, upload=args.upload, privacy=args.privacy, use_claude=args.claude,
         allow_silent=args.allow_silent_fallback,
         music=Path(args.music) if args.music else None,
+        allow_noncompliant=args.allow_noncompliant,
     )
 
     import os
