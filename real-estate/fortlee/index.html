@@ -205,7 +205,7 @@
   <div class="verdict">
     <div>
       <div class="big num" id="vBig">+$1,379</div>
-      <div class="cap">1612(도보4분·활성) 시나리오 월 순수익</div>
+      <div class="cap">도보권 2가구(모델) 월 순수익 · 실물 확인필요</div>
     </div>
     <div>
       <h3>결론 먼저 — 3가지</h3>
@@ -215,7 +215,7 @@
     </div>
   </div>
 
-  <div class="note" style="margin-top:16px"><div class="i">🔄</div><div><b>데이터 신선도 (2026-07 재확인) — 반드시 읽으세요.</b> NJMLS·realtor·Zillow가 자동 조회를 차단(403)해 실시간 라이브 조회는 라이선스 에이전트가 <b>MLS 번호로</b> 해야 합니다. 재확인 결과: <b>① 1154 Anderson은 매각됨</b>(2025.10 ~$805k, MLS 25035880) — 후보 제외, 대신 그 집 한 세대가 <b>월 $3,500 임대</b>(2025.12)된 게 렌트 실증. <b>② 1612 Anderson만 아직 활성</b>(MLS 25011859, 2025.4 리스팅·약 15개월·AS-IS 수리필요) → 계약중 아닌지 확인. <b>③ 가장 신선한 2026 신규 = 439 Bergen(팰팍) $925k</b>(MLS 26012987, 활성). <b>2425 Hammett·515 St Pauls는 미확인.</b> 이 리포트의 핵심 가치는 <b>계산 모델·실거래 시세·세금·규제·전략</b>이며, 개별 매물의 현재가/상태는 매수 전 라이브 확인이 전제입니다.</div></div>
+  <div class="note" style="margin-top:16px;background:var(--neg-soft);border-color:color-mix(in srgb,var(--neg) 35%,transparent)"><div class="i">⛔</div><div><b>개별 매물은 전부 "리드"입니다 — 저는 라이브 상태를 검증할 수 없습니다.</b> 이 환경은 NJMLS·Zillow·Redfin을 <b>정책상 차단</b>해, 아래 주소·가격·"활성" 표시는 <b>과거 스니펫 기준</b>이며 <b>이미 팔렸거나 계약중일 수 있습니다.</b> 확인된 오류: <b>244 Lincoln = 계약중</b>(MLS 25020544, 2025.6~ under contract), <b>1154 Anderson = 매각</b>(2025.10 ~$805k). 유일하게 라이브로 조회하는 방법은 <b>맥미니 툴킷(<code>tools/fetch_listings.py</code>) 또는 라이선스 에이전트의 NJMLS</b>입니다. <b>이 리포트의 확실한 가치는 개별 매물이 아니라 → 계산 모델·실거래 렌트/세금·시니어 혜택·규제·전략</b>입니다. 매물은 반드시 MLS#로 라이브 재확인하세요.</div></div>
 
   <!-- 01 LOCATION -->
   <section id="loc">
@@ -226,7 +226,7 @@
     <div class="map">
       <div class="ave"><div class="ave-label">ANDERSON&nbsp;AVE</div></div>
       <div class="stops">
-        <div class="stop"><span class="pin" style="color:var(--accent)"></span><div class="info"><b>1612 Anderson Ave · ✅활성</b><span>2가구(3가구?) · 4bd/2ba · $850,000 · MLS 25011859 · AS-IS 수리필요</span></div><div class="walk">↑ 도보 4분<br>~0.2mi</div></div>
+        <div class="stop"><span class="pin" style="color:var(--warn)"></span><div class="info"><b>1612 Anderson Ave · ⚠️리드</b><span>2가구(3가구?) · 4bd/2ba · $850,000 · MLS 25011859 · AS-IS · 상태 확인필요</span></div><div class="walk">↑ 도보 4분<br>~0.2mi</div></div>
         <div class="stop"><span class="pin" style="color:var(--muted)"></span><div class="info"><b>1207 Anderson Ave</b><span>혼합용도(C-2) 2유닛 · $1,650,000 · 주거전용 아님</span></div><div class="walk">↑ 도보 6분<br>~0.3mi</div></div>
         <div class="stop church"><span class="pin" style="color:var(--loc)"></span><div class="info"><b>⛪ 뉴저지 온누리교회</b><span>1449 Anderson Ave · 주일 7:30 / 9:30 / 11:30</span></div><div class="walk">기준점</div></div>
         <div class="stop"><span class="pin" style="color:var(--neg)"></span><div class="info"><b>1154 Anderson Ave · ❌매각됨</b><span>2가구·1919년 · 2025.10 ~$805k 매각 · 한 세대 월 $3,500 임대(렌트 실증)</span></div><div class="walk">↓ 도보 6분<br>~0.3mi</div></div>
@@ -245,7 +245,7 @@
     <div class="tbl-wrap"><table>
       <thead><tr><th>주소 / 동네</th><th>호가</th><th>세대</th><th>상태 (2026-07)</th><th>MLS# (년)</th><th>교회 도보</th><th>$1M↓</th></tr></thead>
       <tbody>
-        <tr class="hl"><td><b>1612 Anderson</b> · 포트리</td><td class="num">$850,000</td><td class="maybe">2~3?</td><td class="maybe">활성 · AS-IS·15개월</td><td class="num">25011859 (25)</td><td class="yes">4분 ✅</td><td class="yes">✓</td></tr>
+        <tr class="hl"><td><b>1612 Anderson</b> · 포트리</td><td class="num">$850,000</td><td class="maybe">2~3?</td><td class="maybe">리드·AS-IS·확인필요</td><td class="num">25011859 (25)</td><td class="yes">4분 ✅</td><td class="yes">✓</td></tr>
         <tr class="hl"><td><b>439 Bergen Blvd</b> · 팰팍</td><td class="num">$925,000</td><td>2</td><td class="yes">✅ 활성 · 2026 신규</td><td class="num">26012987 (26)</td><td class="no">28분</td><td class="yes">✓</td></tr>
         <tr class="dim"><td><b>1154 Anderson</b> · 포트리</td><td class="num">~$805,000</td><td>2</td><td class="no">❌ 매각 (2025.10)</td><td class="num">25035880 (25)</td><td class="yes">6분</td><td class="yes">✓</td></tr>
         <tr><td>2425 Hammett · 포트리</td><td class="num">$1,079,000</td><td>2</td><td class="maybe">미확인</td><td class="num">unknown</td><td class="no">22분</td><td class="no">약간초과</td></tr>
@@ -268,18 +268,18 @@
     <div class="tbl-wrap"><table>
       <thead><tr><th>주소 / 동네</th><th>호가</th><th>세대</th><th>구성</th><th>MLS#(년)</th><th>상태 / DOM</th><th>교회거리</th></tr></thead>
       <tbody>
-        <tr class="hl"><td><b>244 Lincoln Ave</b> · 클리프사이드</td><td class="num">$699,000</td><td>2</td><td>5bd/2ba</td><td class="num">26010434 (26)</td><td class="yes">활성·신선</td><td class="maybe">~1.5mi·차5분</td></tr>
-        <tr class="hl"><td><b>439 Bergen Blvd</b> · 팰팍</td><td class="num">$925,000</td><td>2</td><td>5bd/3ba 벽돌·차고</td><td class="num">26012987 (26)</td><td class="yes">활성</td><td class="maybe">~1.2mi·차5분</td></tr>
-        <tr class="hl"><td>209 5th St "B" · 팰팍</td><td class="num">$920,000</td><td class="maybe">2?</td><td>3bd/4ba</td><td class="num">26025112 (26)</td><td class="yes">활성·신규</td><td class="maybe">~1.5mi</td></tr>
-        <tr><td>주소미공개 듀플렉스 · 팰팍</td><td class="num maybe">미확인</td><td>2</td><td>3bd/unit</td><td class="num">26026795 (26)</td><td class="yes">활성·<b>7/17 최신</b></td><td class="maybe">~1.3mi</td></tr>
-        <tr><td>1043 Edgewater Ave · 리지필드</td><td class="num">$590,000</td><td>2</td><td>4bd/2ba</td><td class="num">미확인</td><td class="yes">활성·오픈하우스</td><td class="no">~3mi·차10분</td></tr>
-        <tr><td>180 Cottage Pl · 클리프사이드</td><td class="num">$749,000</td><td>2</td><td>6bd/3ba</td><td class="num">25033774 (25)</td><td class="maybe">활성·오래됨</td><td class="maybe">~1.5mi</td></tr>
-        <tr><td>120 E Edsall Blvd · 팰팍</td><td class="num">$1,450,000</td><td>2</td><td>6bd/6ba</td><td class="num">26012105 (26)</td><td>활성·61일</td><td class="no">~1.6mi</td></tr>
-        <tr><td>25 Russell Ave · 에지워터</td><td class="num">$1,700,000</td><td class="yes">3</td><td>8bd/3ba·1895리노</td><td class="num">25008116 (25)</td><td class="maybe">활성·장기</td><td class="no">~4mi</td></tr>
+        <tr class="hl"><td><b>439 Bergen Blvd</b> · 팰팍</td><td class="num">$925,000</td><td>2</td><td>5bd/3ba 벽돌·차고</td><td class="num">26012987 (26)</td><td class="yes">활성(2026.6 교차확인)</td><td class="maybe">~1.2mi·차5분</td></tr>
+        <tr><td>209 5th St "B" · 팰팍</td><td class="num">$920,000</td><td class="maybe">2?</td><td>3bd/4ba</td><td class="num">26025112 (26)</td><td class="maybe">리드·미확인</td><td class="maybe">~1.5mi</td></tr>
+        <tr><td>주소미공개 듀플렉스 · 팰팍</td><td class="num maybe">미확인</td><td>2</td><td>3bd/unit</td><td class="num">26026795 (26)</td><td class="maybe">리드·7/17 표기</td><td class="maybe">~1.3mi</td></tr>
+        <tr><td>1043 Edgewater Ave · 리지필드</td><td class="num">$590,000</td><td>2</td><td>4bd/2ba</td><td class="num">미확인</td><td class="maybe">리드·미확인</td><td class="no">~3mi·차10분</td></tr>
+        <tr><td>120 E Edsall Blvd · 팰팍</td><td class="num">$1,450,000</td><td>2</td><td>6bd/6ba</td><td class="num">26012105 (26)</td><td class="maybe">리드·미확인</td><td class="no">~1.6mi</td></tr>
+        <tr><td>25 Russell Ave · 에지워터</td><td class="num">$1,700,000</td><td class="yes">3</td><td>8bd/3ba·1895리노</td><td class="num">25008116 (25)</td><td class="maybe">리드·장기·미확인</td><td class="no">~4mi</td></tr>
+        <tr class="dim"><td><b>244 Lincoln Ave</b> · 클리프사이드</td><td class="num">$699,000</td><td>2</td><td>5bd/2ba</td><td class="num">25020544 (25)</td><td class="no">❌ 계약중(2025.6~)</td><td class="no">—</td></tr>
+        <tr class="dim"><td>180 Cottage Pl · 클리프사이드</td><td class="num">$749,000</td><td>2</td><td>6bd/3ba</td><td class="num">25033774 (25)</td><td class="no">오래됨·미확인</td><td class="no">~1.5mi</td></tr>
         <tr class="dim"><td>519 Broad Ave · 팰팍</td><td class="num">$1,701,000</td><td>2</td><td>—</td><td class="num">26008246 (26)</td><td class="no">❌매각 5/22</td><td class="no">—</td></tr>
       </tbody>
     </table></div>
-    <div class="note good" style="margin-top:14px"><div class="i">🧭</div><div><b>스캔 결론:</b> ① <b>가장 싼 2가구 = 244 Lincoln(클리프사이드 $699k)</b> — 현금 $750k로 <b>전액현금 매입</b> 가능(버퍼 $51k 남김) → 시니어·2BR 렌트 시 <b>월 +$1,700대</b>. ② <b>가장 신선·신뢰 = 439 Bergen(팰팍 2026 신규)</b>. ③ <b>3가구 sub-$1.3M는 확인 매물 0</b> — 클리프사이드에 주소미상 리드가 있어 NJMLS 직접 조회 필요. ④ <b>도보권(포트리) 신규는 여전히 0</b>, 1612만 활성.</div></div>
+    <div class="note" style="margin-top:14px"><div class="i">🧭</div><div><b>스캔 결론(정정):</b> ① 라이브 교차확인이 되는 유일한 매물은 <b>439 Bergen(팰팍 2026 신규, 2026.6 활성)</b> — 그래도 매수 전 재확인 필수. ② 저렴했던 <b>244 Lincoln은 이미 계약중</b>(제가 잘못 올렸음, 제외). ③ <b>3가구 sub-$1.3M 확인 매물 0.</b> ④ <b>도보권(포트리) 신규 0</b> — 나머지 표는 전부 "리드"로, 상태는 미확인입니다. <b>결론: 특정 매물을 믿지 말고, 아래 툴킷/에이전트로 그날그날 라이브 조회하세요.</b></div></div>
     <div class="note info" style="margin-top:12px"><div class="i">🛰️</div><div><b>라이브 데이터 툴킷(맥미니용) 동봉:</b> 공개 웹이 이 환경에선 정책상 차단돼 실시간 조회가 막힙니다. 그래서 형 맥미니에서 바로 도는 수집기를 레포에 넣었습니다 → <code>real-estate/fortlee/tools/</code>. <code>python3 fetch_listings.py</code> 한 줄이면 위 동네들의 <b>현재 활성 2·3가구</b>를 MLS#·DOM·상태와 함께 뽑고, <code>claude mcp add</code>로 로컬 Claude에 부동산 MCP로 붙일 수도 있습니다(설명서 포함).</div></div>
   </section>
 
@@ -291,10 +291,10 @@
     </div>
     <div class="grid g2">
       <div class="pcard">
-        <div class="top"><div class="addr"><b>1612 Anderson Ave · ✅활성</b><span class="price">$850,000</span></div>
-          <div class="meta">MLS 25011859 · 2가구(3가구?) · ~1905? · 4bd/2ba · 도보 4분(최단) · AS-IS 수리필요 · 세금 est $12,000</div></div>
+        <div class="top"><div class="addr"><b>1612 Anderson Ave · ⚠️리드</b><span class="price">$850,000</span></div>
+          <div class="meta">MLS 25011859 (2025) · 2가구(3가구?) · ~1905? · 4bd/2ba · 도보 4분 · AS-IS 수리필요 · 상태 확인필요</div></div>
         <div class="body">
-          <div><span class="net pos">+$1,379</span><span class="tag best" style="margin-left:8px">유일한 도보권 활성</span></div>
+          <div><span class="net pos">+$1,379</span><span class="tag warn" style="margin-left:8px">도보권 유일 리드</span></div>
           <div class="nlabel">2가구 가정 · 3BR 한 층 $3,200 렌트 · 모기지 $100k · 시니어 혜택</div>
           <ul>
             <li><b>리걸 3가구면</b> 두 층 렌트 → <b>+$3,400</b> 가능(세대수 확정 필수)</li>
@@ -332,22 +332,22 @@
           <div class="foot"><span class="maybe">참고:</span> 후보 아님. 시세·렌트 기준점으로만 사용</div>
         </div>
       </div>
-      <div class="pcard">
-        <div class="top"><div class="addr"><b>244 Lincoln Ave · ✅활성</b><span class="price">$699,000</span></div>
-          <div class="meta">MLS 26010434 · 클리프사이드파크 · 2가구 5bd/2ba · 2026 신규 · 교회 ~1.5mi(차 5분)</div></div>
+      <div class="pcard" style="border-style:dashed">
+        <div class="top"><div class="addr"><b>💡 "싼 2가구 전액현금" 전략</b><span class="price">모델</span></div>
+          <div class="meta">특정 매물 아님 — <b>~$700k대 2가구</b>를 현금으로 잡는 시나리오 (예: 244 Lincoln은 이미 계약중이라 제외)</div></div>
         <div class="body">
-          <div><span class="net pos">+$1,713</span><span class="tag best" style="margin-left:8px">현금흐름 최고</span></div>
-          <div class="nlabel">전액현금 매입($0 모기지·버퍼 $51k) · 2BR 한 세대 $2,800 · 시니어 혜택</div>
+          <div><span class="net pos">+$1,700대</span><span class="tag info" style="margin-left:8px">전략(현물 아님)</span></div>
+          <div class="nlabel">~$700k 2가구 전액현금($0 모기지·버퍼 $50k) · 2BR $2,800 · 시니어</div>
           <ul>
-            <li>가장 저렴 → <b>모기지 없이</b> 현금흐름 최강, 현금버퍼도 남김</li>
-            <li>1년차(혜택 전)도 <b>+$1,170</b>대</li>
-            <li>도보 아님(차 5분)·상태 라이브 확인 필요</li>
+            <li>가격이 낮을수록 <b>모기지 0</b> → 현금흐름 최강</li>
+            <li>이런 매물이 <b>나오면</b> 최우선 — 단 <b>먼저 팔리는 편</b>이니 알림 필수</li>
+            <li>비도보(클리프사이드/에지워터)일 가능성 큼</li>
           </ul>
-          <div class="foot"><span class="plus" style="color:var(--pos);font-weight:750">✅ 현금흐름·가격 균형 최고 (비도보 감수 시)</span></div>
+          <div class="foot"><span class="maybe">⚠️ 실물은 반드시 툴킷/에이전트로 "계약중 아닌지" 라이브 확인</span></div>
         </div>
       </div>
     </div>
-    <div class="note good" style="margin-top:14px"><div class="i">💡</div><div><b>정리(2026-07 현재):</b> 지금 확실히 실사할 수 있는 건 <b>439 Bergen(팰팍·2026 신규·최고신뢰)</b>과 <b>1612 Anderson(유일한 도보권 활성, 단 AS-IS)</b>. 도보 최우선이면 1612(수리비 감안), 신뢰·상태 최우선이면 439 Bergen. 도보를 양보하면 <b>3가구</b>가 순수익은 가장 큽니다. 1154는 매각됐으니 <b>알림 등록 후 다음 도보권 매물 대기</b>가 현실적 전략입니다.</div></div>
+    <div class="note good" style="margin-top:14px"><div class="i">💡</div><div><b>정리(2026-07 현재):</b> 라이브로 그나마 교차확인되는 리드는 <b>439 Bergen(팰팍·2026 신규)</b> 하나, <b>1612 Anderson</b>은 도보권 유일 리드지만 AS-IS·상태 확인 필요. <b>둘 다 매수 전 "계약중 아닌지" 라이브 재확인 필수.</b> 도보권 진짜 2가구는 재고가 거의 없어(1154·244 등 계속 소진) <b>알림 등록 + 툴킷 주기적 조회</b>가 실질 전략입니다.</div></div>
   </section>
 
   <!-- 04 RENT COMPS -->
