@@ -191,6 +191,17 @@
 </style>
 </head>
 <body>
+<section id="live-validation-update" style="margin:24px auto;padding:20px;border:2px solid #b45309;border-radius:14px;background:#fffbeb;max-width:1100px;color:#1f2937;">
+  <h2 style="margin-top:0;color:#92400e;">2026-07-21 Live Validation Update</h2>
+  <p><strong>헤드리스/우회 수집 결과:</strong> Redfin 검색 HTML embedded card에서 최신 active-like 후보를 추출했다. 단, Redfin detail WAF, Zillow 403, Realtor 429, NJMLS rows 미반환으로 공식 Active 확정은 아직 아니다.</p>
+  <p><strong>핵심 변경:</strong> 439 Bergen Blvd가 $925k, 교회 직선 0.34mi live lead로 잡힘. 기존 리포트의 outdated 매물/MLS source 불일치 리스크가 실제 확인됐다.</p>
+  <table style="width:100%;border-collapse:collapse;font-size:14px;">
+    <thead><tr style="background:#fde68a;"><th style="padding:8px;border:1px solid #f59e0b;">후보</th><th style="padding:8px;border:1px solid #f59e0b;">가격</th><th style="padding:8px;border:1px solid #f59e0b;">직선거리</th><th style="padding:8px;border:1px solid #f59e0b;">도보추정</th><th style="padding:8px;border:1px solid #f59e0b;">등급</th><th style="padding:8px;border:1px solid #f59e0b;">MLS-like ids</th></tr></thead>
+    <tbody><tr><td>439 Bergen Blvd, Palisades Park, NJ 07650</td><td>$925,000</td><td>0.34 mi</td><td>~7-8 min</td><td>A 도보권</td><td>26021560,26023005</td></tr><tr><td>304 E Palisades Blvd, Palisades Park, NJ 07650</td><td>$1,190,000</td><td>0.51 mi</td><td>~10-12 min</td><td>A 도보권</td><td>26023005,26023510</td></tr><tr><td>261 10th St, Palisades Park, NJ 07650</td><td>$1,249,995</td><td>0.63 mi</td><td>~13-15 min</td><td>A 도보권</td><td>26023316,26023510</td></tr><tr><td>414 Lafayette Ave, Cliffside Park, NJ 07010</td><td>$859,000</td><td>1.2 mi</td><td>~24-29 min</td><td>B 긴 도보/짧은 차량</td><td>26021560</td></tr><tr><td>281 Marion Ave, Cliffside Park, NJ 07010</td><td>$899,000</td><td>1.13 mi</td><td>~23-27 min</td><td>B 긴 도보/짧은 차량</td><td>26020258</td></tr><tr><td>432 9th St, Fairview, NJ 07022</td><td>$799,000</td><td>1.92 mi</td><td>~38-46 min</td><td>D 도보권 아님</td><td>26021642,26024497</td></tr><tr><td>393 Washington Ave, Cliffside Park, NJ 07010</td><td>$899,000</td><td>1.5 mi</td><td>~30-36 min</td><td>C 차량 5분권</td><td>26020207</td></tr><tr><td>516 Anderson Ave, Cliffside Park, NJ 07010</td><td>$1,150,000</td><td>1.81 mi</td><td>~36-43 min</td><td>D 도보권 아님</td><td>26020243,26020540</td></tr></tbody>
+  </table>
+  <p style="margin-bottom:0;">상세 CSV/JSON/검증표: <a href="./live-validation/LIVE_CANDIDATES.md">LIVE_CANDIDATES.md</a></p>
+</section>
+
 <div style="position:sticky;top:0;z-index:9999;background:#7f1d1d;color:#fff;padding:14px 18px;border-bottom:3px solid #fecaca;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;box-shadow:0 6px 20px rgba(0,0,0,.18)">
   <strong>LIVE VALIDATION WARNING · 2026-07-21</strong><br>
   이 리포트의 재무모델/시각화는 배포됐지만, <strong>개별 매물 리스트는 outdated 가능성이 가장 큰 리스크</strong>입니다. Claude artifact/웹 스니펫/Redfin·Zillow 캐시는 sold·pending 매물이 active처럼 섞일 수 있습니다. 최종 후보는 반드시 <strong>NJMLS/Bridge RESO/RentCast Active status + DOM + MLS#</strong>로 재검증하세요. 현재 RentCast GitHub workflow는 <code>RENTCAST_API_KEY</code> secret 미설정/비활성 구독 때문에 라이브 검증이 막힌 상태입니다.

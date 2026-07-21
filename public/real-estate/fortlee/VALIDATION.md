@@ -1,3 +1,18 @@
+# Live validation update — 2026-07-21 19:56 UTC
+
+**최신 헤드리스/우회 수집 완료.** Redfin 검색 HTML embedded cards 기준 active-like 후보 24건, 예산권/근거리 후보 8건을 추출했다. 단, Redfin detail은 WAF challenge, Zillow 403, Realtor 429, NJMLS AJAX는 rows 미반환이므로 **공식 Active 확정은 아님**.
+
+핵심 발견:
+
+- **439 Bergen Blvd, Palisades Park — $925,000 — 0.34mi from church — Redfin live search card present.** 현재 조건상 1순위 live lead.
+- 기존 리포트의 439 Bergen MLS/source id와 최신 Redfin card의 source id가 불일치해서 **outdated 리스크가 실제 확인됨**.
+- Fort Lee proper sub-$1M 2-4 family는 공개 수집상 확인되지 않음.
+- 도보권 active-like lead는 Palisades Park 쪽에 집중됨: 439 Bergen, 304 E Palisades, 261 10th.
+
+자세한 표: [LIVE_CANDIDATES.md](./live-validation/LIVE_CANDIDATES.md)
+
+---
+
 # Fort Lee Real Estate Live Validation Status
 
 Updated: 2026-07-21
