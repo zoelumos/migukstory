@@ -23,3 +23,9 @@ The largest issue is **outdated listing status**. Web snippets and Claude artifa
 - Prefer the repo-local `real-estate/fortlee/tools/redfin_mcp.py` for a controlled MCP wrapper.
 - Add RentCast as a tool only after an active `RENTCAST_API_KEY` is stored as an environment variable or GitHub secret.
 - Do not rely on generic Zillow scraping MCPs as the source of truth for purchase decisions.
+
+## Live validation attempt log
+
+- 2026-07-21: RentCast direct API test returned subscription inactive / GitHub Actions secret missing, so no live RentCast listing validation completed.
+- 2026-07-21: Repo Redfin GIS CSV tool was run for Fort Lee, Palisades Park, and Cliffside Park from this environment; all returned HTTP 403.
+- Therefore the deployed report intentionally downgrades property rows to **leads**, not verified active candidates.
