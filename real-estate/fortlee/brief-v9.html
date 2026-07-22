@@ -1,0 +1,380 @@
+<title>2가구 매입 브리프 v9 — 정리·검증판</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{
+    --paper:#EDF1EF;--card:#FFF;--card2:#F5F8F6;--ink:#15211D;--muted:#5C6B66;
+    --line:#DAE1DD;--line2:#C6D0CB;--accent:#0E6E56;--accent-ink:#0A4E3D;--accent-soft:#DCEBE5;
+    --loc:#3B5B8C;--loc-soft:#E1E8F2;--pos:#1B8A57;--pos-soft:#DBF0E4;--neg:#BE4238;--neg-soft:#F6E0DD;
+    --warn:#B5811F;--warn-soft:#F4E9CF;--gold:#C79A2E;
+    --shadow:0 1px 2px rgba(20,40,34,.06),0 8px 26px rgba(20,40,34,.08);
+    --mono:"SF Mono","JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+    --sans:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --paper:#0D1512;--card:#141F1B;--card2:#111A17;--ink:#E9F0EC;--muted:#93A39D;--line:#233029;--line2:#2E3D36;
+    --accent:#42B694;--accent-ink:#8FD8C3;--accent-soft:#16302880;--loc:#82A6D6;--loc-soft:#1A263880;
+    --pos:#54C288;--pos-soft:#16301f80;--neg:#E6786D;--neg-soft:#33191680;--warn:#DCAE4E;--warn-soft:#302716a0;--gold:#D9B94E;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);}}
+  :root[data-theme="light"]{--paper:#EDF1EF;--card:#FFF;--card2:#F5F8F6;--ink:#15211D;--muted:#5C6B66;--line:#DAE1DD;--line2:#C6D0CB;--accent:#0E6E56;--accent-ink:#0A4E3D;--accent-soft:#DCEBE5;--loc:#3B5B8C;--loc-soft:#E1E8F2;--pos:#1B8A57;--pos-soft:#DBF0E4;--neg:#BE4238;--neg-soft:#F6E0DD;--warn:#B5811F;--warn-soft:#F4E9CF;--gold:#C79A2E;--shadow:0 1px 2px rgba(20,40,34,.06),0 8px 26px rgba(20,40,34,.08);}
+  :root[data-theme="dark"]{--paper:#0D1512;--card:#141F1B;--card2:#111A17;--ink:#E9F0EC;--muted:#93A39D;--line:#233029;--line2:#2E3D36;--accent:#42B694;--accent-ink:#8FD8C3;--accent-soft:#16302880;--loc:#82A6D6;--loc-soft:#1A263880;--pos:#54C288;--pos-soft:#16301f80;--neg:#E6786D;--neg-soft:#33191680;--warn:#DCAE4E;--warn-soft:#302716a0;--gold:#D9B94E;--shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.62;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:940px;margin:0 auto;padding:0 18px 90px}
+  h1{font-size:clamp(20px,4.5vw,28px);font-weight:850;letter-spacing:-.02em;margin:0}
+  h2{font-size:clamp(18px,3vw,23px);font-weight:800;letter-spacing:-.02em;margin:0 0 4px;text-wrap:balance}
+  h3{font-size:15.5px;font-weight:750;margin:0 0 3px}
+  p{margin:0 0 11px}.lead{color:var(--muted)}
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+  b{font-weight:700}
+  .eyebrow{font-size:11.5px;font-weight:750;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+
+  header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .head-in{max-width:940px;margin:0 auto;padding:13px 18px 0}
+  .head-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .head-top .meta{font-size:11.5px;color:var(--muted);margin-top:3px}
+  .theme-btn{background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;font-family:inherit;flex:0 0 auto}
+  nav{display:flex;gap:4px;margin-top:11px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  nav::-webkit-scrollbar{display:none}
+  nav button{flex:0 0 auto;background:none;border:0;border-bottom:2.5px solid transparent;color:var(--muted);font-family:inherit;font-size:13.5px;font-weight:700;padding:9px 12px;cursor:pointer;white-space:nowrap}
+  nav button[aria-selected=true]{color:var(--accent);border-bottom-color:var(--accent)}
+
+  .panel{display:none;padding-top:26px;animation:fade .25s ease}
+  .panel.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  section{margin-top:26px}
+  .sec-head{margin-bottom:14px}
+
+  .grid{display:grid;gap:13px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:720px){.g2,.g3{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px;box-shadow:var(--shadow)}
+
+  .chip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:9px;padding:6px 11px;font-size:12.5px}
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .dot{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
+
+  .tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow)}
+  table{border-collapse:collapse;width:100%;min-width:600px;background:var(--card);font-size:13px}
+  th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{background:var(--card2);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:750;white-space:nowrap;position:sticky;top:0}
+  tbody tr:last-child td{border-bottom:0}
+  tr.top1{background:color-mix(in srgb,var(--gold) 12%,transparent)}
+  tr.top2{background:var(--pos-soft)}
+  .rk{font-family:var(--mono);font-weight:750}
+  .pos{color:var(--pos);font-weight:700}.neg{color:var(--neg);font-weight:700}.mid{color:var(--warn);font-weight:700}
+  .tag{display:inline-block;font-size:10.5px;font-weight:750;padding:2px 7px;border-radius:999px;white-space:nowrap}
+  .tag.v{background:var(--pos-soft);color:var(--pos)}.tag.w{background:var(--warn-soft);color:var(--warn)}.tag.s{background:var(--loc-soft);color:var(--loc)}.tag.g{background:color-mix(in srgb,var(--gold) 22%,transparent);color:var(--gold)}
+
+  .pcard{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+  .pcard .top{padding:14px 16px 12px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .pcard .rank-badge{font-family:var(--mono);font-weight:800;font-size:13px;width:30px;height:30px;display:grid;place-items:center;border-radius:8px;flex:0 0 auto}
+  .rb1{background:color-mix(in srgb,var(--gold) 22%,transparent);color:var(--gold)}
+  .rb2{background:var(--pos-soft);color:var(--pos)}
+  .rb3{background:var(--accent-soft);color:var(--accent-ink)}
+  .pcard .addr b{font-size:15.5px}.pcard .addr .sub{font-size:12px;color:var(--muted);margin-top:2px}
+  .pcard .body{padding:13px 16px}
+  .statrow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:11px}
+  @media(max-width:560px){.statrow{grid-template-columns:repeat(2,1fr)}}
+  .stat{background:var(--card2);border:1px solid var(--line);border-radius:9px;padding:8px 10px}
+  .stat .k{font-size:10.5px;color:var(--muted);font-weight:650}
+  .stat .v{font-family:var(--mono);font-weight:750;font-size:14px;margin-top:1px}
+  .pcard ul{margin:6px 0 0;padding-left:17px;font-size:13px;color:var(--muted)}.pcard ul li{margin-bottom:4px}
+  .flag{margin-top:9px;font-size:12.5px;background:var(--warn-soft);border:1px solid color-mix(in srgb,var(--warn) 30%,transparent);border-radius:9px;padding:9px 11px}
+  .flag.good{background:var(--pos-soft);border-color:color-mix(in srgb,var(--pos) 30%,transparent)}
+
+  .note{background:var(--warn-soft);border:1px solid color-mix(in srgb,var(--warn) 32%,transparent);border-radius:11px;padding:12px 14px;font-size:13px;display:grid;grid-template-columns:auto 1fr;gap:10px}
+  .note.good{background:var(--pos-soft);border-color:color-mix(in srgb,var(--pos) 32%,transparent)}
+  .note.info{background:var(--loc-soft);border-color:color-mix(in srgb,var(--loc) 28%,transparent)}
+  .note .i{font-size:15px}
+
+  .steps{counter-reset:s;display:grid;gap:10px;padding:0;margin:0;list-style:none}
+  .steps li{display:grid;grid-template-columns:auto 1fr;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:11px;padding:12px 14px;font-size:13.5px}
+  .steps li::before{counter-increment:s;content:counter(s);font-family:var(--mono);font-weight:750;color:var(--accent);width:26px;height:26px;display:grid;place-items:center;background:var(--accent-soft);border-radius:8px}
+  .q li{margin-bottom:6px}
+
+  .rent-rank{display:grid;gap:8px}
+  .rent-rank .r{display:grid;grid-template-columns:auto 1fr auto;gap:11px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 13px}
+  .rent-rank .r .p{font-family:var(--mono);font-weight:800;color:var(--accent);font-size:14px}
+  .rent-rank .r .d{font-size:12px;color:var(--muted)}
+  .bar{height:8px;border-radius:5px;background:var(--line);overflow:hidden;margin-top:4px}
+  .bar span{display:block;height:100%;background:var(--accent)}
+
+  /* calc */
+  .calc{background:var(--card);border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow);padding:16px}
+  .field{margin-bottom:12px}.field:last-child{margin-bottom:0}
+  .field label{display:flex;justify-content:space-between;font-size:12.5px;font-weight:650;margin-bottom:5px}
+  .field label .val{font-family:var(--mono);color:var(--accent);font-weight:750}
+  input[type=range]{width:100%;accent-color:var(--accent)}
+  .seg{display:flex;gap:6px}.seg button{flex:1;padding:7px;border:1px solid var(--line);background:var(--card2);color:var(--muted);border-radius:8px;font-family:inherit;font-size:12px;font-weight:650;cursor:pointer}
+  .seg button[aria-pressed=true]{background:var(--accent-soft);color:var(--accent-ink);border-color:color-mix(in srgb,var(--accent) 40%,transparent)}
+  .calcres{text-align:center;border-radius:11px;padding:13px;margin-top:6px;border:1px solid var(--line)}
+  .calcres.good{background:var(--pos-soft);color:var(--pos)}.calcres.bad{background:var(--neg-soft);color:var(--neg)}
+  .calcres .a{font-family:var(--mono);font-size:30px;font-weight:800}
+
+  footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted)}
+  .divider{height:1px;background:var(--line);margin:22px 0}
+</style>
+
+<header>
+  <div class="head-in">
+    <div class="head-top">
+      <div>
+        <h1>🏠 2가구 매입 브리프 <span class="num" style="color:var(--accent)">v9</span></h1>
+        <div class="meta">아빠 현금 $750K·단독명의 · 엄마아빠 거주+한 유닛 임대 · 기준 온누리교회(1449 Anderson) · 목표 4년차 월 $1,000+ · <b>외부 모델 감사 반영</b> · 2026-07-22</div>
+      </div>
+      <button class="theme-btn" id="themeBtn">◐</button>
+    </div>
+    <nav id="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-t="c">1 · 결론</button>
+      <button role="tab" aria-selected="false" data-t="r">2 · 순위</button>
+      <button role="tab" aria-selected="false" data-t="e">3 · 쉬운 설명</button>
+      <button role="tab" aria-selected="false" data-t="a">4 · 외부 검증</button>
+      <button role="tab" aria-selected="false" data-t="d">5 · 근거 데이터</button>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ===== 1 결론 ===== -->
+  <div class="panel on" data-p="c">
+    <div class="note good" style="margin-bottom:4px"><div class="i">✅</div><div><b>결론: 실질 답은 두 집입니다.</b> 은행 대출까지 넣어 계산하니(모기지=매입가−$750K) 후보가 <b>570 Grand</b>와 <b>220 5th St</b>로 좁혀집니다. 220 5th는 이미 검증완료, 570 Grand는 내부사진·침수만 깨끗하면 1위.</div></div>
+
+    <section>
+      <div class="sec-head"><div class="eyebrow">공동 최상위 2</div><h2>이 둘을 비교하세요</h2></div>
+      <div class="grid g2">
+        <div class="pcard">
+          <div class="top"><div><div class="addr"><b>570 Grand Ave</b><div class="sub">리지필드 · $599,000 · 1,666sf · 1920 · 합법2가구 · 교회 2.1mi</div></div></div><div class="rank-badge rb1">1</div></div>
+          <div class="body">
+            <div class="statrow">
+              <div class="stat"><div class="k">4년차 순수익</div><div class="v pos">+$1,177</div></div>
+              <div class="stat"><div class="k">모기지</div><div class="v">$0</div></div>
+              <div class="stat"><div class="k">남는 현금</div><div class="v">$111K</div></div>
+              <div class="stat"><div class="k">정체율</div><div class="v">18%</div></div>
+            </div>
+            <div>유일한 $600K대·모기지 0·교회 최근접. 수리비 $20~60K만 준비.</div>
+            <div class="flag">⚠️ ①고도 23ft(최저)→<b>침수이력 확인 필수</b> ②사진 1장·As-Is→내부 비공개. <b>둘 다 깨끗하면 1위 확정.</b><br>순수익 중 $370은 잔여현금 이자 → "집 자체 $1,000"이면 통과선 $807로 미달.</div>
+          </div>
+        </div>
+        <div class="pcard">
+          <div class="top"><div><div class="addr"><b>220 5th St</b> <span class="tag v">검증완료</span><div class="sub">페어뷰 · $799,000 · 1,574sf · 1927 · 교회 2.5mi</div></div></div><div class="rank-badge rb2">2</div></div>
+          <div class="body">
+            <div class="statrow">
+              <div class="stat"><div class="k">4년차 순수익</div><div class="v pos">+$1,133</div></div>
+              <div class="stat"><div class="k">모기지</div><div class="v">$49K·월$311</div></div>
+              <div class="stat"><div class="k">필수 수리</div><div class="v">$0~15K</div></div>
+              <div class="stat"><div class="k">정체율</div><div class="v">43%</div></div>
+            </div>
+            <div>1층 부모 거주(2BR)+2·3층 4BR/2BA 리노 듀플렉스 임대(현재 공실→즉시). 중앙냉방·고칠 것 사실상 0. <b>부동산 현금흐름 자체가 가장 견고.</b></div>
+            <div class="flag good">✅ 호가 그대로 통과(통과선 $812K). <b>대출 $49K로 승인도 가장 수월.</b> 약점: 페어뷰 임대약세→시세대로 놓기.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><div class="eyebrow">진행 순서</div><h2>이렇게 움직이세요</h2></div>
+      <ol class="steps">
+        <li><b>대출 사전승인 먼저.</b> 아빠 신고소득 $0 → 이게 진짜 관문(아래 자금 게이트). 쇼잉보다 먼저.</li>
+        <li><b>570 Grand</b> — 내부 사진부터 요구(사진 1장은 비정상). 안 주면 쇼잉, 그것도 어려우면 넘어감. 침수이력은 시청·보험사 확인.</li>
+        <li><b>220 5th</b> — <b>언제든 오퍼 가능</b>(검증완료·호가 통과). 위가 무너지면 여기로.</li>
+        <li><b>254 Pindle</b>(잉글우드 $800K) — DOM 127 → $780K 아래로 네고하면 확실.</li>
+      </ol>
+    </section>
+
+    <section>
+      <div class="note"><div class="i">📅</div><div><b>이번 주 쇼잉 3곳 — 전부 통과선 미달.</b> 통과선 이하 오퍼만 의미 있습니다.<br>
+      · <b>281 Marion</b>(클팍 $899K) 목 7/23 15:30 → $793K↓(−13%)<br>
+      · <b>439 Bergen</b>(팰팍 $925K) 토 7/25 10:15 → $808K↓(−13%)<br>
+      · <b>244 Slocum</b>(포트리 $999K) 토 7/25 10:45 → $840K↓(−21%) · 교회 도보 2분·정체율 13% 최상급인데 가격만 안 맞음</div></div>
+    </section>
+  </div>
+
+  <!-- ===== 2 순위 ===== -->
+  <div class="panel" data-p="r">
+    <section>
+      <div class="sec-head"><div class="eyebrow">감사 수정판 · 4년차 하한 순수익 기준</div><h2>전체 순위 12</h2>
+        <p class="lead">외부 모델 감사로 수리비를 현금흐름에 반영 → 결론 4건 뒤집힘. 🔍=이번 주 쇼잉.</p></div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>순위</th><th>매물</th><th>가격</th><th>하한</th><th>상한</th><th>대출</th><th>남는현금</th></tr></thead>
+        <tbody>
+          <tr class="top1"><td class="rk">1</td><td><b>570 Grand</b> 리지필드</td><td class="num">$599K</td><td class="pos">+$1,177</td><td class="num">+$1,462</td><td class="num">$0</td><td class="num">$111K</td></tr>
+          <tr class="top2"><td class="rk">2</td><td><b>220 5th</b> 페어뷰 <span class="tag v">검증</span></td><td class="num">$799K</td><td class="pos">+$1,133</td><td class="num">+$1,495</td><td class="num">$56.5K</td><td class="num">$0</td></tr>
+          <tr><td class="rk">3</td><td>8617 Smith 노스버겐</td><td class="num">$700K</td><td class="pos">+$1,028</td><td class="num">+$1,220</td><td class="num">$15K</td><td class="num">$0</td></tr>
+          <tr><td class="rk">4</td><td>254 Pindle 잉글우드</td><td class="num">$800K</td><td class="mid">+$654</td><td class="num">+$842</td><td class="num">$100K</td><td class="num">$0</td></tr>
+          <tr><td class="rk">5</td><td>144 74th 노스버겐</td><td class="num">$800K</td><td class="mid">+$312</td><td class="num">+$538</td><td class="num">$115K</td><td class="num">$0</td></tr>
+          <tr><td class="rk">6</td><td>402 Cliff 페어뷰</td><td class="num">$825K</td><td class="mid">+$288</td><td class="num">+$559</td><td class="num">$100K</td><td class="num">$0</td></tr>
+          <tr><td class="rk">7</td><td>281 Marion 클팍 🔍</td><td class="num">$899K</td><td class="mid">+$197</td><td class="num">+$289</td><td class="num">$166.5K</td><td class="num">$0</td></tr>
+          <tr><td class="rk">8</td><td>8808 Churchill 노스버겐</td><td class="num">$730K</td><td class="mid">+$35</td><td class="num">+$261</td><td class="num">$164.9K</td><td class="num">$0</td></tr>
+          <tr><td class="rk">9</td><td>439 Bergen 팰팍 🔍</td><td class="num">$925K</td><td class="neg">−$87</td><td class="num">+$196</td><td class="num">$206K</td><td class="num">$0</td></tr>
+          <tr><td class="rk">10</td><td>235 Cliff 클팍 (4유닛)</td><td class="num">$1,149K</td><td class="neg">−$147</td><td class="num">+$676</td><td class="num">$624K</td><td class="num">$0</td></tr>
+          <tr><td class="rk">11</td><td>358 McKinley 페어뷰</td><td class="num">$799K</td><td class="neg">−$626</td><td class="num">−$354</td><td class="num">$274K</td><td class="num">$0</td></tr>
+          <tr><td class="rk">12</td><td>244 Slocum 포트리 🔍</td><td class="num">$999K</td><td class="neg">−$669</td><td class="num">−$191</td><td class="num">$269K</td><td class="num">$0</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section>
+      <div class="sec-head"><div class="eyebrow">3~4위 상세</div><h2>다음 후보</h2></div>
+      <div class="grid g2">
+        <div class="pcard"><div class="top"><div><div class="addr"><b>8617 Smith Ave</b><div class="sub">노스버겐 · $700,000 · 1916 · 세금 $7,912</div></div></div><div class="rank-badge rb3">3</div></div>
+          <div class="body"><div class="statrow"><div class="stat"><div class="k">순수익</div><div class="v pos">+$1,028</div></div><div class="stat"><div class="k">모기지</div><div class="v">$0</div></div><div class="stat"><div class="k">수리비</div><div class="v">$40~90K</div></div><div class="stat"><div class="k">정체율</div><div class="v">41%</div></div></div>모기지 0·순수익 높음. 오크주방·창문형AC라 수리 필요. <b>건물대체원가 $300/sf 가정이면 탈락하는 경계선.</b></div></div>
+        <div class="pcard"><div class="top"><div><div class="addr"><b>254 Pindle Ave</b><div class="sub">잉글우드 · $800,000 · 1933 · 대지 5,201sf · 교회 3.8mi</div></div></div><div class="rank-badge rb3">4</div></div>
+          <div class="body"><div class="statrow"><div class="stat"><div class="k">순수익</div><div class="v mid">+$654</div></div><div class="stat"><div class="k">세금(연)</div><div class="v">$7,682</div></div><div class="stat"><div class="k">수리비</div><div class="v">$30~70K</div></div><div class="stat"><div class="k">정체율</div><div class="v">25%</div></div></div><b>재산세 최저</b>·2카 개러지 별도 임대 추가수입·세입자 월세계약(입주시점 조절). 사진 저해상·외관 낡음. DOM 127 → 네고 여지.</div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><div class="eyebrow">직접 계산</div><h2>빠른 순수익 추정기</h2>
+        <p class="lead">＊감사 순위가 정확값. 이건 매입가·렌트·세금만으로 잡는 대략 추정입니다(모기지=매입가−$750K, 6.55%).</p></div>
+      <div class="calc">
+        <div class="field"><label>매입가 <span class="val" id="lP">$799,000</span></label><input type="range" id="P" min="550000" max="1200000" step="5000" value="799000"><div class="lead" style="font-size:11.5px" id="mh">모기지 $49,000 · 월 $311</div></div>
+        <div class="field"><label>임대 렌트(월) <span class="val" id="lR">$3,000</span></label><input type="range" id="R" min="2200" max="4500" step="50" value="3000"></div>
+        <div class="field"><label>재산세(연) <span class="val" id="lT">$9,000</span></label><input type="range" id="T" min="6000" max="16000" step="250" value="9000"></div>
+        <div class="field"><label>시니어 혜택(65+)</label><div class="seg" id="sn"><button data-v="1" aria-pressed="true">적용</button><button data-v="0" aria-pressed="false">미적용</button></div></div>
+        <div class="calcres good" id="cr"><div style="font-size:11px;font-weight:700;text-transform:uppercase;opacity:.85">월 순현금흐름(대략)</div><div class="a num" id="ca">+$1,200</div></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== 3 쉬운설명 ===== -->
+  <div class="panel" data-p="e">
+    <section>
+      <div class="sec-head"><div class="eyebrow">먼저 읽는 쉬운 설명</div><h2>표가 복잡하면 여기만</h2></div>
+      <div class="grid g2">
+        <div class="card"><h3>1. 뭘 하려는 건가요?</h3><p class="lead" style="margin:0">두 집이 붙은 집(2가구)을 삽니다. 한쪽은 부모님이 사시고, 다른 쪽은 세를 놓습니다. 그 세로 재산세·관리비 내고 <b>남는 돈이 매달 생활비</b>가 됩니다.</p></div>
+        <div class="card"><h3>2. 돈은 어떻게?</h3><p class="lead" style="margin:0">아빠 현금 <b>$750,000</b> 넣고 모자란 건 은행 대출(모기지). <b>10만 불 빌릴 때마다 매달 $635씩</b> 나갑니다. 그래서 집값이 비쌀수록 남는 돈이 줄어요.</p></div>
+        <div class="card"><h3>3. 집값 상한은?</h3><p class="lead" style="margin:0">다 내고 매달 $1,000 남기려면 대체로 <b>$800K 안쪽</b>. 세 많이 받는 집이면 조금 더. <b>$1M 넘으면 어떤 집이든 적자.</b></p></div>
+        <div class="card"><h3>4. 누구 이름으로?</h3><p class="lead" style="margin:0"><b>아빠 한 분 이름</b>으로만. 아들 이름 넣으면 어르신 재산세 할인 줄고 나중에 <b>메디케이드</b>에도 불리.</p></div>
+        <div class="card"><h3>5. 엄마도 같이 사는 게 중요?</h3><p class="lead" style="margin:0">네. 두 분이 함께 사시면 나중에 의료지원 받을 때 <b>집값이 올라도 문제 없음.</b> 혼자면 상한에 걸립니다.</p></div>
+        <div class="card" style="border-color:color-mix(in srgb,var(--pos) 35%,transparent);background:var(--pos-soft)"><h3>6. 그래서 답은?</h3><p style="margin:0"><b>220 5th St(페어뷰 $799K)</b> — 빌릴 돈 $49K뿐, 매달 $311만 갚음. 세놓을 넓은 층이 <b>비어 있어 바로 임대</b>, 이미 리노·중앙냉방. 남는 돈 매달 <b>약 $1,240~1,620</b>.</p></div>
+      </div>
+    </section>
+    <section>
+      <div class="note info"><div class="i">🏦</div><div><b>은행이 돈 빌려줄지부터 확인.</b> 아빠는 신고소득이 없으심 → ①받으실 <b>세가 소득으로 인정</b>(2~4가구) ②<b>소셜연금</b>도 인정 ③부족하면 <b>아들이 보증(공동서명)만, 이름은 안 올림.</b> 빌릴 돈 적을수록 승인 쉬움 → <b>220 5th가 가장 수월.</b> 집 보기 전 융자담당자에게 먼저.</div></div>
+    </section>
+    <section>
+      <div class="sec-head"><div class="eyebrow">쇼잉</div><h2>집 보러 가서 꼭 물을 5가지</h2></div>
+      <div class="card"><ul class="q" style="margin:0;padding-left:18px;font-size:14px">
+        <li>각 층에 <b>방이 몇 개</b>인가요? (세 얼마 받는지가 여기서 정해짐)</li>
+        <li>서류상 <b>몇 가구로 등록</b>된 집인가요? (광고와 다른 집 있음)</li>
+        <li>지금 세입자 <b>월세 얼마·계약 언제 끝</b>나나요?</li>
+        <li>가스·전기·수도 <b>계량기가 세대별로 따로</b> 있나요?</li>
+        <li><b>보일러·지붕</b> 몇 년 됐나요?</li>
+      </ul></div>
+    </section>
+  </div>
+
+  <!-- ===== 4 외부검증 ===== -->
+  <div class="panel" data-p="a">
+    <section>
+      <div class="note"><div class="i">🔍</div><div><b>외부 모델 감사(7/22).</b> 외부 AI(OpenAI Codex·gpt-5.6-sol 최고추론)에 "동의 말고 틀린 곳 찾아라, Python으로 전부 재계산"으로 독립 감사 + 자체 검증 에이전트. <b>산수 12건 전부 일치. 그러나 방법론 결함으로 결론 4건 뒤집힘.</b></div></div>
+    </section>
+    <section>
+      <div class="sec-head"><div class="eyebrow">뒤집힌 결론 4건</div><h2>수리비를 넣으니 달라졌다</h2></div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>매물</th><th>기존</th><th>수정</th><th>이유</th></tr></thead>
+        <tbody>
+          <tr><td><b>570 Grand</b></td><td class="mid">+$846 미달</td><td class="pos">+$1,177 통과</td><td>잔여현금 $111K의 4% 이자(월 $370). "집 자체 $1,000"이면 $807로 여전히 미달</td></tr>
+          <tr><td><b>235 Cliff</b></td><td class="pos">+$1,014 최대</td><td class="neg">−$147 적자</td><td>수리비 $225K를 대출에 넣으면 총대출 $624K</td></tr>
+          <tr><td><b>8808 Churchill</b></td><td class="pos">+$1,037 통과</td><td class="mid">+$35 사실상0</td><td>수리비 $185K 반영 시 대출 $164,888</td></tr>
+          <tr><td><b>8617 Smith</b></td><td class="num">+$1,126</td><td class="pos">+$1,028</td><td>통과 유지되나 여유 축소 → 경계선</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+    <section>
+      <div class="sec-head"><div class="eyebrow">감사가 새로 잡은 문제</div><h2>모델에 남은 6가지</h2></div>
+      <div class="grid g2">
+        <div class="card"><h3>① StayNJ 시점 혼동</h3><p class="lead" style="margin:0">StayNJ는 <b>당해 12개월</b> 요건, 3년은 Senior Freeze. "3~4년차부터 StayNJ"는 두 제도를 섞음. 매년 예산·소득구간 변동 위험도.</p></div>
+        <div class="card"><h3>② 물가상승 미반영</h3><p class="lead" style="margin:0">"4년차"인데 렌트·세금·보험·수리를 전부 현재값 그대로 씀. 각 상승률 반영 필요.</p></div>
+        <div class="card"><h3>③ 가중치 어긋남</h3><p class="lead" style="margin:0">하한 $1,000 못 넘은 570이 1위, 넘은 235가 11위였음. <b>통과/탈락 관문 먼저</b>, 통과분끼리만 비교해야.</p></div>
+        <div class="card"><h3>④ 상대점수 불안정</h3><p class="lead" style="margin:0">매물 추가·삭제 시 전 점수 흔들림. "79.7점"은 이 12개 안에서만 의미.</p></div>
+        <div class="card"><h3>⑤ 대출 확정 가정</h3><p class="lead" style="margin:0">신고소득 $0에 6.55%를 당연시. 임대소득 인정엔 이력·서류 요건. <b>사전승인 선행.</b></p></div>
+        <div class="card"><h3>⑥ 빠진 비용들</h3><p class="lead" style="margin:0">클로징·감정·인스펙션·수리초과·CO·중개·법률·제설/잔디·하수/공용전기·임대소득세·<b>매매 후 재평가 재산세 인상.</b></p></div>
+      </div>
+    </section>
+    <section>
+      <div class="note good"><div class="i">🎯</div><div><b>외부 감사 최종 권고:</b> "570 Grand를 1순위로 두되 <b>즉시 매입 권고는 아님.</b> 남는 $111K 유동성·낮은 공실이 강점, 수정 하한 $1,177로 완충 최대. 단 $370은 잔여현금 이자라 '집 자체 $1,000' 목표면 탈락. <b>220 5th St는 수리비 낮고 부동산 현금흐름 자체가 더 견고해 실질 공동 1순위.</b> 둘 다 인스펙션·보험견적·대출 사전승인·실제 임대렌트 확인 후 비교. 순위 뒤집을 최대 변수는 <b>구조·설비 capex</b>와 이후 유지보수 reserve."</div></div>
+    </section>
+  </div>
+
+  <!-- ===== 5 근거데이터 ===== -->
+  <div class="panel" data-p="d">
+    <section>
+      <div class="sec-head"><div class="eyebrow">타운별 임대 시장</div><h2>세 놓은 집 405채 실측 정체율</h2>
+        <p class="lead">"2개월+ 안 나가는 비율(정체율)"이 낮을수록 세가 잘 나감.</p></div>
+      <div class="rent-rank">
+        <div class="r"><div class="p">1</div><div><b>포트리</b> · 3BR $3,995(최고) · 매물 151채 최다<div class="bar"><span style="width:96%"></span></div></div><div class="d">정체 13%</div></div>
+        <div class="r"><div class="p">2</div><div><b>팰팍</b> · 3BR $3,350 · 한인상권 인접 수요 꾸준<div class="bar"><span style="width:80%"></span></div></div><div class="d">정체 21%</div></div>
+        <div class="r"><div class="p">3</div><div><b>리지필드</b> · 최속(평균 14일) · 매물 적음<div class="bar"><span style="width:82%"></span></div></div><div class="d">정체 18%</div></div>
+        <div class="r"><div class="p">4</div><div><b>클팍</b> · 정체 38%<div class="bar"><span style="width:62%"></span></div></div><div class="d">정체 38%</div></div>
+        <div class="r"><div class="p">5</div><div><b>페어뷰</b> · 3BR $2,848(최저)<div class="bar"><span style="width:57%"></span></div></div><div class="d">정체 43%</div></div>
+      </div>
+      <div class="note" style="margin-top:12px"><div class="i">⚖️</div><div><b>딜레마:</b> 세 잘나가는 포트리·팰팍은 $1M+ → 모기지 과다. $750K대는 페어뷰뿐인데 임대 최약. → <b>좋은 동네 네고 or 저가 신규 대기.</b></div></div>
+    </section>
+    <section>
+      <div class="sec-head"><div class="eyebrow">검증 방식 · 함정</div><h2>광고를 안 믿고 대조했습니다</h2></div>
+      <div class="grid g3">
+        <div class="card"><h3>세무과 실측 면적</h3><p class="lead" style="margin:0;font-size:12.5px">220 5th 1,574sf · 439 Bergen 2,394sf · 244 Slocum 2,868sf (지하·다락 제외).</p></div>
+        <div class="card"><h3>플립 주의</h3><p class="lead" style="margin:0;font-size:12.5px">54 W Columbia(2월 $940K→$1.2M) · 261 10th(4월 $999K→$1.25M). 네고 어렵고 겉만 수리 가능.</p></div>
+        <div class="card"><h3>광고 불신</h3><p class="lead" style="margin:0;font-size:12.5px">"렌트 $4,200"→실제 $3,150 · "리노"→퍼밋 0건. 시청 세금·퍼밋·실제 렌트매물로 대조.</p></div>
+      </div>
+    </section>
+    <section>
+      <div class="sec-head"><div class="eyebrow">방법론</div><h2>어떻게 계산했나</h2></div>
+      <div class="card">
+        <p style="font-size:13px;margin:0 0 8px">· <b>모기지</b> = 매입가 − $750,000, 30년 고정 <b>6.55%</b>.<br>
+        · <b>총원가</b> = 매입가 + 초기수리비 → 대출 = max(0, 원가−$750K), 남는현금 = max(0, $750K−원가).<br>
+        · <b>유지보수</b> = 면적 × 건물대체원가 $250/sf × 상태요율 (면적 미상은 동일 유닛수 중앙값).<br>
+        · <b>시니어혜택</b> = min(재산세 × 자가지분 × 50%, $6,500).<br>
+        · <b>공실</b> = 타운별 실측 정체율(포트리 4.5% ~ 페어뷰·노스버겐 9.5%).<br>
+        · <b>통과선</b> = 4년차 순수익 하한이 $1,000 되는 최대 매입가.</p>
+        <div class="note" style="margin-top:6px"><div class="i">⚠️</div><div>민감도: 대체원가 $300/sf면 8617 Smith 탈락, $350/sf면 220 5th만 간신히 통과. 남는현금 이자를 빼면 570 Grand는 $807로 탈락. <b>결과가 유지보수 가정에 매우 민감.</b></div></div>
+      </div>
+    </section>
+    <section>
+      <div class="sec-head"><div class="eyebrow">제외 매물</div><h2>왜 뺐나</h2></div>
+      <div class="card"><p class="lead" style="margin:0;font-size:12.5px"><b>해컨색 전체</b>(480 Washington·395 Taylor) · 98 Paulison(숏세일·전면철거) · 7315 Hudson(half-duplex·임대유닛 없음) · 89 Shaler(임대 1BR×2) · 458 Shannon(4유닛 전부 1BR) · 69 Lincoln(스튜디오) · 54 W Columbia·261 10th(플립) · 827 Pleasantview·385 McKinley(임대 1BR) · 414 Lafayette(단독) · 432 9th(과세대장 1가구) · 2455 3rd·145 Palisade(계약중).</p></div>
+    </section>
+  </div>
+
+  <footer>
+    데일리 스캔 매일 08:00 자동 · 기준일 2026-07-22 v9.0(외부 모델 감사·결론 4건 정정) · 자금 $750K 아빠 단독명의 · 기준 온누리교회 1449 Anderson Ave, Fort Lee.<br>
+    ＊본 브리프는 세무기록·퍼밋·실렌트매물 대조 기반 추정. 최종 판단 전 인스펙션·보험견적·대출 사전승인·라이선스 에이전트 NJMLS 확인 필수. 매물 status는 매수 전 라이브 재확인.
+  </footer>
+</div>
+
+<script>
+(function(){"use strict";
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s){return [].slice.call(document.querySelectorAll(s))};
+// theme
+$("#themeBtn").addEventListener("click",function(){var r=document.documentElement,c=r.getAttribute("data-theme");if(!c)c=matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";r.setAttribute("data-theme",c==="dark"?"light":"dark");});
+// tabs
+$$("#tabs button").forEach(function(b){b.addEventListener("click",function(){
+  $$("#tabs button").forEach(function(x){x.setAttribute("aria-selected","false")});
+  b.setAttribute("aria-selected","true");
+  $$(".panel").forEach(function(p){p.classList.toggle("on",p.getAttribute("data-p")===b.getAttribute("data-t"))});
+  window.scrollTo({top:0,behavior:"smooth"});
+});});
+// calc
+var fmt=function(n){return "$"+Math.round(n).toLocaleString("en-US")};
+var sgn=function(n){return (n>=0?"+":"−")+"$"+Math.abs(Math.round(n)).toLocaleString("en-US")};
+function pmt(P){if(P<=0)return 0;var r=6.55/100/12;return P*r*Math.pow(1+r,360)/(Math.pow(1+r,360)-1);}
+var senior=1;
+function calc(){
+  var P=+$("#P").value,R=+$("#R").value,T=+$("#T").value;
+  $("#lP").textContent=fmt(P);$("#lR").textContent=fmt(R);$("#lT").textContent=fmt(T);
+  var mort=Math.max(0,P-750000);
+  $("#mh").innerHTML="모기지 "+fmt(mort)+" · 월 "+fmt(pmt(mort));
+  var relief=senior?Math.min(T*0.5,6500):0;
+  var tax=(T-relief)/12, ins=2600/12, water=1200/12, maint=3800/12, vac=R*0.06;
+  var net=R - vac - pmt(mort) - tax - ins - water - maint;
+  var good=net>=1000;
+  $("#cr").className="calcres "+(good?"good":"bad");
+  $("#ca").textContent=sgn(net);
+}
+["P","R","T"].forEach(function(id){$("#"+id).addEventListener("input",calc)});
+$$("#sn button").forEach(function(b){b.addEventListener("click",function(){senior=+b.getAttribute("data-v");$$("#sn button").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});calc();});});
+calc();
+})();
+</script>
