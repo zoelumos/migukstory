@@ -38,3 +38,5 @@ jobs:
           cat rentcast_listings.json 2>/dev/null || echo "[]"
           echo ""
           echo "=====RENTCAST_JSON_END====="
+
+# re-run trigger: 2026-07-22a (Fort Lee walkable real-time check)
