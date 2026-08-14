@@ -30,8 +30,8 @@ faq:
 
 | 항목 | 2026년 | 2027년 변경 |
 |---|---|---|
-| 파트 D 처방약 본인부담 한도 | $2,100 | **$2,400** (↑$300) |
-| 파트 D 공제액(deductible) | $615 | **$700** (↑$85) |
+| 파트 D 처방약 본인부담 한도 | $2,100 | **$2,400** (↑$300) ※잠정 |
+| 파트 D 공제액(deductible) | $615 | **$700** (↑$85) ※잠정 |
 | 파트 D 보험료 보조금 | 월 약 -$16 절감 | ⚠️ **보조금 종료 → 보험료 인상 예상** |
 | 연간 선택 기간(AEP) | 2025년 10/15~12/7 | **2026년 10/15~12/7** (2027 적용) |
 | ANOC 발송 마감 | — | **2026년 9월 30일까지** |
@@ -44,7 +44,7 @@ faq:
 
 ### 1. 처방약 본인부담 한도 $2,400 — 더 올랐지만 여전히 혜택은 있다
 
-2025년부터 시행된 인플레이션감축법(IRA)에 따라 처방약 연간 본인부담 한도가 도입됐습니다. 2026년 $2,100에서 2027년에는 **$2,400**으로 조정됩니다. 한도 초과 시 해당 연도 남은 기간 동안 처방약 비용은 플랜이 100% 부담합니다.
+2025년부터 시행된 인플레이션감축법(IRA)에 따라 처방약 연간 본인부담 한도가 도입됐습니다. 2026년 $2,100에서 2027년에는 **약 $2,400**으로 조정될 것으로 예상됩니다. **CMS는 최종 수치를 2026년 하반기에 공식 발표할 예정**이므로, 정확한 수치는 CMS.gov에서 확인하세요. 한도 초과 시 해당 연도 남은 기간 동안 처방약 비용은 플랜이 100% 부담합니다.
 
 | 연도 | 파트 D 본인부담 한도 |
 |---|---|
@@ -135,12 +135,13 @@ faq:
 
 ## 출처(Sources)
 
-- [7 Medicare Advantage Changes Coming in 2027 — SeniorSimple](https://www.seniorsimple.org/articles/medicare-advantage-changes-2027)
-- [Medicare Advantage Is Changing in 2027 — FinanceBuzz](https://financebuzz.com/news/medicare-advantage-changes)
-- [Understanding the 2027 Medicare Part D Changes — MedicarePlanning.com](https://www.medicareplanning.com/medicare-part-d-2027-bid-amount-changes/)
+- [Medicare Part D 최신 정책 — CMS 공식 뉴스룸](https://www.cms.gov/newsroom)
+- [Final CY 2026 Part D Redesign Program Instructions — CMS](https://www.cms.gov/newsroom/fact-sheets/final-cy-2026-part-d-redesign-program-instructions)
+- [Medicare Enrollment Periods — Medicare.gov 공식](https://www.medicare.gov/basics/get-started-with-medicare/medicare-basics/when-does-medicare-coverage-start)
+- [Medicare Part D Out-of-Pocket Cap 2026 — KFF](https://www.kff.org/medicare/a-current-snapshot-of-the-medicare-part-d-prescription-drug-benefit/)
+- [The $2,100 Part D Out-of-Pocket Cap: How It Works — The Pocket Protector](https://thepocketprotector.com/learn/medicare-out-of-pocket-cap)
 - [Medicare Part D Subsidy Ending in 2027 — MedicareFAQ](https://www.medicarefaq.com/blog/medicare-part-d-subsidy-ending-2027/)
 - [Medicare ANOC 2027: How to Read Your Annual Notice of Change — US News Health](https://health.usnews.com/medicare/articles/how-to-read-your-medicare-anoc-letter-for-2027-coverage)
-- [Medicare Advantage Plans 2027 Open Enrollment](https://www.comparemedicareadvantageplans.org/medicare-advantage-plans-2027-open-enrollment/)
-- [Medicare Open Enrollment 2026 Information — M Health Fairview](https://www.mhealthfairview.org/bill-pay-and-financial-resources/estimates-and-insurance/insurance/medicare-open-enrollment-2026-information)
-- [Final CY 2026 Part D Redesign Program Instructions — CMS](https://www.cms.gov/newsroom/fact-sheets/final-cy-2026-part-d-redesign-program-instructions)
-- [The $2,100 Part D Out-of-Pocket Cap — The Pocket Protector](https://thepocketprotector.com/learn/medicare-out-of-pocket-cap)
+- [7 Medicare Advantage Changes Coming in 2027 — SeniorSimple](https://www.seniorsimple.org/articles/medicare-advantage-changes-2027)
+- [NJ SHIP (SAGE-SHIP) 무료 상담 — NJ 주정부](https://www.nj.gov/health/shad/)
+- [HIICAP (NY SHIP) 무료 상담 — NY 주정부](https://aging.ny.gov/hiicap)

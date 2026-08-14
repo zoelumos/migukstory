@@ -15,7 +15,7 @@ faq:
   - q: "CD 이자에 세금이 붙나요?"
     a: "네, CD 이자는 연방 소득세 및 주 소득세 과세 대상입니다. 1099-INT를 받고 일반 소득세율로 신고해야 합니다. 다만 IRA나 Roth IRA 내에서 CD를 운용하면 세금이 이연(세전) 혹은 면제(세후)됩니다. 고금리 CD를 IRA 한도 내에서 활용하는 것도 고려해 보세요."
   - q: "달러 예금 vs. 한국 원화 예금, 어느 쪽이 유리한가요?"
-    a: "2026년 8월 기준 미국 HY 세이빙스 4.0~4.2%, 한국 은행 정기예금 약 2.5~3.2%(변동)입니다. 원달러 환율이 함께 움직이므로 단순 금리만으로 비교하기 어렵습니다. 생활비·송금 계획이 달러 중심이라면 미국 내 고금리 상품이 합리적이며, 한국 귀국 계획이 있다면 환율 헷지 여부도 검토하세요."
+    a: "단순 금리만으로 비교하기 어렵습니다. 원달러 환율이 함께 움직이기 때문입니다. 한국 예금 금리는 한국은행 기준금리(수시 조회: bok.or.kr)를 참고하세요. 생활비·송금 계획이 달러 중심이라면 미국 내 고금리 상품이 합리적이며, 한국 귀국 계획이 있다면 환율 헷지 여부와 양국 이자소득세 신고 의무도 함께 검토하세요."
 ---
 
 # 고금리 막차 탈까 — 한인 가정 CD·고수익 저축·MMF 전략 (2026년 8월 최신)
@@ -23,6 +23,8 @@ faq:
 2026년 8월 12일 발표된 7월 소비자물가지수(CPI)는 전년 대비 **3.4%** 로 확인됐습니다. 기대를 밑돌지는 않았지만, 연준 목표(2%)를 여전히 크게 웃돌고 있습니다. 이 숫자 하나로 시장의 **9월 연방공개시장위원회(FOMC) 금리 인상 확률은 55~65%** 로 굳어졌습니다(CME FedWatch, Forbes, JP Morgan 분석 종합).
 
 한인 가정에게 이것이 의미하는 건 단순합니다. **지금은 저금리 시대가 아닙니다.** 하지만 금리 정점이 멀지 않다는 신호도 동시에 존재합니다. "막차를 타야 하나, 이미 늦었나"라는 질문에 대한 답을 이 글에서 정리합니다.
+
+> **주의:** 이 글에 언급된 구체적인 금리(APY)는 2026년 8월 현재 시점 기준 Bankrate·NerdWallet 등 금리 비교 사이트 데이터를 기반으로 하며, 수시로 변동됩니다. 가입 전 반드시 각 은행·증권사 공식 웹사이트에서 최신 금리를 확인하세요.
 
 ---
 
@@ -59,7 +61,7 @@ faq:
 | Marcus by Goldman Sachs | 약 4.00% | 없음 | 안정적 |
 | Ally Bank | 약 3.80% | 없음 | 10일 최고금리 보장 |
 
-> **HY 세이빙스 특징:** 금리가 연준 결정에 따라 수시로 변동됩니다. 유동성이 높아 비상금·여유 자금에 적합합니다.
+> **HY 세이빙스 특징:** 금리가 연준 결정에 따라 수시로 변동됩니다. 유동성이 높아 비상금·여유 자금에 적합합니다. 위 금리는 2026년 8월 Bankrate·NerdWallet 집계 기준이며, 가입 전 각 은행 공식 사이트에서 재확인하세요.
 
 ### 정기예금(CD, Certificate of Deposit)
 
@@ -103,6 +105,21 @@ faq:
 3. **3단계 — $10,000 → 나머지를 HY 세이빙스 유지**
    - 언제든 인출 가능한 유동성 레이어
    - 연준 9월 인상 시 금리 자동 상향 수혜
+
+#### 세금 영향 추산 (CD 래더 적용 시)
+
+CD 이자는 1099-INT로 보고되어 연방 소득세가 부과됩니다. 연 소득 $60,000~$100,000 구간의 한인 가정이라면 보통 **22% 세율**이 적용됩니다.
+
+| 구성 | 이자 수익(세전) | 세금 22% | 세후 실수익 |
+|---|---|---|---|
+| 6개월 CD $10,000 @ 4.0% | $200 | $44 | **$156** |
+| 1년 CD $10,000 @ 4.2% | $420 | $92 | **$328** |
+| HY 세이빙스 $10,000 @ 4.0% (연간) | $400 | $88 | **$312** |
+| **합계 $30,000** | **$1,020** | **$224** | **$796** |
+
+반면, 같은 금액을 일반 대형 은행 보통예금(평균 0.45% APY)에 뒀을 경우 세전 이자는 $135 — 세후로는 약 $105에 불과합니다. **래더 전략 시 세후 기준 약 $700 이상 추가 수익**이 발생합니다.
+
+> **IRA 계좌 활용 팁:** 세금 부담을 줄이려면 은퇴 계좌(IRA) 내에서 CD나 MMF를 운용하는 방법이 있습니다. 전통 IRA는 이자가 인출 시까지 세금 이연되고, Roth IRA는 인출 시 완전 비과세입니다. 2026년 IRA 연간 한도는 **$7,000(50세 이상 $8,000)** 이며, 이 범위 내에서 고금리 CD를 IRA 계좌 안에 개설할 수 있습니다(IRA CD). 단, IRA 내 CD 해약 시에도 CD 조기 해약 페널티는 별도 적용됩니다.
 
 ---
 
@@ -167,12 +184,12 @@ IRA 내에서도 고금리 CD 또는 MMF를 활용 가능. 세전(IRA) 또는 �
 
 ## 출처(Sources)
 
-- [CPI inflation report July 2026: Prices rose 0.1%, annual rate 3.4% — CNBC](https://www.cnbc.com/2026/08/12/cpi-inflation-report-july-2026.html)
-- [July CPI Report Lowers September Rate-Hike Odds — Kiplinger](https://www.kiplinger.com/investing/economy/cpi-report-july-2026-what-to-expect)
-- [Will the Fed Raise Rates in September? — Forbes](https://www.forbes.com/sites/billconerly/2026/08/12/why-the-fed-will-raise-rates-in-september-despite-cooler-cpi/)
-- [September 2026 Rate Hike Now Expected — Chase Investments](https://www.chase.com/personal/investments/learning-and-insights/article/september-2026-rate-hike-now-expected-amid-energy-shocks)
-- [Best CD Rates of August 2026 — CNBC Select](https://www.cnbc.com/select/best-certificates-of-deposits/)
-- [Best CD Rates of August 2026 — Bankrate](https://www.bankrate.com/banking/cds/cd-rates/)
-- [Best High-Yield Savings Accounts of August 2026 — NerdWallet](https://www.nerdwallet.com/banking/best/high-yield-online-savings-accounts)
-- [Best High-Yield Savings Accounts — Bankrate](https://www.bankrate.com/banking/savings/best-high-yield-interests-savings-accounts/)
+- [Consumer Price Index Summary — U.S. Bureau of Labor Statistics (BLS)](https://www.bls.gov/news.release/cpi.nr0.htm)
+- [CME FedWatch Tool — 연준 금리 결정 시장 확률](https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html)
+- [FOMC 회의 일정 및 결정 — Federal Reserve Board](https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm)
 - [United States Fed Funds Interest Rate — Trading Economics](https://tradingeconomics.com/united-states/interest-rate)
+- [Best CD Rates — Bankrate (수시 업데이트)](https://www.bankrate.com/banking/cds/cd-rates/)
+- [Best High-Yield Savings Accounts — NerdWallet (수시 업데이트)](https://www.nerdwallet.com/banking/best/high-yield-online-savings-accounts)
+- [Best High-Yield Savings Accounts — Bankrate (수시 업데이트)](https://www.bankrate.com/banking/savings/best-high-yield-interests-savings-accounts/)
+- [IRA 한도 및 규정 — IRS Publication 590-A](https://www.irs.gov/publications/p590a)
+- [FDIC 예금 보호 한도 — FDIC](https://www.fdic.gov/resources/deposit-insurance/)
