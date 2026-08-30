@@ -37,5 +37,14 @@ run() {
   return $rc
 }
 
-run >> "$LOG" 2>&1
-exit $?
+# ── Log hygiene (added 2026-08-30 after a 296GB runaway log filled the disk) ──
+# 1) rotate: drop job logs older than 14 days
+find "$LOGDIR" -name "*.log" -mtime +14 -delete 2>/dev/null
+# 2) cap: never let a single run write more than 50MB; job is killed when exceeded
+MAX_LOG_BYTES=$((50*1024*1024))
+run 2>&1 | head -c "$MAX_LOG_BYTES" >> "$LOG"
+rc=${PIPESTATUS[0]}
+if [ "$(stat -f %z "$LOG")" -ge "$MAX_LOG_BYTES" ]; then
+  echo "===== ${JOB} LOG CAP (50MB) HIT — output truncated, job aborted =====" >> "$LOG"
+fi
+exit $rc
