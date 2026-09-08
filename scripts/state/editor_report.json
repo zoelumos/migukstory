@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-02T10:17:26.250372+00:00",
+  "generated_at": "2026-09-08T10:15:31.340224+00:00",
   "threshold_promote": 80,
   "threshold_review": 50,
   "counts": {
-    "total": 1,
-    "promoted": 1,
+    "total": 2,
+    "promoted": 2,
     "review": 0,
     "discard_flag": 0,
     "deferred": 0,
@@ -12,19 +12,36 @@
   },
   "grades": [
     {
-      "slug": "h1b-fy2027-october1-start-korean-checklist-2026",
-      "score": 91,
+      "slug": "korean-small-business-credit-debt-fomc-september-2026",
+      "score": 80,
       "scores": {
-        "factuality": 17,
-        "source_diversity": 19,
-        "ka_angle": 19,
-        "originality": 17,
-        "structure": 19
+        "factuality": 12,
+        "source_diversity": 12,
+        "ka_angle": 12,
+        "originality": 12,
+        "structure": 12
       },
-      "reasoning": "FY2027 쿼터 도달일·마감일·10월 1일 시작·연봉 가중 추첨 등 핵심 수치와 날짜가 Ogletree·Fragomen·USCIS·Boundless 등 서로 다른 신뢰 출처로 교차 검증되고, COS vs 영사처리 구분, 주한 미국 대사관 스탬핑, 추석 귀국·한국 우선일 대기 등 한인 실무 관점이 매우 구체적이며 비교표·번호 단계·체크리스트·타임라인·조건→결과 등 시각화와 frontmatter FAQ 4개가 완비돼 자동 승격 기준을 충분히 넘습니다. 약점은 '2026년 7월 임금 기준 업데이트'·'2025년 12월 소셜미디어 심사 강화' 같은 일부 세부 주장이 출처 목록에서 직접 특정 링크로 완전히 대응되지 않아 factuality를 만점으로 주지 못한 점과, 오늘은 전국적 속보 사이클이 없어 헤드라인 강도를 보수적으로 평가한 점입니다.",
+      "reasoning": "dry-run heuristic: not a real evaluation",
       "action": "promote",
-      "promoted_to": "queue/h1b-fy2027-october1-start-korean-checklist-2026.md",
-      "headline_strength": 3,
+      "promoted_to": null,
+      "headline_strength": 2,
+      "is_breaking_lead": false,
+      "viral_match": null
+    },
+    {
+      "slug": "social-security-cola-2027-estimate-korean-retirement",
+      "score": 80,
+      "scores": {
+        "factuality": 12,
+        "source_diversity": 12,
+        "ka_angle": 12,
+        "originality": 12,
+        "structure": 12
+      },
+      "reasoning": "dry-run heuristic: not a real evaluation",
+      "action": "promote",
+      "promoted_to": null,
+      "headline_strength": 2,
       "is_breaking_lead": false,
       "viral_match": null
     }
